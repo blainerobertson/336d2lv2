@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Enhancement 2 | Web Backend Development</title>
+  <meta name="description" content="CIT 336 Enhancement 2 directions">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Enhancement 2</h1>
+        <h2>Purpose</h2>
+        <p>This enhancement allows you to work with SQL statements that are used in <abbr title="Create, Read, Update and Delete">CRUD</abbr> interactions. These same interactions correspond with the privleges you gave to the proxy user when you created the <b>acme</b> database and can also be used with the <b>my_guitar_shop1</b> and <b>my_guitar_shop2</b> databases.</p>
+        <h2>Assumptions</h2>
+        <p>This enhancement assumes:</p>
+        <ol>
+          <li>that you successfully created all three databases in your local XAMPP environments: acme, my_guitar_shop1 and my_guitar_shop2.</li>
+          <li>the proxy user was also created in the PHPMyAdmin "User Accounts" tab.</li>
+          <li>you know the proxy user's password and this user has all Data privileges.</li>
+        </ol>
+        
+        <h2>Tasks</h2>
+        <p>This enhancement has two distinct parts to it:</p>
+        <h3>Practice SQL Statements</h3>
+        <p>Chapter 3 contain sample SQL statements for Selecting, Inserting, Updating and Deleting data from database table(s), you should have carefully reviewed these as part of your reading.</p>
+        <ol>
+          <li>You will create a new "sql" folder inside the acme folder.</li>
+          <li>You will create a new "enhancement2.txt" file inside the sql folder where you will store the finished SQL statements.</li>
+          <li>Build and test your SQL statements in the PHPMyAdmin tool's SQL tab.</li>
+          <li>When your statements are working correctly, copy and paste them into the <b>enhancement2.txt file.</b></li>
+          <li>This enhancement2.txt file will be submitted as part of the finished enhancement.</li>
+        </ol>
+        <h3>The acme database</h3>
+        <p>Write SQL statements to accomplish the following tasks:</p>
+        <ol>
+          <li>Insert the following new client to the clients table:
+            <br> Tony, Stark, tony@starkent.com, Iam1ronM@n, NULL, "I am the real Ironman" </li>
+          <li>Modify the Tony Stark record to change the clientLevel to 3.</li>
+          <li>Modify the "Nylon Rope" record to read "Climbing Rope". The change must change all instances of "nylon" to "climbing" in the record except the names of the images. Also, be sure that the invName field maintains its capital letter.</li>
+          <li>Select the inventory items that belong to the "Misc" category and include the name (not the categoryId number) of the "Misc" category in the list of items from the inventory table.</li>
+          <li>Delete the Koenigsegg CCX car from the database. [<b>Note:</b> You can restore the Inventory table by importing the SQL file that was used to create it].</li>
+          <li>Create a video of you running all of these SQL statements and showing the result of running the SQL statement.</li>
+        </ol>
+        <h2>Build a Database Connection File</h2>
+        <p>Create a connection file that contains three separate connection functions. The file should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
+        <ol>
+          <li>Create a PDO connection function for the acme database.</li>
+          <li>Create a PDO connection function for the my_guitar_shop1 database.</li>
+          <li>Create a PDO connection function for the my_guitar_shop2 database.</li>
+          <li>Create a video that demonstrates that all three connections work.</li>
+          <li>In the same video demonstrate that errors are successfully caught when all three connections fail.</li>
+        </ol>
+        <h2>Submission</h2>
+        <ul>
+          <li>Build, test and run your SQL code in the XAMPP development environment's PHPMyAdmin tool.</li>
+          <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.</li>
+          <li>Check your work to ensure that it meets all of the expectations listed.</li>
+          <li>When satisfied that the code is operational:
+            <ol>
+              <li>Create the video(s) as explained showing the SQL statements in action and the connection objects working and failing.</li>
+              <li>Post your video(s) to your YouTube channel and copy the link(s) to the video(s) when published.</li>
+              <li>Zip the acme folder and name it enhancement 2 (save this zip file outside of your web site)</li>
+              <li>Submit the zip file to the enhancement 2 assignment dropbox and add the video URL(s) to the dropbox comment.</li>
+            </ol>
+          </li>
+        </ul>
+        <h2>Grading Matrix</h2>
+        <ul>
+          <li>The Tony Start insert SQL statement works: <b>2 points</b></li>
+          <li>The Tony Start update SQL statement works: <b>2 points</b></li>
+          <li>The nylon rope update SQL statement works: <b>4 points</b></li>
+          <li>The select misc items SQL statement works: <b>2 points</b></li>
+          <li>The delete Koenigsegg CCX SQL statement works: <b>2 points</b></li>
+          <li>All SQL statements are in a single file, named and stored as directed: <b>2 points</b></li>
+          <li>The acme PDO connection function works: <b>2 points</b></li>
+          <li>The acme PDO connection function handles errors when it fails: <b>2 points</b></li>
+          <li>The my_guitar_shop1 PDO connection function works: <b>2 points</b></li>
+          <li>The my_guitar_shop1 PDO connection function handles errors when it fails: <b>2 points</b></li>
+          <li>The my_guitar_shop2 PDO connection function works: <b>2 points</b></li>
+          <li>The my_guitar_shop2 PDO connection function handles errors when it fails: <b>2 points</b></li>
+          <li>All database connection functions are in a single file, named and stored as directed: <b>2 points</b></li>
+          <li>The video(s) of the SQL statements and connection functions in action are present and demonstrate the actions called for: <b>2 points</b></li>
+          <li>Total value: <b>30 points</b> - all in objective 4</li>
+        </ul>
+      </article>
+    </main>
+  </div>
+  <script src="../js/course.js"></script>
+</body>
+
+</html>
