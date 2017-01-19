@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>M-V-C Overview | Web Backend Development</title>
-	<meta name="description" content="An overview of the Model - View - Control (M-V-C) and constructuion of a basic controller operation for CIT 336">
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="../css/336course.min.css" media="screen">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>M-V-C Overview | Web Backend Development</title>
+  <meta name="description" content="An overview of the Model - View - Control (M-V-C) and constructuion of a basic controller operation for CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
 </head>
 
 <body>
-	<div id="main">
-		<header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-		<main>
-			<article id="article">
-				<h1>Model - View - Control</h1>
-				
-				<h2>Conceptual Overview</h2>
-				<iframe src="https://www.youtube.com/embed/a9WhrfKBEbs" width="425" height="350" allowfullscreen></iframe>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Model - View - Control</h1>
 
-				<h2>Get Organized</h2>
-				<p>We'll begin by creating a two new folders and moving an existing file into one of the new folders.</p>
+        <h2>Conceptual Overview</h2>
+        <iframe src="https://www.youtube.com/embed/a9WhrfKBEbs" width="425" height="350" allowfullscreen></iframe>
+
+        <h2>Get Organized</h2>
+        <p>We'll begin by creating a two new folders and moving an existing file into one of the new folders.</p>
         <ol>
           <li>Create two new folders within the acme folder:
           <ol>
@@ -29,9 +29,9 @@
             <li>model</li>
             </ol>
           </li>
-          <li>When done move your home page (mine is named home.php) into the view folder (<b>Note:</b> if your home page is named index, I suggest you change it to something else).</li>
+          <li>When done move your home page (mine is named home.php) into the view folder (<strong>Note: <i>if your home page is named index.php, change it to something else</i></strong>).</li>
         </ol>
-        
+
         <h2>Create a Controller for the acme root</h2>
         <p>The controller is the default file that we want the server to use for all incoming traffic to the acme site and for applications built within the site. Because the controller contains the logic, it makes the decisions as to what is needed to respond to incoming requests from the browser.</p>
         <ol>
@@ -54,7 +54,7 @@
           switch ($action){
           case 'home':
           include '/view/home.php';
-          break;          
+          break;
           }
           </code></pre>
           </li>
@@ -70,10 +70,10 @@
           <li>The <a href="http://php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net" target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
           <li>Each <b>case</b> statement represents a different process to execute. In this instance we have a single case that executes if the $action variable has a value of "home".</li>
           <li>If $action equals "home" then the home view is included (meaning that it will sent to the browser) and the case statement is ended with the break statement.</li>
-          
+
         </ol>
         <p></p>
-				<h2>Deliver the "home" view</h2>
+        <h2>Deliver the "home" view</h2>
         <ol>
         <li>Save all of your work.</li>
           <li>Make sure the Apache server is running.</li>
@@ -81,16 +81,16 @@
           <li>If things work as they should, you should be looking at your home page.</li>
           <li>If things didn't work, check spelling, file and folder names and the path.</li>
         </ol>
-				
+
         <h2>Video Demonstration</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/8XCUVz7sXj4" allowfullscreen></iframe>
-			</article>
-		</main>
-		<footer>
+      </article>
+    </main>
+    <footer>
             <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
     </footer>
-	</div>
-	<script src="../js/course.min.js"></script>
+  </div>
+  <script src="../js/course.min.js"></script>
 </body>
 
 </html>
