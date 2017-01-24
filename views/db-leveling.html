@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>PDO DB Connection | Web Backend Development</title>
+  <meta name="description" content="Leveling the acme database for consistency for CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Acme Database Leveling</h1>
+        <h2>What?</h2>
+        <p>In week 03 you created the <b>acme</b> database and imported a SQL file to create the inventory and categories tables. The clients table you created from scratch. The problem is that many of us are novices and may not have created the clients table completely or correctly.</p>
+        <p>This short activity is meant to fix that by making sure that all of our acme tables are the same ("leveled") before we begin using them in earnest.</p>
+
+        <h2>Acme SQL File</h2>
+        <p>What I didn't tell you earlier is that the code to create the <b>clients</b> table is already in the downloadable sql file that you used to create the other two tables, just commented out. We will uncomment the code and import the file again to make sure all of our <b>acme</b> databases are the same.</p>
+
+        <h2>Prepare the File</h2>
+        <ol>
+          <li><a href="../downloads/acme-db.sql.zip" title="Download the zip file in a new tab" target="_blank">Download the Acme SQL file</a> again.</li>
+          <li>Unzip the file.</li>
+          <li>Store the <b>acme-db.sql</b> file into your <b>sql</b> folder (created in week 03), for possible future use.</li>
+          <li>Launch NetBeans.</li>
+          <li>Find and open the <b>acme-db.sql</b> file.</li>
+          <li>Scroll down to line 111 or so.</li>
+          <li>Uncomment the following lines:<ul>
+            <li>Lines 119 through 128</li>
+            <li>Lines 133 and 134</li>
+            <li>Lines 139 and 140</li>
+            </ul>
+          <p>To remove a comment, delete the <b>--</b> on the left of the line.</p>
+          </li>
+          <li>When done check that there are no errors (red icons or underlines) shown in the file!</li>
+        </ol>
+        <h2>Update the Database</h2>
+        <ol>
+          <li>Launch XAMPP and start the Apache and MySQL servers.</li>
+          <li>In a browser window, open the PHPMyAdmin tool.</li>
+          <li>Click the acme database (on the left or in the "Databases" tab).</li>
+          <li>Click the "Import" tab.</li>
+          <li>Click the "Choose File" button.</li>
+          <li>Navigate to the <b>acme-db.sql</b> file and click the "Open" button in the finder window.</li>
+          <li>At the bottom of the Import window, click the "Go" button.</li>
+          <li>If everything is successful you should see a green bar and on the left you should see the three tables listed beneath the acme database.</li>
+          <li>That's it! Everyone who does this will have the exact same tables, table structures and data.</li>
+          <li>Be sure to shut down your servers when you are done working with them.</li>
+        </ol>
+<h2>Video Demonstration</h2>
+
+
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
