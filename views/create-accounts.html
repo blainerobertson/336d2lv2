@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Create Accounts Folder | Web Backend Development</title>
+  <meta name="description" content="This activity creates the account folder and controller for the acme project of CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>The Accounts Folder</h1>
+        <p>You have previously created a controller for the acme site itself, but to provide a more focused approach to managing visitor accounts, we will create a folder and new controller specifically for that purpose.</p>
+
+        <h2>Create the Accounts folder</h2>
+        <ol>
+          <li>Within the acme folder, create a new folder named <b>accounts</b>. Do you remember the web naming rules?.
+            <ul>
+              <li>No capital letters</li>
+              <li>No spaces in folder or file names</li>
+              <li>No special characters in the name</li>
+              <li>Names should be short and meaningful</li>
+            </ul>
+          </li>
+          <li>Now that we have the folder we need a controller for this folder!</li>
+          <li>To make things easier (we hope) for ourselves, we will copy, paste and edit to do this.</li>
+        </ol>
+
+        <h2>Create the Controller</h2>
+        <p>Because the acme controller (index.php) at the root of the acme site has the basics we will use it to create our new accounts controller.</p>
+        <ol>
+          <li>Copy the acme controller (index.php) at the root of the acme site.</li>
+          <li>Click the <b>accounts</b> folder and paste.</li>
+          <li>An <b>index.php</b> file should now appear inside of accounts.</li>
+        </ol>
+
+        <h2>Edit the Controller</h2>
+        <h3>Alter the Requires</h3>
+        <ol>
+          <li>Open the accounts controller.</li>
+          <li>First, we have to edit the pathes to the database connection and acme model files.</li>
+          <li>Look at the acme folder structure. You will see that the <b>model</b> and <b>library</b> folders are siblings to the accounts folder.
+            <br>
+            <img src="../images/acme/acme-structure-accounts.png" alt="Image of the acme folder structure">
+          </li>
+          <li>Since our file is inside the <b>accounts</b> folder, we have to tell the server to move up one level, then find them. To do this:
+            <ul>
+              <li>Add "<i>../</i>" in front of both pathes so that they look like the examples below:
+                <br>
+                <code class="callout">require_once '../library/connections.php';</code>
+                <code class="callout">require_once '../model/acme-model.php';</code>
+              </li>
+              <li>Keep in mind that your file names may be different than what is shown here.</li>
+            </ul>
+          </li>
+        </ol>
+        <h3>Keep the navList Code</h3>
+        <p>Below the two require_once statements is the code you wrote earlier to build the navigation list.
+          <br>
+          <img src="../images/acme/nav-list-code.png" alt="Image of the navList code block">
+          <br>Keep it as you will probably be needing it again.</p>
+
+        <h3>Alter the Action Collection Code</h3>
+        <p>You should have a sequence of code to collect and store the value from the action key - value pair. It should look like the code example below:</p>
+        <pre class="callout"><code>$action = filter_input(INPUT_POST, 'action');
+if ($action == NULL) {
+ $action = filter_input(INPUT_GET, 'action');
+ if ($action == NULL) {
+  $action = 'home';
+ }
+}</code></pre>
+        <p>We are going to leave most of it as it, but alter the last assignment statement. In this case, if there is no specific action we will redirect to the main acme controller and tell it to deliver the acme registration page. (<i>Remember in the MVC we always send requests to the controller and let it deliver the view)</i></p>
+        <p>Keep in mind you wrote your own code in the main acme controller to listen for a request to deliver the registration view for an earlier enhancement and so your code may need to be different than what you see here. It is the process of getting the main acme controller to deliver the registration view that we are trying to achieve, so be sure to test that it works.</p>
+        <pre class="callout"><code>$action = filter_input(INPUT_POST, 'action');
+if ($action == NULL) {
+ $action = filter_input(INPUT_GET, 'action');
+ if ($action == NULL) {
+  header('location: ../?action=reg');
+  exit;
+ }
+}</code></pre>
+
+        <h2>Alter the Control Structure</h2>
+        <p>Finally we get to the switch control structure. For right now, leave the first case statement, but delete all the rest. When you're done it should look like this:</p>
+        <pre class="callout"><code>switch ($action) {
+  case 'home':
+   include 'view/home.php';
+   break;
+}</code></pre>
+        <p>Now we will change the value of the case statement and remove the include.</p>
+        <ol>
+          <li>The desired outcome is to handle a registration request by inserting data to the database.</li>
+          <li>Remove "home" in the case statement.</li>
+          <li>Add "register" where home was.</li>
+          <li>Delete the <code>include 'view/home.php';</code> line.</li>
+          <li>When you're done the case should look like this:
+            <pre class="callout"><code>switch ($action) {
+  case 'register':
+
+   break;
+}</code></pre>
+          </li>
+          <li>Save the controller file.</li>
+        </ol>
+
+        <h2>What's Next?</h2>
+        <p>With the basics of the <b>accounts</b> controller in place we need to alter the <b>registration.php</b> view to point to this controller so that the registration data will be sent here.</p>
+
+        <h2>Video Demonstration</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/uhkHTCUpZEk" allowfullscreen></iframe>
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
