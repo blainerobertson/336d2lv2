@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Registration Key - Value Pair | Web Backend Development</title>
+  <meta name="description" content="This activity adds the action key - value pair to the registration view for the acme project of CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Registration Key - Value Pair</h1>
+        <p>As you have already worked with the acme and accounts controllers you know that we are using a key - value pair, where "<b>action</b>" is the key, to trigger processes in the switch control structure.</p>
+
+        <p>In this activity we will add the action key - value pair to the registration form to trigger the correct process in the accounts controller and make sure the form is set to send its data to the accounts controller.</p>
+
+        <h2>Set the Key - Value Pair</h2>
+        <ol>
+          <li>Find your <b>view</b> folder in the acme web site.</li>
+          <li>Expand it and locate the <b>registration.php</b> view and open it.</li>
+          <li>Move to the bottom of the form and find the input of type "submit" code. It should look similar to, but probably not exactly like, what you see below:
+            <p class="callout"><code>&lt;input type="submit" name="submit" id="regbtn" value="Register"&gt;</code></p>
+          </li>
+          <li>Create a new empty line below it.</li>
+          <li>Add the following code to the new empty line
+            <p class="callout"><code>&lt;!-- Add the action key - value pair-- &gt;<br>
+              &lt;input type="hidden" name="action" value="register"&gt;</code></p>
+          </li>
+          <li>Save the file.</li>
+        </ol>
+        <h2>Form attributes</h2>
+        <p>HTML form elements have two required attributes (method and action) that must be present for the form to work. We will add both and provide the correct values to these attributes.</p>
+        <h3>The method attribute</h3>
+        <p>The method attribute tells the HTTP protocol "How" to send the data. We have two options: <i>post</i> or <i>get</i>. An easy way to remember these is <i>Post</i> means "write", <i>Get</i> means "read". Since we want the registration data to be "written" to the database, we will use <b>post</b>.</p>
+        <ol>
+          <li>Find the opening form tag in the <b>registration.php</b> view.</li>
+          <li>If the method attribute does not exist, add it.</li>
+          <li>Make sure method is followed by an equal sign and double quotes.</li>
+          <li>Add <i>post</i> between the double quotes.</li>
+          <li>When done the opening form tag should look like this:
+            <br>
+            <code class="callout">&lt;form method="post"&gt;</code>
+          </li>
+        </ol>
+
+        <h3>The action attribute</h3>
+        <p>The action attribute tells the HTTP protocol "Where" to send the data. In this instance we want to send it to the <b>accounts</b> controller.</p>
+
+        <ol>
+          <li>In the opening form tag add a space behind the method attribute and value.</li>
+          <li>Add the <b>action</b> attribute with an equal sign and double quotes.</li>
+          <li>We will add the path to the <b>accounts</b> controller between the quotes.</li>
+          <li>The registration view is in the <b>view</b> folder and the accounts controller is in the <b>accounts</b> folder. So the path will have to go up one level, then find the <b>accounts</b> folder, drop inside of it, and find the controller. The path should look like this:<br>
+            <code>../accounts/index.php</code>.</li>
+          <li>When you're done, the opening form tag should look like this:<br>
+            <code class="callout">&lt;form method="post" action="../accounts/index.php"&gt;</code>.</li>
+          <li>Double check the opening form tag for accuracy.</li>
+          <li>Save the file.</li>
+        </ol>
+
+        <h2>What's Left?</h2>
+        <p>The last thing is to get the accounts controller finished to write the data to the database.</p>
+
+        <h2>Video Demonstration</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VF_hw6t_qcU" allowfullscreen></iframe>
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
