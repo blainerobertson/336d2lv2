@@ -57,12 +57,16 @@
           <li>Add the <b>action</b> attribute with an equal sign and double quotes.</li>
           <li>We will add the path to the <b>accounts</b> controller between the quotes.</li>
           <li>The registration view is in the <b>view</b> folder and the accounts controller is in the <b>accounts</b> folder. So the path will have to go up one level, then find the <b>accounts</b> folder, drop inside of it, and find the controller. The path should look like this:<br>
-            <code>../accounts/index.php</code>.</li>
+            <code>accounts/index.php</code>.</li>
           <li>When you're done, the opening form tag should look like this:<br>
-            <code class="callout">&lt;form method="post" action="../accounts/index.php"&gt;</code>.</li>
+            <code class="callout">&lt;form method="post" action="accounts/index.php"&gt;</code>.</li>
           <li>Double check the opening form tag for accuracy.</li>
           <li>Save the file.</li>
         </ol>
+
+        <h3>An Explanation</h3>
+        <p>If you were watching carefully, you may have asked yourself, "Wait a second, the registration view is in <b>view</b> folder. So why doesn't the action path include a "../" to go up one level?"</p>
+        <p>The answer is "scope". The registration view will be "included" into the acme controller's (<b>index.php</b>) scope. That means that PHP considers it to be at the root level already. So, when the "Register" button is clicked it just has to find the <b>accounts</b> folder and then dive inside of it to find the controller.</p>
 
         <h2>What's Left?</h2>
         <p>The last thing is to get the accounts controller finished to write the data to the database.</p>
