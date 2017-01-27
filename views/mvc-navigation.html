@@ -45,26 +45,25 @@
           <li>When creating functions (interactions) name them to describe what they do.</li>
           <li>Note that no parameters will be placed between the parentheses as the function will not need outside information to run.</li>
           <li>Build the function to look like the code below:
-            <br>
-            <pre class="callout"><code>function getCategories(){
-   // Create a connection object from the acme connection function
-   $db = acmeConnect();
-   // The SQL statement to be used with the database
+            <code class="callout" style="margin-left: 0;">function getCategories(){<br>
+              // Create a connection object from the acme connection function<br>
+              $db = acmeConnect();<br>
+              // The SQL statement to be used with the database<br>
    $sql = 'SELECT categoryName FROM categories
-            ORDER BY categoryName ASC';
-   // The next line creates the prepared statement using the acme connection
-   $stmt = $db->prepare($sql);
-   // The next line runs the prepared statement
-   $stmt->execute();
-   // The next line gets the data from the database and
-   // stores it as an array in the $categories variable
-   $categories = $stmt->fetchAll();
-   // The next line closes the interaction with the database
-   $stmt->closeCursor();
-   // The next line sends the array of data back to where the function
-   // was called (this should be the controller)
-   return $categories;
-}</code></pre></li>
+              ORDER BY categoryName ASC';<br>
+              // The next line creates the prepared statement using the acme connection<br>
+              $stmt = $db->prepare($sql);<br>
+              // The next line runs the prepared statement<br>
+              $stmt->execute();<br>
+              // The next line gets the data from the database and<br>
+              // stores it as an array in the $categories variable<br>
+              $categories = $stmt->fetchAll();<br>
+              // The next line closes the interaction with the database<br>
+              $stmt->closeCursor();<br>
+              // The next line sends the array of data back to where the function<br>
+              // was called (this should be the controller)<br>
+              return $categories;<br>
+}</code></li>
           <li><strong>Note:</strong> We should always use Prepared Statements when interacting with databases as it provides an additional layer of protection for the database against outside attacks!</li>
           <li>Double check your code to make sure it is accurate and no warnings or errors appear in the code.</li>
           <li>Save the file.</li>
@@ -83,11 +82,10 @@
             </ul>
           </li>
           <li>Use the require_once function to bring both files into scope as shown below:
-            <br>
-            <pre class="callout"><code>// Get the database connection file
-require_once 'library/connections.php';
-// Get the acme model for use as needed
-require_once 'model/acme-model.php';</code></pre></li>
+            <code style="margin-left: 0;" class="callout">// Get the database connection file<br>
+              require_once 'library/connections.php';<br>
+              // Get the acme model for use as needed<br>
+require_once 'model/acme-model.php';</code></li>
           <li>The require_once function does three things:
             <ul>
               <li>it attempts to bring the requested code into scope, and</li>
@@ -103,15 +101,14 @@ require_once 'model/acme-model.php';</code></pre></li>
         <ol>
           <li>Create one or two empty lines beneath the lines where the connection and model files were required and brought into the controller's scope.</li>
           <li>Call the getCategories() function and assign what it returns to a variable named <b>$categories</b> as shown below:
-            <br>
-            <pre class="callout"><code>// Get the array of categories
-$categories = getCategories();</code></pre></li>
+            <code style="margin-left: 0;" class="callout">// Get the array of categories<br>
+$categories = getCategories();</code></li>
           <li>Let's test to see what, if anything, we got from the database.
             <br>
             <ul>
               <li>Write the following code on the next two lines:
-                <pre class="callout"><code>var_dump($categories);
-exit;</code></pre>
+                <code style="margin-left: 0;" class="callout">var_dump($categories);<br>
+exit;</code>
               </li>
               <li>var_dump is a PHP function that displays information about a variable, array or object.</li>
               <li>The exit directive stops all further processing by PHP.</li>
@@ -128,8 +125,7 @@ exit;</code></pre>
             </ol>
           </li>
           <li>If things are working, the var_dump should have dumped something similar to what you see below to your browser window:
-            <br>
-            <code class="callout">array(5) { [0]=> array(2) { ["categoryName"]=> string(6) "Cannon" [0]=> string(6) "Cannon" } [1]=> array(2) { ["categoryName"]=> string(9) "Explosive" [0]=> string(9) "Explosive" } [2]=> array(2) { ["categoryName"]=> string(4) "Misc" [0]=> string(4) "Misc" } [3]=> array(2) { ["categoryName"]=> string(6) "Rocket" [0]=> string(6) "Rocket" } [4]=> array(2) { ["categoryName"]=> string(4) "Trap" [0]=> string(4) "Trap" } }</code>
+            <code class="callout" style="margin-left: 0;">array(5) { [0]=> array(2) { ["categoryName"]=> string(6) "Cannon" [0]=> string(6) "Cannon" } [1]=> array(2) { ["categoryName"]=> string(9) "Explosive" [0]=> string(9) "Explosive" } [2]=> array(2) { ["categoryName"]=> string(4) "Misc" [0]=> string(4) "Misc" } [3]=> array(2) { ["categoryName"]=> string(6) "Rocket" [0]=> string(6) "Rocket" } [4]=> array(2) { ["categoryName"]=> string(4) "Trap" [0]=> string(4) "Trap" } }</code>
           </li>
           <li>While it may look like a mess, in reality it tells us that we have a multidimensional array with 5 sub-arrays. That is exactly what we wanted!</li>
           <li>If you got nothing, go back and double check your code, talk with a peer, contact a TA or lab assistant or the professor. But it needs to be working.</li>
