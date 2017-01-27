@@ -76,12 +76,12 @@ if ($action == NULL) {
  }
 }</code></pre>
         <p>We are going to leave most of it as it, but alter the last assignment statement. In this case, if there is no specific action we will redirect to the main acme controller and tell it to deliver the acme registration page. (<i>Remember in the MVC we always send requests to the controller and let it deliver the view)</i></p>
-        <p>Keep in mind you wrote your own code in the main acme controller to listen for a request to deliver the registration view for an earlier enhancement and so your code may need to be different than what you see here. It is the process of getting the main acme controller to deliver the registration view that we are trying to achieve, so be sure to test that it works.</p>
+        <p>Keep in mind you wrote your own code in the main acme controller to listen for a request to deliver the registration view for an earlier enhancement and so your code may need to be different than what you see here (e.g. your folder names may be different). It is the process of getting the main acme controller to deliver the registration view that we are trying to achieve, so be sure to test that it works.</p>
         <pre class="callout"><code>$action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
  $action = filter_input(INPUT_GET, 'action');
  if ($action == NULL) {
-  header('location: ../?action=reg');
+  header('location: /acme/index.php?action=reg');
   exit;
  }
 }</code></pre>

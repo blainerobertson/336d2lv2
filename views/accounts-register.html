@@ -55,11 +55,11 @@
           <li>In the opening form tag add a space behind the method attribute and value.</li>
           <li>Add the <b>action</b> attribute with an equal sign and double quotes.</li>
           <li>We will add the path to the <b>accounts</b> controller between the quotes.</li>
-          <li>The registration view is in the <b>view</b> folder and the accounts controller is in the <b>accounts</b> folder. So the path will have to go up one level, then find the <b>accounts</b> folder, drop inside of it, and find the controller. The path should look like this:
+          <li>The registration view is in the <b>view</b> folder and the accounts controller is in the <b>accounts</b> folder. However, to avoid potential problems later, we will use an <b>absolute</b> path from the root of our htdocs folder leading to the <b>accounts</b> folder, drop inside of it, and find the controller. The path should look like this:
             <br>
-            <code>accounts/index.php</code>.</li>
+            <code>/acme/accounts/index.php</code>.</li>
           <li>When you're done, the opening form tag should look like this:
-            <code style="margin-left: 0;" class="callout">&lt;form method="post" action="accounts/index.php"&gt;</code></li>
+            <code style="margin-left: 0;" class="callout">&lt;form method="post" action="/acme/accounts/index.php"&gt;</code> <strong>If your acme folder is named something else, make sure your acme folder name is used in the path.</strong></li>
           <li>Double check the opening form tag for accuracy.</li>
           <li>Save the file.</li>
         </ol>
@@ -82,7 +82,7 @@
               &nbsp;echo $message;<br>
               }<br>
               ?&gt;<br>
-            &lt;form action="accounts/index.php" method="post"&gt;
+            &lt;form method="post" action="/acme/accounts/index.php"&gt;
             </code>
           </li>
           <li>Be sure to save the file.</li>
