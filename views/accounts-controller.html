@@ -240,7 +240,7 @@
           $navList = '&lt;ul&gt;';<br>
           $navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";<br>
           foreach ($categories as $category) {<br>
-          $navList .= "&lt;li&gt;&lt;a href='.?action=$category[categoryName]' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";<br>
+          $navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=$category[categoryName]' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";<br>
           }<br>
           $navList .= '&lt;/ul&gt;';<br>
           <br>
