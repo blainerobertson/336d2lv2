@@ -15,10 +15,10 @@
     <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
     <main>
       <article id="article">
-        <h1>Register a Visitor</h1>
-        <h2>The Accounts Controller</h2>
+        <h1>The Accounts Controller</h1>
         <p>In the Finalize the Registration Form activity we told the form to send the data to the accounts controller. Now we need to add the code to make the controller do its job.</p>
-        <h3>Get the Accounts Model</h3>
+
+        <h2>Get the Accounts Model</h2>
         <p>As with the previous require_once statements, the purpose is to include the resources of these other documents into the scope of the controller so they can be used. We need to do the same with the accounts-model.php page.</p>
         <ol>
           <li>Find and open the accounts controller (<b>accounts</b> folder > <b>index.php</b>).</li>
@@ -38,7 +38,7 @@
           </li>
         </ol>
 
-        <h3>Modify the Switch Control Structure</h3>
+        <h2>Modify the Switch Control Structure</h2>
         <p>The "switch" statement at the bottom of the controller represents the logic of what needs to happen when various key-value pairs are sent to the controller.</p>
         <p>We are going to modify the "switch" to handle the request to register a new site visitor.</p>
         <ol>
@@ -66,11 +66,11 @@
           </li>
           <li>Case statements are <i>case-sensitive</i>. That's why we checked to make sure that the value in the registration form and the value in the case statement are both lower-case, so they will match!</li>
         </ol>
+
         <h3>Time to Test</h3>
         <p>We want to make sure that everything is working to this point. So, please do the following:</p>
         <ol>
           <li>In the case statement add an echo that indicates that this case has worked. When done the case should look similar to this:
-            <br>
             <code style="margin-left: 0;" class="callout">switch ($action) {<br>
             &nbsp;case 'register':<br>
             &nbsp;echo 'You are in the register case statement.';<br>
@@ -90,7 +90,7 @@
           <li>Delete the echo statement.</li>
           <li>If things didn't work, then go back and double check your code, ask your learning team for help, ask a question on the discussion board or make an appointment with one of the TA's or lab assistants. But get some help to get your code operational.</li>
         </ol>
-        <h3>A Common Pattern</h3>
+        <h2>A Common Pattern</h2>
         <p>I hope by now you have seen that there are some patterns that we follow when working with code. When we are receiving data from a browser request and want to process it and let the browser know the result, there is a pattern that we follow:</p>
         <ol style="list-style-position: inside;" class="callout">
           <li>Filter the incoming data to prevent or lessen the chances of being "hacked".</li>
@@ -104,18 +104,20 @@
         </ol>
 
         <h3>Follow the Pattern</h3>
-        <p>We will follow the pattern (with a few minor alterations for now) to finish the register case statement:</p>
-        <h3>Filter and Store the Data</h3>
+        <p>We will follow the pattern (with a few minor alterations for now) to finish the register case statement.</p>
+
+        <h2>Filter and Store the Data</h2>
         <p>We will collect our four expected inputs, while filtering them, and store each into its own variable. Write the following, beginning in the blank line where the echo statement was:
           <code style="margin-left: 0;" class="callout">
-            // Filter and store the data
+            // Filter and store the data<br>
             $firstname = filter_input(INPUT_POST, 'firstname');<br>
             $lastname = filter_input(INPUT_POST, 'lastname');<br>
             $email = filter_input(INPUT_POST, 'email');<br>
             $password = filter_input(INPUT_POST, 'password');<br>
             </code> You've seen the filter_input before. It "filters" or attempts to remove code that could do us harm. We will add to this code in the future. <i>To be clear, the filter_input does the filtering, by looking into the POST object (remember that we told our form to use "post" to send the data), and it is looking for a key - value pair where the key is "name" and it has a value of "firstname" or "lastname" etc.... When found, it stores the value (what the site visitor typed into the input field) into the variable.</i>
         </p>
-        <h3>Check for Missing Data</h3>
+
+        <h2>Check for Missing Data</h2>
         <p>We will use some simple PHP "empty" functions to see if any of our variables is missing data. Write the following code after creating two empty lines:
           <code style="margin-left: 0;" class="callout">
             // Check for missing data<br>
@@ -126,10 +128,11 @@
             }
           </code>
         </p>
-        <h4>An Explanation</h4>
+        <h3>An Explanation</h3>
         <p>In this code we look inside each variable to see it's "empty". Notice that each check is separated by <code>||</code>, this is an "or" symbol, so that if any of the variables is empty, the if becomes "TRUE".</p>
         <p>If the if is "TRUE", then the <code>$message</code> variable is created ("set") and the error string is stored in it. The registration view is then included and the PHP on this page stops.</p>
         <p>Remember that when we finalized the registration view we added code to watch for a <code>$message</code> variable? If found, it will display the message in the form.</p>
+
         <h3>Test Again</h3>
         <p>We want to check that our data collection and check for missing data is working.</p>
         <ol>
@@ -141,7 +144,7 @@
           <li>If it didn't work, double check your code until it does.</li>
         </ol>
 
-        <h3>Attempt the Insert</h3>
+        <h2>Attempt the Insert</h2>
         <p>If the data is present, we are ready to call the function to insert the data to the database. This is the process:</p>
         <ol>
           <li>Make sure that you have moved outside of the "if" code block and created a new empty line.</li>
@@ -154,7 +157,8 @@
           <li>If we get a <b>1</b> back, it means that the registration was a success!</li>
           <li>If we get a zero "0" back, it means the insert failed.</li>
         </ol>
-        <h3>Find Out the Result</h3>
+
+        <h2>Find Out the Result</h2>
         <p>We can now check to see what we got back, create the appropriate message and call a view to report the result to the browser.</p>
 
         <ol>
@@ -198,7 +202,7 @@
             </ul>
           </li>
         </ol>
-<h3>Let's Do This</h3>
+<h2>Let's Do This</h2>
         <p>With the controller done (we hope) we are ready to try to register our first site visitor.</p>
         <ol>
           <li>Make sure all files are saved.</li>
