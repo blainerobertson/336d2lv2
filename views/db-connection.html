@@ -45,12 +45,12 @@ function createConnection(){
 
         <h2>An example PDO Connection</h2>
         <figure class='callout'> <pre><code>
-function acmeConnection(){
+function acmeConnect(){
   $server = 'localhost';
   $dbname= 'acme';
   $username = 'proxyUserName';
   $password = 'proxyPassword';
-  $dsn = 'mysql:host='.$server.';dbname='.$dbname;
+  $dsn = "mysql:host=$server;dbname=$dbname";
   $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
 // Create the actual connection object and assign it to a variable
@@ -65,18 +65,34 @@ function acmeConnection(){
 </code></pre> </figure>
         <p>In this example, if a successful connection can be made to the database, the connectivity is stored in the <b>$link</b> variable and returned to where the function was called. If an error occurs, the 500.php error page is called which informs the client that a server error occurred. But, not a specific error, rather a generic error. This is user informative and hacker uninformative - just the way it should be.</p>
 
+        <h2>New Symbol Meanings</h2>
+        <p>In the code above you will see an arrow symbol (e.g. =&gt;) and a double colon (e.g. PDO::ATTR_ERRMODE). You may ask, "What do those mean?"</p>
+        <h3>The arrow symbol - =&gt;</h3>
+          <p>The arrow is a means of assigning a "key" to a "value" within an array. If you look at the entire line,
+            <code class="callout">
+$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+            </code>
+          you will see that the code on the left of the arrow specified an "errmode" while the code on the right of the arrow indicates that the "errmode" will be an "EXCEPTION". But, both are inside of an array (e.g. array()). This is equivelent to saying, "In a list of people the key "firstname" will be followed by the person's actual first name."</p>
+          <h3>Double Colon - ::</h3>
+          <p>The double colon in this code is a way in Object Oriented Programming to directly access a method within the class. In this line of code
+<code class="callout">
+  $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+</code>
+            the <code>PDO::ATTR_ERRMODE</code> is a way of saying, "This is how you will handle errors." and the value of <code>PDO::ERRMODE_EXCEPTION</code> says, "You will throw an exception, if an error occurs." All of this will be part of creating the new PDO database connection object.
+          </p>
+
         <h2>Including the Connection Object</h2>
         <p>In order for any PHP file to use the database connection function, the connection file must be in "scope". To do this, the connection file is "required" into the PHP page, usually in the first 5 lines. This insures that any functionality that needs access to the data stored in the database has it available. Two examples of the code needed to make such a call are shown below:</p>
         <h3>Require Function</h3>
         <p>The connectionpage.php shown below would be the page where the connection code shown above would reside.</p>
-        <figure class='callout'> <pre><code>
-require($_SERVER['DOCUMENT_ROOT'].'/path/connectionpage.php');
-</code></pre> </figure>
+<code class='callout'>
+require 'path/connectionpage.php';
+</code>
         <h3>Require_once Function</h3>
         <p>The connectionpage.php shown below would be the page where the connection code shown above would reside.</p>
-        <figure class='callout'> <pre><code>
-require_once($_SERVER['DOCUMENT_ROOT'].'/path/connectionpage.php');<br>
-</code></pre> </figure>
+<code class='callout'>
+  require_once 'path/connectionpage.php';
+</code>
         <h2>Video</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/eoXPjEY4bl0" allowfullscreen></iframe>
 
