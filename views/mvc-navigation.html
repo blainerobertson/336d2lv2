@@ -69,6 +69,17 @@
           <li>Save the file.</li>
         </ol>
 
+        <h2>New Symbol Meanings</h2>
+        <p>Just as with the PDO connection object last week, the code above for the Prepared Statement includes a symbol that you may wonder about. Let's explain:</p>
+        <h3>Single Arrow - <strong>&mdash;&gt;</strong></h3>
+        <p>In Object Oriented programming of PHP we create instances of a class and refer to them as objects. Objects have methods (functions) that they can perform. The single arrow " -> " represents a call to a method of an object. For example, when you write this line of code in the creation of a prepared statement:
+
+          <code class="callout">$stmt = $db->prepare($sql);</code>
+
+          What you are doing is calling the "prepare" method of the database connection object. You are sending it a sql query that has been stored in a variable named "$sql". If everything works, then a new PDO Prepared Statement, which is a new and different type of object, is created and stored into a variable named "$stmt".</p>
+
+          <p>In real life, this is a bit harder to illustrate but let me try. Your car (even if you don't own one, pretend) is a car object. Meaning that your's isn't the only one, but it represents this abstract concept of "car". You car has methods: move forward, move reverse, turn left, turn right, blow horn, etc... So, when you prepare to back up we could represent it as $car->reverse();</p>
+
         <h2>Open the Acme Controller</h2>
         <p>The acme controller is index.php and should be at the root of the acme folder. Open it.</p>
         <ol>
