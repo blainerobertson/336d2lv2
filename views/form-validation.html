@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Client-Side HTML5 Form Validation | Web Backend Development</title>
+  <meta name="description" content="This activity discusses client-side form validation using Native HTML5 for the acme project of CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>HTML5 Form Validation</h1>
+
+        <h2>Introduction</h2>
+        <p>Validating the inputs from a form is critical to ensuring that the data you expect is the data you receive. When done in the browser it does not require data be sent to the server prior to being validated. The term <abbr>Client-side</abbr> refers to checking of data while in the browser.</p>
+
+        <p>Checking data in the browser is typically done using <b>Native HTML5 Methods</b> or using <b>JavaScript</b>. This document will discuss using native HTML5 methods.</p>
+
+        <h2>The 'required' attribute</h2>
+        <p>The simplest change you can make to your forms is to mark an input field as 'required':</p>
+
+<code class="callout">
+&lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;
+</code>
+
+        <p>This informs the web browser that the field is mandatory. Different browsers will mark the input box in some way if the client fails to complete the input correctly. You can actually create your own valid/invalid formatting using CSS to override the browser default.</p>
+
+        <h2>Different input types</h2>
+        <p>Along with the text input type, there are a host of other options, including email, url, number, tel, date and others.</p>
+
+        <p>On the iPhone/iPad and other mobile devices the different input types are associated with different keyboards, making it easier for people to complete your online forms. In other web browsers they can be used in combination with the required attribute to limit or give advice on allowable input values.</p>
+
+        <h3>INPUT type="email"</h3>
+
+        <p>By changing the input type to email while also using the required attribute, the browser can be used to validate (in a limited fashion) email addresses:</p>
+
+<code class="callout">
+&lt;input type=&quot;email&quot; name=&quot;email&quot; required placeholder=&quot;Enter a valid email address&quot;&gt;
+</code>
+
+        <p>Note that for this example we've made use of another HTML5 attribute <b>placeholder</b> which lets us display a prompt or instructions inside the field - something that previously had to be implemented using JavaScript.</p>
+
+        <h3>INPUT type="url"</h3>
+
+        <p>In a similar fashion to the email input type above, this one is designed to accept only properly-formatted URLs.</p>
+
+        <p>We can improve on this by making use of the pattern attribute which accepts a JavaScript regular expression. So the code above becomes:</p>
+
+<code class="callout">
+&lt;input type=&quot;url&quot; name=&quot;website&quot; required pattern=&quot;(http|https)://.+&quot;&gt;
+</code>
+
+        <p>Now our input box will only accept text starting with http:// or https:// and at least one additional character.</p>
+
+        <h2>Other HTML5 input types</h2>
+        <p>Other HTML5 input types include:</p>
+        <ul>
+          <li>number</li>
+          <li>range</li>
+          <li>color</li>
+          <li>date</li>
+          <li>datetime</li>
+          <li>datetime-local</li>
+          <li>month</li>
+          <li>search</li>
+          <li>tel</li>
+          <li>time</li>
+          <li>week</li>
+        </ul>
+
+        <p>Each type will prompt specific behaviors. For example, the <b>tel</b> input type is handy for a mobile device as it selects a different input keyboard useful for entering telephone numbers.</p>
+
+        <h2>Input patterns for different data types</h2>
+
+        <dl>
+          <dt>IPv4 Address input pattern:</dt>
+          <dd class="callout">
+<code>
+&lt;input type=&quot;text&quot; pattern=&quot;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&quot;&gt;
+</code>
+          </dd>
+
+
+          <dt>Date input pattern:</dt>
+          <dd class="callout">
+<code>&lt;input type=&quot;text&quot; pattern=&quot;\d{1,2}/\d{1,2}/\d{4}&quot;&gt;</code>
+          </dd>
+
+          <dt>Price input pattern:</dt>
+          <dd class="callout">
+<code>
+&lt;input type=&quot;text&quot; pattern=&quot;\d+(\.\d{2})?&quot;&gt;
+</code>
+          </dd>
+
+          <dt>Latitude/Longitude input pattern:</dt>
+          <dd class="callout">
+<code>
+&lt;input type=&quot;text&quot; pattern=&quot;-?\d{1,3}\.\d+&quot;&gt;
+</code>
+          </dd>
+        </dl>
+
+        <h2>Styling valid/invalid inputs using CSS</h2>
+        <p>This first set of styles can be used to mark an input box as 'invalid', by adding an icon, coloring the text or borders or similar. It will apply to inputs that are required but empty, or to inputs that have a required format/pattern which hasn't yet been met.</p>
+
+<code class="callout">
+input:required:invalid, input:focus:invalid {<br>
+  /* insert your own styles for invalid form input */<br>
+}
+</code>
+
+        <p>For inputs that are both required and 'valid' you can use the following:</p>
+
+<code class="callout">
+input:required:valid { <br>
+   /* insert your own styles for valid form input */ <br>
+}
+</code>
+
+
+
+        <h2>Sample styling using images and sprites</h2>
+        <p>As shown above, once you've added HTML5 attributes to your form elements, they can be easily styled using CSS so that each input field is clearly marked as valid or invalid. This also works for textarea elements.</p>
+
+<code class="callout">
+input:required:invalid, input:focus:invalid {<br>
+  background-image: url(/images/invalid.png);<br>
+  background-position: right top;<br>
+  background-repeat: no-repeat;<br>
+  }<br>
+  input:required:valid {<br>
+  background-image: url(/images/valid.png);<br>
+  background-position: right top;<br>
+  background-repeat: no-repeat;<br>
+}
+</code>
+
+        <h2>Download example form</h2>
+        <p>Click the link below to download the HTML/CSS files and images necessary to experiment with using the form shown above. You can then modify it to your own liking as you figure out how it works!</p>
+
+        <p><a href="../downloads/demo-html-css.zip" title='Download a zip file to practice using native html5 form validation'>Download HTML/CSS example</a></p>
+
+        <h2>References</h2>
+        <ul>
+          <li><a href="http://webdesign.tutsplus.com/tutorials/site-elements/bring-your-forms-up-to-date-with-css3-and-html5-validation/" title="Click to open in a new tab" target="_blank">Bring Your Forms Up to Date With CSS3 and HTML5 Validation</a></li>
+          <li><a href="http://www.the-art-of-web.com/html/html5-form-validation/" title="Click to open in a new tab" target="_blank">HTML: HTML5 Form Validation Examples</a></li>
+          <li><a href="http://diveintohtml5.info/forms.html" title="Click to open in a new tab" target="_blank">A Form of Madness - Dive Into HTML5</a></li>
+          <li><a href="http://www.htmlatoms.com/attributes/pattern-attribute-html5-validate-form-data/" title="Click to open in a new tab" target="_blank">Using The Pattern Attribute in HTML5 to Validate Form Data</a></li>
+          <li><a href='http://diveintohtml5.info/forms.html#validation' title='Form Validation explained' title="Click to open in a new tab" target="_blank">Form Validation - Dive into HTML5</a></li>
+        </ul>
+
+        <h2>Attribution</h2>
+        <p>This native html5 form validation explanation was created by <a href='//dhniels.com' title="Visit Dave Nielsen's website" target="_blank">Dave Nielsen</a>, a Frontend Web Development student as a teaching presentation during the Fall semester, 2013.</p>
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
