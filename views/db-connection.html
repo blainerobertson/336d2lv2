@@ -93,6 +93,9 @@ require 'path/connectionpage.php';
 <code class='callout'>
   require_once 'path/connectionpage.php';
 </code>
+        <h3>Why Two?</h3>
+        <p>Both <code>require</code> and <code>require_once</code> do the same thing - they bring the functionality of code that is stored somewhere else into the scope of the file where the require or require_once is at.</p>
+        <p><strong>But!</strong> <code>require</code> can be called any time and the resource will be retrieved every time. Using <code>require_once</code> will do it <strong>only once</strong>. This means that if I use <code>require_once</code> at the top of a PHP page and then attempt to either "require" or "require_once" the same resource again, later on the page, the request will be ignored, because it was already "required" and it only allows it to happen "once".</p>
         <h2>Video</h2>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/eoXPjEY4bl0" allowfullscreen></iframe>
 
