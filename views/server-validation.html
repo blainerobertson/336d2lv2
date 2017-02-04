@@ -109,13 +109,26 @@
         <ol>
           <li>Return to the <b>accounts</b> controller.</li>
           <li>Scroll back down and find the first blank line beneath your use of the checkEmail() function. Click in the blank line.</li>
-          <li>Recreate the $password variable and assign to it what is returned from calling the <code>checkPassword($password)</code> function. It should look like this:
+          <li>Create a new $checkPassword variable and assign to it what is returned from calling the <code>checkPassword($password)</code> function. It should look like this:
             <code class="callout" style="margin-left: 0;">
-              $password = checkPassword($password);
+              $checkPassword = checkPassword($password);
             </code>
           </li>
-          <li>As previously explained, because the code is executed from right to left, the original $password variable's value is passed to the function and the returned value is sent back and stored in the $password variable on the left.</li>
+          <li>As previously explained, the code is executed from right to left. The original $password variable's value is passed to the function and the returned value is sent back and stored in the $checkPassword variable on the left.</li>
+          <li>What is returned from the function is "1" if the password matches the format and a "0" (zero) if it doesn't.</li>
           <li>Save your work.</li>
+          <li>To add the $checkPassword variable to our data validation process, go to the list of "empty()" functions and replace the "<code>$password</code>" variable with the "<code>$checkPassword</code>" variable. So, this code:
+            <code class="callout" style="margin-left: 0;">
+              // Check for missing data<br>
+              if (empty($firstname) || empty($lastname) || empty($email) || empty($password)) {
+            </code>
+          should be changed to this code:
+            <code class="callout" style="margin-left: 0;">
+              // Check for missing data<br>
+              if (empty($firstname) || empty($lastname) || empty($email) || empty($checkPassword)) {
+            </code>
+          </li>
+          <li>Why? By sending the original password variable to our custom function for comparison against our regular expression we are already checking that something is there. If it is empty or doesn't match a zero is returned. However, if it does match then a 1 is returned. By sending the <code>$checkPassword</code> variable into our list of "empty()" checks it will be empty if the password doesn't match our requirements for any reason, but it will NOT be empty if it does.</li>
         </ol>
 
         <h2>A Recap</h2>
@@ -152,7 +165,7 @@
         <p>Testing this code can be tricky because we have already implemeneted the client-side validation. The easiest way is to use Safari to make mistakes with the registration form (remember that Safari doesn't support HTML5 validation) and let the PHP code do it's job and watch the results. However, another way is to comment out or temporarily delete the "required" attribute in your registration inputs. Then, fill in the form incorrectly and submit it to the controller. See what happens. I demonstrate this in the video below.</p>
 
         <h2>Example Video</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/d84ZHWUP5rI" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/JC_gglJpCcU" allowfullscreen></iframe>
 
         <h2>The Login Form</h2>
         <p>The login form is much simplier, as it only contains two inputs: email and password. However, we want to extend the same client-side and server-side checks to it as we did to the registration form.</p>
