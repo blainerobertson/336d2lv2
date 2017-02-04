@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Server-Side Form Validation | Web Backend Development</title>
+  <meta name="description" content="This activity discusses server-side form validation using PHP for the acme project of CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Server-Side Validation</h1>
+        <p>In the client-side validation activity you saw that the <b>Safari</b> browser does not support native HTML5 validation methods. You need to also recognize that even if you use JavaScript validation instead, that JavaScript can be disabled in the browser. Therefore, client-side validation <strong>is not enough!</strong></p>
+
+        <p>Server-side validation is writing equivelent rules using PHP on the server in order to double check incoming data to make sure that it meets the same requirements that we asked the browser to check. That is what we will do in this activity. In addition, we will add some additional functionality to make sure errors can be corrected more easily.</p>
+
+        <h2>Accounts Controller</h2>
+        <p>Because the registration and login views send their data to the <b>accounts</b> controller that is where we will do most of our work.</p>
+
+        <ol>
+          <li>Find and open the accounts controller.</li>
+          <li>Locate the four <code>filter_input</code> functions. We will add the data type check to each to indicate the type of data we will allow for each.
+            <ul>
+              <li>Click after the closing quote for firstname.</li>
+              <li>Add a comma and a space</li>
+              <li>Add <code>FILTER_SANITIZE_STRING</code>
+                <br> This "flag" removes any html elements and leaves only text.
+              </li>
+              <li>Repeat the same process for the lastname input.</li>
+              <li>Repeat the same process for the password input. When done the three inputs should look similar to this:
+                <code class="callout" style="margin-left: 0;">
+                $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);</code></li>
+              <li>Because the email input represents a special case we will handle it differently.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h2>Create a Custom Function</h2>
+        <p>We will create a function just for the email addresses. It will 1) remove anything that shouldn't be part of an email address and 2) check if what's left is an email address.</p>
+
+        <ol>
+          <li>Create a new PHP file in the <b>library</b> folder, named "<b>functions.php</b>".</li>
+          <li>This file will become a library of custom functions that we will use in our code to perform a variety of tasks.</li>
+          <li>In the "<b>functions.php</b>" file create a new function named "<b>checkEmail($email)</b>"</li>
+          <li>Inside the function we will do the two processes mentioned.
+            <ol>
+              <li>Take the $email variable and sanitize it to remove anything that shouldn't be there.</li>
+              <li>Take the sanitized email address and check it for validity.</li>
+            </ol>
+          </li>
+          <li>The end result will be returned. It will be one of two values: 1) the actual, valid email address or 2) <code>NULL</code>.</li>
+          <li>The finished function should look something like this:
+            <code class="callout" style="margin-left: 0;">
+            function checkEmail($email){<br>
+            &nbsp;&nbsp;$sanEmail = filter_var($email, FILTER_SANITIZE_EMAIL);<br>
+            &nbsp;&nbsp;$valEmail = filter_var($sanEmail, FILTER_VALIDATE_EMAIL);<br>
+            &nbsp;&nbsp;return $valEmail;<br>
+            }
+            </code>
+          </li>
+        </ol>
+
+        <h2>Apply the Email Function</h2>
+        <ol>
+          <li>Return to the <b>accounts</b> controller.</li>
+          <li>Scroll to the top of the page and add another require_once statement to get the new <b>functions.php</b> page. The code should look something like this:
+            <code class="callout" style="margin-left: 0;">
+            // Get the functions library<br>
+            require_once '../library/functions.php';<br>
+            </code>
+          </li>
+          <li>Save the controller file.</li>
+          <li>Scroll back down and find the first blank line beneath where the four inputs were filtered and stored. Click in the blank line.</li>
+          <li>Recreate the $email variable and assign to it what is returned from calling the <code>checkEmail($email)</code> function. It should look like this:
+            <code class="callout" style="margin-left: 0;">
+              $email = checkEmail($email);
+            </code>
+          </li>
+          <li>Because the code is executed from right to left, the original $email variable's value is passed to the function and the returned value is sent back and stored in the $email variable on the left.</li>
+        </ol>
+
+        <h2>A Password Function</h2>
+        <p>Just as we did with the email, we will create a custom functon to check that the password meets the format requirement that we added to our HTML form: at least 8 characters, at least 1 capital letter, at least 1 number and at least 1 special character.</p>
+        <ol>
+          <li>Return to the <b>functions.php</b> page.</li>
+          <li>Create another custom function named "<b>checkPassword($password)</b>.</li>
+          <li>In it we will use a PHP function that compares the value of a variable against a PHP regular expression.</li>
+          <li>The function returns "<code>1</code>" if the two match or "<code>0</code>" if they don't.</li>
+          <li>The function should look like this when done:
+            <code class="callout" style="margin-left: 0;">
+              // Check the password for a minimum of 8 characters,<br>
+              // at least one 1 capital letter, at least 1 number and<br>
+              // at least 1 special character<br>
+              function checkPassword($password){<br>
+              &nbsp;&nbsp;$pattern = '/^(?=.*[\W])(?=[a-zA-Z0-9])[\w\W]{8,}$/i';<br>
+              &nbsp;&nbsp;return preg_match($pattern, $password);<br>
+              }
+            </code>
+          </li>
+          <li>Save the "<b>functions.php</b>" file.</li>
+        </ol>
+        <h2>Apply the Password function</h2>
+        <ol>
+          <li>Return to the <b>accounts</b> controller.</li>
+          <li>Scroll back down and find the first blank line beneath your use of the checkEmail() function. Click in the blank line.</li>
+          <li>Recreate the $password variable and assign to it what is returned from calling the <code>checkPassword($password)</code> function. It should look like this:
+            <code class="callout" style="margin-left: 0;">
+              $password = checkPassword($password);
+            </code>
+          </li>
+          <li>As previously explained, because the code is executed from right to left, the original $password variable's value is passed to the function and the returned value is sent back and stored in the $password variable on the left.</li>
+          <li>Save your work.</li>
+        </ol>
+
+        <h2>A Recap</h2>
+        <ul>
+          <li>To this point we have told three of the filter_input functions that the data being filtered is to be treated as text and any HTML tags are to be removed - <code>FILTER_SANITIZE_STRING</code>.</li>
+          <li>We then created a new PHP file in the "<b>library</b>" folder specifically to store custom functions - "<b>functions.php</b>".</li>
+          <li>In the <b>functions.php</b> file we have created two custom functions: 1) to sanitize and validate an email address - <code>checkEmail()</code> - and, 2) to check a password that it meets specific requirements - <code>checkPassword()</code>.</li>
+          <li>In the <b>accounts</b> controller we added a <code>require_once</code> to bring the <b>functions.php</b> page into the controller's scope.</li>
+          <li>In the <b>accounts</b> controller we used the two new functions on our <code>$email</code> and <code>$password</code> variables.</li>
+          <li>With this done the values in the variables should be either "acceptable" or not. Our existing "<code>empty()</code>" functions should still work. Why? Because the "<code>empty()</code>" function works with a value of zero (what the checkPassword() will return) and NULL (what the checkEmail() will return) if they fail! Cool huh?!</li>
+        </ul>
+
+        <h2>Make the form "Sticky"</h2>
+        <p>Up to this point, if the form was not filled in correctly, we created an error message and displayed it in the form, but the site visitor had to start over from scratch as they filled in the registration form. To be more "friendly" we will make the form "sticky" meaning that the value that they typed originally will appear back in the form input field.</p>
+
+        <ol>
+          <li>In the accounts controller, take a look at the variables that you have stored the incoming data into. In my code they are named <code>$firstname</code>, <code>$lastname</code>, <code>$email</code> and <code>$password</code>.</li>
+          <li>Find and open the <b>registration.php</b> view.</li>
+          <li>Scroll down until the form inputs are visible.</li>
+          <li>In the firstname input field add the following code:
+            <code class="callout" style="margin-left: 0;">
+              &lt;?php if(isset($firstname)){echo "value='$firstname'";}  ?&gt;
+            </code>. Make sure that it is separated from any of the other attributes by a space.</li>
+          <li>When done the entire firstname input should look similar to this:
+            <code class="callout" style="margin-left: 0;">
+              &lt;input name="firstname" id="firstname" &lt;?php if(isset($firstname)){echo "value='$firstname'";} ?&gt; required&gt;
+            </code>
+          </li>
+          <li>When you are sure your code is correct and no errors are being reported in your syntax, repeat this process for the lastname and email inputs.</li>
+          <li><strong>Do not do this for the password field!</strong> We always make the visitor re-type the password - <b>Always</b>!</li>
+        </ol>
+
+        <h2>Time to Test</h2>
+        <p>Testing this code can be tricky because we have already implemeneted the client-side validation. The easiest way is to use Safari to make mistakes with the registration form (remember that Safari doesn't support HTML5 validation) and let the PHP code do it's job and watch the results. However, another way is to comment out or temporarily delete the "required" attribute in your registration inputs. Then, fill in the form incorrectly and submit it to the controller. See what happens. I demonstrate this in the video below.</p>
+
+        <h2>Example Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/d84ZHWUP5rI" allowfullscreen></iframe>
+
+        <h2>The Login Form</h2>
+        <p>The login form is much simplier, as it only contains two inputs: email and password. However, we want to extend the same client-side and server-side checks to it as we did to the registration form.</p>
+
+        <ol>
+          <li>Open the <b>login.php</b> view.</li>
+          <li>Add the HTML5 "required" attributes to both input fields.</li>
+          <li>Add the same reminder to the password field in the login form (reminding the visitor of the password requirements) as you did in the registration form.</li>
+          <li>Add the same pattern attribute to the password input as exists in the registration form.</li>
+          <li>Add the same PHP code block in the email input to display the email address if the <code>$email</code> variable exists as you added to the email input in the registration form.</li>
+          <li><strong>DO NOT</strong> add the PHP code block to the password input! Make the user re-enter the password.</li>
+          <li>If your login form does not have a "hidden" input that will pass a key - value pair to the controller, add it. <strong>Note: the key will be "action", but the "value" should not be the same that you used to deliver the login view.</strong> For example, if you used the value "login" to deliver the view, the use "Login" to submit the login data. For example:
+            <code class="callout" style="margin-left: 0;">
+              &lt;input type="hidden" name="action" value="Login"&gt;
+            </code>
+          </li>
+          <li>Make sure the <b>login.php</b> view has the PHP code block to check for the <code>$message</code> variable and display in it if it exists (directly above, but not in, the form) as does the registration view. The code block should look like this:
+            <code class="callout" style="margin-left: 0;">
+              &lt;?php<br>
+              if (isset($message)) {<br>
+              &nbsp;&nbsp;echo $message;<br>
+              }<br>
+              ?&gt;<br>
+            </code></li>
+          <li>When done, save the <b>login.php</b> view.</li>
+        </ol>
+
+        <h2>The Login Process</h2>
+        <p>We will add, but not complete, a login process to the <b>accounts</b> controller and place the server-side validation in it.</p>
+        <ol>
+          <li>In the <b>accounts</b> controller, find the "break;" statement that ends the registration case in the control structure.</li>
+          <li>Click at the end of the line and create a new line beneath it.</li>
+          <li>Create a new "case statement" and use the value that you used with your hidden input in the login form (see #7) in "The Login Form" section above. For example, the code could look like this:
+            <code class="callout" style="margin-left: 0;">
+              case 'Login':<br>
+              <br>
+              break;<br>
+            </code>
+          </li>
+          <li>Inside the case statment, filter and store the two data inputs into variables, just as you did in the registration process.</li>
+          <li>Sanitize and validate the email variable using your custom function just as you did in the registration process.</li>
+          <li>Check the format of the password using your custom function just as you did in the registration process.</li>
+          <li>Check if either of the variables are empty and if they are, set a message and call the login view using a PHP include function so the error message is displayed in the view and the email address (if valid) is displayed in the email input field.</li>
+          <li>Test to ensure that the login's client-side and server-side checks work.</li>
+        </ol>
+
+
+
+
+
+
+
+
+
+        <h2>References</h2>
+        <p>The following PHP functions or flags were used in this activity:</p>
+        <ul>
+          <li><a href="//php.net/manual/en/function.filter-input.php" title="Opens in a new tab" target="_blank">filter_input()</a></li>
+          <li><a href="//php.net/manual/en/filter.filters.sanitize.php" title="Opens in a new tab" target="_blank">FILTER_SANITIZE_STRING</a></li>
+          <li><a href="//php.net/manual/en/function.filter-var.php" title="Opens in a new tab" target="_blank">filter_var()</a></li>
+          <li><a href="//php.net/manual/en/filter.filters.sanitize.php" title="Opens in a new tab" target="_blank">FILTER_SANITIZE_EMAIL</a></li>
+          <li><a href="//php.net/manual/en/filter.filters.validate.php" title="Opens in a new tab" target="_blank">FILTER_VALIDATE_EMAIL</a></li>
+          <li><a href="http://www.php.net/isset" title="Opens in a new tab" target="_blank">isset()</a></li>
+        </ul>
+
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
