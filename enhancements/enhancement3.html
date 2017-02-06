@@ -44,7 +44,7 @@
             <p>Use CSS to style the form for professional appearance and usability.</p>
             <p><strong>The form DOES NOT NEED TO ACTUALLY REGISTER AN INDIVIDUAL for this enhancement</strong>.</p>
           </li>
-          <li>Create a link in the acme template and all existing acme views (home, error, login and registration) for the "My Account" item in the page header. The link must:
+          <li>Create a link in the acme template and the existing acme views (home, login, 500 error and registration) for the "My Account" item in the page header. The link must:
             <ul>
               <li>point to the acme controller, and</li>
               <li>send a key - value pair (remember the "action" key from the activities?) as a parameter that tells the controller to deliver the login view.</li>
@@ -57,12 +57,6 @@
             </ul>
             <p>Make sure the link is large and obvious so that it is not overlooked and causes a site visitor confusion. See this example from target.com:<br><img src="../images/acme/target-signin.png" alt="Signin example from target.com"></p>
           </li>
-          <li>Alter the header directives (for the database connection functions) in your database connection file to:
-            <ul>
-              <li>point to the acme controller, and</li>
-              <li>pass a key - value pair that tells the controller to deliver the error view.</li>
-            </ul>
-            </li>
         </ol>
 
         <h2>Submission</h2>
