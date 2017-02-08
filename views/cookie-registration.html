@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Registration Cookie | Web Backend Development</title>
+  <meta name="description" content="Setting and reading a cookie as part of the registration process for the acme project of CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Cookies in Registration</h1>
+        <h2>Introduction</h2>
+        <p><b>Cookie?</b> I know, it's a strange name for a small bit of code, but it is what it is. If you have completed your assigned reading you will already know that a <b>PHP cookie</b> is simply a small text file that is created by the server and stored in the browser. As with most data it is comprised of a number of name - value pairs. What is unique is that when the browser visits the web site that created the cookie, the cookie is automatically sent back to the server as part of every "http request" until the cookie is destroyed.</p>
+        <p>Cookies are small. The maximum size they can be is 4K (4 kilobytes). In addition, they are typically plain text and can be changed in the browser. As a result, they should <strong>NEVER</strong> be used for sensitive information!</p>
+
+        <h2>Types of Cookies</h2>
+        <p>Without getting carried away, you should know that there are several types of cookies:</p>
+        <dl>
+          <dt><strong>Persistent Cookie</strong></dt>
+          <dd>A "persistent" cookie is one which lasts beyond the current set of interactions between the browser and the server. These cookies are given a life span at the time they are created. That life span can be increased or decreased by the PHP code on the server. The means of setting the lifespan is by using the <b>expiry</b> value in the <b><code>setcookie()</code></b> function.</dd>
+
+          <dt><strong>Session Cookie</strong></dt>
+          <dd>A "session" cookie is created automatically by the server when a new session is created. The cookie typically has a name of "PHPSESSID" and a value of a unique ID consisting of a string of alphanumeric characters. These cookies typically are destroyed when the session ends. Typically there are three main ways of ending a session:
+            <ol class="no-left">
+              <li>The browser window is closed.</li>
+              <li>The session "times out" due to inactivity. This time factor can be altered but typically is around 24 minutes.</li>
+              <li>A PHP <b><code>session_destroy()</code></b> function is called, perhaps at the end of a logout procedure or at the end of a "check-out" process.</li>
+            </ol>
+          </dd>
+        </dl>
+        <p>There are other variations of cookies, but to one extent or another they are variations of the persistent cookie.</p>
+
+        <h2>Using a cookie</h2>
+        <p>Have you ever registered with a web site and when you return to the site sometime in the future, the site somehow shows your name, even when you haven't logged into the site? Chances are it is a cookie at work. It is this very thing that we will do in this activity, just to show how to set a cookie, read a cookie and use the value that was read from the cookie. Later, we will extend the life of the cookie whenever the same site visitor logs in to the site.</p>
+
+        <h2>Set the Cookie</h2>
+        <p>We will "set" or "create" the cookie when the individual registers with the site.</p>
+        <ol>
+          <li>Open the "accounts" controller.</li>
+          <li>Scroll down until you are near the bottom of the registration process.</li>
+          <li>We want to set the cookie, only when we are sure the registration was successful, so I will create an empty line inside the <b><code>If - else</code></b> where I check if the registration was a success.</li>
+          <li>To create the cookie I use the <b><code>setcookie()</code></b> function and provide it with the data I desire. In our example we will provide four parameters to the setcookie function:
+            <ul>
+              <li>The first and only <b>required</b> parameter is a name. In this instance I will name my cookie "firstname".</li>
+              <li>The second parameter is a value. In this case the value will be the variable that holds the registrant's first name (e.g. $firstname).</li>
+              <li>The third parameter is the "expiry", or the life of the cookie. We will set it for one year. (<b>NOTE:</b> normally you would use a calculation of multiplying seconds to equal a year, but using the <b><code>strtotime()</code></b> function and passing a value of <code>+ 1 year</code> is much less writing and easier to understand).</li>
+              <li>Finally, the fourth and last parameter is the path of the cookie. This parameter tells the server what folders within the web site have access and can "see" the cookie. We will set the path to "/" which means the cookie will be visible to the entire web site.</li>
+            </ul>
+          </li>
+          <li>When done, the line and its surrounding code could look something like this:
+            <code class="callout no-left">
+            // Check and report the result<br>
+            if ($regOutcome === 1) {<br>
+            &nbsp;&nbsp;setcookie('firstname', $firstname, strtotime('+1 year'), '/');<br>
+            &nbsp;&nbsp;$message = "&lt;p&gt;Thanks for registering $firstname. Please use your email and password to login.&lt;/p&gt;";<br>
+            &nbsp;&nbsp;include '../view/login.php';<br>
+            &nbsp;&nbsp;exit;<br>
+            } .....<br>
+            </code>
+          </li>
+        </ol>
+        <h2>Time to Test</h2>
+        <ol>
+          <li>Save the controller after making sure no code errors are being shown.</li>
+          <li>Run the acme site and navigate to the <b>registration</b> view.</li>
+          <li>Register a new site visitor.</li>
+          <li>Assuming you have the "Web Developer" tool installed in your browser, you can click it, then click the "Cookies" tab, and then click "View Cookie Information".</li>
+          <li>A new tab will open and the cookies being used for the current site will be shown. Assuming I registered a new user with the first name of "Tony" and I registerd Tony on February 7th, 2017 then my cookie information should look similar to the image below:
+            <br>
+            <img src="../images/cookie.png" alt="firstname cookie set during registration" style="border: 1px solid #000; margin: .5em 0;">
+          </li>
+          <li>You will notice that the cookie name is 'firstname', it has a value of 'Tony', it expires 1 year in the future and its path is "/". Everything is exactly as it should be.</li>
+        </ol>
+
+        <h2>Put it to Work</h2>
+        <p>Finally, we will use the cookie to do what was described earlier, we will greet the site registrant by name when he or she returns to the acme site.</p>
+
+        <ol>
+          <li>Go to the acme controller "<b>index.php</b>" at the root of the acme site.</li>
+          <li>Somewhere prior to the beginning of the switch control structure, check for the existence of the 'firstname' cookie in an <b><code>if()</code></b> test.</li>
+          <li>If the cookie exists, store it's value into a variable. Use a variable name to indicate that it came from the cookie (e.g. $cookieFirstname). <strong>Remember: This is input from the browser so the string should be filtered and sanitized!</strong></li>
+          <li>The resulting code could look like this:<br>
+          <code class="callout no-left">
+            // Check if the firstname cookie exists, get its value<br>
+            if(isset($_COOKIE['firstname'])){<br>
+            &nbsp;&nbsp;$cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);<br>
+            }<br>
+            </code>
+          </li>
+          <li>Save the controller.</li>
+          <li>Go the acme "home" view.</li>
+          <li>Find in the code where the "My account" link is located.</li>
+          <li>To the left of the link add a PHP code block that checks if the variable holding the cookie firstname value exists, and if so echo it back with a brief welcome message, (e.g. Welcome Tony).</li>
+          <li>When done, the code could look like this:<br>
+          <code class="callout no-left">
+            &lt;?php if(isset($cookieFirstname)){<br>
+&nbsp;&nbsp;echo "&lt;span&gt;Welcome $cookieFirstname&lt;/span&gt;";<br>
+} ?&gt;
+            </code>
+          </li>
+          <li>Use CSS to make sure there is a space between the welcome message and the "My Account" link.</li>
+          <li>Save all of the files.</li>
+          <li>Return to your browser and reload the acme site.</li>
+          <li>If things worked, you should see your welcome message on the acme home view.</li>
+          <li>This code could be repeated in each controller (to check and collect the cookie value) and in each view (to display the welcome message). But don't.</li>
+        </ol>
+
+        <h2>What's Next?</h2>
+        <p>In the "Login Process" activity we will create a session and see the session cookie at work. In the mean time you now have some minimal exposure to PHP cookies, how to create them, how to read them and how to use them.</p>
+
+        <h2>Video Demonstration</h2>
+        <p>As always, keep in mind that variable names in the activity and video may be different than yours.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/e-UOS_gYCkw" allowfullscreen></iframe>
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
