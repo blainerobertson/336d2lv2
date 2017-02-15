@@ -98,7 +98,7 @@
               // at least one 1 capital letter, at least 1 number and<br>
               // at least 1 special character<br>
               function checkPassword($password){<br>
-              &nbsp;&nbsp;$pattern = '/^(?=.*[\W])(?=[a-zA-Z0-9])[\w\W]{8,}$/i';<br>
+              &nbsp;&nbsp;$pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]])[[:print:]]{8,}$/';<br>
               &nbsp;&nbsp;return preg_match($pattern, $password);<br>
               }
             </code>
