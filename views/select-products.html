@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Select Products | Web Backend Development</title>
+  <meta name="description" content="Selecting products for facilitating an update or delete process for the Acme site of CIT 336">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Select Products</h1>
+        <h2>Overview</h2>
+        <p>When a site administrator needs to update or delete a product from the database it is helpful if a list of potential products is provided. This allows for quick identification of the product prior to beginning to actual update or delete. This activity will do just that, it will select a list of products from the database and then display a mechanism to begin the update and/or delete process.</p>
+
+        <h2>Products Controller</h2>
+        <p>Earlier you built into the products controller the ability to deliver a Product Management view by default. It is in this view that we will display the list of products. If the potential list was long then a filtering system or search would be necessary. To keep things simple we will not do those things as part of this activity.</p>
+
+        <ol>
+          <li>Locate and open the "<b>products</b>" controller.</li>
+          <li>Within the controller find the <i>case</i> or <i>if</i> test that is responsible for delivering the "<b>product management</b>" view.</li>
+          <li>Create some space between the <i>case</i> or <i>if</i> test line and the line that actually "includes" the view. In my code the created space looks like this (your names will be different):
+            <code class="callout no-left">
+            case 'prodmgmt':<br>
+            <br>
+            <br>
+            <br>
+            &nbsp;&nbsp;include '../view/prod-mgmt.php';<br>
+            break;
+            </code>
+          </li>
+          <li>Within the empty space we will do two things:
+            <ol>
+              <li>Call a function to get a list of product names and product id's from the inventory table and store the returned data into a variable.</li>
+              <li>Use the data to build an HTML table to display the product name and provide two links: one to trigger an update and one to trigger a delete or show an error if no product data was returned.</li>
+            </ol>
+          </li>
+          <li>Even though the function does not yet exist, let's write the function call and the variable to store the returned data into. Add the following code to the empty space you created earlier:
+            <code class="callout no-left">
+              case 'prodmgmt':<br>
+              &nbsp;&nbsp;$products = getProductBasics();<br>
+              <br>
+              <br>
+              &nbsp;&nbsp;include '../view/prod-mgmt.php';<br>
+              break;
+            </code>
+          </li>
+          <li>On the next lines we will test to see if products were returned. If so, we will build an HTML table, but if not, we will set an error message. The following code should do the trick:
+            <code class="callout no-left">
+              case 'prodmgmt':<br>
+              &nbsp;$products = getProductBasics();<br>
+              &nbsp;if(count($products) > 0){<br>
+              &nbsp;&nbsp;$prodList = '&lt;table&gt;';<br>
+              &nbsp;&nbsp;$prodList .= '&lt;thead&gt;';<br>
+              &nbsp;&nbsp;$prodList .= '&lt;tr&gt;&lt;th&gt;Product Name&lt;/th&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;';<br>
+              &nbsp;&nbsp;$prodList .= '&lt;/thead&gt;';<br>
+              &nbsp;&nbsp;$prodList .= '&lt;tbody&gt;';<br>
+              &nbsp;&nbsp;foreach ($products as $product) {<br>
+              &nbsp;&nbsp;&nbsp;$prodList .= "&lt;tr&gt;&lt;td&gt;$product[invName]&lt;/td&gt;";<br>
+              &nbsp;&nbsp;&nbsp;$prodList .= "&lt;td&gt;&lt;a href='/acme/products?action=mod&amp;id=$product[invId]' title='Click to modify'&gt;Modify&lt;/a&gt;&lt;/td&gt;";<br>
+              &nbsp;&nbsp;&nbsp;$prodList .= "&lt;td&gt;&lt;a href='/acme/products?action=del&amp;id=$product[invId]' title='Click to delete'&gt;Delete&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;";<br>
+              &nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;&nbsp;$prodList .= '&lt;/tbody&gt;&lt;/table&gt;';<br>
+              &nbsp;&nbsp;} else {<br>
+              &nbsp;&nbsp;&nbsp;$message = '&lt;p class="notify"&gt;Sorry, no products were returned.&lt;/p&gt;';<br>
+              }<br>
+              &nbsp;include '../view/prod-mgmt.php';<br>
+              break;
+            </code>
+            <h3>An Explanation</h3>
+            <ul>
+              <li>The if test ensures that the array has at least 1 element within it.</li>
+              <li>We build the table and include a &lt;thead&gt; element with a single row and three cells. One with a label for the product names and two cells with an HTML entity for a non-breaking space so the cells don't collapse.</li>
+              <li>The table body - &lt;tbody&gt; is then opened.</li>
+              <li>A <i>foreach</i> loop is then used to build a row with three cells:
+                <ol>
+                  <li>Cell one has the product name displayed from the array row.</li>
+                  <li>Cell two has a link that includes a trigger name - value pair "action = mod" and a second name - value pair "id = the primary key value of the item". This will allow us to indicate we want to modify a product and identify which product to modify.</li>
+                  <li>Cell three has a link that includes a trigger name - value pair "action = del" and a second name - value pair "id = the primary key value of the item". This will allow us to indicate we want to delete a product and identify which product to delete.</li>
+                </ol>
+              </li>
+              <li>When the loop is finished the &lt;/tbody&gt; and &lt;/table&gt; elements are closed.</li>
+              <li>If there were no products then the error message is created.</li>
+              <li>The if - else structure ends and the product management view is delivered.</li>
+              <li>Notice the mixed use of quotes. When a simple string is created single quotes are used. When a string that needs to show a value from the array is built, then double quotes are used.</li>
+            </ul>
+          </li>
+        </ol>
+        <h2>The Products Model</h2>
+        <p>With the code in place to build the content it's time to build the function in the model to make it happen.</p>
+        <ol>
+          <li>Find and open the products model in the <b>model</b> folder.</li>
+          <li>Move to the bottom of the model and add a new comment indicating that the following function will get basic product information from the inventory table for starting an update or delete process</li>
+          <li>Beneath the comment write the following function (keep in mind your database connection function may be named different than the one shown):
+            <code class="callout no-left">
+            function getProductBasics() {<br>
+            &nbsp;$db = acmeConnect();<br>
+            &nbsp;$sql = 'SELECT invName, invId FROM inventory ORDER BY invName ASC';<br>
+            &nbsp;$stmt = $db->prepare($sql);<br>
+            &nbsp;$stmt->execute();<br>
+            &nbsp;$products = $stmt->fetchAll(PDO::FETCH_NAMED);<br>
+            &nbsp;$stmt->closeCursor();<br>
+            &nbsp;return $products;<br>
+            }<br>
+            </code>
+            <h3>An Explanation</h3>
+            <ul>
+              <li>All of this should already be familiar but I will point out one or two things.</li>
+              <li>The query only get the name and id for each inventory item. That is all we used to build the table.</li>
+              <li>We are using the <code>fetchAll(PDO::FETCH_NAMED)</code> method to get an associative array for each item. Meaning the field name from the database table is used to identify each product value.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h2>The Product Management View</h2>
+        <p>With the model set to query the products from the inventory table and the controller ready to build either the HTML table for display or an error message, it is time to add code to the view to make it display in the browser.</p>
+        <ol>
+          <li>Find and open the <b>product management view</b> in the <b>view</b> folder.</li>
+          <li>Scroll down in the code until you are below the two links that should already exist: one to add a new category and a second to add a new product.</li>
+          <li>Add the following PHP code block:
+            <code class="callout no-left">
+            &lt;?php<br>
+              if (isset($message)) {<br>
+              &nbsp;echo $message;<br>
+              } elseif (isset($prodList)) {<br>
+              &nbsp;echo $prodList;<br>
+              }<br>
+              ?&gt;<br>
+            </code>
+<h3>An Explanation</h3>
+            <ul>
+            <li>First we check to see if an <code>$message</code> variable exists. If so, we echo it to the view.</li>
+              <li>Then, an <code>elseif</code> test checks to see if the <code>$prodList</code> variable exists, if so we echo it to the view.</li>
+              <li>We anticipate that one or the other exists, but only one at a time.</li>
+            </ul>
+          </li>
+          <li>If you did not complete the Enhancement 6 Bonus activity (to add protection to the product views), we will do it now.</li>
+          <li>Scroll to the top of the <b>product management</b> view.</li>
+          <li>Add the following PHP code block above the HTML doctype declaration but make sure there are no empty lines or empty spaces between the code block and the declaration:
+          <code class="callout no-left">
+            &lt;?php<br>
+if ($_SESSION['clientData']['clientLevel'] < 2) {<br>
+            &nbsp;header('location: /acme/');<br>
+            &nbsp;exit;<br>
+            }<br>
+            ?&gt;<br>
+            </code>
+<strong>Note: Your names may not be identical to those shown. Check your login process for session names.</strong>
+            <h3>An Explanation</h3>
+            <ul>
+            <li>When a client logs in, their client level is stored into the session as part of the client data.</li>
+              <li>This tests if their "clientLevel" is less than 2.</li>
+              <li>If so, they are redirected to the acme root where the main acme controller will receive it and display the home view.</li>
+              <li>The only way the client data is stored to the session is if the client is "logged in".</li>
+            </ul>
+          </li>
+          <li>Add the same code block to the other two product views - <b>Add product</b> and <b>Add Category</b>. This ensures that only a logged in user who is an adminstrator can access the product management area.</li>
+        </ol>
+        <h2>Time to Test</h2>
+        <ol>
+        <li>Save all files if you haven't already done so.</li>
+          <li>Run the <b>Products Controller</b>.</li>
+          <li>If you are not logged in as an adminstrative user you should be redirected to the Acme home view.</li>
+          <li>Click the "My Account" link and you should now be viewding the login view.</li>
+          <li>Login using the administrative account that you created earlier - username: admin@cit336.net, password: Sup3rU$er</li>
+          <li>In the browser address bar, alter the URL to point to the products folder (e.g. http://localhost/acme/products) and press the "Enter" key.</li>
+          <li>If things worked correctly, you should be looking at a table of products and a "Modify" and "Delete" link to the right of each. Such as is illustrated below:
+          <p><img src="../images/acme/prod-list.png" alt="Illustration of the product list in the product management view"></p>
+
+          </li>
+          <li>You will probably want to add some CSS to your external style sheet to dress up the table and make things easier to view.</li>
+          <li>If things worked as planned you are ready to move on. If they didn't work, get help from a member of your learning team, using the discussion board, from one of the TA's or your professor. But it has to work before moving to the next activity.</li>
+        </ol>
+      </article>
+    </main>
+    <footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+  </div>
+  <script src="../js/course.min.js"></script>
+</body>
+
+</html>
