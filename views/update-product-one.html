@@ -107,18 +107,18 @@
           <li>Do a "Save As..." and save the view into the <b>view</b> folder, but change the name to <b>prod-update.php</b>.</li>
           <li>Scroll down to the <code>Title</code> element and add the following code block between the opening and closing title tags:
             <code class="callout no-left">
-              &lt;?php echo "Modify $prodInfo[invName]"; ?&gt;
+             &lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt;
             </code>
           </li>
           <li>When you're done the title could look like this:
             <code class="callout no-left">
-              &lt;title&gt;&lt;?php echo "Modify $prodInfo[invName]"; ?&gt; | Acme, Inc&lt;/title&gt;<br>
+             &lt;title&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt; | Acme, Inc&lt;/title&gt;<br>
             </code>
-            When the page loads, the product name will appear in the title tab of the browser.
+            When the page loads, the product name will appear in the title tab of the browser. Or, if the page is returned for error correction the product name will reappear from the product variable.
           </li>
           <li>Scroll down and find the main content heading. Add the same PHP code block to it. It could look something like this:
             <code class="callout no-left">
-              &lt;h1&gt;&lt;?php echo "Modify $prodInfo[invName]"; ?&gt;&lt;/h1&gt;<br>
+             &lt;h1&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt;&lt;/h1&gt;<br>
             </code>
             By making these subtle changes we are personalizing the view's contents.
           </li>
