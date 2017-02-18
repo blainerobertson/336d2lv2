@@ -128,7 +128,8 @@
             &lt;?php<br>
               if (isset($message)) {<br>
               &nbsp;echo $message;<br>
-              } elseif (isset($prodList)) {<br>
+              }
+             if (isset($prodList)) {<br>
               &nbsp;echo $prodList;<br>
               }<br>
               ?&gt;<br>
@@ -136,8 +137,7 @@
 <h3>An Explanation</h3>
             <ul>
             <li>First we check to see if an <code>$message</code> variable exists. If so, we echo it to the view.</li>
-              <li>Then, an <code>elseif</code> test checks to see if the <code>$prodList</code> variable exists, if so we echo it to the view.</li>
-              <li>We anticipate that one or the other exists, but only one at a time.</li>
+              <li>Then, a second <code>if</code> test checks to see if the <code>$prodList</code> variable exists, if so we echo it to the view.</li>
             </ul>
           </li>
           <li>If you did not complete the Enhancement 6 Bonus activity (to add protection to the product views), we will do it now.</li>
