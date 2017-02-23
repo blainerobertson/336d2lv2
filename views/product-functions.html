@@ -68,7 +68,7 @@
                &nbsp;$pd = '&lt;ul id="prod-display"&gt;';<br>
                &nbsp;foreach ($products as $product) {<br>
                &nbsp;&nbsp;$pd .= '&lt;li&gt;';<br>
-               &nbsp;&nbsp;$pd .= "&lt;img src='$product[invImage]' alt='Image of $product[invName] on Acme.com'&gt;";<br>
+               &nbsp;&nbsp;$pd .= "&lt;img src='$product[invThumbnail]' alt='Image of $product[invName] on Acme.com'&gt;";<br>
                &nbsp;&nbsp;$pd .= '&lt;hr&gt;';<br>
                &nbsp;&nbsp;$pd .= "&lt;h2&gt;$product[invName]&lt;/h2&gt;";<br>
                &nbsp;&nbsp;$pd .= "&lt;span&gt;$$product[invPrice]&lt;/span&gt;";<br>
