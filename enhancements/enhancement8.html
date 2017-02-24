@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Enhancement 8 | Web Backend Development</title>
+ <meta name="description" content="CIT 336 Enhancement 8 directions">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+
+<body>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Enhancement 8</h1>
+    <h2>Introduction</h2>
+    <p>This week's activities saw us make the navigation bar operational. When a category name is clicked, that category's products, from the database, are delivered to a view. This enhancement asks you to take to the next step - Specific product information delivered to a view.</p>
+
+    <h2>Overview</h2>
+    <p>In this enhancement you will:</p>
+    <ol>
+     <li>Alter the code for each product being delivered to the category view so that a link exists for that specific product. When the link is clicked, a "product detail" view is delivered where complete details about that product are displayed.</li>
+     <li>Style the product information to display clearly and professionally in any size browser window.</li>
+    </ol>
+
+    <h2>Video Overview</h2>
+    <p>This short video demonstrates what the finished enhancement will look like and the functionality it should possess.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/HIyna7UdWvE" allowfullscreen></iframe>
+
+    <h2>Tasks</h2>
+<ol>
+    <li>Alter the <b>buildProductsDisplay()</b> function in the <b>functions.php</b> file to add a link(s) that, when clicked, sends two name-value pairs to the products controller. One name-value pair must trigger a new control structure to get information about a product. The second name-value pair must indicate the specific product. Suggestion: look at how e-commerce sites such as amazon.com do it (typically both the item name and image are clickable).</li>
+ <li>Add a new control structure to the product controller that will handle the process of getting a specific product's information in order to deliver it to a product detail view. If no product can be found, a message must be set to that effect and the message will be sent to the view instead of the product information.</li>
+ <li>Build a function in the "products model" to retrieve information about a specific inventory item and return it to the controller.</li>
+ <li>Build a custom function in the <b>functions.php</b> file that will take the specific item's information and wrap it up in HTML to deliver to the view, specifically:
+ <ul>
+  <li>Use the full-size image, not the thumbnail image.</li>
+  <li>The name and price should be prominant in the view.</li>
+  <li>The description must be present.</li>
+  <li>The other product items (size, # in stock, vendor, etc...) must be displayed with appropriate supporting text to make sense to a site client. See this image from Amazon.com as an example:<br>
+  <img src="../images/anvil-example.png" alt="Example of an Anvil product detail view from amazon.com">
+  </li>
+  </ul>
+ </li>
+ <li>Build a new view named "<b>product-detail.php</b> and save it to the <b>view</b> folder using your acme template. The view must:
+  <ul>
+   <li>Display the product name in the title element and in the main content heading.</li>
+   <li>Have the ability to display a message if one exists.</li>
+   <li>Display the product details by echoing the variable containing the product details wrapped up in HTML from your custom function.</li>
+   <li>Be valid HTML5 and use valid CSS3 to display the product information for easy reading and presenting a professional appearance.</li>
+   <li>The content must maintain its clarity of presentation in the browser as the browser window grows or shrinks. In other words, it must be responsive.</li>
+  </ul>
+ </li>
+    </ol>
+
+    <h2>Test, Test, Test</h2>
+    <p>Be sure to complete all tasks and then test that they work.</p>
+    <ol>
+    <li>Load the acme site into your XAMPP environment.</li>
+     <li>Click a link in the main navigation bar.</li>
+     <li>From the category items that should exist in the browser click the provided link(s) for any item.</li>
+     <li>The item's details should be visible in a new view. The details are clear, professional in appearance that can be easily consumed by the human looking at the browser.</li>
+     <li>Change the screen size to emulate delivery to various device sizes. The content should be responsive and adjust to allow clear presentation regardless of screen size.</li>
+     <li>Repeat multiple times (clicking on navigation link, then "drilling down" to the product detail) to ensure that the process works with all products.</li>
+    </ol>
+
+
+    <h2>Submission</h2>
+    <ul>
+     <li>Work with your learning team to accomplish the tasks and post to and read the weekly discussion board to help one another.</li>
+     <li>Build, run and test to make sure that each of the tasks works.</li>
+     <li>When satisfied that the code is operational:
+      <ol>
+       <li>Create a video showing:
+        <ul>
+<li>The process in action by clicking on multiple items from multiple categories to show that each item is delivered to the detail view.</li>
+         <li>Resize the screen or use a browser emulation tool to show various size screens to show that the product detail maintains a professional appearance and can be easily read, on all screen sizes.</li>
+         <li>That the product detail view is valid HTML5 and CSS3.</li>
+        </ul>
+       </li>
+       <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
+       <li>Zip the entire acme folder and name it enhancement 8 (save this zip file outside of your web site).</li>
+       <li>Submit the zip file to the enhancement 8 assignment dropbox and add the video URL to the assignment dropbox comment.</li>
+      </ol>
+     </li>
+    </ul>
+
+    <h2>Grading Matrix</h2>
+    <p>This enhancement has values in multiple objectives as shown below:</p>
+<h3>Objective 1</h3>
+    <ul>
+    <li>The product detail view is valid HTML5 (2 points: minus 1 for each error)</li>
+     <li>The product detail view uses valid CSS3 (3 points: minus 1 for each error)</li>
+     <li>The product information is responsive and can be easily read on changing screen sizes without zooming or horizontal scrolling (5 points: Yes or No)</li>
+     <li>Total value for Objective 1: 10 points</li>
+    </ul>
+
+    <h3>Objective 2</h3>
+    <ul>
+     <li>The products controller contains the control structure and process to deliver the product detail (fully operational) (5 points: Yes or No)</li>
+     <li>A new custom function exists in the <b>functions.php</b> file to take the product details and build HTML around it then return the result to the controller (fully operational). (5 points: Yes or No)</li>
+     <li>Total value for Objective 2: 10 points</li>
+    </ul>
+
+    <h3>Objective 3</h3>
+    <ul>
+     <li>The product detail delivery process is an MVC solution. (5 points: Yes or No)</li>
+     <li>Total value for Objective 3: 5 points</li>
+    </ul>
+
+    <h3>Objective 4</h3>
+    <ul>
+     <li>The product detail function in the "products model" uses a PDO Prepared Statement approach and works. (5 points: Yes or No)</li>
+     <li>Total value for Objective 4: 5 points</li>
+    </ul>
+
+    <h3>Objective 5</h3>
+    <ul>
+     <li>Name-value pairs passed into the controller from the view are filters and/or sanitized prior to being sent to the functon for use with the database. (5 points: Yes or No)</li>
+     <li>Total value for Objective 5: 5 points</li>
+    </ul>
+
+   </article>
+  </main>
+ </div>
+ <script src="../js/course.js"></script>
+</body>
+
+</html>
