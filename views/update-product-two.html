@@ -109,7 +109,7 @@
         <li>If the update fails, display the failure in the <b>prod-update.php</b> view. Change the include statement to use this new view.</li>
         <li>If the update succeeds, we want to be redirected back to the product management view, display the message and also get the full list of products to appear again. To do this, we will use the session to store the message, use a header function to return to the controller, and then have the controller deliver the view and display the message. To do this alter that success to resemble this:
         <code class="callout no-left">
-         if ($insertResult) {
+         if ($updateResult) {
          &nbsp;$message = "&lt;p class='notify'&gt;Congratulations, $prodName was successfully updated.&lt;/p&gt;";
          &nbsp;$_SESSION['message'] = $message;
          &nbsp;header('location: /acme/products/');
