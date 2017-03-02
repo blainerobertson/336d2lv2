@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Uploads Model | Web Backend Development</title>
+ <meta name="description" content="Building the uploads model for the acme project for CIT 336">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
+
+<body>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Uploads Model</h1>
+    <p>As you already know, the model is for database interactions. In this model, the functionality is centered around the image information to be stored, retrieved and removed from the database.</p>
+<ol>
+    <li>Create a new PHP file named "<b>uploads-model.php</b>" and save it to the "<b>model</b>" folder with the other model files used in the Acme web site.</li>
+ <li>Change the default comment to indicate that this model is for product image uploads.</li>
+    </ol>
+
+    <h2>The storeImages() Function</h2>
+    <p><strong>Your database connection function name may be different that what is shown in these functions. Use your connection function name.</strong></p>
+    <p>The first function will write the image information to the <b>images</b> table. This function is different than other functions that you have written. Each file that is uploaded has two versions: A "full size" and a "thumbnail". When we write the data to the database we have to store both, so this function will take care to make sure that occurs:
+    <code class="callout no-left">
+     // Add image information to the database table<br>
+     function storeImages($imgPath, $prodId, $imgName) {<br>
+     &nbsp;$db = acmeConnect();<br>
+     &nbsp;$sql = 'INSERT INTO images (invId, imgPath, imgName) VALUES (:prodId, :imgPath, :imgName)';<br>
+     &nbsp;$stmt = $db->prepare($sql);<br>
+     &nbsp;// Store the full size image information<br>
+     &nbsp;$stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);<br>
+     &nbsp;$stmt->bindValue(':imgPath', $imgPath, PDO::PARAM_STR);<br>
+     &nbsp;$stmt->bindValue(':imgName', $imgName, PDO::PARAM_STR);<br>
+     &nbsp;$stmt->execute();<br>
+     <br>
+     &nbsp;// Make and store the thumbnail image information<br>
+     &nbsp;// Change name in path<br>
+     &nbsp;$imgPath = makeThumbnailName($imgPath);<br>
+     &nbsp;// Change name in file name<br>
+     &nbsp;$imgName = makeThumbnailName($imgName);<br>
+     &nbsp;$stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);<br>
+     &nbsp;$stmt->bindValue(':imgPath', $imgPath, PDO::PARAM_STR);<br>
+     &nbsp;$stmt->bindValue(':imgName', $imgName, PDO::PARAM_STR);<br>
+     &nbsp;$stmt->execute();<br>
+     <br>
+     &nbsp;$rowsChanged = $stmt->rowCount();<br>
+     &nbsp;$stmt->closeCursor();<br>
+     &nbsp;return $rowsChanged;<br>
+     }<br>
+     </code>
+    </p>
+    <h3>An Explanation</h3>
+    <ul>
+    <li>By now most of this code should be quite familiar, so not much explanation will be provided.</li>
+     <li>The <b>images</b> table expects three pieces of information for each image: the path, the name and the inventory id. So these three variables are sent as variables into the function.</li>
+     <li>The same sql statement is used for all image inserts.</li>
+     <li>The "fullsize" image data is stored to the database first.</li>
+     <li>A helper function is then used to "tear apart" the image name and image path and a <code><strong>"-tn"</strong></code> string is added that indicates the "thumbnail" version of the image.</li>
+     <li>The "thumbnail" data is then stored to the database (notice there are two <code><strong>$stmt->execute();</strong></code> lines.</li>
+     <li>Finally, the database server is asked to indicate how many rows changed in the table as a result of the query. We expect the awnser to be "1".</li>
+     <li>The number of rows changed is returned as an indicatin of success or failure.</li>
+    </ul>
+    <h2>The getImages() Function</h2>
+    <p>As the name implies this function gets an array of all image information from the database. It should be placed below the previous function:
+    <code class="callout no-left">
+     // Get Image Information from images table<br>
+     function getImages() {<br>
+     &nbsp;$db = acmeConnect();<br>
+     &nbsp;$sql = 'SELECT imgId, imgPath, imgName, imgDate, inventory.invId, invName FROM images JOIN inventory ON images.invId = inventory.invId';<br>
+     &nbsp;$stmt = $db->prepare($sql);<br>
+     &nbsp;$stmt->execute();<br>
+     &nbsp;$imageArray = $stmt->fetchAll(PDO::FETCH_NAMED);<br>
+     &nbsp;$stmt->closeCursor();<br>
+     &nbsp;return $imageArray;<br>
+     }<br>
+     </code>
+    </p>
+    <h3>An Explanation</h3>
+    <p>Hopefully, the only thing here that may look unfamiliar is the SQL query. We are using a "<code>JOIN</code>" because we want to get the name and id from the "<code>inventory</code>" table along with the image information because each image is "tied" to an inventory item. The join will allow us to do that based on the "invId" that is found in both tables.</p>
+
+    <h2>The deleteImage() Function</h2>
+    <p>As you have already guessed this function will remove the image information from the database. As with any delete, there is no "undo". Add the following function beneath the previous two:
+    <code class="callout no-left">
+     // Delete image information from the images table<br>
+     function deleteImage($id) {<br>
+     &nbsp;$db = acmeConnect();<br>
+     &nbsp;$sql = 'DELETE FROM images WHERE imgId = :imgId';<br>
+     &nbsp;$stmt = $db->prepare($sql);<br>
+     &nbsp;$stmt->bindValue(':imgId', $id, PDO::PARAM_INT);<br>
+     &nbsp;$stmt->execute();<br>
+     &nbsp;$result = $stmt->rowCount();<br>
+     &nbsp;$stmt->closeCursor();<br>
+     &nbsp;return $result;<br>
+     }
+     </code>
+    </p>
+    <h3>An Explanation</h3>
+    <p>Each image is uniquely identified in the <b>images</b> database table by an id. That value is retrieved with the image information is obtained using the <code><strong>getImages()</strong></code> function. The same value is returned as a parameter to this function to delete the file.</p>
+
+    <h2>Conclusion</h2>
+    <p>At this point I hope that you have not really encountered anything too unfamiliar in the controller or model code. But, I hope you also noticed that "helper" functions are being used frequently to perform needed tasks. Our next activity will dive into these helper functions.</p>
+   </article>
+  </main>
+  <footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+ </div>
+ <script src="../js/course.min.js"></script>
+</body>
+
+</html>
