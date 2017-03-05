@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Enhancement 9 | Web Backend Development</title>
+ <meta name="description" content="CIT 336 Enhancement 9 directions">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+
+<body>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Enhancement 9</h1>
+
+    <h2>Overview</h2>
+    <p>In this enhancement you are asked to implement enhanced functionality dealing with image uploads:</p>
+    <ol>
+     <li>Change the target of image uploads to the "<b>products</b>" folder within the acme "<b>images</b>" folder from the current "uploads > images" folder.</li>
+     <li>Check that a file with the same name as one being uploaded does not already exist. If it does, the upload will be stopped and an error message displayed.</li>
+     <li>Upload all existing images in the "images > products" using the upload process so that the images will be sized correctly and stored into the "<b>images</b>" table of the acme database.</li>
+     <li>Write code that will find and deliver any additional product images to the products "detail" view when a product is selected via the main menu of the Acme site.</li>
+    </ol>
+
+    <h2>Video Overview</h2>
+    <p>This short video demonstrates what the finished enhancement will look like and the functionality it should possess.</p>
+
+    <h2>Tasks</h2>
+    <ol>
+     <li>During the activities for this week all image uploads are directed to the "<b>images</b>" folder inside the "<b>uploads</b>" folder. This was great for testing, but not so good for the Acme site. Therefore:
+      <ol>
+       <li>Change the target path to point to the "<b>products</b>" folder within the main "<b>images</b>" folder at the root of the acme site.</li>
+       <li>The change will occur in the "<b>uploads</b>" controller.</li>
+       <li>Once made, run the file upload tool to make sure your new images are being stored to the correct location.</li>
+      </ol>
+     </li>
+     <li>The upload image process replaces images with the same file name in the upload folder. This is undesireable, therefore:
+      <ol>
+       <li>Write a model-based function that will query the database for a matching file name based on the file name of a file being uploaded.</li>
+       <li>If a match is found, set an error message and stop all further processing of the upload. Display the error in the <b>image-admin.php</b> view.</li>
+       <li>This checking should occur prior to the image actually being stored on the server or its information being written to the database.</li>
+       <li>Test this by attempting to upload and image from the target folder. Since it already exists, the upload should fail and the message be displayed.</li>
+      </ol>
+     </li>
+     <li>The current image files in the "images > products" folder are not sized correctly, nor do they appear in the "<b>images</b>" table of the acme database. We want both to occur, therefore:
+      <ol>
+       <li>Copy the existing "images > products" folder and store it on your desktop.</li>
+       <li>Delete all existing images in the original "images > products" folder.</li>
+       <li>Use the image upload application to upload the original images and associate them with the correct product. The thumbnails do not need to be uploaded as new thumbnails will be created as part of the upload process.</li>
+       <li>When done, use the main navigation bar to click each category item and make sure the thumbnail images of each product appear in the view.</li>
+       <li>Then click, each product link and make sure the "full-size" image loads in the product detail view.</li>
+       <li>This can be checked by using the "inspect" tools in the browser to make sure the "full size" images are no larger than 500 pixels wide or high and that thumbnail images are no larger than 200 pixels wide or high.</li>
+      </ol>
+     </li>
+     <li>When a "product detail" view is loaded the "full size" image should display, but what if additional images have been uploaded for that product? It would be beneficial if "thumbnails" of all images pertaining to that item were displayed. Therefore:
+      <ol>
+       <li>In the products model, build a new function that will obtain image information from the "<b>images</b>" table that are associated with a particular product using the productId.</li>
+       <li>The returned list of images should be fed into a custom function that will wrap them in HTML so they are ready to be viewed. No additional information about the image needs to be included.</li>
+       <li>The HTML containing the images should be included into the "product detail" view by the "products" controller when the view is delivered and styled to be professional in appearance.</li>
+       <li>Add two images (it doesn't matter if they actually match the product) to at least two inventory items (products).</li>
+       <li>To test, access the "product detail" view via the Acme navigation bar. Make sure the additional images appear and are professional in their appearance. The view should continue to be valid HTML5 and valid CSS3 when done.</li>
+      </ol>
+     </li>
+    </ol>
+
+    <h2>Test, Test, Test</h2>
+    <p>Be sure to complete all tasks and then test that they work. Steps to test each task have already been provided in each task.</p>
+
+    <h2>Submission</h2>
+    <ul>
+     <li>Work with your learning team to accomplish the tasks and post to and read the weekly discussion board to help one another.</li>
+     <li>Build, run and test to make sure that each of the tasks works.</li>
+     <li>When satisfied that the code is operational, create a video showing:
+      <ol>
+       <li>When attempting to upload a file that already exists in the "images > products" folder that the upload fails with an appropriate error message.</li>
+       <li>Navigate to a "product detail" view that contains additional images in the database from the main navigation bar. Show that:
+        <ol>
+         <li>The additional images load.</li>
+         <li>That the view is valid HTML5.</li>
+         <li>That the view is valid CSS3.</li>
+         <li>Use the browser's inspect tool to show that the full size image is no larger than 500 pixels wide or tall.</li>
+         <li>Use the browser's inspect tool to show that the thumbnail images are no larger than 200 pixels wide or tall.</li>
+        </ol>
+       </li>
+       <li>Show the "<b>images</b>" table in the PHPMyAdmin tool to demonstrate that two versions of each image in the "images > products>" folder exist in the table.</li>
+      </ol>
+       <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
+       <li>Zip the entire acme folder and name it enhancement 9 (save this zip file outside of your web site).</li>
+       <li>Submit the zip file to the enhancement 9 assignment dropbox and add the video URL to the assignment dropbox comment.</li>
+    </ul>
+
+    <h2>Grading Matrix</h2>
+    <p>This enhancement has values in multiple objectives as shown below:</p>
+    <h3>Objective 1</h3>
+    <ul>
+     <li>The product detail view is valid HTML5 (2 points: minus 1 for each error)</li>
+     <li>The product detail view uses valid CSS3 (2 points: minus 1 for each error)</li>
+     <li>Full size images are no larger than 500 pixels wide or tall (2 points: minus 1 for an image that is larger)</li>
+     <li>Thumbnail images are no larger than 200 pixels wide or tall (2 points: minus 1 for an image that is larger)</li>
+     <li><b>Total value for Objective 1: 8 points</b></li>
+    </ul>
+
+    <h3>Objective 2</h3>
+    <ul>
+     <li>The uploads controller contains the functionality to check if an image already exists and can return an error if it does at the time of the upload (fully operational) (5 points: Yes or No)</li>
+     <li>A new custom function exists in the <b>functions.php</b> file to wrap the product images in HTML and return the result to the products controller (fully operational). (5 points: Yes or No)</li>
+     <li><b>Total value for Objective 2: 10 points</b></li>
+    </ul>
+
+    <h3>Objective 4</h3>
+    <ul>
+     <li>A function to check for an existing image exists in the "uploads model". It uses a PDO Prepared Statement approach and works. (5 points: Yes or No)</li>
+     <li>A function to extract images related to an inventory item exists, uses a PDO Prepared Statement approach and works. (5 points: Yes or No)</li>
+     <li><b>Total value for Objective 4: 10 points</b></li>
+    </ul>
+
+    <h3>Objective 6</h3>
+    <ul>
+     <li>The enhancement video is present and demonstrates:
+      <ul>
+       <li>When attempting to upload a file that already exists in the "images > products" folder that the upload fails with an appropriate error message: 1 point</li>
+       <li>Navigate to a "product detail" view that contains additional images in the database from the main navigation bar. Show that:
+        <ol>
+         <li>The additional images load: 1 point</li>
+         <li>That the view is valid HTML5: 1 point</li>
+         <li>That the view is valid CSS3: 1 point</li>
+         <li>Use the browser's inspect tool to show that the full size image is no larger than 500 pixels wide or tall: 1 point</li>
+         <li>Use the browser's inspect tool to show that the thumbnail images are no larger than 200 pixels wide or tall: 1 point</li>
+        </ol>
+       </li>
+       <li>Show the "<b>images</b>" table in the PHPMyAdmin tool to demonstrate that two versions of each image in the "images > products>" folder exist in the table: 1 point</li>
+      </ul>
+     </li>
+     <li><b>Total value for Objective 6: 7 points</b></li>
+    </ul>
+
+   </article>
+  </main>
+ </div>
+ <script src="../js/course.js"></script>
+</body>
+
+</html>
