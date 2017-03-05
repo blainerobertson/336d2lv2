@@ -34,6 +34,31 @@
      <li>Within the <b>uploads</b> folder create a subfolder named "<b>images</b>".<p>Initially, this "images" folder is where your uploaded image files will be stored. This is temporary and for testing purposes only.</p></li>
     </ol>
 
+    <h2>Check Access Permissions</h2>
+    <p>Since we will be writing files to the "<b>images</b>" folder we must make sure the operating system will allow it. The process is slightly different for Mac and Windows users, so use the steps below depending on your operating system.</p>
+    <h3>Mac Users</h3>
+    <ol>
+    <li>Locate the "<b>uploads</b>" folder in the operating system finder window.</li>
+     <li>Right-click the folder icon, choose "Get info".</li>
+     <li>In the new window that opens scroll down and find the "Sharing &amp; Permissions: area. Expand it if needed to see the options.</li>
+     <li>Change the privileges for "everyone" to <b>Read &amp; Write</b>.</li>
+     <li>Close the window.</li>
+     <li>Repeat these steps for the "<b>images</b>" folder inside of the "<b>uploads</b>" folder.</li>
+     <li>Repeat these steps for the "<b>images</b>" folder at the root of the Acme site and for the "<b>products</b>" folder within the "<b>images</b>" folder.</li>
+    </ol>
+
+    <h3>Windows Users</h3>
+    <ol>
+     <li>Locate the "<b>uploads</b>" folder in the operating system files window.</li>
+     <li>Right-click the folder icon, choose "Properties".</li>
+     <li>In the dialog box that opens, click the "Security" tab.</li>
+     <li>In the name list box, select "Everyone", then make sure the "Modify" option is set to "Allow".</li>
+     <li>Click "OK".</li>
+     <li>Close the window.</li>
+     <li>Repeat these steps for the "<b>images</b>" folder inside of the "<b>uploads</b>" folder.</li>
+     <li>Repeat these steps for the "<b>images</b>" folder at the root of the Acme site and for the "<b>products</b>" folder within the "<b>images</b>" folder.</li>
+    </ol>
+
     <h2>The Controller</h2>
     <p>Just as we have done in the past we will be using an MVC approach, so it is time to create the controller for our image upload application.</p>
     <ol>
@@ -47,10 +72,10 @@
      <li>Next, let's bring in the outside resources (database connection file, models and helper function library) that the controller will need:
       <code class="callout no-left">
        require_once '../library/connections.php';<br>
+       require_once '../library/functions.php';<br>
        require_once '../model/acme-model.php';<br>
        require_once '../model/products-model.php';<br>
        require_once '../model/uploads-model.php';<br>
-       require_once '../library/functions.php';<br>
       </code> The <b>uploads-model.php</b> file doesn't yet exist, but it will by the time you're done with this week's activities.
      </li>
      <li>Now, let's collect the "action" value from the "post" or "get" options of the "request" from the browser:
@@ -73,9 +98,9 @@
        * Variables for use with the Image Upload Functionality<br>
        * **************************************************** */<br>
        // directory name where uploaded images are stored<br>
-       $image_dir = 'images';<br>
-       // The path below assumes the image directory is inside the current folder<br>
-       $image_dir_path = getcwd() . DIRECTORY_SEPARATOR . $image_dir;<br>
+       $image_dir = '/acme/uploads/images';<br>
+       // The path is the full path from the server root<br>
+       $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;<br>
       </code>
      </li>
      <li>Now let's build the control structure for the controller. Build the following:

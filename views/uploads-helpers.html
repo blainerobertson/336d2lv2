@@ -64,7 +64,7 @@
      &nbsp;foreach ($imageArray as $image) {<br>
      &nbsp;&nbsp;$id .= '&lt;li&gt;';<br>
      &nbsp;&nbsp;$id .= "&lt;img src='$image[imgPath]' title='$image[invName] image on Acme.com' alt='$image[invName] image on Acme.com'&gt;";<br>
-     &nbsp;&nbsp;$id .= "&lt;p&gt;&lt;a href='/acme-dev/uploads?action=delete&amp;id=$image[imgId]&amp;filename=$image[imgName]' title='Delete the image'&gt;Delete $image[imgName]&lt;/a&gt;&lt;/p&gt;";<br>
+     &nbsp;&nbsp;$id .= "&lt;p&gt;&lt;a href='/acme/uploads?action=delete&amp;id=$image[imgId]&amp;filename=$image[imgName]' title='Delete the image'&gt;Delete $image[imgName]&lt;/a&gt;&lt;/p&gt;";<br>
      &nbsp;&nbsp;$id .= '&lt;/li&gt;';<br>
      &nbsp;}<br>
      &nbsp;$id .= '&lt;/ul&gt;';<br>
