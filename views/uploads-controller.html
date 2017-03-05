@@ -40,7 +40,7 @@
     <ol>
     <li>Locate the "<b>uploads</b>" folder in the operating system finder window.</li>
      <li>Right-click the folder icon, choose "Get info".</li>
-     <li>In the new window that opens scroll down and find the "Sharing &amp; Permissions: area. Expand it if needed to see the options.</li>
+     <li>In the new window that opens scroll down and find the "Sharing &amp; Permissions:" area. Expand it if needed to see the options.</li>
      <li>Change the privileges for "everyone" to <b>Read &amp; Write</b>.</li>
      <li>Close the window.</li>
      <li>Repeat these steps for the "<b>images</b>" folder inside of the "<b>uploads</b>" folder.</li>
@@ -129,15 +129,19 @@
      <code class="callout no-left">
       &nbsp;// Store the incoming product id<br>
       &nbsp;$prodId = filter_input(INPUT_POST, 'invItem', FILTER_VALIDATE_INT);<br>
+      &nbsp;&nbsp;// Store the name of the uploaded image<br>
+      &nbsp;&nbsp;$imgName = $_FILES['file1']['name'];<br>
       <br>
-      &nbsp;if (empty($prodId) || empty($_FILES['file1']['name'])) {<br>
+      &nbsp;$imageCheck = checkExistingImage($imgName);<br>
+      <br>
+      &nbsp;if($imageCheck){<br>
+      &nbsp;&nbsp;$message = '&lt;p class="notice"&gt;An image by that name already exists.&lt;/p&gt;';<br>
+      &nbsp;} elseif (empty($prodId) || empty($imgName)) {<br>
       &nbsp;&nbsp;$message = '&lt;p class="notice"&gt;You must select a product and image file for the product.&lt;/p&gt;';<br>
       &nbsp;} else {<br>
      <br>
       &nbsp;&nbsp;// Upload the image, store the returned path to the file<br>
       &nbsp;&nbsp;$imgPath = uploadFile('file1');<br>
-      &nbsp;&nbsp;// Store the name of the uploaded image<br>
-      &nbsp;&nbsp;$imgName = $_FILES['file1']['name'];<br>
       <br>
       &nbsp;&nbsp;// Insert the image information to the database, get the result<br>
       &nbsp;&nbsp;$result = storeImages($imgPath, $prodId, $imgName);<br>
@@ -161,7 +165,9 @@
     <h3>An Explanation</h3>
     <ul>
     <li>When an image is uploaded it must be associated with a product in the inventory table, the item's id is sent to the controller and stored.</li>
-     <li>Basic checks are done for the image name and product id. If one is missing, the error message is set. Then, skipping down below the "else" the message is stored in the session and the header function is used to redirect to this same controller. The default action of the controller will deliver the view where the error will be displayed. The view's form will NOT be sticky.</li>
+     <li>A model-based function is called to check if an image by the name of the uploaded image already exists in the database table. </li>
+     <li>If the name check returns TRUE then an error message is set.</li>
+     <li>Then, more checks are done for the image name and product id. If one is missing, the error message is set. Then, skipping down below the "else" the message is stored in the session and the header function is used to redirect to this same controller. The default action of the controller will deliver the view where the error will be displayed. The view's form will NOT be sticky.</li>
      <li>If there are not errors in the inputs, then the file itself is uploaded to the server and the path to the file is returned.</li>
      <li>The name of the file is read from the actual file and stored in a variable.</li>
      <li>The image information (product Id, file name, image path) is then written to the database and the result of the insert returned and stored in a variable.</li>
