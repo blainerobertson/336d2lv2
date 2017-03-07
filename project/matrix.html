@@ -2,110 +2,113 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Dynamic Project Grading Matrix | Web Backend Development</title>
-	<meta name="description" content="Dynamic Project Grading Matrix for CIT 336">
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Dynamic Project Grading Matrix | Web Backend Development</title>
+ <meta name="description" content="Dynamic Project Grading Matrix for CIT 336">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
 </head>
 
 <body>
-	<div id="main">
-		<header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-		<main>
-			<article id="article">
-				<h1>Dynamic Project Grading Matrix</h1>
-				<h2>Introduction</h2>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Dynamic Project Grading Matrix</h1>
+    <h2>Notice</h2>
+    <p>The grading matrix below is general, not specific. The actual project will have specific grading items that are applicable to that project. However, this matrix is very similar to the actual grading matrix and can be used to anticipate the requirements and expectations of the actual grading requirments of the project.</p>
 
-				<p>In order to carry out the dynamic project grading, the grader will need access to:</p>
-				<ol class='showlist'>
-					<li>the source code for the application,</li>
-					<li>the SQL file containing the database tables and data,</li>
-					<li>a web browser with the developer toolbar installed,</li>
-					<li>the developer video showing the working application.</li>
-				</ol>
-        
-        <h2>Warning!</h2>
-        <p><strong>If the source code or SQL file are missing or not operable no points will be given for the entire project! It is your responsibility to ensure the presence and operability of the code!</strong></p>
-        
-        <h2>Values</h2>
-				<p>Each objective is worth 25 points with standards and tasks (with values) listed below. </p>
+    <h2>Introduction</h2>
+    <p>In order to carry out the dynamic project grading, the grader will need access to:</p>
+    <ol class='showlist'>
+     <li>the source code for the application,</li>
+     <li>the SQL file containing the database tables and data,</li>
+     <li>a web browser with the developer toolbar installed,</li>
+     <li>the developer video showing the working application.</li>
+    </ol>
 
-				<h2>Objective 1</h2>
-				<ul>
-					<li><b>Standard: Views are valid and semantic HTML5 (5 pts)</b>
-						<br> ______ Task: Randomly select 1 view in the public area and 1 view behind the credential wall. Check for semantic structures and markup. Validate for HTML5 compliance. <i>Subtract 1 point per missing semantic structure and 1 point for each validation error to a total of 5 points maximum.</i>
-					</li>
-					<li><b>Standard: Views are styled using valid CSS3 (5 pts)</b>
-						<br> ______ Task: Using the same views as used when checking the HTML, validate the CSS. <i>Subtract 1 point for each error up to a total of 5 points maximum. Subtract all 5 points if the CSS is deemed minimal or missing.</i></li>
-          <li><b>Standard: Views and content are responsive to view port size (10 pts)</b>
-						<br> ______ Task: Randomly select one view in the public area, use the mobile emulator tool in Chrome or the responsive design mode tool in FireFox to change the browser size. The content and layout should automatically adapt without requiring zooming or horizontal scrolling to view and interact with the content. <i>Subtract 10 points if the view is not responsive. Subtract 5 points if horizontal scrolling is required to view or interact with content.</i></li>
-					<li><b>Standard: Views are usable and provide a consistent user experience (5 pts)</b>
-						<br> ______ Task: As the project views are navigated ask yourself: 1) Are the views consistent in appearance? <i>If Yes, 2 points; if no, 0 points</i>. 2) Is the content easily read (large, clear fonts) and is there good contrast to allow the eye to distinguish between foreground and background colors? <i>If Yes, 3 points; if no, 0 points</i>.</li>
-				</ul>
+    <h2>Warning!</h2>
+    <p><strong>If the source code or SQL file are missing or not operable no points will be given for the entire project! It is your responsibility to ensure the presence and operability of the code!</strong></p>
 
-				<h2>Objective 2</h2>
-				<ul>
-					<li><b>Standard: Control structures are well implemented to provide a clear flow control for the application (5 pts)</b>
-						<br> ______ Task: Control structures are used throughout controllers to control the operation of the application. There are no logic operations outside of control structures. <i>5 points if yes, 0 if no</i>.</li>
-					<li><b>Standard: Incoming and outgoing data are checked and appropriately delivered to the next step in the application (5 pts)</b>
-						<br> ______ Task: Examine the code of the controller, are control structures in place and do they appropriately check for key/value pairs to trigger application flow and deliver the action appropriate to the trigger? <i>5 points if yes, 0 if no</i>.</li>
-					<li><b>Standard: Custom PHP functions are used to provide modular and reusable code (5 pts)</b>
-						<br> ______ Task: Check for use of custom functions to reduce the amount of code and allow for reuse of code for common tasks. <i>5 points if yes, 0 if no.</i></li>
-					<li><b>Standard: The application works (10 pts)</b>
-						<br> ______ Task: The application is fully functional. <i>10 points if yes, 0 if no.</i></li>
-				</ul>
 
-				<h2>Objective 3</h2>
-				<ul>
-					<li><b>Standard: Models control all database interactions (10 pts)</b>
-						<br> ______ Task: Check the model(s), controller(s) and view(s) of the application. Are all database functions contained solely within the model(s). <i>10 points if yes, 0 if no.</i></li>
-					<li><b>Standard: Controllers contain the logic layer and dictate the operational flow of the application (5 pts)</b>
-						<br> ______ Task: Review controller(s) for logical control: 1) receiving input from views, 2) as needed calling data via database interaction functions, building logical response messages and delivering views. Do all these operations occur solely in the controller(s)? <i>5 points if yes, 0 if no.</i></li>
-					<li><b>Standard: Views are reserved to interaction / presentation only (10 pts)</b>
-						<br> ______ Task: Review the code for views in the application to insure that database functions are not called within views nor should data be submitted back to the view for processing, instead sending all data to a controller. <i>10 points if yes, 0 if no.</i></li>
-				</ul>
+    <h2>Values</h2>
+    <p>Each objective is worth 25 points with standards and tasks (with values) listed below. </p>
 
-				<h2>Objective 4</h2>
-				<ul>
-					<li><b>Standard: The database meets the specifications (10 pts)</b>
-						<br> ______ Task: After importing the SQL file check the database tables. Do they meet the naming and ERD requirements? <i>5 points if yes, 0 if no.</i>
-						<br> ______ Task: Is the database being used for all data storage for the project? <i>5 points if yes, 0 if no.</i></li>
-					<li><b>Standard: Data integrity is protected between tables (5 pts)</b>
-						<br> ______ Task: Check for the presence of primary and foreign keys and their use in the database tables. Are they present and used? <i>5 points if yes, 0 if no.</i></li>
-					<li><b>Standard: SQL queries facilitate data interactions and represent a complete CRUD implementation (10 pts)</b>
-						<br> ______ Task: Check the operation of the application and the database functions (in the models). Can data INSERT, SELECT, UPDATE and DELETE be performed by the application? <i>10 points if yes, 0 if no. (<strong>All or nothing</strong> – All 4 can be performed and are operational)</i></li>
-				</ul>
+    <h2>Objective 1</h2>
+    <ul>
+     <li><b>Standard: Views are valid and semantic HTML5 (5 pts)</b>
+      <br> ______ Task: Randomly select 1 view in the public area and 1 view behind the credential wall. Check for semantic structures and markup. Validate for HTML5 compliance. <i>Subtract 1 point per missing semantic structure and 1 point for each validation error to a total of 5 points maximum.</i>
+     </li>
+     <li><b>Standard: Views are styled using valid CSS3 (5 pts)</b>
+      <br> ______ Task: Using the same views as used when checking the HTML, validate the CSS. <i>Subtract 1 point for each error up to a total of 5 points maximum. Subtract all 5 points if the CSS is deemed minimal or missing.</i></li>
+     <li><b>Standard: Views and content are responsive to view port size (10 pts)</b>
+      <br> ______ Task: Randomly select one view in the public area, use the mobile emulator tool in Chrome or the responsive design mode tool in FireFox to change the browser size. The content and layout should automatically adapt without requiring zooming or horizontal scrolling to view and interact with the content. <i>Subtract 10 points if the view is not responsive. Subtract 5 points if horizontal scrolling is required to view or interact with content.</i></li>
+     <li><b>Standard: Views are usable and provide a consistent user experience (5 pts)</b>
+      <br> ______ Task: As the project views are navigated ask yourself: 1) Are the views consistent in appearance? <i>If Yes, 2 points; if no, 0 points</i>. 2) Is the content easily read (large, clear fonts) and is there good contrast to allow the eye to distinguish between foreground and background colors? <i>If Yes, 3 points; if no, 0 points</i>.</li>
+    </ul>
 
-				<h2>Objective 5</h2>
-				<ul>
-					<li><b>Standard: Client-side and server-side validation of all inputs is provided (10 pts)</b>
-						<br> ______ Task: Attempt entering incorrect inputs to forms. Does there appear to be client-side validation in place? (Client-side can be in the form of JavaScript or native HTML5 validation) <i>5 points if yes, 0 if no.</i>
-						<br> ______ Task: If the client-side validation appeared to be JavaScript: disable JavaScript and refresh the view; if the client-side validation appeared to be HTML5 validation: go to the same place in the application in Safari (or ask a Mac user to do so for you). Enter the data with intentional errors and submit. Does there appear to be server-side validation? <i>5 points if yes, 0 if no.</i></li>
-					<li><b>Standard: Proper data types are checked and both sanitization and validation are used (5 pts)</b>
-						<br> ______ Task: Check controllers for use of input filtering/sanitizing/validation for all incoming data (this could be done in a variety of ways). Are these methods being used? <i>5 points if yes, 0 if no.</i></li>
-					<li><b>Standard: Error correction is pushed back to the user for correction (10 pts)</b>
-						<br> ______ Task: When errors are entered in the application, are messages indicating the type of error displayed and the user forced to correct errors before the application will proceed? <i>5 points if yes, 0 if no.</i>
-						<br> ______ Task: When errors are corrected does the application proceed and work correctly? <i>5 points if yes, 0 if no.</i></li>
-				</ul>
+    <h2>Objective 2</h2>
+    <ul>
+     <li><b>Standard: Control structures are well implemented to provide a clear flow control for the application (5 pts)</b>
+      <br> ______ Task: Control structures are used throughout controllers to control the operation of the application. There are no logic operations outside of control structures. <i>5 points if yes, 0 if no</i>.</li>
+     <li><b>Standard: Incoming and outgoing data are checked and appropriately delivered to the next step in the application (5 pts)</b>
+      <br> ______ Task: Examine the code of the controller, are control structures in place and do they appropriately check for key/value pairs to trigger application flow and deliver the action appropriate to the trigger? <i>5 points if yes, 0 if no</i>.</li>
+     <li><b>Standard: Custom PHP functions are used to provide modular and reusable code (5 pts)</b>
+      <br> ______ Task: Check for use of custom functions to reduce the amount of code and allow for reuse of code for common tasks. <i>5 points if yes, 0 if no.</i></li>
+     <li><b>Standard: The application works (10 pts)</b>
+      <br> ______ Task: The application is fully functional. <i>10 points if yes, 0 if no.</i></li>
+    </ul>
 
-				<h2>Objective 6</h2>
-				<ul>
-					<li><b>Standard: The project and overview video are complete and delivered on time (15 pts)</b>
-						<br> ______ Task: The video URL and project code zip file are delivered on time and in the correct format. <i>5 points if yes, 0 if no.</i>
-            <br> ______ Task: The video provides a clear overview of the functioning application. <i>5 points if yes, 0 if no.</i>
-            <br> ______ Task: The SQL file for database operation is included and importable without alteration. <i>5 points if yes, 0 if no.</i>
-					<li><b>Standard: Communication within the application is audience appropriate and error free (10 pts)</b>
-						<br> ______ Task: As the application is being used watch for spelling and grammar errors. <i>Subtract 1 point for each error up to a maximum of 5 points.</i>
-						<br> ______ Task: Are directions and content delivered in the application clear and audience appropriate? <i>Subtract 1 point for each error up to a maximum of 5 points.</i></li>
-				</ul>
-			</article>
-		</main>
-		<footer>
-            <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
-	</div>
-	<script src="../js/course.min.js"></script>
+    <h2>Objective 3</h2>
+    <ul>
+     <li><b>Standard: Models control all database interactions (10 pts)</b>
+      <br> ______ Task: Check the model(s), controller(s) and view(s) of the application. Are all database functions contained solely within the model(s). <i>10 points if yes, 0 if no.</i></li>
+     <li><b>Standard: Controllers contain the logic layer and dictate the operational flow of the application (5 pts)</b>
+      <br> ______ Task: Review controller(s) for logical control: 1) receiving input from views, 2) as needed calling data via database interaction functions, building logical response messages and delivering views. Do all these operations occur solely in the controller(s)? <i>5 points if yes, 0 if no.</i></li>
+     <li><b>Standard: Views are reserved to interaction / presentation only (10 pts)</b>
+      <br> ______ Task: Review the code for views in the application to insure that database functions are not called within views nor should data be submitted back to the view for processing, instead sending all data to a controller. <i>10 points if yes, 0 if no.</i></li>
+    </ul>
+
+    <h2>Objective 4</h2>
+    <ul>
+     <li><b>Standard: The database meets the specifications (10 pts)</b>
+      <br> ______ Task: After importing the SQL file check the database tables. Do they meet the naming and ERD requirements? <i>5 points if yes, 0 if no.</i>
+      <br> ______ Task: Is the database being used for all data storage for the project? <i>5 points if yes, 0 if no.</i></li>
+     <li><b>Standard: Data integrity is protected between tables (5 pts)</b>
+      <br> ______ Task: Check for the presence of primary and foreign keys and their use in the database tables. Are they present and used? <i>5 points if yes, 0 if no.</i></li>
+     <li><b>Standard: SQL queries facilitate data interactions and represent a complete CRUD implementation (10 pts)</b>
+      <br> ______ Task: Check the operation of the application and the database functions (in the models). Can data INSERT, SELECT, UPDATE and DELETE be performed by the application? <i>10 points if yes, 0 if no. (<strong>All or nothing</strong> – All 4 can be performed and are operational)</i></li>
+    </ul>
+
+    <h2>Objective 5</h2>
+    <ul>
+     <li><b>Standard: Client-side and server-side validation of all inputs is provided (10 pts)</b>
+      <br> ______ Task: Attempt entering incorrect inputs to forms. Does there appear to be client-side validation in place? (Client-side can be in the form of JavaScript or native HTML5 validation) <i>5 points if yes, 0 if no.</i>
+      <br> ______ Task: If the client-side validation appeared to be JavaScript: disable JavaScript and refresh the view; if the client-side validation appeared to be HTML5 validation: go to the same place in the application in Safari (or ask a Mac user to do so for you). Enter the data with intentional errors and submit. Does there appear to be server-side validation? <i>5 points if yes, 0 if no.</i></li>
+     <li><b>Standard: Proper data types are checked and both sanitization and validation are used (5 pts)</b>
+      <br> ______ Task: Check controllers for use of input filtering/sanitizing/validation for all incoming data (this could be done in a variety of ways). Are these methods being used? <i>5 points if yes, 0 if no.</i></li>
+     <li><b>Standard: Error correction is pushed back to the user for correction (10 pts)</b>
+      <br> ______ Task: When errors are entered in the application, are messages indicating the type of error displayed and the user forced to correct errors before the application will proceed? <i>5 points if yes, 0 if no.</i>
+      <br> ______ Task: When errors are corrected does the application proceed and work correctly? <i>5 points if yes, 0 if no.</i></li>
+    </ul>
+
+    <h2>Objective 6</h2>
+    <ul>
+     <li><b>Standard: The project and overview video are complete and delivered on time (15 pts)</b>
+      <br> ______ Task: The video URL and project code zip file are delivered on time and in the correct format. <i>5 points if yes, 0 if no.</i>
+      <br> ______ Task: The video provides a clear overview of the functioning application. <i>5 points if yes, 0 if no.</i>
+      <br> ______ Task: The SQL file for database operation is included and importable without alteration. <i>5 points if yes, 0 if no.</i>
+      <li><b>Standard: Communication within the application is audience appropriate and error free (10 pts)</b>
+       <br> ______ Task: As the application is being used watch for spelling and grammar errors. <i>Subtract 1 point for each error up to a maximum of 5 points.</i>
+       <br> ______ Task: Are directions and content delivered in the application clear and audience appropriate? <i>Subtract 1 point for each error up to a maximum of 5 points.</i></li>
+    </ul>
+   </article>
+  </main>
+  <footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+ </div>
+ <script src="../js/course.min.js"></script>
 </body>
 
 </html>
