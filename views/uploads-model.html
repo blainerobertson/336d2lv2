@@ -109,7 +109,7 @@
      &nbsp;$db = acmeConnect();<br>
      &nbsp;$sql = "SELECT imgName FROM images WHERE imgName = :name";<br>
      &nbsp;$stmt = $db->prepare($sql);<br>
-     &nbsp;$stmt->bindValue(':name', $name);<br>
+     &nbsp;$stmt->bindValue(':name', $name, PDO::PARAM_STR);<br>
      &nbsp;$stmt->execute();<br>
      &nbsp;$imageMatch = $stmt->fetch();<br>
      &nbsp;$stmt->closeCursor();<br>
