@@ -16,7 +16,7 @@
       <article id="article">
         <h1>Enhancement 2</h1>
         <h2>Purpose</h2>
-        <p>This enhancement allows you to work with SQL statements that are used in <abbr title="Create, Read, Update and Delete">CRUD</abbr> interactions. These same interactions correspond with the privileges you gave to the proxy user when you created the <b>acme</b> database and can also be used with the <b>my_guitar_shop1</b> and <b>my_guitar_shop2</b> databases.</p>
+        <p>This enhancement allows you to work with SQL statements that are used in <abbr title="Create, Read, Update and Delete">CRUD</abbr> interactions. These same interactions correspond with the privileges you gave to the proxy user when you created the <b>acme</b> database.</p>
 
         <h2>Video Demo</h2>
         <p>This short video demonstrates what your video of the connections objects being tested could look like.</p>
@@ -25,16 +25,16 @@
         <h2>Assumptions</h2>
         <p>This enhancement assumes:</p>
         <ol>
-          <li>that you successfully created all three databases in your local XAMPP environments: acme, my_guitar_shop1 and my_guitar_shop2.</li>
+          <li>that you successfully created the <b>acme</b> database in your local XAMPP environment.</li>
           <li>the proxy user was also created in the PHPMyAdmin "User Accounts" tab.</li>
           <li>you know the proxy user's password and this user has all Data privileges.</li>
         </ol>
 
         <h2>Tasks</h2>
-        <p>This enhancement has two distinct parts to it, 1) Writing SQL statements to use with the Acme database and 2) Creating PDO connection functions to work with all three databases - acme, my_guitar_shop1 and my_guitar_shop2.</p>
+        <p>This enhancement has two distinct parts to it, 1) Writing SQL statements to use with the Acme database and 2) Creating PDO connection function to work with the <b>acme</b> database.</p>
 
         <h3>Storing the SQL Statements</h3>
-        <p>Chapter 3 contain sample SQL statements for Selecting, Inserting, Updating and Deleting data from database table(s), you should have carefully reviewed these as part of your reading.</p>
+        <p>The Introduction to SQL reading activity contains sample SQL statements for Selecting, Inserting, Updating and Deleting data from database table(s), you should have carefully reviewed these as part of this week's activities.</p>
         <ol>
           <li>You will create a new "sql" folder inside the acme folder.</li>
           <li>You will create a new "enhancement2.txt" file inside the sql folder where you will store the finished SQL statements.</li>
@@ -49,21 +49,19 @@
             <br> Tony, Stark, tony@starkent.com, Iam1ronM@n, "I am the real Ironman" </li>
           <li>Modify the Tony Stark record to change the clientLevel to 3.</li>
           <li>Modify the "Nylon Rope" record to read "Climbing Rope". The change must change all instances of "nylon" to "climbing" in the record except the names of the images. Also, be sure that the invName field maintains its capital letter. (This is a "tricky" one. You will probably have to do some outside research to do this.)</li>
-          <li>Use an inner-join to select the inventory items that belong to the "Misc" category and include the name (not the categoryId number) of the "Misc" category in the list of items from the inventory table. (You don't need to include all data about these items. The item name and the category name would probably be enough, but you could include more if you wanted to.)</li>
+          <li>Use an inner join to select the inventory items that belong to the "Misc" category and include the name (not the categoryId number) of the "Misc" category in the list of items from the inventory table. (You don't need to include all data about these items. The item name and the category name would probably be enough, but you could include more if you wanted to.)</li>
           <li>Delete the Koenigsegg CCX car from the database. [<b>Note:</b> You can restore the Inventory table by importing the SQL file that was used to create it again].</li>
           <li>Create a video of you running all of these SQL statements and showing the result of running each SQL statement.</li>
         </ol>
         <h3>Build a Database Connection File</h3>
-        <p>Create a basic php file as a connection file that contains three separate connection functions (refer to the video in the <b><a href="../views/db-connection.html" title="Go to the connection file" target="_blank">Create a PDO Connection</a></b> activity). The file should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
+        <p>Create a basic php file as a connection file that contains a connection function (refer to the video in the <b><a href="../views/db-connection.html" title="Go to the connection file" target="_blank">Create a PDO Connection</a></b> activity). The file should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
         <ol>
-          <li>Create a PDO connection function for the acme database.</li>
-          <li>Create a PDO connection function for the my_guitar_shop1 database.</li>
-          <li>Create a PDO connection function for the my_guitar_shop2 database.</li>
-          <li>Create a video that demonstrates that all three connections work.</li>
+          <li>Create a PDO connection function for the acme database named <b>acmeConnect()</b>.</li>
           <li>If and when the database connection fails, a generic failure page, built using your template file, should be delivered (using the <a href="http://php.net/manual/en/function.header.php" title="View the header function at php.net" target="_blank">PHP header function</a>) that states the database could not be reached. See the image below as an example of what the page could look like:<br>
           <img src="../images/acme/acme-error.png" alt="Sample error page for illustration purposes">
           </li>
-          <li>In the same video demonstrate that errors are successfully caught when the connections fail.</li>
+         <li>Create a video that demonstrates that the connection works.</li>
+          <li>In the same video demonstrate that errors are successfully caught when the connection fail and the error page is delivered.</li>
         </ol>
         <h2>Submission</h2>
         <ul>
@@ -72,7 +70,7 @@
           <li>Check your work to ensure that it meets all of the expectations listed.</li>
           <li>When satisfied that the code is operational:
             <ol>
-              <li>Create the video(s) as explained showing the SQL statements in action and the connection objects working and failing.</li>
+              <li>Create the video(s) as explained showing the SQL statements in action and the connection object working and failing.</li>
               <li>Post your video(s) to your YouTube channel and copy the link(s) to the video(s) when published.</li>
               <li>Zip the acme folder and name it enhancement 2 (save this zip file outside of your web site)</li>
               <li>Submit the zip file to the enhancement 2 assignment dropbox and add the video URL(s) to the dropbox comment.</li>
@@ -88,10 +86,10 @@
           <li>The nylon rope update SQL statement works: <b>4 points</b></li>
           <li>The select misc items SQL statement works: <b>2 points</b></li>
           <li>The delete Koenigsegg CCX SQL statement works: <b>2 points</b></li>
-          <li>All database connection functions are in a single file named "connections.php" within a folder named "library": <b>2 points</b></li>
-          <li>The acme, my_guitar_shop1 and my_guitar_shop2 PDO connection functions work: <b>6 points</b></li>
-          <li>The acme, my_guitar_shop1 and my_guitar_shop2 PDO connection functions fail by redirecting to a generic error page: <b>3 points</b></li>
-          <li>The video(s) of the SQL statements and connection functions in action are present and demonstrate the actions called for: <b>2 points</b></li>
+          <li>The database connection function is in a single file named "connections.php" within a folder named "library": <b>2 points</b></li>
+          <li>The acme PDO connection function works: <b>6 points</b></li>
+          <li>The acme PDO connection function fails and redirects to a generic error page: <b>3 points</b></li>
+          <li>The video(s) of the SQL statements and connection function in action are present and demonstrate the actions called for: <b>2 points</b></li>
           <li>Total value: <b>27 points</b> - all in objective 4</li>
         </ul>
       </article>
