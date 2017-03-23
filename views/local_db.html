@@ -26,14 +26,13 @@
           <li>In the address bar type "http://localhost/phpmyadmin".</li>
           <li>The PHPMyAdmin tool should now be visible
             <br>
-
             <img src="../images/phpmyadmin.jpg" alt="Image of the PHPMyAdmin interface">
 
           </li>
         </ol>
 
         <h2>Creating a Local Database</h2>
-        <p>This is a generic process for creating a local database.</p>
+       <p>This is a <b>generic process for creating a local database</b>.</p>
         <ol>
           <li>Click the "Databases" tab.</li>
           <li>Type the name of the new database into the "Create Database" text field.</li>
@@ -43,15 +42,13 @@
         </ol>
 
         <h2>Create Table(s)</h2>
-        <p>This is a generic process for creating tables from scratch or by importing a SQL file to create the tables.</p>
+       <p>This is a <b>generic process for creating tables</b> from scratch or by importing a SQL file to create the tables.</p>
         <ol>
           <li>In the "Create Table" view, type the name of the new table and indicate the number of fields for the new table (if building the tables from scratch), then click the "Go" button. </li>
           <li>Type in and click the appropriate checkboxes to create fields from scratch.</li>
           <li>Typically, if building from scratch you would have previously developed an Entity Relationship Diagram (ERD) to know what fields were needed, their data types and sizes and any relationships might exist between fields in different tables.
             <br>
-
             <img src="../images/acme-erd.png" alt="Acme database ERD - showing tables">
-
           </li>
           <li>Or, if importing a SQL file to create the tables, click the "Import" tab.</li>
           <li>Click the "Choose File" button and select the SQL file on your own computer.</li>
@@ -60,11 +57,39 @@
           <li>And a success message should tell you that the queries were run successfully.</li>
         </ol>
 
-        <h2>Download the SQL File</h2>
+        <h2>Download the Acme Tables SQL File</h2>
         <p>Download the <strong><a href="../downloads/acme-db.sql.zip" title="Download the zip file" target="_blank">acme-db.sql.zip</a></strong> file to use for importing a SQL file below as part of creating the <b>acme</b> database.</p>
 
+       <p>The directions below guide you through the process of importing a SQL file to create two tables and populate the tables with data for the acme database (which should have been created in the "Creating a Local Database" activity.</p>
+
+       <h2>Open The PHPMyAdmin Tool</h2>
+       <ol>
+        <li>With the Apache and MySQL servers running, open a browser window or new tab.</li>
+        <li>Type "http://localhost/phpmyadmin" into the browser address bar.</li>
+       </ol>
+
+       <h2>Import the SQL File</h2>
+       <ol>
+        <li>In the list of databases (on the left) click the "<b>acme</b>" database.</li>
+        <li>Click the "Import" tab.</li>
+        <li>Click the "Choose File" button.</li>
+        <li>Navigate to your <b>Downloads</b> folder and select the "<b>acme-db.sql.zip</b>" file.</li>
+        <li>Click "Open".</li>
+        <li>Scroll to the bottom of the Import screen and click the "Go" button.</li>
+        <li>If things work correctly, a green bar should appear indicating that the import was successful and that the queries were executed.</li>
+       </ol>
+
+       <h2>Check the Database</h2>
+       <ol>
+        <li>On the left, beneath the "<b>acme</b>" database you should see two new tables: "<b>categories</b>" and "<b>inventory</b>".</li>
+        <li>You can now click either of these tables to view the data within them.</li>
+        <li>Be default, if a table contains data the PHPMyAdmin tool opens in the "<b>Browser</b>" tab.</li>
+        <li>You can click the "<b>Structure</b>" tab to view the fields in the table and their settings.</li>
+       </ol>
+
+
         <h2>Creating the DB and Importing a SQL file</h2>
-        <p>The video below demonstrates the creation of the <b>acme</b> database and importing a SQL file to create two tables.</p>
+        <p>The video below demonstrates the creation of the <b>acme</b> database and importing a SQL file to create two tables. The video illustrates the process outlined above.</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/JVsThZ8MWYo" allowfullscreen></iframe>
 
         <h2>Creating a Table from Scratch</h2>
