@@ -49,7 +49,7 @@
         <h2>Build the Prepared Statement</h2>
         <p>When your built the previous function to select the categories data you used a prepared statement. We will do so again. In this case, the prepared statement will be doubly important because of its added security feature to protect our database from SQL Injection attacks. This, because we are accepting data sent from site visitors and we don't know if they are honest folks or hackers!</p>
         <p>The simple rule of web security is, "<strong>Never Trust Incoming Data</strong>!</p>
-          <p>If needed, review pages 620 - 623 in the Murach text before beginning. The function code is below:</p>
+          <p>The function code is below:</p>
             <pre class="callout"><code>function regVisitor($firstname, $lastname, $email, $password){
 // Create a connection object using the acme connection function
    $db = acmeConnect();
