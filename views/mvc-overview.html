@@ -2,95 +2,95 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>M-V-C Overview | Web Backend Development</title>
-  <meta name="description" content="An overview of the Model - View - Control (M-V-C) and constructuion of a basic controller operation for CIT 336">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>M-V-C Overview | Web Backend Development</title>
+ <meta name="description" content="An overview of the Model - View - Control (M-V-C) and constructuion of a basic controller operation for CIT 336">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
 </head>
 
 <body>
-  <div id="main">
-    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-    <main>
-      <article id="article">
-        <h1>Model - View - Control</h1>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Model - View - Control</h1>
 
-        <h2>Conceptual Overview</h2>
-        <iframe src="https://www.youtube.com/embed/a9WhrfKBEbs" width="425" height="350" allowfullscreen></iframe>
+    <h2>Conceptual Overview</h2>
+    <iframe src="https://www.youtube.com/embed/a9WhrfKBEbs" width="425" height="350" allowfullscreen></iframe>
 
-        <h2>Get Organized</h2>
-        <p>We'll begin by creating a two new folders and moving an existing file into one of the new folders.</p>
-        <ol>
-          <li>Create two new folders within the acme folder:
-          <ol>
-            <li>view</li>
-            <li>model</li>
-            </ol>
-          </li>
-          <li>When done move your home page (mine is named home.php) into the view folder (<strong>Note: <i>if your home page is named index.php, change it to something else</i></strong>).</li>
-        </ol>
+    <h2>Get Organized</h2>
+    <p>We'll begin by creating a two new folders and moving an existing file into one of the new folders.</p>
+    <ol>
+     <li>Create two new folders within the acme folder:
+      <ol>
+       <li>view</li>
+       <li>model</li>
+      </ol>
+     </li>
+     <li>When done move your home page (mine is named home.php) into the view folder (<strong>Note: <i>if your home page is named index.php, change it to something else</i></strong>).</li>
+    </ol>
 
-        <h2>Create a Controller for the acme root</h2>
-        <p>The controller is the default file that we want the server to use for all incoming traffic to the acme site and for applications built within the site. Because the controller contains the logic, it makes the decisions as to what is needed to respond to incoming requests from the browser.</p>
-        <ol>
-        <li>Create a PHP file at the acme root (NOT a web page).</li>
-          <li>Name the file <b>index.php</b>.</li>
-          <li>Refer to the controller example on pages 248 &amp; 249 of the Murach text.</li>
-          <li>You will begin by writing the $action assignment structure at the top of the page, with one minor alteration. When done, your code should look like this example:<br>
-          <pre class="callout"><code>
-          $action = filter_input(INPUT_POST, 'action');
-          if ($action == NULL){
-            $action = filter_input(INPUT_GET, 'action');
-            if($action == NULL){
-              $action = 'home';
-            }
-          }
-          </code></pre>
-          </li>
-          <li>Now write a simple switch structure, that looks like this:<br>
-          <pre class="callout"><code>
-          switch ($action){
-          case 'home':
-          include 'view/home.php';
-          break;
-          }
-          </code></pre>
-          </li>
-        </ol>
+    <h2>Create a Controller for the acme root</h2>
+    <p>The controller is the default file that we want the server to use for all incoming traffic to the acme site and for applications built within the site. Because the controller contains the logic, it makes the decisions as to what is needed to respond to incoming requests from the browser.</p>
+    <ol>
+     <li>Create a PHP file at the acme root (NOT a web page).</li>
+     <li>Name the file <b>index.php</b>.</li>
+     <li>Refer to the controller example on pages 248 &amp; 249 of the Murach text.</li>
+     <li>You will begin by writing the $action assignment structure at the top of the page, with one minor alteration. When done, your code should look like this example:<br>
+      <code class="callout no-left">
+          $action = filter_input(INPUT_POST, 'action');<br>
+       if ($action == NULL){<br>
+       $action = filter_input(INPUT_GET, 'action');<br>
+       if($action == NULL){<br>
+       $action = 'home';<br>
+       }<br>
+       }<br>
+          </code>
+     </li>
+     <li>Now write a simple switch structure, that looks like this:<br>
+      <code class="callout">
+       switch ($action){<br>
+       case 'home':<br>
+       include 'view/home.php';<br>
+       break;<br>
+       }<br>
+          </code>
+     </li>
+    </ol>
 
-        <h3>An Explanation</h3>
-        <ol>
-        <li>By creating and naming the controller <b>index.php</b> all web traffic that comes to the acme folder will automatically be directed to the controller.</li>
-          <li>$action is a variable that we will use to store the type of content being requested.</li>
-          <li>We use the <i>filter_input()</i> function to sift the content to eliminate code that could do the web site harm (read more on php.net about the <a href="http://php.net/manual/en/function.filter-input.php" title="Go to php.net to read more" target="_blank">filter_input funtion</a>).</li>
-          <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a key - value pair where the key is the word "action". If such a combination is found, the value is stored in the $action variable.</li>
-          <li>If there is no value assigned to the $action varialbe, then we assign a default value of 'home'.</li>
-          <li>The <a href="http://php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net" target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
-          <li>Each <b>case</b> statement represents a different process to execute. In this instance we have a single case that executes if the $action variable has a value of "home".</li>
-          <li>If $action equals "home" then the home view is included (meaning that it will sent to the browser) and the case statement is ended with the break statement.</li>
+    <h3>An Explanation</h3>
+    <ol>
+     <li>By creating and naming the controller <b>index.php</b> all web traffic that comes to the acme folder will automatically be directed to the controller.</li>
+     <li>$action is a variable that we will use to store the type of content being requested.</li>
+     <li>We use the <i>filter_input()</i> function to sift the content to eliminate code that could do the web site harm (read more on php.net about the <a href="http://php.net/manual/en/function.filter-input.php" title="Go to php.net to read more" target="_blank">filter_input funtion</a>).</li>
+     <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a key - value pair where the key is the word "action". If such a combination is found, the value is stored in the $action variable.</li>
+     <li>If there is no value assigned to the $action varialbe, then we assign a default value of 'home'.</li>
+     <li>The <a href="http://php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net" target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
+     <li>Each <b>case</b> statement represents a different process to execute. In this instance we have a single case that executes if the $action variable has a value of "home".</li>
+     <li>If $action equals "home" then the home view is included (meaning that it will sent to the browser) and the case statement is ended with the break statement.</li>
 
-        </ol>
-        <p></p>
-        <h2>Deliver the "home" view</h2>
-        <ol>
-        <li>Save all of your work.</li>
-          <li>Make sure the Apache server is running.</li>
-          <li>In a browser, type "http://localhost/acme/".</li>
-          <li>If things work as they should, you should be looking at your home page.</li>
-          <li>If things didn't work, check spelling, file and folder names and the path.</li>
-        </ol>
+    </ol>
+    <p></p>
+    <h2>Deliver the "home" view</h2>
+    <ol>
+     <li>Save all of your work.</li>
+     <li>Make sure the Apache server is running.</li>
+     <li>In a browser, type "http://localhost/acme/".</li>
+     <li>If things work as they should, you should be looking at your home page.</li>
+     <li>If things didn't work, check spelling, file and folder names and the path.</li>
+    </ol>
 
-        <h2>Video Demonstration</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/8XCUVz7sXj4" allowfullscreen></iframe>
-      </article>
-    </main>
-    <footer>
-            <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
-    </footer>
-  </div>
-  <script src="../js/course.min.js"></script>
+    <h2>Video Demonstration</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/8XCUVz7sXj4" allowfullscreen></iframe>
+   </article>
+  </main>
+  <footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
+  </footer>
+ </div>
+ <script src="../js/course.min.js"></script>
 </body>
 
 </html>
