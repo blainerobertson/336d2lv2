@@ -41,9 +41,9 @@
       <code class="callout no-left">
           $action = filter_input(INPUT_POST, 'action');<br>
        if ($action == NULL){<br>
-       $action = filter_input(INPUT_GET, 'action');<br>
+       &nbsp;$action = filter_input(INPUT_GET, 'action');<br>
        if($action == NULL){<br>
-       $action = 'home';<br>
+       &nbsp;$action = 'home';<br>
        }<br>
        }<br>
           </code>
@@ -51,9 +51,9 @@
      <li>Now write a simple switch structure, that looks like this:<br>
       <code class="callout">
        switch ($action){<br>
-       case 'home':<br>
-       include 'view/home.php';<br>
-       break;<br>
+       &nbsp;case 'home':<br>
+       &nbsp;&nbsp;include 'view/home.php';<br>
+       &nbsp;<br>
        }<br>
           </code>
      </li>
