@@ -159,7 +159,7 @@ exit;</code>
     <ol>
      <li><code>$navList = '&lt;ul&gt;';</code> - creates an unordered list as a string and assigns it to the $navList variable.</li>
      <li><code>$navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";</code> - creates a list item with a link to the controller at the root of the acme folder as a string. The string is then added to the value already stored in the variable. That's what the <code>.=</code> operator does, it adds to a variable.</li>
-     <li><code>foreach ($categories as $category) {</code> - This begins a foreach loop that will find each of the sub-arrays in the $categories array and break them apart, one at a time, and stores each one into a new variable called <b>$category</b>. See pages 134-135 in the text.</li>
+     <li><code>foreach ($categories as $category) {</code> - This begins a foreach loop that will find each of the sub-arrays in the $categories array and break them apart, one at a time, and stores each one into a new variable called <b>$category</b>. Refer to <a href="http://php.net/manual/en/control-structures.foreach.php" title="Opens in a new tab" target="_blank">foreach loops</a> at php.net.</li>
      <li><code>$navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=$category[categoryName]' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";</code> - This is a list item with a link that points to the controller in the acme folder, but this time it is followed by a question mark (e.g. ?) and then by a key - value pair. The key is <b>action</b> and the value is the category name inside of the $category variable. As with all previous code in this example, the string is being added to the $navList variable.</li>
      <li><code>}</code> - this lone right curly brace closes the foreach loop.</li>
      <li><code>$navList .= '&lt;/ul&gt;';</code> - This line closes the unordered list.</li>
@@ -208,7 +208,7 @@ exit;</code>
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
   </footer>
  </div>
  <script src="../js/course.min.js"></script>
