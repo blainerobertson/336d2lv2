@@ -2,52 +2,52 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Update Product (Step 1) | Web Backend Development</title>
-  <meta name="description" content="The update process for a product is began in this activity where the data to be updated is selected and displayed so the update can occur in the Acem project for CIT 336">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Update Product (Step 1) | Web Backend Development</title>
+ <meta name="description" content="The update process for a product is began in this activity where the data to be updated is selected and displayed so the update can occur in the Acem project for CIT 336">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
 </head>
 
 <body>
-  <div id="main">
-    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-    <main>
-      <article id="article">
-        <h1>Update Product (Step 1)</h1>
-        <h2>Updating is a Two Step Process</h2>
-        <p>An update requires two steps: 1) Once it is determined an update is occurring, the information to be changed has to be requested from the database and made available to be edited; 2) When the edit is completed, the data must then be stored back into the database and the user informed of the success or failure of the change. This document covers step 1: getting the data from the database and displaying it for the change to occur.</p>
-        <h2>Request Data to be Changed</h2>
-        <p>In the "Selecting Products" activity the name and id of each product was queried from the database and used to build a table where the product name was displayed and links to begin the modify (update) and delete processes were provided. When the "Modify" link is clicked, the URL is directed to the <b>products</b> controller and sends the two name - value pairs as part of the <b>GET</b> request. The first name - value pair indicates that the update process has begun (refer to #1 in the previous paragraph). The second name - value pair indicates which product we wish to modify. Let's get started:</p>
-        <h3>The Products Controller</h3>
-        <p>As with previous interaction processes in the controller we will start by adding an additional "case" to the control structure based on the first of our name - value pairs.</p>
-        <ol>
-          <li>Open the <b>products</b> controller.</li>
-          <li>Scroll down and add an additional case statement to the control structure based on the value being passed through the "Modify" link in the <b>Product Management</b> view:
-            <code class="callout no-left">
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Update Product (Step 1)</h1>
+    <h2>Updating is a Two Step Process</h2>
+    <p>An update requires two steps: 1) Once it is determined an update is occurring, the information to be changed has to be requested from the database and made available to be edited; 2) When the edit is completed, the data must then be stored back into the database and the user informed of the success or failure of the change. This document covers step 1: getting the data from the database and displaying it for the change to occur.</p>
+    <h2>Request Data to be Changed</h2>
+    <p>In the "Selecting Products" activity the name and id of each product was queried from the database and used to build a table where the product name was displayed and links to begin the modify (update) and delete processes were provided. When the "Modify" link is clicked, the URL is directed to the <b>products</b> controller and sends the two name - value pairs as part of the <b>GET</b> request. The first name - value pair indicates that the update process has begun (refer to #1 in the previous paragraph). The second name - value pair indicates which product we wish to modify. Let's get started:</p>
+    <h3>The Products Controller</h3>
+    <p>As with previous interaction processes in the controller we will start by adding an additional "case" to the control structure based on the first of our name - value pairs.</p>
+    <ol>
+     <li>Open the <b>products</b> controller.</li>
+     <li>Scroll down and add an additional case statement to the control structure based on the value being passed through the "Modify" link in the <b>Product Management</b> view:
+      <code class="callout no-left">
             case 'mod':<br>
             <br>
             break;<br>
             </code>
-          </li>
-          <li>Within this case block we need to capture the value of the second name - value pair (remember that this is coming from a link, therefore it is a <b>GET</b> request:
-            <code class="callout no-left">
+     </li>
+     <li>Within this case block we need to capture the value of the second name - value pair (remember that this is coming from a link, therefore it is a <b>GET</b> request:
+      <code class="callout no-left">
               case 'mod':<br>
               &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
               break;<br>
             </code>
-          </li>
-          <li>Next we will send the <code>$prodId</code> variable into a function (that we will write in a minute) that will get the information for that single product:
-            <code class="callout no-left">
+     </li>
+     <li>Next we will send the <code>$prodId</code> variable into a function (that we will write in a minute) that will get the information for that single product:
+      <code class="callout no-left">
               case 'mod':<br>
               &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
               $prodInfo = getProductInfo($prodId);<br>
               break;<br>
             </code>
-          </li>
-          <li>Next we will check to see if <code>$prodInfo</code> has any data. If not, we will set an error message:
-            <code class="callout no-left">
+     </li>
+     <li>Next we will check to see if <code>$prodInfo</code> has any data. If not, we will set an error message:
+      <code class="callout no-left">
               case 'mod':<br>
               &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
               &nbsp;$prodInfo = getProductInfo($prodId);<br>
@@ -56,9 +56,9 @@
               &nbsp;}<br>
               break;<br>
             </code>
-          </li>
-          <li>Finally we will call a view where the data can be displayed so that the changes can be made to the data:
-            <code class="callout no-left">
+     </li>
+     <li>Finally we will call a view where the data can be displayed so that the changes can be made to the data:
+      <code class="callout no-left">
               case 'mod':<br>
               &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
               &nbsp;$prodInfo = getProductInfo($prodId);<br>
@@ -69,16 +69,16 @@
               &nbsp;exit;<br>
               break;<br>
             </code>
-          </li>
-        </ol>
-        <h3>The Product Model</h3>
-        <p>In the controller code you just wrote we called a function <code>getProductInfo($prodId)</code> to query the data from the database. Let's write that now:</p>
-        <ol>
-        <li>Find and open the <b>products model</b>.</li>
-          <li>Scroll down until you are below the existing functions.</li>
-          <li>Add a new comment indicating that you are selecting a single product based on its id</li>
-          <li>Below the comment add this function (your connection function may be named differently):
-            <code class="callout no-left">
+     </li>
+    </ol>
+    <h3>The Product Model</h3>
+    <p>In the controller code you just wrote we called a function <code>getProductInfo($prodId)</code> to query the data from the database. Let's write that now:</p>
+    <ol>
+     <li>Find and open the <b>products model</b>.</li>
+     <li>Scroll down until you are below the existing functions.</li>
+     <li>Add a new comment indicating that you are selecting a single product based on its id</li>
+     <li>Below the comment add this function (your connection function may be named differently):
+      <code class="callout no-left">
               function getProductInfo($prodId){<br>
               &nbsp;$db = acmeConnect();<br>
               &nbsp;$sql = 'SELECT * FROM inventory WHERE invId = :prodId';<br>
@@ -90,88 +90,85 @@
               &nbsp;return $prodInfo;<br>
               }<br>
             </code>
-            <h4>An Explanation</h4>
-            <p>By now you should be somewhat familiar with everything you see in the function, but let me reinforce several items:</p>
-            <ul>
-              <li>The asterisk <code>*</code> means "everything" in SQL. We want all of the data for the product.</li>
-              <li>The <code>bindValue</code> method should be treated as an Integer, which it should be and the flag <code>PDO::PARAM_INT</code> specifies.</li>
-              <li>We are requesting an associative array of data, meaning that the database table field names are used as the "name" with the elements in the array of values.</li>
-            </ul>
-          </li>
-          <li>Save the file.</li>
-        </ol>
-        <h3>Product Update View</h3>
-        <p>This view has to do double duty, 1) display the data from the database to allow it to be modified prior to storing it back into the database, and 2) be able to handle errors upon submission just as we did when inserting the data for the new product. Because some of that work is already done in the <b>new product</b> view, we will capitalize by duplicating that view and then making some changes.</p>
-        <ol>
-        <li>Find and open the <b>new product</b> view.</li>
-          <li>Do a "Save As..." and save the view into the <b>view</b> folder, but change the name to <b>prod-update.php</b>.</li>
-          <li>Scroll down to the <code>Title</code> element and add the following code block between the opening and closing title tags:
-            <code class="callout no-left">
+      <h4>An Explanation</h4>
+      <p>By now you should be somewhat familiar with everything you see in the function, but let me reinforce several items:</p>
+      <ul>
+       <li>The asterisk <code>*</code> means "everything" in SQL. We want all of the data for the product.</li>
+       <li>The <code>bindValue</code> method should be treated as an Integer, which it should be and the flag <code>PDO::PARAM_INT</code> specifies.</li>
+       <li>We are requesting an associative array of data, meaning that the database table field names are used as the "name" with the elements in the array of values.</li>
+      </ul>
+     </li>
+     <li>Save the file.</li>
+    </ol>
+    <h3>Product Update View</h3>
+    <p>This view has to do double duty, 1) display the data from the database to allow it to be modified prior to storing it back into the database, and 2) be able to handle errors upon submission just as we did when inserting the data for the new product. Because some of that work is already done in the <b>new product</b> view, we will capitalize by duplicating that view and then making some changes.</p>
+    <ol>
+     <li>Find and open the <b>new product</b> view.</li>
+     <li>Do a "Save As..." and save the view into the <b>view</b> folder, but change the name to <b>prod-update.php</b>.</li>
+     <li>Scroll down to the <code>Title</code> element and add the following code block between the opening and closing title tags:
+      <code class="callout no-left">
              &lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt;
             </code>
-          </li>
-          <li>When you're done the title could look like this:
-            <code class="callout no-left">
+     </li>
+     <li>When you're done the title could look like this:
+      <code class="callout no-left">
              &lt;title&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt; | Acme, Inc&lt;/title&gt;<br>
-            </code>
-            When the page loads, the product name will appear in the title tab of the browser. Or, if the page is returned for error correction the product name will reappear from the product variable.
-          </li>
-          <li>Scroll down and find the main content heading. Add the same PHP code block to it. It could look something like this:
-            <code class="callout no-left">
+            </code> When the page loads, the product name will appear in the title tab of the browser. Or, if the page is returned for error correction the product name will reappear from the product variable.
+     </li>
+     <li>Scroll down and find the main content heading. Add the same PHP code block to it. It could look something like this:
+      <code class="callout no-left">
              &lt;h1&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt;&lt;/h1&gt;<br>
-            </code>
-            By making these subtle changes we are personalizing the view's contents.
-          </li>
-          <li>Look for any instructions that may exist indicating that you are "adding" a new product. Delete all references to "adding" and replace them with "modifying".</li>
-          <li>Scroll down into the form and find the hidden input that contains the "action" name - value pair. Change the value to "updateProd". When done it could look something like this:
-            <code class="callout no-left">
+            </code> By making these subtle changes we are personalizing the view's contents.
+     </li>
+     <li>Look for any instructions that may exist indicating that you are "adding" a new product. Delete all references to "adding" and replace them with "modifying".</li>
+     <li>Scroll down into the form and find the hidden input that contains the "action" name - value pair. Change the value to "updateProd". When done it could look something like this:
+      <code class="callout no-left">
               &lt;input type="hidden" name="action" value="updateProd"&gt;<br>
             </code>
-          </li>
-          <li>Find the "submit" input and change its value to reflect that an Update is happening. When done it could look like this:
-            <code class="callout no-left">
+     </li>
+     <li>Find the "submit" input and change its value to reflect that an Update is happening. When done it could look like this:
+      <code class="callout no-left">
               &lt;input type="submit" name="submit" value="Update Product"&gt;<br>
             </code>
-          </li>
-          <li>Now we have to alter the PHP code blocks for each input. What we want to do is test if the value exists in the <code>$prodInfo</code> array? If so, we will display it.
-          <ul>
-            <li>Scroll to the top of the form and find the input for the product name.</li>
-            <li>Alter the PHP code block to look like this (<strong>Keep in mind your code and variables may be slightly different than what you see here)</strong>:
-              <h4>Original Code Block</h4>
-              <code class="callout no-left">
+     </li>
+     <li>Now we have to alter the PHP code blocks for each input. What we want to do is test if the value exists in the <code>$prodInfo</code> array. If so, we will display it.
+      <ul>
+       <li>Scroll to the top of the form and find the input for the product name.</li>
+       <li>Alter the PHP code block to look like this (<strong>Keep in mind your code and variables may be slightly different than what you see here)</strong>:
+        <h4>Original Code Block</h4>
+        <code class="callout no-left">
                 &lt;input type="text" name="prodName" id="prodName" required &lt;?php if(isset($prodName)){ echo "value='$prodName'"; } ?&t;&gt;><br>
               </code>
-              <h4>Altered Code Block</h4>
-              <code class="callout no-left">
+        <h4>Altered Code Block</h4>
+        <code class="callout no-left">
                 &lt;input type="text" name="prodName" id="prodName" required &lt;?php if(isset($prodName)){ echo "value='$prodName'"; } elseif(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?&gt;&gt;
               </code>
-            </li>
-            <li>By doing this we have code to display the data from the <code>$prodInfor</code> array as well as from a variable if we are sending data back for repair and want the form inputs to be "sticky".</li>
-            </ul>
-          </li>
-          <li>Repeat adding the additional code block to each input and then altering the name of each field from the database so that the value of the <code>$prodInfo</code> array can be displayed as well as maintaining the form's stickiness. Remember that this small piece of code is all that was added to the product name input:
-          <code class="callout no-left">
+       </li>
+       <li>By doing this we have code to display the data from the <code>$prodInfo</code> array as well as from a variable if we are sending data back for repair and want the form inputs to be "sticky".</li>
+      </ul>
+     </li>
+     <li>Repeat adding the additional code block to each input and then altering the name of each field from the database so that the value of the <code>$prodInfo</code> array can be displayed as well as maintaining the form's stickiness. Remember that this small piece of code is all that was added to the product name input:
+      <code class="callout no-left">
             elseif(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }
             </code>
-            <strong>It may be helpful to open the Inventory table and go to the "structure" tab of PHPMyAdmin to see the various field names as you work.</strong>
-          </li>
-          <li>If your form includes a <code>textarea</code> then the alteration occurs between the opening and closing tags and there is no "value" attribute. For example, if the original code looked like this:
-            <code class="callout no-left">
+      <strong>It may be helpful to open the Inventory table and go to the "structure" tab of PHPMyAdmin to see the various field names as you work.</strong>
+     </li>
+     <li>If your form includes a <code>textarea</code> then the alteration occurs between the opening and closing tags and there is no "value" attribute. For example, if the original code looked like this:
+      <code class="callout no-left">
               &lt;textarea name="prodDesc" id="prodDesc" required&gt;<br>
               &lt;?php if(isset($prodDesc)){ echo $prodDesc; } ?&gt;<br>&lt;/textarea&gt;
-            </code>
-          After editing, it would look like this:
-            <code class="callout no-left">
+            </code> After editing, it would look like this:
+      <code class="callout no-left">
               &lt;textarea name="prodDesc" id="prodDesc" required&gt;<br>
               &lt;?php if(isset($prodDesc)){ echo $prodDesc; }<br>
               elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?&gt;<br>
               &lt;/textarea&gt;<br>
             </code>
-          </li>
-          <li>Finally, we need to add the same test to our code that builds the categories select drop down list.
-          <ol>
-            <li>Scroll to the top of the view. There should be a code block that was used earlier to determine if the category was being returned for correction, but add the "selected" attribute so the same category item was chosen in the drop list. My code looks like this (yours may be different):
-            <code class="callout no-left">
+     </li>
+     <li>Finally, we need to add the same test to our code that builds the categories select drop down list.
+      <ol>
+       <li>Scroll to the top of the view. There should be a code block that was used earlier to determine if the category was being returned for correction, but add the "selected" attribute so the same category item was chosen in the drop list. My code looks like this (yours may be different):
+        <code class="callout no-left">
               // Build the categories option list<br>
               $catList = '&lt;select name="catType" id="catType"&gt;';<br>
               $catList .= "&lt;option&gt;Choose a Category&lt;/option&gt;";<br>
@@ -186,10 +183,10 @@
               }<br>
               $catList .= '&lt;/select&gt;';<br>
               </code>
-            </li>
-            <li>In this case we will add an additional test using an <code>elseif</code> to check for the <code>$prodInfo</code> array and then check if its categoryId value matches the value from the original categories query. It true, then the <code>selected</code> attribute will be added to the <code>option</code>.</li>
-            <li>Alter the code to look like this:
-              <code class="callout no-left">
+       </li>
+       <li>In this case we will add an additional test using an <code>elseif</code> to check for the <code>$prodInfo</code> array and then check if its categoryId value matches the value from the original categories query. If true, then the <code>selected</code> attribute will be added to the <code>option</code>.</li>
+       <li>Alter the code to look like this:
+        <code class="callout no-left">
                 // Build the categories option list<br>
                 $catList = '&lt;select name="catType" id="catType"&gt;';<br>
                 $catList .= "&lt;option&gt;Choose a Category&lt;/option&gt;";<br>
@@ -208,34 +205,34 @@
                 }<br>
                 $catList .= '&lt;/select&gt;';<br>
               </code>
-            </li>
-            </ol>
-          </li>
-<li>Double check that no code errors are being displayed in the page, if there are find and fix them.</li>
-          <li>Save all files.</li>
-        </ol>
-        <h2>Test, Test, Test</h2>
-        <p>In order to test you will have to login to the Acme site as an administrator, then navigate to the products area and click the "Modify" link for a product (any product will do for now). We just want to make sure the data is being retrieved and displayed in our view.</p>
-        <ol>
-        <li>Run the acme controller.</li>
-          <li>In the Acme home page click the "My Account" link and login as an administrator (e.g. username: admin@cit336.net, password: Sup3rU$er)</li>
-          <li>In the browser address bar, navigate to the products controller (e.g. http://localhost/acme/products)</li>
-          <li>The product management view should appear with the list of products.</li>
-          <li>Click one of the "Modify" links.</li>
-          <li>The <b>Update Product</b> view should appear and the data for the product should be displayed in the form, including the category select drop down.</li>
-          <li>If it does, you have completed this activity and can move on to the second step in the update process.</li>
-          <li>If the data does not appear, or an error is displayed troubleshoot it, get help from members of your learning team, use the discussion board, contact a TA or the professor. But in any case, it needs to be operational in order to move on.</li>
-          <li>Carefully review the provided video below.</li>
-        </ol>
-        <h2>Video Demonstration</h2>
-        <p>This video demonstrates step 1 in the update process: getting and displaying the data to be updated.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/oWYz1iTen_4" allowfullscreen></iframe>
-      </article>
-    </main>
-    <footer>
-      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
-  </div>
-  <script src="../js/course.min.js"></script>
+       </li>
+      </ol>
+     </li>
+     <li>Double check that no code errors are being displayed in the page, if there are find and fix them.</li>
+     <li>Save all files.</li>
+    </ol>
+    <h2>Test, Test, Test</h2>
+    <p>In order to test you will have to login to the Acme site as an administrator, then navigate to the products area and click the "Modify" link for a product (any product will do for now). We just want to make sure the data is being retrieved and displayed in our view.</p>
+    <ol>
+     <li>Run the acme controller.</li>
+     <li>In the Acme home page click the "My Account" link and login as an administrator (e.g. username: admin@cit336.net, password: Sup3rU$er)</li>
+     <li>In the browser address bar, navigate to the products controller (e.g. http://localhost/acme/products)</li>
+     <li>The product management view should appear with the list of products.</li>
+     <li>Click one of the "Modify" links.</li>
+     <li>The <b>Update Product</b> view should appear and the data for the product should be displayed in the form, including the category select drop down.</li>
+     <li>If it does, you have completed this activity and can move on to the second step in the update process.</li>
+     <li>If the data does not appear, or an error is displayed troubleshoot it, get help from members of your learning team, use the discussion board, contact a TA or the professor. But in any case, it needs to be operational in order to move on.</li>
+     <li>Carefully review the provided video below.</li>
+    </ol>
+    <h2>Video Demonstration</h2>
+    <p>This video demonstrates step 1 in the update process: getting and displaying the data to be updated.</p>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/oWYz1iTen_4" allowfullscreen></iframe>
+   </article>
+  </main>
+  <footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+ </div>
+ <script src="../js/course.min.js"></script>
 </body>
 
 </html>

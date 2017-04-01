@@ -21,10 +21,10 @@
 
     <h2>Video Demonstration</h2>
     <p>This video demonstrates step 2 in the update process: sending data to the controller for checking and processing, storing the changed data to the database and informing the user of the outcome. The Step-by-Step instructions for accomplishing what this video demonstrates are found below.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/zwy0UMaOUuE" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/zwy0UMaOUuE" allowfullscreen></iframe>
 
     <h2>The Product Update View</h2>
-    <p>The view where the data to be modified is nearly complete. The form inputs should display the data that was queried from the database.</p>
+    <p>The view where the data will be modified is nearly complete. The form inputs should display the data that was queried from the database.</p>
     <p>What is equally important is that the view should already have the means to display error messages and be "sticky" if incomplete data is submitted to the controller and is returned for correction.</p>
     <p>While we are talking about the view let's check one thing and add a new thing:</p>
     <ol>
@@ -98,17 +98,17 @@
        </li>
        <li>Scroll down and find the first error message, after the data checks. If it says anything about a "new" item, change it to reflect an "updated" item.</li>
        <li>Beneath that change the view to include to be the <b>prod-update.php</b> view, since that is where the data was sent from.</li>
-       <li>Change the name of the function that will be called from the model to "<b>updateProduct( ... all variable are here ...)</b>".</li>
-       <li>Add the <code>$prodId</code> variable as an additional parameter to the <code>updateProduct</code>function.</li>
-       <li>Change the name of the variable that the <code>updateResult</code> function's return value will be stored into to <b>$updateResult</b>.</li>
+       <li>Change the name of the function that will be called from the model to "<b>updateProduct( ... variables are here ...)</b>".</li>
+       <li>Add the <code>$prodId</code> variable as an additional parameter to the <code>updateProduct</code> function.</li>
+       <li>Change the name of the variable that the <code>updateProduct</code> function's return value will be stored into to <b>$updateResult</b>.</li>
        <li>Change the <code>if</code> test to check for the results of <b>$updateResult</b>.</li>
        <li>Change the success message to reflect that the update was successful, not an insertion.</li>
        <li>Change the failure message to reflect that the update did not work.</li>
        <li>The last two edits are to where the success and failure messages will display.
-       <ol>
-        <li>If the update fails, display the failure in the <b>prod-update.php</b> view. Change the include statement to use this new view.</li>
-        <li>If the update succeeds, we want to be redirected back to the product management view, display the message and also get the full list of products to appear again. To do this, we will use the session to store the message, use a header function to return to the controller, and then have the controller deliver the view and display the message. To do this alter that success to resemble this:
-        <code class="callout no-left">
+        <ol>
+         <li>If the update fails, display the failure in the <b>prod-update.php</b> view. Change the include statement to use this new view.</li>
+         <li>If the update succeeds, we want to be redirected back to the product management view, display the message and also get the full list of products to appear again. To do this, we will use the session to store the message, use a header function to return to the controller, and then have the controller deliver the view and display the message. To do this alter that success to resemble this:
+          <code class="callout no-left">
          if ($updateResult) {
          &nbsp;$message = "&lt;p class='notify'&gt;Congratulations, $prodName was successfully updated.&lt;/p&gt;";
          &nbsp;$_SESSION['message'] = $message;
@@ -116,19 +116,19 @@
          &nbsp;exit;
          }
          </code>
-        </li>
+         </li>
         </ol>
        </li>
       </ol>
      </li>
     </ol>
-<h2>Product Management View</h2>
+    <h2>Product Management View</h2>
     <p>Because we stored the success message into the session in the controller after the update worked, we need to add a small amount of code to the <b>product management</b> view to get the message from the session and display it. Make the following changes:</p>
     <ol>
-    <li>Find and open the <b>product management</b> view.</li>
+     <li>Find and open the <b>product management</b> view.</li>
      <li>At the top of the view there should already be a PHP code block that contains the code to make sure clients have the correct level, similar to this:
-     <code class="callout no-left">
-      if ($_SESSION['clientData']['clientLevel'] < 2) {<br>
+      <code class="callout no-left">
+      if ($_SESSION['clientData']['clientLevel'] &lt; 2) {<br>
       &nbsp;header('location: /acme/');<br>
       &nbsp;exit;<br>
       }<br>
@@ -144,7 +144,7 @@
      </li>
      <li>When you are done, the entire PHP code block should look like this:
       <code class="callout no-left">
-       if ($_SESSION['clientData']['clientLevel'] < 2) {<br>
+       if ($_SESSION['clientData']['clientLevel'] &lt; 2) {<br>
        &nbsp;header('location: /acme/');<br>
        &nbsp;exit;<br>
        }<br>
@@ -152,10 +152,10 @@
        &nbsp;$message = $_SESSION['message'];<br>
        }<br>
       </code>
-</li>
+     </li>
      <li>Because we don't want the message hanging around in the session, we will get rid of it after using it.</li>
      <li>Scroll all the way to the bottom of the <b>product management</b> view. After the closing html tag (e.g. &lt;/html&gt;) add the following line of code:
-     <code class="callout no-left">
+      <code class="callout no-left">
       &lt;?php unset($_SESSION['message']); ?&gt;
       </code>
      </li>
@@ -201,14 +201,14 @@
     <h2>Products Model</h2>
     <p>Finally we will create the updateProduct() function and then be ready to test. I hope you have already guessed that we will create this function by copying and editing your <b>add product</b> function, since they are so similar.</p>
     <ol>
-    <li>Find and open the <b>products model</b> file in the <b>model</b> folder.</li>
+     <li>Find and open the <b>products model</b> file in the <b>model</b> folder.</li>
      <li>Locate your <b>add product</b> function, copy it.</li>
      <li>Move to the bottom of the model file (below the existing functions).</li>
      <li>Add a comment indicating that the function will update a product.</li>
      <li>Paste the <b>add product</b> function below your new comment.</li>
      <li>Change the name of the function to <b>updateProduct()</b>.</li>
      <li>Leave all existing parameters as they exist, but add <code>$prodId</code> to the list of parameters and make sure a comma separates it from other parameters in the list. When done the function name and parameter list could look like this:
-     <code class="callout no-left">
+      <code class="callout no-left">
       function updateProduct($catType, $prodName, $prodDesc, $prodImg, $prodThumb, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle, $prodId)
       </code>
      </li>
@@ -219,7 +219,7 @@
       </code>
      </li>
      <li>Add an additional <code>bindValue</code> method for the <code>$prodId</code>. It should look like this:
-     <code class="callout no-left">
+      <code class="callout no-left">
       $stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);
       </code>
      </li>
@@ -255,9 +255,9 @@
     </ol>
 
     <h2>Time to Test</h2>
-    <p>Double check all files worked with for obvious errors (red icons or red underlines) in the code: products controller, products model, prod-update.php or the product management view. If no obvious errors exist, your ready to test your code.</p>
+    <p>Double check all files worked with for obvious errors (red icons or red underlines) in the code: products controller, products model, prod-update.php or the product management view. If no obvious errors exist, you're ready to test your code.</p>
     <ol>
-    <li>Make sure the Apache and Database servers are running.</li>
+     <li>Make sure the Apache and Database servers are running.</li>
      <li>Launch your Acme controller. The home view should be delivered.</li>
      <li>Navigate to the login view and login as an administrator (username: admin@cit336.net, password: Sup3rU$er).</li>
      <li>Change the URL to go to the products controller (e.g http://localhost/acme/products/).</li>
@@ -279,7 +279,7 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
 </body>
