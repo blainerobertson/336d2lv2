@@ -2,55 +2,55 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Accounts Model | Web Backend Development</title>
-  <meta name="description" content="This activity creates the accounts model and function for inserting registration data to the clients table in the acme database for the acme project of CIT 336">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Accounts Model | Web Backend Development</title>
+ <meta name="description" content="This activity creates the accounts model and function for inserting registration data to the clients table in the acme database for the acme project of CIT 336">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
 </head>
 
 <body>
-  <div id="main">
-    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-    <main>
-      <article id="article">
-        <h1>Accounts Model</h1>
-        <p>This activity will have you create a new model and function, specifically for handling database interactions concerning registering site visitors to the acme web site. Later it will have additional functionality added to it.</p>
-        <p>Remember that in an Model - View - Control architecture the model is specifically for storing functions that allow for interacting with the database. In previous work you created a model for the acme site and built a function to select category data in order to build a dynamic navigation bar.</p>
-        <h2>Create the Model</h2>
-        <ol>
-          <li>Find your <b>model</b> folder in the acme web site.</li>
-          <li>Right-click on the folder and select "New" > "PHP file".</li>
-          <li>Name the file "<b>accounts-model.php</b>" so that it's clearly distinguised from any and all other models that exist or may be created later.</li>
-        </ol>
-        <h2>Add the Insert Function</h2>
-        <ol>
-          <li>Open the <b>accounts-model.php</b> page.</li>
-          <li>Edit the default comment to indicate that this is the accounts model for site visitors.</li>
-          <li>Add several blank lines then add another comment to indicate that the new function will handle site registrations</li>
-          <li>Create a new function whose name is <b>regVisitor()</b>.</li>
-          <li>You will recall that in our registration view we ask for four pieces of information:
-            <ul>
-              <li>First name</li>
-              <li>Last name</li>
-              <li>Email address</li>
-              <li>Password</li>
-            </ul>
-          </li>
-          <li>Each of these pieces of information will be stored into a variable and these variables will have to be supplied to this function as <i><a href="http://php.net/manual/en/functions.arguments.php" title="Read about function arguments on PHP.net" target="_blank">arguments</a></i> (sometimes called parameters).</li>
-          <li>Create four variables (representing the data just discussed) and place them inside the partentheses, separated by commas and spaces.</li>
-          <li>When done, your code should resemble the illustration below:
-            <pre class="callout"><code>function regVisitor($firstname, $lastname, $email, $password){
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Accounts Model</h1>
+    <p>This activity will have you create a new model and function, specifically for handling database interactions concerning registering site visitors to the acme web site. Later it will have additional functionality added to it.</p>
+    <p>Remember that in an Model - View - Control architecture the model is specifically for storing functions that allow for interacting with the database. In previous work you created a model for the acme site and built a function to select category data in order to build a dynamic navigation bar.</p>
+    <h2>Create the Model</h2>
+    <ol>
+     <li>Find your <b>model</b> folder in the acme web site.</li>
+     <li>Right-click on the folder and select "New" > "PHP file".</li>
+     <li>Name the file "<b>accounts-model.php</b>" so that it's clearly distinguised from any and all other models that exist or may be created later.</li>
+    </ol>
+    <h2>Add the Insert Function</h2>
+    <ol>
+     <li>Open the <b>accounts-model.php</b> page.</li>
+     <li>Edit the default comment to indicate that this is the accounts model for site visitors.</li>
+     <li>Add several blank lines then add another comment to indicate that the new function will handle site registrations</li>
+     <li>Create a new function whose name is <b>regVisitor()</b>.</li>
+     <li>You will recall that in our registration view we ask for four pieces of information:
+      <ul>
+       <li>First name</li>
+       <li>Last name</li>
+       <li>Email address</li>
+       <li>Password</li>
+      </ul>
+     </li>
+     <li>Each of these pieces of information will be stored into a variable and these variables will have to be supplied to this function as <i><a href="//php.net/manual/en/functions.arguments.php" title="Read about function arguments on PHP.net" target="_blank">arguments</a></i> (sometimes called parameters).</li>
+     <li>Create four variables (representing the data just discussed) and place them inside the parentheses, separated by commas and spaces.</li>
+     <li>When done, your code should resemble the illustration below:
+      <pre class="callout no-left"><code>function regVisitor($firstname, $lastname, $email, $password){
 
   }</code></pre>
-          </li>
-        </ol>
-        <h2>Build the Prepared Statement</h2>
-        <p>When your built the previous function to select the categories data you used a prepared statement. We will do so again. In this case, the prepared statement will be doubly important because of its added security feature to protect our database from SQL Injection attacks. This, because we are accepting data sent from site visitors and we don't know if they are honest folks or hackers!</p>
-        <p>The simple rule of web security is, "<strong>Never Trust Incoming Data</strong>!</p>
-          <p>The function code is below:</p>
-            <pre class="callout"><code>function regVisitor($firstname, $lastname, $email, $password){
+     </li>
+    </ol>
+    <h2>Build the Prepared Statement</h2>
+    <p>When you built the previous function to select the categories data you used a prepared statement. We will do so again. In this case, the prepared statement will be doubly important because of its added security feature to protect our database from SQL Injection attacks. This, because we are accepting data sent from site visitors and we don't know if they are honest folks or hackers!</p>
+    <p>The simple rule of web security is, "<strong>Never Trust Incoming Data</strong>!</p>
+    <p>The function code is below:</p>
+    <pre class="callout no-left"><code>function regVisitor($firstname, $lastname, $email, $password){
 // Create a connection object using the acme connection function
    $db = acmeConnect();
 // The SQL statement
@@ -75,29 +75,29 @@
 // Return the indication of success (rows changed)
    return $rowsChanged;
 }</code></pre>
-        <h3>An Explanation</h3>
-        <ul>
-          <li><code>$db = acmeConnect();</code> - creates a new database connection object by calling the acme database connection function from the connections.php file.</li>
-          <li><code>$sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:firstname, :lastname, :email, :password)';</code> - this is the SQL INSERT statement, but using named parameters instead of actual values as part of the prepared statement.</li>
-          <li><code>$stmt = $db->prepare($sql);</code> - sends the SQL statement to the database server where it is checked for correctness, and if it is and PDO Prepared Statement object is created and stored into the <b>$stmt</b> variable.</li>
-          <li><code>$stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);</code> - each of these four <b>bindValue</b> functions replaces the name parameter (e.g. :firstname) with the actual value from the variable (e.g. $firstname). It also tells the database the type of data it is receiving (e.g. PDO::PARAM_STR), in this case a string.</li>
-          <li><code>$stmt->execute();</code> - This sends the now complete SQL statement to the server and the data is inserted to the database.</li>
-          <li><code>$rowsChanged = $stmt->rowCount();</code> - The prepared statement object asks the database server to indicate how many rows changed as a result of the last SQL query, the number that is returned is stored into the <b>$rowsChanged</b> variable. We anticipate that number being 1, meaning 1 new record was added to the database.</li>
-          <li><code>$stmt->closeCursor();</code> - Closes the interaction between the function and the database server.</li>
-          <li><code>return $rowsChanged;</code> - Sends the value of the <b>$rowsChanged variable back to wherever the function was called (this should be in the controller).</b></li>
-        </ul>
+    <h3>An Explanation</h3>
+    <ul>
+     <li><code>$db = acmeConnect();</code> - creates a new database connection object by calling the acme database connection function from the connections.php file.</li>
+     <li><code>$sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:firstname, :lastname, :email, :password)';</code> - this is the SQL INSERT statement, but using named parameters instead of actual values as part of the prepared statement.</li>
+     <li><code>$stmt = $db->prepare($sql);</code> - sends the SQL statement to the database server where it is checked for correctness, and if it is, a PDO Prepared Statement object is created and stored into the <b>$stmt</b> variable.</li>
+     <li><code>$stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);</code> - each of these four <b>bindValue</b> functions replaces the name parameter (e.g. :firstname) with the actual value from the variable (e.g. $firstname). It also tells the database the type of data it is receiving (e.g. PDO::PARAM_STR), in this case a string.</li>
+     <li><code>$stmt->execute();</code> - This sends the now complete SQL statement to the server and the data is inserted to the database.</li>
+     <li><code>$rowsChanged = $stmt->rowCount();</code> - The prepared statement object asks the database server to indicate how many rows changed as a result of the last SQL query, the number that is returned is stored into the <b>$rowsChanged</b> variable. We anticipate that number being 1, meaning 1 new record was added to the database.</li>
+     <li><code>$stmt->closeCursor();</code> - Closes the interaction between the function and the database server.</li>
+     <li><code>return $rowsChanged;</code> - Sends the value of the <b>$rowsChanged variable back to wherever the function was called (this should be in the controller).</b></li>
+    </ul>
 
-        <h2>Save the File</h2>
-        <p>The function is finished. Be sure to compare your code (particularly your acme connection function name) against the function name used in this sample code. Be sure to save the file.</p>
-        <p>We aren't ready to test the function yet, but we will when we are done with the registration view and the controller, which we will do in the next activity.</p>
-        <h2>Video Demonstration</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/PqIZRJFTx9k" allowfullscreen></iframe>
-      </article>
-    </main>
-    <footer>
-      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
-  </div>
-  <script src="../js/course.min.js"></script>
+    <h2>Save the File</h2>
+    <p>The function is finished. Be sure to compare your code (particularly your acme connection function name) against the function name used in this sample code. Be sure to save the file.</p>
+    <p>We aren't ready to test the function yet, but we will when we are done with the registration view and the controller, which we will do in the next activity.</p>
+    <h2>Video Demonstration</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/PqIZRJFTx9k" allowfullscreen></iframe>
+   </article>
+  </main>
+  <footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+ </div>
+ <script src="../js/course.min.js"></script>
 </body>
 
 </html>
