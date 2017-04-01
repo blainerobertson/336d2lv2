@@ -19,8 +19,8 @@
     <p>In the previous activities we made sure the main navigation link sent the correct data to the "products controller" and that two custom functions were created to query the products from the database based on the category they belong to and then build an unordered list around the product data. That leaves the actual view needed to display the products.</p>
 
     <h2>Video Overview</h2>
-    <p>This video overview the functionality at the end of this activity.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/iV6mF76XbRM" allowfullscreen></iframe>
+    <p>This video overviews the functionality at the end of this activity.</p>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/iV6mF76XbRM" allowfullscreen></iframe>
 
     <h2>Build the View</h2>
     <ol>
@@ -32,7 +32,7 @@
                &lt;title&gt;&lt;?php echo $type; ?&gt; Products | Acme, Inc.&lt;/title&gt;
                </code>
      </li>
-     <li>Scroll down to the main content heading (this should be inside the &lt;main&gt; element) and do the same thing. When done is should look similar to this:
+     <li>Scroll down to the main content heading (this should be inside the &lt;main&gt; element) and do the same thing. When done it should look similar to this:
       <code class="callout no-left">
                 &lt;h1&gt;&lt;?php echo $type; ?&gt; Products&lt;/h1&gt;
                </code>
@@ -182,7 +182,7 @@
     <p>When the products are displayed we want a neat, professional presentation on small and large screens. To accomplish that we need to make some changes to the CSS file that dictates the appearance of the views. The provided code below is general in nature and you may need to revise and/or adapt it to fit your existing code.</p>
 
     <h3>Mobile First</h3>
-    <p>My stylesheet is organized so that my media queries alter the style and layout as the screen size increases. The CSS rules <b>outside</b> of the media queries are for general appearance across all devices or are specific to small, mobile screen sizes. With that in mind, you may or may not have done the same and, as a result, may need to adapt this code. The code provided uses <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" title="Open in a new tab" target="_blank">CSS Flexbox</a> for responsiveness.</p>
+    <p>My stylesheet is organized so that my media queries alter the style and layout as the screen size increases. The CSS rules <b>outside</b> of the media queries are for general appearance across all devices or are specific to small, mobile screen sizes. With that in mind, you may or may not have done the same and, as a result, may need to adapt this code. The code provided uses <a href="//css-tricks.com/snippets/css/a-guide-to-flexbox/" title="Open in a new tab" target="_blank">CSS Flexbox</a> for responsiveness.</p>
     <ol>
      <li>At or near the top of my stylesheet I have changed the CSS box model to use the border-box, instead of the content box:
       <code class="callout no-left">
@@ -193,7 +193,7 @@
                *, *:before, *:after{<br>
                &nbsp;box-sizing: inherit;<br>
                }<br>
-              </code> If this is unfamiliar, read <a href="https://www.w3schools.com/csSref/css3_pr_box-sizing.asp" title="Opens in a new tab" target="_blank">CSS3 Box-Sizing Property</a>.
+              </code> If this is unfamiliar, read <a href="//www.w3schools.com/csSref/css3_pr_box-sizing.asp" title="Opens in a new tab" target="_blank">CSS3 Box-Sizing Property</a>.
      </li>
      <li>Then, near the bottom of my mobile styles (before the media queries which should come after all of the mobile and general styles) I added three rules specific to displaying the list of products in our new product category view:
       <code class="callout no-left">
@@ -225,7 +225,7 @@
     </ol>
     <h3>Media Queries - Larger Screens</h3>
     <ol>
-     <li>Next, I scrolled down into my media query for large screens (I only have one media query for screens larger that 768px wide). Near the bottom of my media query I added two new rules:
+     <li>Next, I scrolled down into my media query for large screens (I only have one media query for screens larger than 768px wide). Near the bottom of my media query I added two new rules:
       <code class="callout no-left">
   #prod-display{<br>
   &nbsp;flex-flow: row wrap;<br>
@@ -251,12 +251,12 @@
 
     <h2>Illustration</h2>
     <p>The image below should provide an idea of the finished page:
-    <img src="../images/category-view.png" alt="Image of the category view with products displayed">
+     <img src="../images/category-view.png" alt="Image of the category view with products displayed">
     </p>
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
 </body>
