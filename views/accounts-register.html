@@ -25,11 +25,11 @@
           <li>Find your <b>view</b> folder in the acme web site.</li>
           <li>Expand it and locate the <b>registration.php</b> view and open it.</li>
           <li>Move to the bottom of the form and find the input of type "submit" code. It should look similar to, but probably not exactly like, what you see below:
-            <p style="margin-left: 0;" class="callout"><code>&lt;input type="submit" name="submit" id="regbtn" value="Register"&gt;</code></p>
+            <p class="callout no-left"><code>&lt;input type="submit" name="submit" id="regbtn" value="Register"&gt;</code></p>
           </li>
           <li>Create a new empty line below it.</li>
           <li>Add the following code to the new empty line
-            <p style="margin-left: 0;" class="callout"><code>&lt;!-- Add the action name - value pair-- &gt;<br>
+            <p class="callout no-left"><code>&lt;!-- Add the action name - value pair -- &gt;<br>
               &lt;input type="hidden" name="action" value="register"&gt;</code></p>
           </li>
           <li>Save the file.</li>
@@ -44,7 +44,7 @@
           <li>Make sure method is followed by an equal sign and double quotes.</li>
           <li>Add <i>post</i> between the double quotes.</li>
           <li>When done the opening form tag should look like this:
-            <code style="margin-left: 0;" class="callout">&lt;form method="post"&gt;</code>
+            <code class="callout no-left">&lt;form method="post"&gt;</code>
           </li>
         </ol>
 
@@ -59,13 +59,13 @@
             <br>
             <code>/acme/accounts/index.php</code>.</li>
           <li>When you're done, the opening form tag should look like this:
-            <code style="margin-left: 0;" class="callout">&lt;form method="post" action="/acme/accounts/index.php"&gt;</code> <strong>If your acme folder is named something else, make sure your acme folder name is used in the path.</strong></li>
+            <code class="callout no-left">&lt;form method="post" action="/acme/accounts/index.php"&gt;</code> <strong>If your acme folder is named something else, make sure your acme folder name is used in the path.</strong></li>
           <li>Double check the opening form tag for accuracy.</li>
           <li>Save the file.</li>
         </ol>
 
         <h3>An Explanation</h3>
-        <p>If you were watching carefully, you may have asked yourself, "Wait a second, the registration view is in <b>view</b> folder. So why doesn't the action path include a "../" to go up one level?"</p>
+        <p>If you were watching carefully, you may have asked yourself, "Wait a second, the registration view is in the <b>view</b> folder. So why doesn't the action path include a "../" to go up one level?"</p>
         <p>The answer is "scope". The registration view will be "included" into the acme controller's (<b>index.php</b>) scope. That means that PHP considers it to be at the root level already. So, when the "Register" button is clicked it just has to find the <b>accounts</b> folder and then dive inside of it to find the controller.</p>
 
         <h2>Prepare for Errors</h2>
@@ -76,7 +76,7 @@
           <li>You will create an opening PHP code block. Then, create a new empty line.</li>
           <li>Then you will write an if test to see if a "$message" variable exists, and if so, to echo it.</li>
           <li>Then, you will close the PHP code block. When done, the code should look like this:
-            <code style="margin-left: 0;" class="callout">
+            <code class="callout no-left">
             &lt;?php<br>
               if (isset($message)) {<br>
               &nbsp;echo $message;<br>
@@ -92,11 +92,11 @@
         <p>The last thing is to get the accounts controller finished to write the data to the database.</p>
 
         <h2>Video Demonstration</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/VF_hw6t_qcU" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="//www.youtube.com/embed/VF_hw6t_qcU" allowfullscreen></iframe>
       </article>
     </main>
     <footer>
-      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="http://blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+      <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
   </div>
   <script src="../js/course.min.js"></script>
 </body>
