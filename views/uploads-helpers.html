@@ -19,7 +19,7 @@
     <p>While the controller, model and view are critical to the functionality of the image upload tool, most of the real work is being performed by the "helper" functions. Each of these functions is responsible for a specific task. Some are simple, others are complex. All are commented so be sure to read the code comments to understand what each function or each step within the function does.</p>
 
     <h2>The functions.php File</h2>
-    <p>Each of these helper function will be added to the existing <b>functions.php</b> file in the <b>library</b> folder.</p>
+    <p>Each of these helper functions will be added to the existing <b>functions.php</b> file in the <b>library</b> folder.</p>
     <ol>
      <li>Find and open the <b>functions.php</b> file in the <b>library</b> folder.</li>
      <li>Move to the bottom of the existing functions and add the following comment:
@@ -52,7 +52,7 @@
      <li>Whatever is left in the array is the file extension (now stored as <code>$ext</code> (e.g. jpg).</li>
      <li>Finally, the file name is concatenated to the "-tn" string and the extension is concatenated to the end (e.g. anvil-tn.jpg).</li>
      <li>The now altered name of the "thumbnail" is returned.</li>
-     <li><strong>Note:</strong> If more than one period exists, the function will break or possibly return unexpected results. This is why file name should have only a single period in them to separate the name from the extension!</li>
+     <li><strong>Note:</strong> If more than one period exists, the function may possibly return unexpected results. This is why file names should have only a single period in them to separate the name from the extension!</li>
     </ul>
 
     <h2>The buildImageDisplay() Function</h2>
@@ -74,18 +74,18 @@
     </p>
     <h3>An Explanation</h3>
     <ul>
-     <li>The function expects a multi-dimension array of image and inventory information (this would have been queried from the function on the model.</li>
+     <li>The function expects a multi-dimensional array of image and inventory information (this would have been queried from the function on the model.</li>
      <li>This function then builds an unordered list.</li>
      <li>Using a <code>foreach()</code> loop the multi-dimensional array is broken apart into simple arrays.</li>
      <li>The various elements of the simple array are used to insert the picture into a list item.</li>
      <li>A paragraph with a link is also inserted into the list item. The link is what is used to trigger the delete functionality to remove an image from the site and the database.</li>
-     <li>When the <code>foreach()</code> loop finishes, the unorderd list is closed.</li>
+     <li>When the <code>foreach()</code> loop finishes, the unordered list is closed.</li>
      <li>The complete unordered list, with all the images and links is returned.</li>
     </ul>
 
     <h2>The buildProductsSelect() Function</h2>
     <p>This function should look familiar, it is very similar to the <code>buildCategoriesSelect()</code> function. It takes a list of inventory item names and id's and builds them into an HTML select dropdown menu and is used in the image management view. Add this comment and function below the previous function:
-    <code class="callout no-left">
+     <code class="callout no-left">
      // Build the products select list<br>
      function buildProductsSelect($products) {<br>
      &nbsp;$prodList = '&lt;select name="invItem" id="invItem"&gt;';<br>
@@ -101,11 +101,11 @@
 
     <h2>The uploadFile() Function</h2>
     <p>This file is somewhat complicated. It stores the physical file to the server and returns the path of where the file was stored. That path will then be inserted to the database. Add the following comment and function below the previous function:
-    <code class="callout no-left">
+     <code class="callout no-left">
      // Handles the file upload process and returns the path<br>
      // The file path is stored into the database<br>
      function uploadFile($name) {<br>
-     &nbsp;// Gets the pathes, full and local directory<br>
+     &nbsp;// Gets the paths, full and local directory<br>
      &nbsp;global $image_dir, $image_dir_path;<br>
      &nbsp;if (isset($_FILES[$name])) {<br>
      &nbsp;&nbsp;// Gets the actual file name<br>
@@ -132,11 +132,11 @@
     <h3>An Explanation</h3>
     <p>Because of the numerous processes refer to the comments in the code. But in general:</p>
     <ul>
-    <li>The name of the uploaded file is sent into the function as a parameter.</li>
-     <li>The path variables (from the controller) are "global"-ized, meaning they are brouht into the function's scope for use.</li>
+     <li>The name of the uploaded file is sent into the function as a parameter.</li>
+     <li>The path variables (from the controller) are "global"-ized, meaning they are brought into the function's scope for use.</li>
      <li>A series of checks are used to make sure there is a physical file in the PHP <code>$_FILES</code> super global object. This is similar to other super globals ($_SESSION, $_POST, $_GET) in that they work like associative arrays. In this case the <code>$_FILES</code> super global handles all file uploads.</li>
      <li>All uploads are stored in a temporary location, that is found.</li>
-     <li>The path to the permenant storage location is built.</li>
+     <li>The path to the permanant storage location is built.</li>
      <li>The physical file is then moved to the permanent location.</li>
      <li>The physical file is then sent to another process for manipulation (it will be our next function).</li>
      <li>Finally the path to where the file is stored is finished and returned for inserting to the database.</li>
@@ -144,7 +144,7 @@
 
     <h2>The processImage() Function</h2>
     <p>This function builds the actual paths for storing the images and also calls a function that will resize images to dimensions that are specified. It actually replaces the original file with the modified file and creates the thumbnail file in the same location as other images. Refer to the included comments for the specifics of each line of code in the function. Enter the following comment and function below the previous function:
-    <code class="callout no-left">
+     <code class="callout no-left">
      // Processes images by getting paths and <br>
      // creating smaller versions of the image<br>
      function processImage($dir, $filename) {<br>
@@ -168,7 +168,7 @@
 
     <h2>The resizeImage() Function</h2>
     <p>This is the true work horse function. It is responsible for: 1) checking that only image files are being uploaded, 2) checking the size of the image and resizing it if it is larger than what was specified, 3) replacing old images with new versions and 4) destroying temporary files that may exist. Refer to the comments within the code for specific operations and refer to PHP.net for details on the many PHP functions used in this function. Add the following comment and function beneath the previous function:
-    <code class="callout no-left">
+     <code class="callout no-left">
      // Checks and Resizes image<br>
      function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) {<br>
      <br>
@@ -251,11 +251,11 @@
     <p>With all the code added it will be easy to make a mistake. Carefully check for error markers (red icons or red underlines) in the <b>functions.php</b> page. If you find them, fix them.</p>
 
     <h2>Conclusion</h2>
-    <p>Wow! Do you feel worn out? That is a lot of code, but it sure makes our life easy. We indicate a file to upload and these help functions do most of the work to make sure our image is exactly what we want.</p>
+    <p>Wow! Do you feel worn out? That is a lot of code, but it sure makes our life easy. We indicate a file to upload and these helper functions do most of the work to make sure our image is exactly what we want.</p>
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
 </body>

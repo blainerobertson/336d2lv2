@@ -20,21 +20,21 @@
     <h2>Data Dictionary</h2>
     <p>Back in early weeks of the semester you were introduced to Entity Relationship Diagrams (ERD). While powerful, they lack a lot of information needed to provide a complete picture to build a table. Another option is the "data dictionary". This is a table that shows the table, its fields (columns) and the particular data for each. Below is the data dictionary for the <b>images</b> table:</p>
     <figure>
-    <img src="../images/images-data-dictionary.png" alt="Data dictionary image of the images table for the acme database">
+     <img src="../images/images-data-dictionary.png" alt="Data dictionary image of the images table for the acme database">
     </figure>
     <p>The gold key represents the <b>imgId</b> as the primary key field and the silver key represents the <b>invId</b> field as a foreign key field to provide the relationship between the <b>images</b> and <b>inventory</b> tables.</p>
 
     <h2>Build the Table</h2>
     <p>In the <b>acme</b> database build the new <b>images</b> table using the requirements shown in the provided data dictionary. You should note that the <b>imgId</b> field is auto incrementing and the <b>imgDate</b> is a timestamp with "CURRENT_TIMESTAMP" being entered by the database when a new record is written. This means that when writing data to this table only the "invId", "imgName" and "imgPath" fields need to have data supplied to them.</p>
-    <p>In addition, the <b>invId</b> must be designated as an "Index" in order to establish the relationship between it and its equivelent field in the <b>inventory</b> table, which you will do next.</p>
+    <p>In addition, the <b>invId</b> must be designated as an "Index" in order to establish the relationship between it and its equivalent field in the <b>inventory</b> table, which you will do next.</p>
 
     <h2>Establish the Relationship</h2>
     <p>We want an actual relationship to exist between the <b>images</b> and <b>inventory</b> tables. To build the relationship do the following:</p>
     <ol>
-    <li>Click the "Structure" tab of the <b>images</b> table once it is built.</li>
+     <li>Click the "Structure" tab of the <b>images</b> table once it is built.</li>
      <li>Click the "Relation view" button (just below the "Structure" tab).</li>
      <li>Scroll down to the "Foreign key constraints" area. Set the values to match the image below:<br>
-     <img src="../images/images-relationship.png" alt="Relationship settings for the images table">
+      <img src="../images/images-relationship.png" alt="Relationship settings for the images table">
      </li>
      <li>Scroll down (if needed), click "Save".</li>
     </ol>
@@ -44,7 +44,7 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
 </body>
