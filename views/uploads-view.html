@@ -51,7 +51,7 @@ echo $message;<br>
       <h3>An Explanation</h3>
       <ul>
        <li>The form opening tag has the standard "action" and "method" attributes. The "action" directs the form to send the data to the controller found in the <b>uploads</b> folder.</li>
-       <li>You will note a third attribute in the opening form tag - "enctype". This attribute and its value of "multipart/form-data" is required when uploading files. See <a href="https://www.w3schools.com/TAgs/att_form_enctype.asp" title="Opens in a new tab" target="_blank">https://www.w3schools.com/TAgs/att_form_enctype.asp</a> for more information.</li>
+       <li>You will note a third attribute in the opening form tag - "enctype". This attribute and its value of "multipart/form-data" is required when uploading files. See <a href="//www.w3schools.com/TAgs/att_form_enctype.asp" title="Opens in a new tab" target="_blank">https://www.w3schools.com/TAgs/att_form_enctype.asp</a> for more information.</li>
        <li>The PHP code block with the echo statement for <code>$prodSelect</code> indicates where the select list of the products in the database will be displayed.</li>
        <li>In addition you will see a new "type" of input field - <code>type="file"</code>. This allows the browser to open a new dialog box so you can select a file for uploading.</li>
        <li>The other items in the code should already be familiar to you.</li>
@@ -69,11 +69,11 @@ echo $message;<br>
        ?&gt;<br>
                </code>
       <h3>An Explanation</h3>
-      <p>In the controller, prior to delivery of the view in the default process, the images that alread exist in the database (if any) are queried out. The array is then sent to a helper function to be wrapped up in HTML for display purposes. The resulting HTML is stored into the <code>$imageDisplay</code> variable. In this block of code the images are displayed and their accompanying link to start the delete process.</p>
+      <p>In the controller, prior to delivery of the view in the default process, the images that already exist in the database (if any) are queried out. The array is then sent to a helper function to be wrapped up in HTML for display purposes. The resulting HTML is stored into the <code>$imageDisplay</code> variable. In this block of code the images are displayed and their accompanying link to start the delete process.</p>
      </li>
      <li>Finally, scroll all the way to the bottom of the view.</li>
      <li>Beneath the closing HTML tag - <code><b>&lt;/html&gt;</b></code> - add a new PHP code block and the code to unset the message from the session, since we are done using it:
-     <code class="callout no-left">
+      <code class="callout no-left">
       &lt;?php unset($_SESSION['message']); ?&gt;
       </code>
      </li>
@@ -84,24 +84,24 @@ echo $message;<br>
     <h2>Test It</h2>
     <p>Normally we would have done testing along the way, but because of the process we followed for these activities we couldn't until now.</p>
     <ol>
-    <li>Start your Apache and Database servers.</li>
+     <li>Start your Apache and Database servers.</li>
      <li>"Run" the <b>uploads</b> controller.</li>
      <li>If things worked, you should see the view and a message indicating that no images could be found.</li>
      <li>Now try to upload a file:
-     <ul>
-      <li>Select a product from the select drop-down list.</li>
-      <li>Click the "Choose File" button, a dialog box should open.</li>
-      <li>Find an image on your computer (any image will do right now) and select it.</li>
-      <li>The image name should appear next to the "Choose File" button when selected.</li>
-      <li>Click the "Upload" submit button.</li>
-      <li>If things worked, you should be returned to this view and a success message should be displayed and two versions of the image should appear beneath the "Existing Images" heading - one "regular" and one "thumbnail" version.</li>
-      <li>Both images should show their file name beneath them in link form accompanied by the "Delete" text preceeding the file name.</li>
-      <li>Open the "images" folder in the "uploads" folder to confirm that the physical files are present.</li>
-      <li>Open the PHPMyAdmin tool and check the "<b>images</b>" table to insure that all of the data for two images (one regular and one thumbnail) is present.</li>
-      <li>Click one of the "delete" links.</li>
-      <li>The view should refresh and display the deletion success or failure message and if successful, the image should be gone.</li>
-      <li>Open the "images" folder in the "uploads" folder to confirm that the physical file is gone.</li>
-      <li>Open the PHPMyAdmin tool and check the "<b>images</b>" table to insure that the data for the image that was deleted is gone.</li>
+      <ul>
+       <li>Select a product from the select drop-down list.</li>
+       <li>Click the "Choose File" button, a dialog box should open.</li>
+       <li>Find an image on your computer (any image will do right now) and select it.</li>
+       <li>The image name should appear next to the "Choose File" button when selected.</li>
+       <li>Click the "Upload" submit button.</li>
+       <li>If things worked, you should be returned to this view and a success message should be displayed and two versions of the image should appear beneath the "Existing Images" heading - one "regular" and one "thumbnail" version.</li>
+       <li>Both images should show their file name beneath them in link form accompanied by the "Delete" text preceeding the file name.</li>
+       <li>Open the "images" folder in the "uploads" folder to confirm that the physical files are present.</li>
+       <li>Open the PHPMyAdmin tool and check the "<b>images</b>" table to insure that all of the data for two images (one regular and one thumbnail) is present.</li>
+       <li>Click one of the "delete" links.</li>
+       <li>The view should refresh and display the deletion success or failure message and if successful, the image should be gone.</li>
+       <li>Open the "images" folder in the "uploads" folder to confirm that the physical file is gone.</li>
+       <li>Open the PHPMyAdmin tool and check the "<b>images</b>" table to insure that the data for the image that was deleted is gone.</li>
       </ul>
      </li>
      <li>If everything worked - CELEBRATE, CELEBRATE, DANCE TO THE MUSIC...</li>
@@ -110,11 +110,11 @@ echo $message;<br>
 
     <h2>Video Overview</h2>
     <p>This video demonstrates the components and completed, working file upload after all activities are completed.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/9jY2z3l08ok" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/9jY2z3l08ok" allowfullscreen></iframe>
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
 </body>
