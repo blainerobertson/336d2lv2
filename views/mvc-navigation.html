@@ -40,12 +40,12 @@
 
     <h2>Create the Function</h2>
     <ol>
-     <li>If needed, review <a href="https://www.w3schools.com/php/php_functions.asp" title="Opens in a new tab">PHP Functions</a> before beginning.</li>
+     <li>If needed, review <a href="//www.w3schools.com/php/php_functions.asp" title="Opens in a new tab">PHP Functions</a> before beginning.</li>
      <li>Create a new function using the "function" key word and name the function <b>getCategories()</b>.</li>
      <li>When creating functions (interactions) name them to describe what they do.</li>
      <li>Note that no parameters will be placed between the parentheses as the function will not need outside information to run.</li>
      <li>Build the function to look like the code below:
-      <code class="callout" style="margin-left: 0;">function getCategories(){<br>
+      <code class="callout no-left">function getCategories(){<br>
               // Create a connection object from the acme connection function<br>
               $db = acmeConnect();<br>
               // The SQL statement to be used with the database<br>
@@ -74,9 +74,9 @@
     <h3>Single Arrow - <strong>&mdash;&gt;</strong></h3>
     <p>In Object Oriented programming of PHP we create instances of a class and refer to them as objects. Objects have methods (functions) that they can perform. The single arrow " -> " represents a call to a method of an object. For example, when you write this line of code in the creation of a prepared statement:
 
-     <code class="callout">$stmt = $db->prepare($sql);</code> What you are doing is calling the "prepare" method of the database connection object. You are sending it a sql query that has been stored in a variable named "$sql". If everything works, then a new PDO Prepared Statement, which is a new and different type of object, is created and stored into a variable named "$stmt".</p>
+     <code class="callout no-left">$stmt = $db->prepare($sql);</code> What you are doing is calling the "prepare" method of the database connection object. You are sending it a sql query that has been stored in a variable named "$sql". If everything works, then a new PDO Prepared Statement, which is a new and different type of object, is created and stored into a variable named "$stmt".</p>
 
-    <p>In real life, this is a bit harder to illustrate but let me try. Your car (even if you don't own one, pretend) is a car object. Meaning that your's isn't the only one, but it represents this abstract concept of "car". You car has methods: move forward, move reverse, turn left, turn right, blow horn, etc... So, when you prepare to back up we could represent it as $car->reverse();</p>
+    <p>In real life, this is a bit harder to illustrate but let me try. Your car (even if you don't own one, pretend) is a car object. Meaning that your's isn't the only one, but it represents this abstract concept of "car". Your car has methods: move forward, move reverse, turn left, turn right, blow horn, etc... So, when you prepare to back up we could represent it as $car->reverse();</p>
 
     <h2>Open the Acme Controller</h2>
     <p>The acme controller is index.php and should be at the root of the acme folder. Open it.</p>
@@ -86,12 +86,12 @@
      <li>These files must be brought into scope in that order because:
       <br>
       <ul>
-       <li>the connections file contains all of the functions to talking to the database server. Without this file the model cannot do it's job.</li>
+       <li>the connections file contains all of the functions for talking to the database server. Without this file the model cannot do it's job.</li>
        <li>the acme-model is needed to get the data from the database which the controller will use to build the dynamic navigation menu.</li>
       </ul>
      </li>
      <li>Use the require_once function to bring both files into scope as shown below:
-      <code style="margin-left: 0;" class="callout">// Get the database connection file<br>
+      <code class="callout no-left">// Get the database connection file<br>
               require_once 'library/connections.php';<br>
               // Get the acme model for use as needed<br>
 require_once 'model/acme-model.php';</code></li>
@@ -106,17 +106,17 @@ require_once 'model/acme-model.php';</code></li>
 
     <h2>Call the getCategories() Function</h2>
     <p>With the connection and model pages in the scope of the controller, code can be written to call on them to do their jobs.</p>
-    <p><strong>Note:</strong> While we could repeat this code every time we needed a view, that would be inefficient. Instead, we will write the code prior to the switch statement therefore making the resulting code available to all other code in the scope of the controller. This is referred to as <b>page</b> scope, but includes any files that are included or required into that page's scope (see <a href="http://php.net/manual/en/language.variables.scope.php" title="Read about scope on php.net" target="_blank">variable scope</a> at PHP.net).</p>
+    <p><strong>Note:</strong> While we could repeat this code every time we needed a view, that would be inefficient. Instead, we will write the code prior to the switch statement therefore making the resulting code available to all other code in the scope of the controller. This is referred to as <b>page</b> scope, but includes any files that are included or required into that page's scope (see <a href="//php.net/manual/en/language.variables.scope.php" title="Read about scope on php.net" target="_blank">variable scope</a> at PHP.net).</p>
     <ol>
      <li>Create one or two empty lines beneath the lines where the connection and model files were required and brought into the controller's scope.</li>
      <li>Call the getCategories() function and assign what it returns to a variable named <b>$categories</b> as shown below:
-      <code style="margin-left: 0;" class="callout">// Get the array of categories<br>
+      <code class="callout no-left">// Get the array of categories<br>
 $categories = getCategories();</code></li>
      <li>Let's test to see what, if anything, we got from the database.
       <br>
       <ul>
        <li>Write the following code on the next two lines:
-        <code style="margin-left: 0;" class="callout">var_dump($categories);<br>
+        <code class="callout no-left">var_dump($categories);<br>
 exit;</code>
        </li>
        <li>var_dump is a PHP function that displays information about a variable, array or object.</li>
@@ -134,7 +134,7 @@ exit;</code>
       </ol>
      </li>
      <li>If things are working, the var_dump should have dumped something similar to what you see below to your browser window:
-      <code class="callout" style="margin-left: 0;">array(5) { [0]=> array(2) { ["categoryName"]=> string(6) "Cannon" [0]=> string(6) "Cannon" } [1]=> array(2) { ["categoryName"]=> string(9) "Explosive" [0]=> string(9) "Explosive" } [2]=> array(2) { ["categoryName"]=> string(4) "Misc" [0]=> string(4) "Misc" } [3]=> array(2) { ["categoryName"]=> string(6) "Rocket" [0]=> string(6) "Rocket" } [4]=> array(2) { ["categoryName"]=> string(4) "Trap" [0]=> string(4) "Trap" } }</code>
+      <code class="callout no-left">array(5) { [0]=> array(2) { ["categoryName"]=> string(6) "Cannon" [0]=> string(6) "Cannon" } [1]=> array(2) { ["categoryName"]=> string(9) "Explosive" [0]=> string(9) "Explosive" } [2]=> array(2) { ["categoryName"]=> string(4) "Misc" [0]=> string(4) "Misc" } [3]=> array(2) { ["categoryName"]=> string(6) "Rocket" [0]=> string(6) "Rocket" } [4]=> array(2) { ["categoryName"]=> string(4) "Trap" [0]=> string(4) "Trap" } }</code>
      </li>
      <li>While it may look like a mess, in reality it tells us that we have a multidimensional array with 5 sub-arrays. That is exactly what we wanted!</li>
      <li>If you got nothing, go back and double check your code, talk with a peer, contact a TA or lab assistant or the professor. But it needs to be working.</li>
@@ -146,7 +146,7 @@ exit;</code>
 
     <p>Below the var_dump and exit lines (if commented out) or on the first empty line beneath the getCategories() function call, write the following code:</p>
     <!--          <br>-->
-    <code class="callout" style="margin-left: 0;">// Build a navigation bar using the $categories array<br>
+    <code class="callout no-left">// Build a navigation bar using the $categories array<br>
           $navList = '&lt;ul&gt;';<br>
           $navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";<br>
           foreach ($categories as $category) {<br>
@@ -159,7 +159,7 @@ exit;</code>
     <ol>
      <li><code>$navList = '&lt;ul&gt;';</code> - creates an unordered list as a string and assigns it to the $navList variable.</li>
      <li><code>$navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";</code> - creates a list item with a link to the controller at the root of the acme folder as a string. The string is then added to the value already stored in the variable. That's what the <code>.=</code> operator does, it adds to a variable.</li>
-     <li><code>foreach ($categories as $category) {</code> - This begins a foreach loop that will find each of the sub-arrays in the $categories array and break them apart, one at a time, and stores each one into a new variable called <b>$category</b>. Refer to <a href="http://php.net/manual/en/control-structures.foreach.php" title="Opens in a new tab" target="_blank">foreach loops</a> at php.net.</li>
+     <li><code>foreach ($categories as $category) {</code> - This begins a foreach loop that will find each of the sub-arrays in the $categories array and break them apart, one at a time, and stores each one into a new variable called <b>$category</b>. Refer to <a href="//php.net/manual/en/control-structures.foreach.php" title="Opens in a new tab" target="_blank">foreach loops</a> at php.net.</li>
      <li><code>$navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=$category[categoryName]' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";</code> - This is a list item with a link that points to the controller in the acme folder, but this time it is followed by a question mark (e.g. ?) and then by a key - value pair. The key is <b>action</b> and the value is the category name inside of the $category variable. As with all previous code in this example, the string is being added to the $navList variable.</li>
      <li><code>}</code> - this lone right curly brace closes the foreach loop.</li>
      <li><code>$navList .= '&lt;/ul&gt;';</code> - This line closes the unordered list.</li>
@@ -169,7 +169,7 @@ exit;</code>
     <p>If the code above is written correctly, we should have built an unordered list with links that will send to the controller a request for each of the category types in the database. Let's see if it works!</p>
     <ol>
      <li>Immediately below the last line, where the unordered list was closed and stored in the $navList variable.</li>
-     <li>Write the following two short lines of code:<code class="callout">echo $navList;<br>exit;</code></li>
+     <li>Write the following two short lines of code:<code class="callout no-left">echo $navList;<br>exit;</code></li>
      <li>Save the index.php page.</li>
      <li>Right-click the <b>index.php</b> page in the Projects panel and select "Run".</li>
      <li>When the controller runs, it should display on the screen an unordered list with six items as shown below:<br>
@@ -187,7 +187,7 @@ exit;</code>
      <li>Find your &lt;nav&gt; area.</li>
      <li>Comment out any link structures that you may already have in place.</li>
      <li>Add the following code within the &lt;nav&gt;&lt;/nav&gt;:<br>
-      <code class="callout">
+      <code class="callout no-left">
           &lt;?php echo $navList; ?&gt;
           </code></li>
      <li>This tells PHP to find and write the value of the $navList variable to the screen.</li>
@@ -204,7 +204,7 @@ exit;</code>
     <p>When the dynamic navigation bar is working correctly in the home view, apply it to your template and error view as well!</p>
 
     <h2>Video Demonstration</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/PT2xuMR4OAg" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/PT2xuMR4OAg" allowfullscreen></iframe>
    </article>
   </main>
   <footer>
