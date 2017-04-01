@@ -31,14 +31,16 @@
     </ol>
     <h2>An Images Folder</h2>
     <ol>
-     <li>Within the <b>uploads</b> folder create a subfolder named "<b>images</b>".<p>Initially, this "images" folder is where your uploaded image files will be stored. This is temporary and for testing purposes only.</p></li>
+     <li>Within the <b>uploads</b> folder create a subfolder named "<b>images</b>".
+      <p>Initially, this "images" folder is where your uploaded image files will be stored. This is temporary and for testing purposes only.</p>
+     </li>
     </ol>
 
     <h2>Check Access Permissions</h2>
     <p>Since we will be writing files to the "<b>images</b>" folder we must make sure the operating system will allow it. The process is slightly different for Mac and Windows users, so use the steps below depending on your operating system.</p>
     <h3>Mac Users</h3>
     <ol>
-    <li>Locate the "<b>uploads</b>" folder in the operating system finder window.</li>
+     <li>Locate the "<b>uploads</b>" folder in the operating system finder window.</li>
      <li>Right-click the folder icon, choose "Get info".</li>
      <li>In the new window that opens scroll down and find the "Sharing &amp; Permissions:" area. Expand it if needed to see the options.</li>
      <li>Change the privileges for "everyone" to <b>Read &amp; Write</b>.</li>
@@ -91,7 +93,7 @@
        $navList = buildNav();<br>
       </code>
      </li>
-     <li>With the basics in place now it's time to start getting specific to this controller. We have two variables that will be needed in the various processes to come. One is where we declare the name of the folder where our uploaded images will be stored. The second is the path that will lead to the folder. By declaring these here, it makes it easy to update or change the name or location in one place and have it apply throughout the applicaton.</li>
+     <li>With the basics in place now it's time to start getting specific to this controller. We have two variables that will be needed in the various processes to come. One is where we declare the name of the folder where our uploaded images will be stored. The second is the path that will lead to the folder. By declaring these here, it makes it easy to update or change the name or location in one place and have it apply throughout the application.</li>
      <li>Create the following comments and code below the navigation list creation previously mentioned:
       <code class="callout no-left">
        /* * ****************************************************<br>
@@ -115,8 +117,8 @@
        default:<br>
        <br>
        break;<br>
-      </code>
-      As you see, the controller is going to be limited, but it should take care of the basics we need. Now, let's get into the detail of each process.
+       }
+      </code> As you see, the controller is going to be limited, but it should take care of the basics we need. Now, let's get into the detail of each process.
      </li>
     </ol>
     <h2>Commented Code</h2>
@@ -125,8 +127,8 @@
     <h2>The Upload Process</h2>
     <p>As the name implies, this is where the basics of uploading an image will happen. Be aware, that we will rely heavily on helper functions as well as model-based functions to do most of the work.</p>
     <ol>
-    <li>Within the <b>upload</b> case statement add the following code:
-     <code class="callout no-left">
+     <li>Within the <b>upload</b> case statement add the following code:
+      <code class="callout no-left">
       &nbsp;// Store the incoming product id<br>
       &nbsp;$prodId = filter_input(INPUT_POST, 'invItem', FILTER_VALIDATE_INT);<br>
       &nbsp;&nbsp;// Store the name of the uploaded image<br>
@@ -164,7 +166,7 @@
     </ol>
     <h3>An Explanation</h3>
     <ul>
-    <li>When an image is uploaded it must be associated with a product in the inventory table, the item's id is sent to the controller and stored.</li>
+     <li>When an image is uploaded it must be associated with a product in the inventory table, the item's id is sent to the controller and stored.</li>
      <li>A model-based function is called to check if an image by the name of the uploaded image already exists in the database table. </li>
      <li>If the name check returns TRUE then an error message is set.</li>
      <li>Then, more checks are done for the image name and product id. If one is missing, the error message is set. Then, skipping down below the "else" the message is stored in the session and the header function is used to redirect to this same controller. The default action of the controller will deliver the view where the error will be displayed. The view's form will NOT be sticky.</li>
@@ -178,7 +180,7 @@
     <p>There is no "update" process for images. We add, read or delete them. The "delete" case is next to handle that type of process.</p>
     <ol>
      <li>Add the following code within the "delete" case statement:
-     <code class="callout no-left">
+      <code class="callout no-left">
       // Get the image name and id<br>
       $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);<br>
       $imgId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
@@ -214,8 +216,8 @@
     </ol>
     <h3>An Explanation</h3>
     <ul>
-    <li>The name of the file and the id of the image are both sent as part of the delete process. These values are stored into variables.</li>
-     <li>Using the <code>$image_dir_path</code> variable that was created prior the switch statement being written a path to the exact image is created and stored to the <code>$target</code> variable.</li>
+     <li>The name of the file and the id of the image are both sent as part of the delete process. These values are stored into variables.</li>
+     <li>Using the <code>$image_dir_path</code> variable that was created prior to the switch statement being written a path to the exact image is created and stored to the <code>$target</code> variable.</li>
      <li>A check is done to see if the image exists in the target location.</li>
      <li>If the physical file exists, it is deleted and the result of the delete is stored in the <code>$result</code> variable.</li>
      <li>If the physical file was removed, then the image record is also removed, or attempted to be removed, from the database table.</li>
@@ -224,10 +226,10 @@
      <li>The <b>uploads</b> controller is called using the <code>header()</code> function which will deliver the view where the message will be displayed and the image should no longer be visible if the delete was successful.</li>
     </ul>
     <h2>The default process</h2>
-    <p>The last "case" statement is simpley <code>default:</code>. This is the equivelent of an "else" in an "if - else" structure. If none of the other case statements are true, then the default happens.</p>
+    <p>The last "case" statement is simply <code>default:</code>. This is the equivalent of an "else" in an "if - else" structure. If none of the other case statements are true, then the default happens.</p>
     <ol>
-    <li>Add the following code to the default statement:
-     <code class="callout no-left">
+     <li>Add the following code to the default statement:
+      <code class="callout no-left">
       // Call function to return image info from database<br>
       $imageArray = getImages();<br>
       <br>
@@ -249,11 +251,11 @@
     </ol>
     <h3>An Explanation</h3>
     <ul>
-    <li>The first process gets a list of all images from the database table and stores it as a multi-dimensional array.</li>
+     <li>The first process gets a list of all images from the database table and stores it as a multi-dimensional array.</li>
      <li>If the array has at least one item, then the picture information is sent to a helper function which builds HTML around it for display in the view.</li>
-     <li>If the array is empty and error message is built.</li>
+     <li>If the array is empty an error message is built.</li>
      <li>An array of inventory item information is built using a model-based function that was built previously in the products model.</li>
-     <li>The products from the inventory item array are sent to a helper function to build a HTML select list for use in the view.</li>
+     <li>The products from the inventory item array are sent to a helper function to build an HTML select list for use in the view.</li>
      <li>The view is included for display in the browser.</li>
     </ul>
     <h2>Conclusion</h2>
@@ -261,7 +263,7 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
 </body>
