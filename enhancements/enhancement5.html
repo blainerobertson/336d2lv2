@@ -2,125 +2,125 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Enhancement 5 | Web Backend Development</title>
-  <meta name="description" content="CIT 336 Enhancement 5 directions">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Enhancement 5 | Web Backend Development</title>
+ <meta name="description" content="CIT 336 Enhancement 5 directions">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
 
 <body>
-  <div id="main">
-    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-    <main>
-      <article id="article">
-        <h1>Enhancement 5</h1>
-        <h2>Introduction</h2>
-        <p>This week has been about adding security and features related to security to the forms and controllers of the accounts application. The enhancement will build on the same concepts introduced this week.</p>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Enhancement 5</h1>
+    <h2>Introduction</h2>
+    <p>This week has been about adding security and features related to security to the forms and controllers of the accounts application. The enhancement will build on the same concepts introduced this week.</p>
 
-        <h2>Video Demo</h2>
-        <p>This short video demonstrates what your video of the products process being run and tested could look like.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Z6_RGfuOY0I" allowfullscreen></iframe>
+    <h2>Video Demo</h2>
+    <p>This short video demonstrates what your video of the products process being run and tested could look like.</p>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/Z6_RGfuOY0I" allowfullscreen></iframe>
 
-        <h2>Overview</h2>
-        <p>In this enhancement you will:</p>
-        <ol>
-          <li>add client-side validation to the <b>new products</b> and <b>new category</b> view forms,</li>
-          <li>add server-side validation to the <b>new products</b> and <b>new category</b> processes in the products controller, and</li>
-          <li>make the creation of the $navList variable for building the site navigation easier, by creating a custom function for it in the "<b>functions.php</b>" page and then calling the function in all three controllers (acme, accounts, products) to store the navigation html data into a variable.</li>
-        </ol>
+    <h2>Overview</h2>
+    <p>In this enhancement you will:</p>
+    <ol>
+     <li>add client-side validation to the <b>new products</b> and <b>new category</b> view forms,</li>
+     <li>add server-side validation to the <b>new products</b> and <b>new category</b> processes in the products controller, and</li>
+     <li>make the creation of the $navList variable for building the site navigation easier, by creating a custom function for it in the "<b>functions.php</b>" page and then calling the function in all three controllers (acme, accounts, products) to store the navigation html data into a variable.</li>
+    </ol>
 
-        <h2>Tasks</h2>
-        <p>As described above you are being asked to add client-side and server-side validation to forms and controllers (just like you did in this week's activities. Also, to create a custom function out of code that you already have, then just call the function to get the html navigation list code.</p>
-        <p><i style="font-size: larger;"><strong>Note:</strong> Remember that you access the the <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i></p>
-
-
-        <h3>Client-side Validation</h3>
-        <ol>
-          <li>Add HTML5 attributes as needed to the various input elements in the "<b>new category</b>" and "<b>new product</b>" forms. Make sure that each input's data type is also appropriate to the data being requested.</li>
-          <li>Add a PHP code block to each input in the "<b>new category</b>" and "<b>new product</b>" form so that the form's become "sticky" if and when errors in submissions are returned.</li>
-          <li><strong>Note:</strong> To display the value of a variable in a <code>textarea</code> element, it must be echoes between the opening and closing tags.</li>
-        </ol>
-        <h3>Server-side Validation</h3>
-
-        <p>In the "<b>products</b>" controller add server-side validation to both the "add new category" and "add new product" processes. Specifically:</p>
-        <ol>
-          <li>Use a require_once to get the functionality of the "<b>functions.php</b>" page and make it available to this controller.</li>
-          <li>Make sure the filter_input functions are using appropriate flags for the data being collected.</li>
-          <li>If any specific patterns were used in the Native HTML5 validation, that those patterns are duplicated using PHP.</li>
-          <li>If you create custom functions for any part of the server-side validation that they are created in the "<b>functions.php</b>" page and labeled.</li>
-          <li>To dynamically select the correct category in the "add new product" view when returning errors from server-side validation you will want to watch and follow along with this video:<br>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/pMSlJlkrLHE" allowfullscreen></iframe>
-          </li>
-          <li>Thoroughly test both the client-side and server-side validation to ensure they work.</li>
-        </ol>
-
-        <h3>Create New Function</h3>
-        <p>All three controllers (acme, accounts and products) have code to build the navigation bar and store it to a variable for use in views. This is not very efficient. Please fix it by:</p>
-        <ol>
-          <li>Creating a new function in the "<b>functions.php</b>" page. The new function should 1) call the "<b>getCategories</b>" function and 2) build the navigation list HTML. When done, it should return a variable holding the HTML navigation list to wherever called the function. Be sure to add a comment to the function indicating what it does.</li>
-          <li>When done, remove the original code block from all controllers and replace them with a call to your new function.</li>
-          <li>Thoroughly test to make sure that the function works so the navigation bar works in all views.</li>
-        </ol>
+    <h2>Tasks</h2>
+    <p>As described above you are being asked to add client-side and server-side validation to forms and controllers (just like you did in this week's activities. Also, to create a custom function out of code that you already have, then just call the function to get the html navigation list code.</p>
+    <p><i style="font-size: larger;"><strong>Note:</strong> Remember that you access the the <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i></p>
 
 
-        <h2>Submission</h2>
+    <h3>Client-side Validation</h3>
+    <ol>
+     <li>Add HTML5 attributes as needed to the various input elements in the "<b>new category</b>" and "<b>new product</b>" forms. Make sure that each input's data type is also appropriate to the data being requested.</li>
+     <li>Add a PHP code block to each input in the "<b>new category</b>" and "<b>new product</b>" form so that the forms become "sticky" if and when errors in submissions are returned.</li>
+     <li><strong>Note:</strong> To display the value of a variable in a <code>textarea</code> element, it must be echoed between the opening and closing tags.</li>
+    </ol>
+    <h3>Server-side Validation</h3>
 
-        <ul>
-          <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.</li>
-          <li>Build, run and test to make sure the client-side and server-side validation works.</li>
-          <li>Build, run and test to make sure the new functions work as they should.</li>
-          <li>When satisfied that the code is operational:
-            <ol>
-              <li>Create a video showing that both the "add category" and "add product" views remain valid HTML5.</li>
-              <li>Showing that both the client-side and server-side validations work in the "add category" and "add product" views.</li>
-              <li>Showing in the video the new navigation function, where it is called in the controllers and that it works.</li>
-              <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
-              <li>Zip the entire acme folder and name it enhancement 5 (save this zip file outside of your web site).</li>
-              <li>Submit the zip file to the enhancement 5 assignment dropbox and add the video URL to the assignment dropbox comment.</li>
-            </ol>
-          </li>
-        </ul>
+    <p>In the "<b>products</b>" controller add server-side validation to both the "add new category" and "add new product" processes. Specifically:</p>
+    <ol>
+     <li>Use a require_once to get the functionality of the "<b>functions.php</b>" page and make it available to this controller.</li>
+     <li>Make sure the filter_input functions are using appropriate flags for the data being collected.</li>
+     <li>If any specific patterns were used in the Native HTML5 validation, make sure that those patterns are duplicated using PHP.</li>
+     <li>If you create custom functions for any part of the server-side validation, make sure they are created in the "<b>functions.php</b>" page and labeled.</li>
+     <li>To dynamically select the correct category in the "add new product" view when returning errors from server-side validation you will want to watch and follow along with this video:<br>
+      <iframe width="560" height="315" src="//www.youtube.com/embed/pMSlJlkrLHE" allowfullscreen></iframe>
+     </li>
+     <li>Thoroughly test both the client-side and server-side validation to ensure they work.</li>
+    </ol>
 
-        <h2>Grading Matrix</h2>
-        <p>This enhancement has values in multiple objectives as shown below:</p>
-        <h3>Objective 1</h3>
-        <ul>
-          <li>The "add new category" and "add new product" views are valid HTML: 5 points (minus 1 point for each error found)</li>
-          <li>Total value for Objective 1: <b>5 points</b></li>
-        </ul>
+    <h3>Create New Function</h3>
+    <p>All three controllers (acme, accounts and products) have code to build the navigation bar and store it to a variable for use in views. This is not very efficient. Please fix it by:</p>
+    <ol>
+     <li>Creating a new function in the "<b>functions.php</b>" page. The new function should 1) call the "<b>getCategories</b>" function and 2) build the navigation list HTML. When done, it should return a variable holding the HTML navigation list to wherever called the function. Be sure to add a comment to the function indicating what it does.</li>
+     <li>When done, remove the original code block from all controllers and replace them with a call to your new function.</li>
+     <li>Thoroughly test to make sure that the function works so the navigation bar works in all views.</li>
+    </ol>
 
-        <h3>Objective 2</h3>
-        <ul>
-          <li>The "<b>functions.php</b>" page contains the new function for creating the navigation list: 2 points (all or nothing)</li>
-          <li>All controllers have replaced the previous navigation list construction code with a call to the new function for building the same code from the functions.php page: 3 points (1 point for each controller)</li>
-          <li>The navigation builder custom function is fully operational and the navigation continues in all views where needed: 10 points (minus 5 for each view that is not operational).</li>
-          <li>The PHP server-side validation code is fully operational: 5 points (all or nothing)</li>
-          <li>Total value for Objective 2: <b>27 points</b></li>
-        </ul>
 
-        <h3>Objective 5</h3>
-        <ul>
-          <li>HTML client-side validation is present and operational for all required inputs in both the "add new category" and "add new product" forms: 10 points (minus 1 point for each missing or non-operational input)</li>
-          <li>Data flags have been added to the filter_input functions in the products controller: 5 points (minus 1 for each missing or incorrect flag)</li>
-          <li>Missing data from the "new category" view is successfully detected and returned to the view for correction and the form input is "sticky": 2 points (all or nothing)</li>
-          <li>Missing data from the "new product" view is successfully detected and returned to the view for correction and the form inputs are "sticky": 10 points (minus 1 for each error or input that is not sticky)</li>
-          <li>Total value for Objective 5: <b>27 points</b></li>
-        </ul>
+    <h2>Submission</h2>
 
-        <h3>Objective 6</h3>
-        <p>The video URL is included in the submission dropbox comment and:</p>
-        <ul>
-          <li>Shows that both views are valid HTML5: : 2 points (all or nothing) </li>
-          <li>Shows that both the client-side and server-side validations work in the "add category" and "add product" views.: 2 points (all or nothing)</li>
-          <li>Shows the new functions, where they are called in the controllers and that they work: 2 points (all or nothing)</li>
-          <li>Total value for Objective 6: <b>6 points</b></li>
-        </ul>
+    <ul>
+     <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.</li>
+     <li>Build, run and test to make sure the client-side and server-side validation works.</li>
+     <li>Build, run and test to make sure the new functions work as they should.</li>
+     <li>When satisfied that the code is operational:
+      <ol>
+       <li>Create a video showing that both the "add category" and "add product" views remain valid HTML5.</li>
+       <li>Showing that both the client-side and server-side validations work in the "add category" and "add product" views.</li>
+       <li>Showing in the video the new navigation function, where it is called in the controllers and that it works.</li>
+       <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
+       <li>Zip the entire acme folder and name it enhancement 5 (save this zip file outside of your web site).</li>
+       <li>Submit the zip file to the enhancement 5 assignment dropbox and add the video URL to the assignment dropbox comment.</li>
+      </ol>
+     </li>
+    </ul>
 
-      </article>
-    </main>
-  </div>
-  <script src="../js/course.js"></script>
+    <h2>Grading Matrix</h2>
+    <p>This enhancement has values in multiple objectives as shown below:</p>
+    <h3>Objective 1</h3>
+    <ul>
+     <li>The "add new category" and "add new product" views are valid HTML: 5 points (minus 1 point for each error found)</li>
+     <li>Total value for Objective 1: <b>5 points</b></li>
+    </ul>
+
+    <h3>Objective 2</h3>
+    <ul>
+     <li>The "<b>functions.php</b>" page contains the new function for creating the navigation list: 2 points (all or nothing)</li>
+     <li>All controllers have replaced the previous navigation list construction code with a call to the new function for building the same code from the functions.php page: 3 points (1 point for each controller)</li>
+     <li>The navigation builder custom function is fully operational and the navigation continues in all views where needed: 10 points (minus 5 for each view that is not operational).</li>
+     <li>The PHP server-side validation code is fully operational: 5 points (all or nothing)</li>
+     <li>Total value for Objective 2: <b>27 points</b></li>
+    </ul>
+
+    <h3>Objective 5</h3>
+    <ul>
+     <li>HTML client-side validation is present and operational for all required inputs in both the "add new category" and "add new product" forms: 10 points (minus 1 point for each missing or non-operational input)</li>
+     <li>Data flags have been added to the filter_input functions in the products controller: 5 points (minus 1 for each missing or incorrect flag)</li>
+     <li>Missing data from the "new category" view is successfully detected and returned to the view for correction and the form input is "sticky": 2 points (all or nothing)</li>
+     <li>Missing data from the "new product" view is successfully detected and returned to the view for correction and the form inputs are "sticky": 10 points (minus 1 for each error or input that is not sticky)</li>
+     <li>Total value for Objective 5: <b>27 points</b></li>
+    </ul>
+
+    <h3>Objective 6</h3>
+    <p>The video URL is included in the submission dropbox comment and:</p>
+    <ul>
+     <li>Shows that both views are valid HTML5: 2 points (all or nothing) </li>
+     <li>Shows that both the client-side and server-side validations work in the "add category" and "add product" views: 2 points (all or nothing)</li>
+     <li>Shows the new functions, where they are called in the controllers and that they work: 2 points (all or nothing)</li>
+     <li>Total value for Objective 6: <b>6 points</b></li>
+    </ul>
+
+   </article>
+  </main>
+ </div>
+ <script src="../js/course.js"></script>
 </body>
 
 </html>
