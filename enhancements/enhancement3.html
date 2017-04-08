@@ -47,25 +47,37 @@
       <p>Use CSS to style the form for professional appearance and usability.</p>
       <p><strong>The form DOES NOT NEED TO ACTUALLY REGISTER AN INDIVIDUAL for this enhancement</strong>.</p>
      </li>
-     <li>Create a link in the acme template and the existing acme views (home, login, 500 error and registration) for the "My Account" item in the page header. The link must:
+     <!--     The views are done, build the functionality  -->
+     <li>Create a link in the header code snippet module for the "My Account" item. By doing it here, the link should appear in the acme template and all existing views (home, login, 500 error and registration).</li>
+     <li>The link must point to the "<b>accounts</b>" controller and send a name-value (a.k.a. key - value) pair (remember the "action" name or key from the activities?) as a parameter that tells the controller to deliver the login view. <i>You may want to carefully study the links built in the dynamic navigation activity to see how the name-value pair is made part of the link.</i></li>
+     <li>Alter the <b>accounts</b> controller to make the delivery request of the login view the default value of the <b>$action</b> variable (if no other value is found).</li>
+     <li>Alter the existing switch case statement in the accounts controller to react to the "login" request and deliver the login view from the <b>view</b> folder.</li>
+     <li>Create a link in the login view that tells the client to click it if they have not yet registered or need to create an account. The link must:
       <ul>
-       <li>point to the acme controller, and</li>
-       <li>send a name-value (a.k.a key - value) pair (remember the "action" name or key from the activities?) as a parameter that tells the controller to deliver the login view.</li>
-      </ul>
-      <p><i>You may want to carefully study the links built in the dynamic navigation activity to see how the name-value pair is made part of the link.</i></p>
-     </li>
-     <li>Create a link in the login view that tells the user to click it if they have not yet registered. The link must:
-      <ul>
-       <li>point to the acme controller, and</li>
+       <li>point to the "accounts" controller, and</li>
        <li>pass a name - value pair that tells the controller to deliver the registration view.</li>
       </ul>
       <p>Make sure the link is large and obvious so that it is not overlooked and causes a site visitor confusion. See this example from target.com:<br><img src="../images/acme/target-signin.png" alt="Signin example from target.com"></p>
      </li>
+     <li>Add an additional case statement to the "accounts" controller to detect the request for the registration view and deliver it to the browser from the <b>view</b> folder.</li>
+     <li>Save all of your work.</li>
+    </ol>
+
+    <h2>Test, Test, Test</h2>
+<ol>
+<li>Make sure XAMPP is running.</li>
+ <li>Run the acme main controller.</li>
+ <li>Click the "My Accounts" link in the header of the home page. The login view should be delivered to the browser.</li>
+ <li>Click the "Create a New Account" link. The registration view should be delivered to the browser.</li>
+ <li>Make sure that the URL in both links is pointing to the accounts controller and passing name - value pairs as parameters to deliver the respective views. <b>Under no circumstances should the links point directly to the view!</b></li>
+ <li>Test the "My Account" link in all views to make sure it works in all of them.</li>
+ <li>If things work "Clap your hands and shout Hooray!".</li>
+ <li>If things don't work, go back and troubleshoot your code, ask for help, post to the discussion board, but <b>GET HELP</b> until it works.</li>
     </ol>
 
     <h2>Submission</h2>
     <ul>
-     <li>Thoroughly test your links (in all views) and the revised header function (in the database connections file) to ensure that they point to the acme controller and that the correct views are delivered.</li>
+     <li>Thoroughly test your links to ensure that they point to the accounts controller and that the correct views are delivered.</li>
      <li>Validate all views for HTML5 validity.</li>
      <li>Validate the CSS for validity.</li>
      <li>Double check your work to ensure that it meets all of the expectations listed.</li>
@@ -93,9 +105,9 @@
     </ul>
     <h3>Objective 3 Items</h3>
     <ul>
-     <li>The "My Account" link points to the controller and passes an appropriate name - value pair to request the login view and the view is delivered - 10 points (minus 3 points for each view that is missing this link)</li>
-     <li>The registration link in the login view points to the controller and passes an appropriate key - value pair to request the registration view and the view is delivered - 5 points (all or nothing)</li>
-     <li>The acme controller has additional and operable case statements to deliver the appropriate views according to the value of the $action variable - 5 points (all or nothing)</li>
+     <li>The "My Account" link points to the accounts controller and passes an appropriate name - value pair to request the login view and the view is delivered - 10 points (minus 3 points for each view that is missing this link)</li>
+     <li>The registration link in the login view points to the accounts controller and passes an appropriate name - value pair to request the registration view and the view is delivered - 5 points (all or nothing)</li>
+     <li>The accounts controller has additional and operable case statements to deliver the appropriate views according to the value of the $action variable - 5 points (all or nothing)</li>
      <li>Total value of objective 3: <b>20 points</b></li>
     </ul>
 
