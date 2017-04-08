@@ -50,12 +50,19 @@
       </ul>
      </li>
      <li>weigh less than 400Kb total weight.</li>
-     <li>Use modularization for common content (e.g. page header, main navigation, footer).</li>
+     <li>Use modularization for common content (e.g. page header, main navigation, footer) by:
+     <ul>
+      <li>Creating a "<b>common</b>" folder to store the common content code snippets (modules).</li>
+      <li>Create a separate code snippet for the acme header, navigation bar and footer and store each into the "<b>common</b>" folder.</li>
+      <li>Follow the directions in the "<b>Modularizing Common Content</b>" activity to implement the modules into the template.</li>
+      <li>Be sure to thoroughly test that the code from the code snippet modules get delivered to the template file, and later to the actual web pages (views) that you build using the template.</li>
+      </ul>
+     </li>
     </ol>
-    <h3>Build the Acme Home page</h3>
-    <p>Having built the template, you will now use it to build the Acme home page. The page must:</p>
+    <h3>Build the Acme Home View</h3>
+    <p>Having built the template, you will now use it to build the Acme home view. The view must:</p>
     <ol>
-     <li>be named "home.php" and be stored at the root of the provided acme folder,</li>
+     <li>be named "home.php" and be stored at the root of the <b>acme</b> folder,</li>
      <li>contain the content as shown in the image below (a text file with the text content is included in the download) and images are found in the images folder,
       <img src="../images/acme/acme-home-page.jpg" alt="Picture of the Acme home page">
      </li>
@@ -72,6 +79,7 @@
        <li>headings form a meaningful document outline with no levels being missed</li>
       </ul>
      </li>
+     <li>use modularization to provide the common header, navigation bar and footer.</li>
      <li>be valid HTML5 and CSS3 code.</li>
     </ol>
 
@@ -86,6 +94,7 @@
         <ol>
          <li>a look at the source code in NetBeans of the template and home page.</li>
          <li>a demonstration of the responsiveness of the home view in a browser.</li>
+         <li>a look at the code of the home view showing that modularization is being used to deliver the common elements (header, navigation and footer) of the view.</li>
          <li>a demonstration of the validity of the HTML5 and CSS3 in the browser.</li>
         </ol>
        </li>
@@ -99,7 +108,7 @@
     <p>Use the grading items below to pre-grade your work as these are the exact grading items the professor will use to grade the work.</p>
     <ul>
      <li>Both files (template and home) use the php extension: <b>2 points</b></li>
-     <li>Both files use modularization for common content: <b>3 points</b></li>
+     <li>The home view uses modularization for common content: <b>3 points</b></li>
      <li>The home view uses semantic structures (header, nav, main, footer): <b>3 points</b></li>
      <li>The home view is valid HTML5: <b>4 points</b></li>
      <li>The home view is responsive across devices with no zooming or horizontal scrolling required to view content (including images): <b>4 points</b></li>
