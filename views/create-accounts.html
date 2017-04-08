@@ -16,11 +16,11 @@
   <main>
    <article id="article">
     <h1>The Accounts Folder</h1>
-    <p>You have previously created a controller for the acme site itself, but to provide a more focused approach to managing visitor accounts, we will create a folder and new controller specifically for that purpose.</p>
+    <p>You have previously created a controller for the acme site itself, but to provide a more focused approach to managing visitor accounts (e.g. logging in and registering), we will create a folder and new controller specifically for that purpose.</p>
 
     <h2>Create the Accounts folder</h2>
     <ol>
-     <li>Within the acme folder, create a new folder named <b>accounts</b>. Do you remember the web naming rules?
+     <li>Within the acme folder, create a new folder named "<b>accounts</b>". Do you remember the web naming rules?
       <ul>
        <li>No capital letters</li>
        <li>No spaces in folder or file names</li>
@@ -44,7 +44,8 @@
     <h3>Alter the Requires</h3>
     <ol>
      <li>Open the accounts controller.</li>
-     <li>First, we have to edit the paths to the database connection and acme model files.</li>
+     <li>Change the comment at the top of the page to reflect that this is the "Accounts Controller".</li>
+     <li>We have to edit the paths to the database connection and acme model files.</li>
      <li>Look at the acme folder structure. You will see that the <b>model</b> and <b>library</b> folders are siblings to the accounts folder.
       <br>
       <img src="../images/acme/acme-structure-accounts.png" alt="Image of the acme folder structure">
@@ -67,7 +68,7 @@
      <br>Keep it as you will probably be needing it again.</p>
 
     <h3>Alter the Action Collection Code</h3>
-    <p>You should have a sequence of code to collect and store the value from the action key - value pair. It should look like the code example below:</p>
+    <p>You should have a sequence of code to collect and store the value from the action name - value pair. It should look like the code example below:</p>
     <pre class="callout no-left"><code>$action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
  $action = filter_input(INPUT_GET, 'action');
@@ -75,16 +76,15 @@ if ($action == NULL) {
   $action = 'home';
  }
 }</code></pre>
-    <p>We are going to leave most of it as it, but alter the last assignment statement. In this case, if there is no specific action we will redirect to the main acme controller and tell it to deliver the acme registration page. (<i>Remember in the MVC we always send requests to the controller and let it deliver the view)</i></p>
-    <p>Keep in mind you wrote your own code in the main acme controller to listen for a request to deliver the registration view for an earlier enhancement and so your code may need to be different than what you see here (e.g. your folder names may be different). It is the process of getting the main acme controller to deliver the registration view that we are trying to achieve, so be sure to test that it works.</p>
-    <pre class="callout no-left"><code>$action = filter_input(INPUT_POST, 'action');
-if ($action == NULL) {
- $action = filter_input(INPUT_GET, 'action');
- if ($action == NULL) {
-  header('location: /acme/index.php?action=reg');
-  exit;
- }
-}</code></pre>
+    <p>We are going to leave most of it as it, but alter the last assignment statement. In this case, if there is no specific action we will provide a value to deliver the acme login view. (<i>Remember in the MVC we always send requests to the controller and let it deliver the view)</i>. Alter the code so that it now looks like the code below:</p>
+    <code class="callout no-left">
+     $action = filter_input(INPUT_POST, 'action');<br>
+     if ($action == NULL) {<br>
+     &nbsp;$action = filter_input(INPUT_GET, 'action');<br>
+     &nbsp;if ($action == NULL) {<br>
+     &nbsp;&nbsp;action = 'signin');<br>
+     &nbsp;&nbsp;}<br>
+}</code>
 
     <h2>Alter the Control Structure</h2>
     <p>Finally we get to the switch control structure. For right now, leave the first case statement, but delete all the rest. When you're done it should look like this:</p>
@@ -93,7 +93,10 @@ if ($action == NULL) {
    include 'view/home.php';
    break;
 }</code></pre>
-    <p>Now we will change the value of the case statement and remove the include.</p>
+    <h2>What's Next?</h2>
+    <p>In Enhancement 3 you will create links pointing to this new "accounts" controller with name - value pairs that instruct the controller to deliver the login view and registration view. The code that currently exists in this controller will be modified and added to in order for the views to be delivered.</p>
+<!--
+    <p>Now we will change the value of the case statement to deliver the login view:</p>
     <ol>
      <li>The desired outcome is to handle a registration request by inserting data to the database.</li>
      <li>Remove "home" in the case statement.</li>
@@ -111,9 +114,10 @@ if ($action == NULL) {
 
     <h2>What's Next?</h2>
     <p>With the basics of the <b>accounts</b> controller in place we need to alter the <b>registration.php</b> view to point to this controller so that the registration data will be sent here.</p>
+-->
 
     <h2>Video Demonstration</h2>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/uhkHTCUpZEk" allowfullscreen></iframe>
+<!--    <iframe width="560" height="315" src="//www.youtube.com/embed/uhkHTCUpZEk" allowfullscreen></iframe>-->
    </article>
   </main>
   <footer>
