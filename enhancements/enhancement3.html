@@ -2,103 +2,105 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Enhancement 3 | Web Backend Development</title>
-  <meta name="description" content="CIT 336 Enhancement 3 directions">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Enhancement 3 | Web Backend Development</title>
+ <meta name="description" content="CIT 336 Enhancement 3 directions">
+ <meta name="viewport" content="width=device-width">
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
 
 <body>
-  <div id="main">
-    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-    <main>
-      <article id="article">
-        <h1>Enhancement 3</h1>
-        <h2>Purpose</h2>
-        <p>In this enhancement you will combine skills from the last two weeks to build a system into the acme web site that is capable of delivering both a registration and login view to a site visitor when the "My Account" link in the page header on the Acme site is clicked. This process will require use of the MVC architecture.</p>
-        <h2>Video Demo</h2>
-        <p>This short video demonstrates what your links and the flow of this enhancement could look like.</p>
-        <iframe width="560" height="315" src="//www.youtube.com/embed/uto3oeiJrEs" allowfullscreen></iframe>
+ <div id="main">
+  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <main>
+   <article id="article">
+    <h1>Enhancement 3</h1>
+    <h2>Purpose</h2>
+    <p>In this enhancement you will combine skills from the last two weeks to build a system into the acme web site that is capable of delivering both a registration and login view to a site visitor when the "My Account" link in the page header on the Acme site is clicked. This process will require use of the MVC architecture.</p>
+    <h2>Video Demo</h2>
+    <p>This short video demonstrates what your links and the flow of this enhancement could look like.</p>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/uto3oeiJrEs" allowfullscreen></iframe>
 
-        <h2>Tasks</h2>
+    <h2>Tasks</h2>
+    <ol>
+     <li>Work with your learning team to accomplish the tasks and post to and read the weekly discussion board to help one another.</li>
+     <li>Make sure your acme template is using the "<b>$navList</b>" variable to provide the navigation bar as directed in the "Build a Dynamic Navigation Menu" activity, prior to doing step 3.</li>
+     <li>Use your acme template to build a login view. The form will require the user to supply:
+      <ul>
+       <li>their email address</li>
+       <li>their password</li>
+      </ul>
+      <p>Make sure you use HTML5 and usability standards to build the view and form (e.g. use label elements with the input elements and use HTML5 input types for the input elements within the form).</p>
+      <p>Use CSS to style the form for professional appearance and usability.</p>
+      <p><strong>The form DOES NOT NEED TO ACTUALLY LOGIN AN INDIVIDUAL for this enhancement</strong>.</p>
+     </li>
+     <li>You will use your acme template to build a registration view. The view must contain a form that collects the following information from a site visitor:
+      <br>
+      <ul>
+       <li>First name</li>
+       <li>Last name</li>
+       <li>Email address</li>
+       <li>A password</li>
+      </ul>
+      <p>Ensure that the registrant understands that all fields are required.</p>
+      <p>Make sure you use HTML5 and usability standards to build the view and form (e.g. use label elements with the input elements and use HTML5 input types for the input elements within the form).</p>
+      <p>Use CSS to style the form for professional appearance and usability.</p>
+      <p><strong>The form DOES NOT NEED TO ACTUALLY REGISTER AN INDIVIDUAL for this enhancement</strong>.</p>
+     </li>
+     <li>Create a link in the acme template and the existing acme views (home, login, 500 error and registration) for the "My Account" item in the page header. The link must:
+      <ul>
+       <li>point to the acme controller, and</li>
+       <li>send a name-value (a.k.a key - value) pair (remember the "action" name or key from the activities?) as a parameter that tells the controller to deliver the login view.</li>
+      </ul>
+      <p><i>You may want to carefully study the links built in the dynamic navigation activity to see how the name-value pair is made part of the link.</i></p>
+     </li>
+     <li>Create a link in the login view that tells the user to click it if they have not yet registered. The link must:
+      <ul>
+       <li>point to the acme controller, and</li>
+       <li>pass a name - value pair that tells the controller to deliver the registration view.</li>
+      </ul>
+      <p>Make sure the link is large and obvious so that it is not overlooked and causes a site visitor confusion. See this example from target.com:<br><img src="../images/acme/target-signin.png" alt="Signin example from target.com"></p>
+     </li>
+    </ol>
+
+    <h2>Submission</h2>
+    <ul>
+     <li>Thoroughly test your links (in all views) and the revised header function (in the database connections file) to ensure that they point to the acme controller and that the correct views are delivered.</li>
+     <li>Validate all views for HTML5 validity.</li>
+     <li>Validate the CSS for validity.</li>
+     <li>Double check your work to ensure that it meets all of the expectations listed.</li>
+     <li>When satisfied that the code is operational:
+      <ol>
+       <li>Create a video that demonstrates:
         <ol>
-          <li>Work with your learning team to accomplish the tasks and post to and read the weekly discussion board to help one another.</li>
-          <li>Use your acme template to build a login view. The form will require the user to supply:
-            <ul>
-              <li>their email address</li>
-              <li>their password</li>
-            </ul>
-            <p>Make sure you use HTML5 and usability standards to build the view and form (e.g. use label elements with the input elements and use HTML5 input types for the input elements within the form).</p>
-            <p>Use CSS to style the form for professional appearance and usability.</p>
-            <p><strong>The form DOES NOT NEED TO ACTUALLY LOGIN AN INDIVIDUAL for this enhancement</strong>.</p>
-          </li>
-          <li>You will use your acme template to build a registration view. The view must contain a form that collects the following information from a site visitor:
-            <br>
-            <ul>
-              <li>First name</li>
-              <li>Last name</li>
-              <li>Email address</li>
-              <li>A password</li>
-            </ul>
-            <p>Ensure that the registrant understands that all fields are required.</p>
-            <p>Make sure you use HTML5 and usability standards to build the view and form (e.g. use label elements with the input elements and use HTML5 input types for the input elements within the form).</p>
-            <p>Use CSS to style the form for professional appearance and usability.</p>
-            <p><strong>The form DOES NOT NEED TO ACTUALLY REGISTER AN INDIVIDUAL for this enhancement</strong>.</p>
-          </li>
-          <li>Create a link in the acme template and the existing acme views (home, login, 500 error and registration) for the "My Account" item in the page header. The link must:
-            <ul>
-              <li>point to the acme controller, and</li>
-              <li>send a name-value (a.k.a key - value) pair (remember the "action" name or key from the activities?) as a parameter that tells the controller to deliver the login view.</li>
-            </ul>
-            <p><i>You may want to carefully study the links built in the dynamic navigation activity to see how the name-value pair is made part of the link.</i></p> </li>
-          <li>Create a link in the login view that tells the user to click it if they have not yet registered. The link must:
-            <ul>
-              <li>point to the acme controller, and</li>
-              <li>pass a name - value pair that tells the controller to deliver the registration view.</li>
-            </ul>
-            <p>Make sure the link is large and obvious so that it is not overlooked and causes a site visitor confusion. See this example from target.com:<br><img src="../images/acme/target-signin.png" alt="Signin example from target.com"></p>
-          </li>
+         <li>That each of the links in the views work.</li>
+         <li>That the home, login and registration views are valid html and css.</li>
         </ol>
+       </li>
+       <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
+       <li>Zip the acme folder and name it enhancement 3 (save this zip file outside of your web site)</li>
+       <li>Submit the zip file to the enhancement 3 assignment dropbox and add the video URL to the dropbox comment.</li>
+      </ol>
+     </li>
+    </ul>
 
-        <h2>Submission</h2>
-        <ul>
-          <li>Thoroughly test your links (in all views) and the revised header function (in the database connections file) to ensure that they point to the acme controller and that the correct views are delivered.</li>
-          <li>Validate all views for HTML5 validity.</li>
-          <li>Validate the CSS for validity.</li>
-          <li>Double check your work to ensure that it meets all of the expectations listed.</li>
-          <li>When satisfied that the code is operational:
-            <ol>
-              <li>Create a video that demonstrates:
-              <ol>
-                <li>That each of the links in the views work.</li>
-                <li>That the home, login and registration views are valid html and css.</li>
-                </ol>
-              </li>
-              <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
-              <li>Zip the acme folder and name it enhancement 3 (save this zip file outside of your web site)</li>
-              <li>Submit the zip file to the enhancement 3 assignment dropbox and add the video URL to the dropbox comment.</li>
-            </ol>
-          </li>
-        </ul>
-
-        <h2>Grading Matrix</h2>
-        <p>This enhancement has points in Objectives 1 and 3.</p>
-        <ul>
-          <li>All views are valid HTML5 - 5 points (minus 1 for each error found)</li>
-          <li>All views are valid CSS - 5 points (minus 1 for each error found)</li>
-          <li>The "My Account" link points to the controller and passes an appropriate name - value pair to request the login view and the view is delivered - 10 points (minus 3 points for each view that is missing this link)</li>
-          <li>The registration link in the login view points to the controller and passes an appropriate key - value pair to request the registration view and the view is delivered - 5 points (all or nothing)</li>
-          <li>The acme controller has additional and operable case statements to deliver the appropriate views according to the value of the $action variable - 5 points (all or nothing)</li>
-          <li>Total value of objective 1: <b>10 points</b></li>
-          <li>Total value of objective 3: <b>20 points</b></li>
-        </ul>
+    <h2>Grading Matrix</h2>
+    <p>This enhancement has points in Objectives 1 and 3.</p>
+    <ul>
+     <li>All views are valid HTML5 - 5 points (minus 1 for each error found)</li>
+     <li>All views are valid CSS - 5 points (minus 1 for each error found)</li>
+     <li>The "My Account" link points to the controller and passes an appropriate name - value pair to request the login view and the view is delivered - 10 points (minus 3 points for each view that is missing this link)</li>
+     <li>The registration link in the login view points to the controller and passes an appropriate key - value pair to request the registration view and the view is delivered - 5 points (all or nothing)</li>
+     <li>The acme controller has additional and operable case statements to deliver the appropriate views according to the value of the $action variable - 5 points (all or nothing)</li>
+     <li>Total value of objective 1: <b>10 points</b></li>
+     <li>Total value of objective 3: <b>20 points</b></li>
+    </ul>
 
 
-      </article>
-    </main>
-  </div>
-  <script src="../js/course.js"></script>
+   </article>
+  </main>
+ </div>
+ <script src="../js/course.js"></script>
 </body>
 
 </html>
