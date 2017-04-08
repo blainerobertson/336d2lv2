@@ -185,7 +185,7 @@ exit;</code>
     <ol>
      <li>Open your <b>home.php file</b></li>
      <li>Find your &lt;nav&gt; area.</li>
-     <li>Comment out any link structures that you may already have in place.</li>
+     <li>Comment out the modularization code that you should already have in place.</li>
      <li>Add the following code within the &lt;nav&gt;&lt;/nav&gt;:<br>
       <code class="callout no-left">
           &lt;?php echo $navList; ?&gt;
@@ -201,7 +201,7 @@ exit;</code>
     </ol>
 
     <h2>Apply to All</h2>
-    <p>When the dynamic navigation bar is working correctly in the home view, apply it to your template and error view as well!</p>
+    <p>When the dynamic navigation bar is working correctly in the home view, apply it to your template as well! The navigation bar will now be delivered from the controller, but the header and footer will continue to be delivered from the code snippet modules.</p>
 
     <h2>Video Demonstration</h2>
     <iframe width="560" height="315" src="//www.youtube.com/embed/PT2xuMR4OAg" allowfullscreen></iframe>
