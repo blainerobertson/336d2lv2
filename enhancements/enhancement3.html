@@ -19,7 +19,7 @@
     <p>In this enhancement you will combine skills from the last two weeks to build a system into the acme web site that is capable of delivering both a registration and login view to a site visitor when the "My Account" link in the page header on the Acme site is clicked. This process will require use of the MVC architecture.</p>
     <h2>Video Demo</h2>
     <p>This short video demonstrates what your links and the flow of this enhancement could look like.</p>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/uto3oeiJrEs" allowfullscreen></iframe>
+<!--    <iframe width="560" height="315" src="//www.youtube.com/embed/uto3oeiJrEs" allowfullscreen></iframe>-->
 
     <h2>Tasks</h2>
     <ol>
@@ -50,9 +50,8 @@
      <!--     The views are done, build the functionality  -->
      <li>Create a link in the header code snippet module for the "My Account" item. By doing it here, the link should appear in the acme template and all existing views (home, login, 500 error and registration).</li>
      <li>The link must point to the "<b>accounts</b>" controller and send a name-value (a.k.a. key - value) pair (remember the "action" name or key from the activities?) as a parameter that tells the controller to deliver the login view. <i>You may want to carefully study the links built in the dynamic navigation activity to see how the name-value pair is made part of the link.</i></li>
-     <li>Alter the <b>accounts</b> controller to make the delivery request of the login view the default value of the <b>$action</b> variable (if no other value is found).</li>
-     <li>Alter the existing switch case statement in the accounts controller to react to the "login" request and deliver the login view from the <b>view</b> folder.</li>
-     <li>Create a link in the login view that tells the client to click it if they have not yet registered or need to create an account. The link must:
+     <li>Alter the existing switch case statement in the accounts controller to react to the "login" request and deliver the login view from the <b>view</b> folder using an "include".</li>
+     <li>Return to the login view and create a link in the login view that tells the client to click it if they have not yet registered and need to create an account. The link must:
       <ul>
        <li>point to the "accounts" controller, and</li>
        <li>pass a name - value pair that tells the controller to deliver the registration view.</li>
@@ -105,9 +104,9 @@
     </ul>
     <h3>Objective 3 Items</h3>
     <ul>
-     <li>The "My Account" link points to the accounts controller and passes an appropriate name - value pair to request the login view and the view is delivered - 10 points (minus 3 points for each view that is missing this link)</li>
+     <li>The "My Account" link in the home, login and registration views point to the accounts controller and passes an appropriate name - value pair to request the login view and the view is delivered - 10 points (minus 3 points for each view that is missing this link or minus 10 points if the link doesn't work)</li>
      <li>The registration link in the login view points to the accounts controller and passes an appropriate name - value pair to request the registration view and the view is delivered - 5 points (all or nothing)</li>
-     <li>The accounts controller has additional and operable case statements to deliver the appropriate views according to the value of the $action variable - 5 points (all or nothing)</li>
+     <li>The accounts controller has operable case statements to deliver the appropriate views according to the value of the $action variable - 5 points (all or nothing)</li>
      <li>Total value of objective 3: <b>20 points</b></li>
     </ul>
 
