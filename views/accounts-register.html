@@ -66,7 +66,7 @@
 
         <h3>An Explanation</h3>
         <p>If you were watching carefully, you may have asked yourself, "Wait a second, the registration view is in the <b>view</b> folder. So why doesn't the action path include a "../" to go up one level?"</p>
-        <p>The answer is "scope". The registration view will be "included" into the acme controller's (<b>index.php</b>) scope. That means that PHP considers it to be at the root level already. So, when the "Register" button is clicked it just has to find the <b>accounts</b> folder and then dive inside of it to find the controller.</p>
+        <p>The answer is "scope". The registration view will be "included" into the account controller's (<b>index.php</b>) scope. That means that PHP considers it to be at the account folder root level already. So, when the "Register" button is clicked it just has to find the <b>accounts</b> folder and then dive inside of it to find the controller. To make our path more robust (read unbreakable) we are using a full path from the root of our site all the way to the controller we want. When writing HTML pathes this is recommended.</p>
 
         <h2>Prepare for Errors</h2>
         <p>The last thing we will do is add a PHP code block just before the opening <code>&lt;form&gt;</code> tag to show any messages that may need to be displayed. Do the following:</p>
