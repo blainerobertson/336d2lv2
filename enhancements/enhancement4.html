@@ -53,7 +53,7 @@
         <p> This list element will be used in the "add product" view to provide a list of categories that already exist in the database.</p>
         <p><i>(Hint #1: think of how you built the dynamic navigation earlier and did it in such a way that it would be available to any view.) (Hint #2: you could alter the existing getCategories() function to also select the catId from the database and use it in building the drop-down select list)</i></p>
        </li>
-       <li>Watch for and capture key-value pairs for decision making.</li>
+       <li>Watch for and capture name-value pairs for decision making.</li>
        <li>Contain control structures to deliver views (discussed below).</li>
        <li>Contain control structures to process requests to add new categories to the categories table and products to the inventory table.</li>
        <li>The controller should return data check error messages to the view from which the data was sent.</li>
@@ -66,7 +66,7 @@
        <li>Contain a function for inserting a new product to the inventory table.</li>
       </ul>
      </li>
-     <li>Create a "product management" view using the acme template that is delivered by default when the product controller is accessed without a key - value pair.
+     <li>Create a "product management" view using the acme template that is delivered by default when the product controller is accessed without a name - value pair.
       <ul>
        <li>This view must contain two links:
         <ol>
@@ -81,7 +81,7 @@
        <li>Contain a form for adding a new category (you will only need to add the name, the id in the table is auto-incrementing).</li>
        <li>The form must send all data to the products controller for checking and insertion to the database.</li>
        <li>The view must have the means of displaying messages returned to it from the controller.</li>
-       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no key - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu.</li>
+       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu.</li>
       </ul>
      </li>
      <li>Create an "add product" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
@@ -100,7 +100,7 @@
     <h2>Submission</h2>
 
     <ul>
-     <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.</li>
+     <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another. <b>DO NOT WAIT UNTIL THE SECOND WEEK TO DO THIS! GET STARTED EARLY!</b></li>
      <li>Build, run and test the application to insert the new categories and products using the products controller, with its associated models and views thoroughly.</li>
      <li>Check your work to ensure that it meets all of the expectations listed.</li>
      <li>When satisfied that the code is operational:
@@ -127,7 +127,7 @@
 
     <h3>Objective 2</h3>
     <ul>
-     <li>The products controller contains control structures that correctly deliver views (based on key - value pairs being delivered to it): 3 points (1 point each for the three views in the products application)</li>
+     <li>The products controller contains control structures that correctly deliver views (based on name - value pairs being delivered to it): 3 points (1 point each for the three views in the products application)</li>
      <li>The products controller contains control structures that correctly process the new category and new product insertion requests: 6 points (3 points each for the processes)</li>
      <li>Total value for Objective 2: <b>9 points</b></li>
     </ul>
