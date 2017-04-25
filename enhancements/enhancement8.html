@@ -31,7 +31,7 @@
 
     <h2>Tasks</h2>
     <ol>
-     <li>Alter the <b>buildProductsDisplay()</b> function in the <b>functions.php</b> file to add a link(s) that, when clicked, sends two name-value pairs to the products controller. One name-value pair must trigger a new control structure to get information about a product. The second name-value pair must indicate the specific product. Suggestion: look at how e-commerce sites such as amazon.com do it (typically both the item name and image are clickable).</li>
+     <li>Alter the <b>buildProductsDisplay()</b> function in the <b>functions.php</b> file to add a link(s) that, when clicked, sends two name-value pairs to the products controller. One name-value pair must trigger a new control structure to get information about a product. The second name-value pair must indicate the specific product (Hint: What is identifier that is <b>unique</b> to each inventory item? Use it as the value in the name - value pair). Suggestion: look at how e-commerce sites such as amazon.com do it (typically both the item name and image are clickable).</li>
      <li>Add a new control structure to the product controller that will handle the process of getting a specific product's information in order to deliver it to a product detail view. If no product can be found, a message must be set to that effect and the message will be sent to the view instead of the product information.</li>
      <li>Build a function in the "products model" to retrieve information about a specific inventory item and return it to the controller.</li>
      <li>Build a custom function in the <b>functions.php</b> file that will take the specific item's information and wrap it up in HTML to deliver to the view, specifically:
