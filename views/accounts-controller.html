@@ -117,6 +117,14 @@
             </code> You've seen the filter_input before. It "filters" or attempts to remove code that could do us harm. We will add to this code in the future. <i>To be clear, the filter_input does the filtering, by looking into the POST object (remember that we told our form to use "post" to send the data), and it is looking for a name - value pair where the name is "name" and it has a value of "firstname" or "lastname" etc.... When found, it stores the value (what the site visitor typed into the input field) into the variable.</i>
     </p>
 
+    <h2>Naming Variables</h2>
+    <p>In an earlier document, it was mentioned that variables should have meaninful names. But, what determines meaning? There are at least two ways of determining "meaning" when it comes to variables in dynamic web sites:</p>
+    <ol>
+     <li>The variable matches the "name" of the name - value pair (e.g. in a form input the name is "firstname" and so we create a variable of $firstname to hold the value from the name - value pair).</li>
+     <li>The variable matches or reflects the database field name where the data is stored (e.g. the <b>clients</b> table stores first names in a field named "clientFirstname", therefore we could create a variable named $clientFirstname or $clientFirst or $firstname - again, it can be a match or a reflection).</li>
+    </ol>
+    <p>In any case, variable names should be <b>consistent across all uses</b> and should definately <b>reflect the actual values stored in them</b>.</p>
+
     <h2>Check for Missing Data</h2>
     <p>We will use some simple PHP "empty" functions to see if any of our variables are missing data. Write the following code after creating two empty lines:
      <code class="callout no-left">
