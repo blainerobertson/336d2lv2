@@ -18,7 +18,7 @@
     <h2>Description</h2>
     <p>PHP and MySQL databases are commonly used together. In order for PHP to interact with a database server a library of extensions or add-ons is needed. There were three such libraries of functions available: Mysql, Mysqli and PDO. <strong>The MySQL library is deprecated (dead) and should NOT be used.</strong> Of the two remaining, PDO is the newest and is widely supported. Because of this, all exercises and connections in web sites should use a PHP Data Object (PDO) to connect to the database server and interact with those databases stored on the server.</p>
     <p>The PDO connection object calls for four required parameters: the server name, the database name, the username and the password. However, the server name and database name are combined into a <q>Data Source Name</q> <abbr title='Data Source Name'>DSN</abbr>. In PDO the DSN indicates the type of database being connected to - in this case a <i>MySQL</i> database as indicated in the code examples below. Beyond the required parameters an additional parameter may also be included. In the code example below a connection to a specific database running on a specific server using the required information and includes an optional parameter to tell the server how errors should be handled. You will note that the connectivity is assigned to a connection object described using a variable named <strong>$link</strong> (<i>the variable name can be anything</i>). Once the connection is working, this file is called into other files which need to access the database (most commonly the model within the M-V-C design pattern). This call is typically performed using either the <i>require</i> or <i>require_once</i> functions. </p>
-    <h2>Generic PDO Connection Example</h2>
+    <h2>Generic PDO Connection Function</h2>
     <p>This example shows the PDO connection within a function, it can be created outside of a function if desired.</p>
     <code class="callout no-left">
 function createConnection(){<br>
@@ -43,7 +43,7 @@ function createConnection(){<br>
     <p>Whenever an interaction is taking place between the PHP and Database servers there is always the possibility of an error occurring. To do something with these possible errors and make them more user friendly (and hacker unfriendly) we "intercept" them. That is the reason for the <b>Try - Catch</b> syntax shown above. The connection piece in the try structure attempts to create the connection to the database server. If that fails, then the Catch structure captures the error and handles it.</p>
     <p>If a connection error occurs we can then do something about it: show an error message (when we are testing and debugging such as in the example above), or do a redirect to a more generic notice (in an actual production situation). The example below shows an actual example using the connection example demonstrated above. </p>
 
-    <h2>An example PDO Connection</h2>
+    <h2>Example PDO Connection Function</h2>
     <code class="callout no-left">
      function acmeConnect(){<br>
      $server = 'localhost';<br>
