@@ -180,8 +180,8 @@ input:required:invalid, input:focus:invalid {<br>
         <ol>
         <li>Save the registration view and make sure your servers are running.</li>
           <li>Launch the acme home page and navigate to the registration view.</li>
-          <li>Try submitting the view with no data. It should not allow it (as long as you are not using Safari).</li>
-          <li>Then try submitting the view with broken data in the email and password fields. Again, the form should stop and tell you to fix errors (as long as you are not using Safari).</li>
+          <li>Try submitting the view with no data. It should not allow it (as long as you are not using Safari or have not turned on the novalidate! bookmarklet).</li>
+          <li>Then try submitting the view with broken data in the email and password fields. Again, the form should stop and tell you to fix errors (as long as you not disabled the client-side validation).</li>
           <li>Finally, try submitting the form with good data. This time no errors should appear.</li>
         </ol>
 
@@ -198,14 +198,14 @@ input:required:invalid, input:focus:invalid {<br>
         <ol>
           <li>Save the login view and make sure your servers are running.</li>
           <li>Launch the acme home page and navigate to the login view.</li>
-          <li>Try submitting the view with no data. It should not allow it (as long as you are not using Safari).</li>
-          <li>Then try submitting the view with broken data in the email and password fields. Again, the form should stop and tell you to fix errors (as long as you are not using Safari).</li>
+          <li>Try submitting the view with no data. It should not allow it (as long as the client-side validation can operate).</li>
+          <li>Then try submitting the view with broken data in the email and password fields. Again, the form should stop and tell you to fix errors (as long as the client-side validation can operate).</li>
           <li>Finally, try submitting the form with good data. This time no errors should appear.</li>
         </ol>
 
         <h2>Summary</h2>
         <p>As you have seen, with relatively little effort we can add HTML attributes and values to forms to make sure data is the right kind in most cases or at least not missing in others.</p>
-        <p>The "fly in the ointment" is the Safari browser. Of all modern browsers it is the only one that does not support this functionality. As a result, we cannot rely solely on client-side validation, we <b>MUST</b> also have "server-side" validation and that is what we use PHP for on the server.</p>
+        <p>The "fly in the ointment" is the Safari browser. Of all modern browsers it is the only one that does not support this functionality. In additon, using tools such as the novalidate! bookmarklet (the installation of which will be done in its own activity this week) can disable client-side validation. As a result, we cannot rely solely on client-side validation, we <b>MUST</b> also have "server-side" validation and that is what we use PHP for on the server.</p>
 
         <h2>Video Demonstration</h2>
         <iframe width="560" height="315" src="//www.youtube.com/embed/GNmBaW1oUTI" allowfullscreen></iframe>
