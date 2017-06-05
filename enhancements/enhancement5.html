@@ -38,7 +38,7 @@
     <h3>Client-side Validation</h3>
     <ol>
      <li>Add HTML5 attributes as needed to the various input elements in the "<b>new category</b>" and "<b>new product</b>" forms. Make sure that each input's data type is also appropriate to the data being requested.</li>
-     <li>Add a PHP code block to each input in the "<b>new category</b>" and "<b>new product</b>" form so that the forms become "sticky" if and when errors in submissions are returned.</li>
+     <li>Add a PHP code block to each input in the "<b>new product</b>" form so that the form inputs become "sticky" if and when errors in submissions are returned.</li>
      <li><strong>Note:</strong> To display the value of a variable in a <code>textarea</code> element, it must be echoed between the opening and closing tags.</li>
     </ol>
     <h3>Server-side Validation</h3>
@@ -46,7 +46,7 @@
     <p>In the "<b>products</b>" controller add server-side validation to both the "add new category" and "add new product" processes. Specifically:</p>
     <ol>
      <li>Use a require_once to get the functionality of the "<b>functions.php</b>" page and make it available to this controller.</li>
-     <li>Make sure the filter_input functions are using appropriate flags for the data being collected.</li>
+     <li>Make sure the filter_input functions are using appropriate flags for the data being collected (all incoming data must be filtered using an appropriate flag).</li>
      <li>If any specific patterns were used in the Native HTML5 validation, make sure that those patterns are duplicated using PHP.</li>
      <li>If you create custom functions for any part of the server-side validation, make sure they are created in the "<b>functions.php</b>" page and labeled.</li>
      <li>To dynamically select the correct category in the "add new product" view when returning errors from server-side validation you will want to watch and follow along with this video:<br>
@@ -63,9 +63,7 @@
      <li>Thoroughly test to make sure that the function works so the navigation bar works in all views.</li>
     </ol>
 
-
     <h2>Submission</h2>
-
     <ul>
      <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.</li>
      <li>Build, run and test to make sure the client-side and server-side validation works.</li>
@@ -95,7 +93,7 @@
      <li>The "<b>functions.php</b>" page contains the new function for creating the navigation list: 2 points (all or nothing)</li>
      <li>All controllers have replaced the previous navigation list construction code with a call to the new function for building the same code from the functions.php page: 3 points (1 point for each controller)</li>
      <li>The navigation builder custom function is fully operational and the navigation continues in all views where needed: 10 points (minus 5 for each view that is not operational).</li>
-     <li>The PHP server-side validation code is fully operational: 5 points (all or nothing)</li>
+     <li>The PHP server-side validation code is fully operational for both the "new category" and "new product" forms: 5 points (all or nothing)</li>
      <li>Total value for Objective 2: <b>20 points</b></li>
     </ul>
 
@@ -103,9 +101,8 @@
     <ul>
      <li>HTML client-side validation is present and operational for all required inputs in both the "add new category" and "add new product" forms: 10 points (minus 1 point for each missing or non-operational input)</li>
      <li>Data flags have been added to the filter_input functions in the products controller: 5 points (minus 1 for each missing or incorrect flag)</li>
-     <li>Missing data from the "new category" view is successfully detected and returned to the view for correction and the form input is "sticky": 2 points (all or nothing)</li>
      <li>Missing data from the "new product" view is successfully detected and returned to the view for correction and the form inputs are "sticky": 10 points (minus 1 for each error or input that is not sticky)</li>
-     <li>Total value for Objective 5: <b>27 points</b></li>
+     <li>Total value for Objective 5: <b>25 points</b></li>
     </ul>
 
     <h3>Objective 6</h3>
@@ -113,7 +110,7 @@
     <ul>
      <li>Shows that both views are valid HTML5: 2 points (all or nothing) </li>
      <li>Shows that both the client-side and server-side validations work in the "add category" and "add product" views: 2 points (all or nothing)</li>
-     <li>Shows the new functions, where they are called in the controllers and that they work: 2 points (all or nothing)</li>
+     <li>Shows the new navigation function, where it is called in the controllers and that the function works: 2 points (all or nothing)</li>
      <li>Total value for Objective 6: <b>6 points</b></li>
     </ul>
 
