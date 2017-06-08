@@ -16,7 +16,7 @@
   <main>
    <article id="article">
     <h1>Server-Side Validation</h1>
-    <p>In the client-side validation activity you saw that the <b>Safari</b> browser does not support native HTML5 validation methods. Also, that when the novalidate! bookmarklet is used, that native HTML validation is disabled. You need to also recognize that even if you use JavaScript validation instead, that JavaScript can be disabled in the browser. Therefore, client-side validation <strong>is not enough!</strong></p>
+    <p>In the client-side validation activity you read that client-side validation can be by-passed. When tools like the novalidate! bookmarklet are used native HTML validation is disabled. You need to also recognize that even if you use JavaScript validation instead, that JavaScript can be disabled in the browser. Therefore, client-side validation <strong>is not enough!</strong></p>
 
     <p>Server-side validation is writing equivalent rules using PHP on the server in order to double check incoming data to make sure that it meets the same requirements that we asked the browser to check. That is what we will do in this activity. In addition, we will add some additional functionality to make sure errors can be corrected more easily.</p>
 
@@ -25,7 +25,7 @@
 
     <ol>
      <li>Find and open the accounts controller.</li>
-     <li>Locate the four <code>filter_input</code> functions. We will add the data type check to each to indicate the type of data we will allow for each.
+     <li>Locate the four <code>filter_input</code> functions used with the incoming data for the registration process. We will add the data type check to each to indicate the type of data we will allow for each.
       <ul>
        <li>Click after the closing quote for firstname.</li>
        <li>Add a comma and a space</li>
@@ -36,30 +36,27 @@
        <li>Repeat the same process for the password input. When done the three inputs should look similar to this:
         <code class="callout no-left">
                 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);</code></li>
-       <li>Because the email input represents a special case we will handle it differently.</li>
+       <li>Because the email input represents a special type of string you will add a different flag to it. Use the <b>FILTER_SANITIZE_EMAIL</b> flag for it. When done, the email input should look like this:<br>
+        <code class="callout no-left">
+         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);</code>.</li>
+        <li>Then, just to be sure, we will add an additional check to the email.</li>
       </ul>
      </li>
     </ol>
 
     <h2>Create a Custom Function</h2>
-    <p>We will create a function just for the email addresses. It will 1) remove anything that shouldn't be part of an email address and 2) check if what's left is an email address.</p>
+    <p>We will create a function just for the email addresses. It will check the value of the $email variable, after having been sanitized, to see if it "looks" like a valid email address.</p>
 
     <ol>
      <li>Create a new PHP file in the <b>library</b> folder, named "<b>functions.php</b>".</li>
      <li>This file will become a library of custom functions that we will use in our code to perform a variety of tasks.</li>
      <li>In the "<b>functions.php</b>" file create a new function named "<b>checkEmail($email)</b>"</li>
-     <li>Inside the function we will do the two processes mentioned.
-      <ol>
-       <li>Take the $email variable and sanitize it to remove anything that shouldn't be there.</li>
-       <li>Take the sanitized email address and check it for validity.</li>
-      </ol>
-     </li>
-     <li>The end result will be returned. It will be one of two values: 1) the actual, valid email address or 2) <code>NULL</code>.</li>
+     <li>Inside the function we will add the code to do the check that was mentioned.</li>
+     <li>The end result will be returned. It will be one of two values: 1) The actual email address will be returned if it is judged to be "valid", or 2) NULL - indicating the email does not appear to be a valid address.</li>
      <li>The finished function should look something like this:
       <code class="callout no-left">
             function checkEmail($email){<br>
-            &nbsp;&nbsp;$sanEmail = filter_var($email, FILTER_SANITIZE_EMAIL);<br>
-            &nbsp;&nbsp;$valEmail = filter_var($sanEmail, FILTER_VALIDATE_EMAIL);<br>
+            &nbsp;&nbsp;$valEmail = filter_var($email, FILTER_VALIDATE_EMAIL);<br>
             &nbsp;&nbsp;return $valEmail;<br>
             }
             </code>
@@ -133,8 +130,9 @@
     <h2>A Recap</h2>
     <ul>
      <li>To this point we have told three of the filter_input functions that the data being filtered is to be treated as text and any HTML tags are to be removed - <code>FILTER_SANITIZE_STRING</code>.</li>
+     <li>We then added a different filter flag to the email input to sanitize anything out that shouldn't be there using <code>FILTER_SANITIZE_EMAIL</code>.</li>
      <li>We then created a new PHP file in the "<b>library</b>" folder specifically to store custom functions - "<b>functions.php</b>".</li>
-     <li>In the <b>functions.php</b> file we have created two custom functions: 1) to sanitize and validate an email address - <code>checkEmail()</code> - and, 2) to check a password that it meets specific requirements - <code>checkPassword()</code>.</li>
+     <li>In the <b>functions.php</b> file we have created two custom functions: 1) to validate an email address - <code>checkEmail()</code> - and, 2) to check a password that it meets specific requirements - <code>checkPassword()</code>.</li>
      <li>In the <b>accounts</b> controller we added a <code>require_once</code> to bring the <b>functions.php</b> page into the controller's scope.</li>
      <li>In the <b>accounts</b> controller we used the two new functions on our <code>$email</code> and <code>$password</code> variables.</li>
      <li>With this done the values in the variables should be either "acceptable" or not. Our existing "<code>empty()</code>" functions should still work. Why? Because the "<code>empty()</code>" function works with a value of zero (what the checkPassword() will return) and NULL (what the checkEmail() will return) if they fail! Cool huh?!</li>
@@ -161,7 +159,7 @@
     </ol>
 
     <h2>Time to Test</h2>
-    <p>Testing this code can be tricky because we have already implemented the client-side validation. The easiest way is to use Safari to make mistakes with the registration form (remember that Safari doesn't support HTML5 validation) and let the PHP code do its job and watch the results. However, another way is to comment out or temporarily delete the "required" attribute in your registration inputs. Then, fill in the form incorrectly and submit it to the controller. See what happens. I demonstrate this in the video below.</p>
+    <p>Testing this code can be tricky because we have already implemented the client-side validation. The easiest way is to use the novalidate! bookmarklet (installed into your browser in a separate activity this week). Fill out the form incorrectly or not completely, then click the <b>novalidate!</b> tool to turn off the client-side validation. Then, fill in the form incorrectly and submit it to the controller. See what happens. I demonstrate this in the video below.</p>
 
     <h2>Example Video</h2>
     <iframe width="560" height="315" src="//www.youtube.com/embed/JC_gglJpCcU" allowfullscreen></iframe>
@@ -205,7 +203,7 @@
             </code>
      </li>
      <li>Inside the case statment, filter and store the two data inputs into variables, just as you did in the registration process.</li>
-     <li>Sanitize and validate the email variable using your custom function just as you did in the registration process.</li>
+     <li>Validate the email variable using your custom function just as you did in the registration process.</li>
      <li>Check the format of the password using your custom function just as you did in the registration process.</li>
      <li>Check if either of the variables are empty and if they are, set a message and call the login view using a PHP include function so the error message is displayed in the view and the email address (if valid) is displayed in the email input field.</li>
      <li>Test to ensure that the login's client-side and server-side checks work.</li>
