@@ -43,8 +43,9 @@
     <p>We are going to modify the "switch" to handle the request to register a new site visitor.</p>
     <ol>
      <li>Scroll down to the "switch" control structure.</li>
-     <li>There should be only one case statement (e.g. <code>case 'register':</code>).</li>
-     <li>We want to make sure this matches the name - value pair in the registration view. So, to double check:
+     <li>There should be two case statements &mdash; one to deliver the login view and one to deliver the registration view.</li>
+     <li>You will add a new case statement to actually process data that is submitted to register a new client.</li>
+     <li>We want to make sure the new case matches the name - value pair in the registration view that is sent to the controller to trigger the new registration attempt. So, to double check:
       <ul>
        <li>Find and open the <b>registration.php</b> view in the <b>view</b> folder.</li>
        <li>Scroll to the bottom of the form and find the hidden input.</li>
