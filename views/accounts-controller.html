@@ -71,12 +71,11 @@
     <h3>Time to Test</h3>
     <p>We want to make sure that everything is working to this point. So, please do the following:</p>
     <ol>
-     <li>In the case statement add an echo that indicates that this case has worked. When done the case should look similar to this:
-      <code class="callout no-left">switch ($action) {<br>
+     <li>In the case statement add an echo that indicates that this case has worked. When done the case should look similar to this (keep in mind there will be other code within the switch):
+      <code class="callout no-left">
             &nbsp;case 'register':<br>
             &nbsp;echo 'You are in the register case statement.';<br>
-            &nbsp;break;<br>
-            }</code>
+            &nbsp;break;</code>
      </li>
      <li>Save the controller file.</li>
      <li>Make sure your Apache and Database servers are running.</li>
@@ -229,7 +228,7 @@
      <li>If things failed, check your code against the finished code shown below and ask for help until it is working.</li>
     </ol>
     <h2>The accounts Controller</h2>
-    <p>Please keep in mind that the file and folder names shown in this code may not match your names.</p>
+    <p>Please keep in mind that the file and folder names shown in this code may not match your names. <b>In addition, note that the code here is only for this activity, it does not include code written previously to deliver the login or registration views.</b></p>
     <code class="callout no-left">
 &lt;?php<br>
 
@@ -264,6 +263,9 @@
           }<br>
           <br>
           switch ($action) {<br>
+          <br>
+          // Code to deliver the views will probably be here<br>
+          <br>
           case 'register':<br>
           // Filter and store the data<br>
           &nbsp;&nbsp;$firstname = filter_input(INPUT_POST, 'firstname');<br>
