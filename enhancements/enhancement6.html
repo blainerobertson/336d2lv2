@@ -42,11 +42,12 @@
     <ol>
      <li>Use your acme template to create a new view in the "<b>view</b>" folder named "<b>admin.php</b>".</li>
      <li>Add a PHP code block to the top of the view (before the doctype declaration) but make sure there are no empty spaces or lines between the end of the PHP code block and the start of the doctype declaration!</li>
+     <li>Add a case statement to the accounts controller that will deliver the admin.php view.</li>
     </ol>
 
     <h3>Check for Login</h3>
     <ol>
-     <li>In the PHP code block at the top of the view, write an <code>if()</code> test to see if the visitor is NOT logged in. If the visitor is NOT logged in, use a header function to send them to the main acme controller.</li>
+     <li>In the PHP code block at the top of the admin.php view, write an <code>if()</code> test to see if the visitor is NOT logged in. If the visitor is NOT logged in, use a header function to send them to the main acme controller.</li>
     </ol>
 
     <h3>Display SESSION data</h3>
@@ -89,7 +90,7 @@
     </ol>
 
     <h3>Extra Credit Code</h3>
-    <p>For 5 points of extra credit, add code to each of the "product" views (product management, new product and new category) that checks that a client is both "loggedin" AND has a clientLevel greater than "1" to access the view. If not, redirect the client back to the acme controller to deliver the acme home view.</p>
+    <p>For 5 points of extra credit, add code to each of the "product" views (product management, new product and new category) that checks that a client is "loggedin" AND has a clientLevel greater than "1" to access the view. If not, redirect the client back to the acme controller to deliver the acme home view.</p>
 
     <h2>Test, Test, Test</h2>
     <p>Be sure to complete all tasks and then test that they work.</p>
@@ -115,7 +116,6 @@
          <li>Logging out.</li>
          <li>Logging in as a level "3" user and the appearance of the Products link.</li>
          <li>Click the products link to show that the products management view is delivered.</li>
-         <li>If you did the extra credit, show the code you included into the product views to make sure entry is allowed only for being logged in AND having a clientLevel greater than "1".</li>
         </ul>
        </li>
        <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
@@ -152,10 +152,9 @@
        <li>Logging out.</li>
        <li>Logging in as a level "3" user and the appearance of the Products link.</li>
        <li>Click the products link to show that the products management view is delivered.</li>
-       <li>If you did the extra credit, show the code you included into the product views to make sure entry is allowed only for being logged in AND having a clientLevel greater than "1".</li>
       </ul>
      </li>
-     <li>1 point will be deducted for each missing item, with the exception of the extra credit code.</li>
+     <li>1 point will be deducted for each missing item.</li>
      <li>Total value for Objective 6: <b>6 points</b></li>
     </ul>
 
