@@ -62,7 +62,7 @@
               &nbsp;$prodDesc = filter_input(INPUT_POST, 'prodDesc', FILTER_SANITIZE_STRING);<br>
               &nbsp;$prodImg = filter_input(INPUT_POST, 'prodImg', FILTER_SANITIZE_STRING);<br>
               &nbsp;$prodThumb = filter_input(INPUT_POST, 'prodThumb', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT);<br>
+              &nbsp;$prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);<br>
               &nbsp;$prodStock = filter_input(INPUT_POST, 'prodStock', FILTER_SANITIZE_NUMBER_INT);<br>
               &nbsp;$prodSize = filter_input(INPUT_POST, 'prodSize', FILTER_SANITIZE_NUMBER_INT);<br>
               &nbsp;$prodWeight = filter_input(INPUT_POST, 'prodWeight', FILTER_SANITIZE_NUMBER_INT);<br>
@@ -170,7 +170,7 @@
      &nbsp;$prodDesc = filter_input(INPUT_POST, 'prodDesc', FILTER_SANITIZE_STRING);<br>
      &nbsp;$prodImg = filter_input(INPUT_POST, 'prodImg', FILTER_SANITIZE_STRING);<br>
      &nbsp;$prodThumb = filter_input(INPUT_POST, 'prodThumb', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT);<br>
+     &nbsp;$prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);<br>
      &nbsp;$prodStock = filter_input(INPUT_POST, 'prodStock', FILTER_SANITIZE_NUMBER_INT);<br>
      &nbsp;$prodSize = filter_input(INPUT_POST, 'prodSize', FILTER_SANITIZE_NUMBER_INT);<br>
      &nbsp;$prodWeight = filter_input(INPUT_POST, 'prodWeight', FILTER_SANITIZE_NUMBER_INT);<br>
