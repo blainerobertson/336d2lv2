@@ -23,7 +23,7 @@
     <ol>
      <li>Alter the current "admin" view to be more informative to clients.</li>
      <li>Add a link to the "admin" view that will deliver a view to update account information.</li>
-     <li>Build the "update account" view so clients can update their registration data (first name, last name, email) or change their password.</li>
+     <li>Build the "update account" view so clients can update their registration data (first name, last name, email) or change their password. <mark><b>Note:</b> These will be separate processes, think <i>OR</i> not <i>AND</i>.</mark></li>
      <li>Add functionality to the accounts controller and account model to handle the updates.</li>
     </ol>
 
@@ -32,15 +32,15 @@
     <iframe width="560" height="315" src="//www.youtube.com/embed/YrOan61bH4M" allowfullscreen></iframe>
 
     <h2>Tasks</h2>
-    <p>As described above you are being asked to use CRUD functionality for client data. Specifically:</p>
+    <p>As described above you are being asked to implement <abbr title="CREATE, READ, UPDATE, DELETE">CRUD</abbr> functionality for client data. Specifically:</p>
 
     <h3>admin.php View</h3>
-    <p>When a client logs in they are taken to an "<b>admin.php</b>" view where their data is displayed as text. You will make several minor changes to this view:</p>
+    <p>When a client logs in they are taken to the "<b>admin.php</b>" view where their data is displayed as text. You will make several minor changes to this view:</p>
     <ol>
      <li>Remove the client level data from displaying in the view (do NOT display it at all).</li>
      <li>Add text indicating to the client that they are "logged in".</li>
      <li>Add an "update account information" link to the view so a client can update their information. The link must direct to the "accounts controller" and pass a name - value pair to deliver the update view. Make sure the link is visible and clear for all clients.</li>
-     <li>Add an HTML heading to preceed the "products" link and a brief explanation telling administrative clients that they should use the link to administer products (The heading, explanation and products link should be visible only to administrative clients, not to non-administrative clients).</li>
+     <li>Add an HTML heading to preceed the "products" link and a brief explanation telling administrative clients that they should use the link to administer products (The heading, explanation and products link should be visible only to administrative clients (those with a clientLevel greater than 1), not to non-administrative clients.</li>
      <li>Add PHP code to display a message from the session if one exists. Make it display below the &lt;h1&gt; heading but above the account information display.</li>
     </ol>
 
@@ -53,7 +53,7 @@
     </ol>
     <h4>Account Update Form</h4>
     <ol>
-     <li>Add the first form and display each of the three items from the client information session array (first name, last name, email address) in an appropriate input field, with an accompanying label.</li>
+     <li>Add the first form and display, from the <b>client information session array</b>, the client's first name, last name and email address in an appropriate input field for editting. Be sure that each input has an accompanying label element.</li>
      <li>Each of the three inputs must also be "sticky" if errors are returned from the controller during server-side validation.</li>
      <li>All three fields are required and all three must be checked using both client-side and server-side validation.</li>
      <li>Make the client Id (also from the clientInfo session array) a hidden field with an appropriate name - value pair.</li>
@@ -65,37 +65,47 @@
     <h4>Change Password Form</h4>
     <ol>
      <li>Add the second form, completely separate from the first.</li>
+     <li>Do NOT display the password in the input (it is a hash anyway and wouldn't make any sense) field.</li>
      <li>Include a form input and accompanying label for entering a new password. Use the same validation for it as you did for the password field in the original registration form.</li>
      <li>Provide information to the client to know that by entering a password it will change the current password and reminding them of the requirements for a password (length, characters, etc...).</li>
      <li>Make the client Id (also from the clientInfo session array) a hidden field with an appropriate name - value pair.</li>
      <li>Add a hidden input to pass an "action" name-value pair to the accounts controller indicating that a password change is happening.</li>
      <li>Add an appropriate submit input for the password change.</li>
      <li>Add an appropriate HTML heading to precede the form and identify its purpose.</li>
-     <li>Add a PHP code block to display an error message directly above the form, if errors are found during the update process.</li>
+     <li>Add a PHP code block to display an error message directly above the form, if errors are found during the password update process.</li>
+    </ol>
+
+
+    <h3>Common Errors</h3>
+    <p>Watch for, and don't make, these common errors when working with the controller:</p>
+    <ol style="list-style-type: upper-alpha;">
+     <li>Error: The controller has duplicate values for different "case" statements. <mark><b>Solution:</b> Each case statement must be unique and reflect the process the statement carries out.</mark></li>
+     <li>Error: The case statement value has a different case than the value of the $action variable. Case statements are case-sensitive, so <b>&nbsp;case "modifyAccount":&nbsp; is not the same as &nbsp;case "modifyaccount":&nbsp;</b>. <mark><b>Solution:</b> The two values must match (e.g. $action = "modifyAccount"; and <b>case "modifyAccount":</b>).</mark></li>
+     <li>Error: The input field's name and the input_filter's name do not match (e.g. &lt;input name="firstname"...&gt;, filter_input(INPUT_POST, "clientFirstName");). <mark><b>Solution:</b> The two names match exactly (e.g. &lt;input name="firstname"...&gt;, filter_input(INPUT_POST, "firstname");).</mark></li>
     </ol>
 
     <h3>Accounts Controller</h3>
     <ol>
-     <li>Add a control structure that will deliver the <b>client-update.php</b> view.</li>
-     <li>Add a control structure to handle the "account update" process:
+     <li>Add a case statement that will deliver the <b>client-update.php</b> view.</li>
+     <li>Add a case statement to handle the "account update" process:
       <ol>
-       <li>Filter and collect the inputs</li>
-       <li>Check if the email address is different than the one in the session. If yes, check that the new email address does not already exist in the clients table (How you did it during registration).</li>
+       <li>Filter and collect the inputs, be sure to use correct validation or sanitization flags.</li>
+       <li>Check if the email address is different than the one in the session. If yes, check that the new email address does not already exist in the clients table (the same process as during registration).</li>
        <li>Check for errors.</li>
-       <li>Return data to the previous view for correction if errors are found.</li>
+       <li>Return data to the client-update view for correction if errors are found.</li>
        <li>Process the update using an appropriate function.</li>
        <li>Set a success or failure message and store it in the session.</li>
-       <li>Query (using a function call) the client data from the database (based on the clientId).</li>
-       <li>Store the client data array into the session (just as you did during the login).</li>
-       <li>Deliver the "admin.php" view where the client information will be displayed along with the success or failure message.</li>
+       <li>Query the client data from the database, based on the clientId - this will require a new function in the model.</li>
+       <li>Store the new client data into the session (just as you did during the login).</li>
+       <li>Deliver the "admin.php" view where the updated client information will be displayed along with the success or failure message.</li>
       </ol>
      </li>
-     <li>Add a control structure to handle the "password change" process:
+     <li>Add a case statement to handle the "password change" process:
       <ol>
        <li>Filter and collect the new password.</li>
-       <li>Check that it meets the password requirements (the same one as at the time of registration).</li>
+       <li>Check that it meets the password requirements (the same as during registration).</li>
        <li>If there is an error, set an error message and return to the previous view to be fixed.</li>
-       <li>If no error is found, the password must be hashed and sent to a function to be updated in the database.</li>
+       <li>If no error is found, the password must be hashed then sent to a function to be updated in the database.</li>
        <li>Determine the result of the update.</li>
        <li>Set a success or failure message and store it in the session.</li>
        <li>Deliver the "admin.php" view where the client information will be displayed along with the success or failure message.</li>
@@ -108,9 +118,9 @@
     <p>Be sure to complete all tasks and then test that they work.</p>
     <ul>
      <li>Log in to be directed to the "<b>admin.php</b>" view.</li>
-     <li>If logged in as an administrator, the "products" link should appear with a heading and text explanation.</li>
-     <li>If logged in as any kind of client, there should be an "account update" link.</li>
-     <li>When the "account update" link is clicked, the new "account update" view should appear:
+     <li>If logged in as an administrator (clientLevel greater than 1), the "products" link should appear with a heading and text explanation.</li>
+     <li>If logged in as any type of client (any clientLevel), there should be an "account update" link.</li>
+     <li>When the "account update" link is clicked, the "account update" view should appear:
       <ul>
        <li>There should be two forms, each with its own heading.</li>
        <li>The "Account Update" form should have three fields. The first name, last name and email fields should be populated with the current client's data.</li>
@@ -156,15 +166,15 @@
 
       <h3>Objective 2</h3>
       <ul>
-       <li>A control structure is present and operational in the "accounts controller" to deliver the <b>client-update.php</b> view: 3 points (all or nothing)</li>
-       <li>A control structure is present and operational in the "accounts controller" to process the account update: 7 points (all or nothing)</li>
-       <li>A control structure is present and operational in the "accounts controller" to process the password change: 5 points (all or nothing)</li>
+       <li>A case statement is present and operational in the accounts controller to deliver the <b>client-update.php</b> view: 3 points (all or nothing)</li>
+       <li>A case statement is present and operational in the accounts controller to process the account update: 7 points (all or nothing)</li>
+       <li>A case statement is present and operational in the accounts controller to process the password change: 5 points (all or nothing)</li>
        <li>Total value for Objective 2: <b>15 points</b></li>
       </ul>
 
       <h3>Objective 3</h3>
       <ul>
-       <li>The client update uses an MVC solution involving the accounts controller, accounts model and admin view: 5 points (all or nothing)</li>
+       <li>The client update processes use an MVC solution involving the accounts controller, accounts model and two (admin and client-update) views: 5 points (all or nothing)</li>
        <li>Total value for Objective 3: <b>5 points</b></li>
       </ul>
 
