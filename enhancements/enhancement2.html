@@ -45,7 +45,7 @@
     <h3>Writing SQL Statements</h3>
     <p>Write SQL statements to accomplish the following tasks:</p>
     <ol>
-     <li>Insert the following new client to the clients table:
+     <li>Insert the following new client to the clients table (<b>Note:</b> The clientId and clientLevel fields should handle their own values and do not need to be part of this query.):
       <br> Tony, Stark, tony@starkent.com, Iam1ronM@n, "I am the real Ironman" </li>
      <li>Modify the Tony Stark record to change the clientLevel to 3.</li>
      <li>Modify the "Nylon Rope" record to read "Climbing Rope" using a single query. The change must change all instances of "nylon" to "climbing" in the record <b>except the invStyle field</b>. Also, be sure that the invName field maintains its capital letter. (This is a "tricky" one. Explore the <a href="http://www.sqlteam.com/article/using-replace-in-an-update-statement" title="Opens in a new tab" target="_blank">SQL Replace function</a>. It needs to be part of an Update query as shown in the last two examples of the linked document.)</li>
@@ -54,11 +54,12 @@
      <li>Create a video of you running all of these SQL statements and showing the result of running each SQL statement.</li>
     </ol>
     <h3>Build a Database Connection File</h3>
-    <p>Create a basic php file as a connection file that contains a connection function (refer to the video in the <b><a href="../views/db-connection.html" title="Go to the connection file" target="_blank">Create a PDO Connection</a></b> activity). The file should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
+    <p>Create a basic php file as a connection file that contains a connection function (refer to the <b><a href="../views/db-connection.html" title="Go to the connection file" target="_blank">Create a PDO Connection</a></b> activity). The file should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
     <ol>
      <li>Create a PDO connection function for the acme database named <b>acmeConnect()</b>.</li>
      <li>If and when the database connection fails, a generic failure page, built using your template file, should be delivered (using the <a href="//php.net/manual/en/function.header.php" title="View the header function at php.net" target="_blank">PHP header function</a>) that states the database could not be reached. See the image below as an example of what the page could look like:<br>
       <img src="../images/acme/acme-error.png" alt="Sample error page for illustration purposes">
+      <p>The error view should be named <b>500.php</b> and be stored in a folder named <b>view</b> at the root of the acme folder.</p>
      </li>
      <li>Create a video that demonstrates that the connection works.</li>
      <li>In the same video demonstrate that errors are successfully caught when the connection fail and the error page is delivered.</li>
@@ -88,7 +89,7 @@
      <li>The delete Koenigsegg CCX SQL statement works: <b>2 points</b></li>
      <li>The database connection function is in a single file named "connections.php" within a folder named "library": <b>2 points</b></li>
      <li>The acme PDO connection function works: <b>6 points</b></li>
-     <li>The acme PDO connection function fails and redirects to a generic error page: <b>3 points</b></li>
+     <li>The acme PDO connection function fails and redirects to a generic error page named "500.php" which is stored in a "view" folder: <b>3 points</b></li>
      <li>The video(s) of the SQL statements and connection function in action are present and demonstrate the actions called for: <b>2 points</b></li>
      <li>Total value: <b>27 points</b> - all in objective 4</li>
     </ul>
