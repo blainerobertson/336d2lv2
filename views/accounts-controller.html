@@ -206,7 +206,7 @@
               </code>
        </li>
        <li>Make sure there are no error icons or underlines after doing the paste.</li>
-       <li>Save the <b>login.php</b> view.</li>
+       <li>Save and close the <b>login.php</b> view.</li>
       </ul>
      </li>
     </ol>
@@ -215,10 +215,10 @@
     <ol>
      <li>Make sure all files are saved.</li>
      <li>Make sure the Apache and Database servers are running.</li>
-     <li>Return to the Acme home view by going to browser and editing the URL to be <code>http://localhost/acme</code>. If your acme folder is named something else, use your name instead.</li>
+     <li>Return to the Acme home view by going to browser and editing the URL to be <code>http://localhost/acme</code>.</li>
      <li>Press your "Enter" key. It should take you to the acme controller, then include the <b>home</b> view.</li>
      <li>Click the "My Accounts" link at the top of the view. You should now be at the <b>login.php</b> view.</li>
-     <li>There should be a link pointing to the Regisration view, click it.</li>
+     <li>There should be a link pointing to the Registration view, click it.</li>
      <li>Fill your own information into the registration form.</li>
      <li>Click the "Register" button.</li>
      <li>If things worked you should be looking at the <b>login.php</b> view and see a message telling you to login.</li>
@@ -245,6 +245,8 @@
           <br>
           // Get the array of categories<br>
           $categories = getCategories();<br>
+     <br>
+     // Build a navigation bar using the $categories array<br>
           $navList = '&lt;ul&gt;';<br>
           $navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";<br>
           foreach ($categories as $category) {<br>
@@ -256,15 +258,11 @@
           $action = filter_input(INPUT_POST, 'action');<br>
           if ($action == NULL) {<br>
           &nbsp;$action = filter_input(INPUT_GET, 'action');<br>
-          &nbsp;&nbsp;if ($action == NULL) {<br>
-          &nbsp;&nbsp;&nbsp;header('location: /acme/index.php?action=reg');<br>
-          &nbsp;&nbsp;&nbsp;exit;<br>
-          &nbsp;&nbsp;}<br>
           }<br>
           <br>
           switch ($action) {<br>
           <br>
-          // Code to deliver the views will probably be here<br>
+     <mark>// Code to deliver the views will probably be here</mark><br>
           <br>
           case 'register':<br>
           // Filter and store the data<br>
@@ -281,7 +279,7 @@
           }<br>
           <br>
           // Send the data to the model<br>
-          $regOutcome = regVisitor($firstname, $lastname, $email, $password);<br>
+          $regOutcome = regClient($firstname, $lastname, $email, $password);<br>
           <br>
           // Check and report the result<br>
           if($regOutcome === 1){<br>
@@ -294,6 +292,7 @@
           &nbsp;&nbsp;exit;<br>
           }<br>
           break;<br>
+         default:<br>
           }<br>
         </code>
 
