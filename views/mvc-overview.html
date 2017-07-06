@@ -21,15 +21,14 @@
     <iframe src="//www.youtube.com/embed/a9WhrfKBEbs" width="425" height="350" allowfullscreen></iframe>
 
     <h2>Get Organized</h2>
-    <p>We'll begin by creating a two new folders and moving an existing file into one of the new folders.</p>
+    <p>We'll begin by creating a new folder and moving an existing file into an existing folder.</p>
     <ol>
-     <li>Create two new folders within the acme folder:
+     <li>Create a new folder within the acme folder:
       <ol>
-       <li>view</li>
        <li>model</li>
       </ol>
      </li>
-     <li>When done move your home page (mine is named home.php) into the view folder (<strong>Note: <i>if your home page is named index.php, change it to "home.php"</i></strong>).</li>
+     <li>When done move your home page (mine is named home.php) into the existing view folder (<strong>Note: <i>if your home page is named anything other than home.php, change it to "home.php"</i></strong>).</li>
     </ol>
 
     <h2>Create a Controller for the acme root</h2>
@@ -42,18 +41,20 @@
           $action = filter_input(INPUT_POST, 'action');<br>
        if ($action == NULL){<br>
        &nbsp;$action = filter_input(INPUT_GET, 'action');<br>
-       if($action == NULL){<br>
-       &nbsp;$action = 'home';<br>
-       }<br>
        }<br>
           </code>
      </li>
      <li>Now write a simple switch structure, that looks like this:<br>
       <code class="callout">
        switch ($action){<br>
-       &nbsp;case 'home':<br>
+       <br>
+       &nbsp;case :<br>
+       <br>
+       &nbsp;break;<br>
+       <br>
+       &nbsp;default:<br>
        &nbsp;&nbsp;include 'view/home.php';<br>
-       &nbsp;<br>
+       break;<br>
        }<br>
           </code>
      </li>
@@ -64,11 +65,11 @@
      <li>By creating and naming the controller <b>index.php</b> all web traffic that comes to the acme folder will automatically be directed to the controller.</li>
      <li>$action is a variable that we will use to store the type of content being requested.</li>
      <li>We use the <i>filter_input()</i> function to sift the content to eliminate code that could do the web site harm (read more on php.net about the <a href="//php.net/manual/en/function.filter-input.php" title="Go to php.net to read more" target="_blank">filter_input funtion</a>).</li>
-     <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a key - value pair where the key is the word "action". If such a combination is found, the value is stored in the $action variable.</li>
-     <li>If there is no value assigned to the $action variable, then we assign a default value of 'home'.</li>
+     <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a "name - value pair (aka key - value pair) where the key is the word "action". If such a combination is found, the value is stored in the $action variable.</li>
      <li>The <a href="//php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net" target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
-     <li>Each <b>case</b> statement represents a different process to execute. In this instance we have a single case that executes if the $action variable has a value of "home".</li>
-     <li>If $action equals "home" then the home view is included (meaning that it will be sent to the browser) and the case statement is ended with the break statement.</li>
+     <li>Each <b>case</b> statement represents a different process to execute. In this instance the case statement doesn't have a value to check and is ignored.</li>
+     <li>However, since the case statement does not execute, the default statement executes and delivers the home.php view.</li>
+     <li>If $action had a value and our one case statement had a matching value, then it would run and the default would be ignored because the "break" statement would end the switch and the control structure would be exited.</li>
 
     </ol>
     <p></p>
