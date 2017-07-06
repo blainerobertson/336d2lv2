@@ -85,11 +85,8 @@
     <p>One of the most difficult tasks for new programmers is keeping data coming from forms, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
     <p>For example, When adding a new product to the inventory table, the field in the table to store its name is "<b>invName</b>". So, in the form give the input that name:<br>
     <code class="callout no-left">&lt;input name="invName" id="invName" type="text"&gt;</code><br>
-     <br>
      Then, in the controller when collecting the value, store it into a variable of the same name:<br>
-     <br>
      <code class="callout no-left">$invName = filter_input(INPUT_POST, 'invName');</code><br>
-     <br>
      While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
     <ol>
      <li value="6">Create an "add category" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
