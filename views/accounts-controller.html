@@ -16,7 +16,7 @@
   <main>
    <article id="article">
     <h1>The Accounts Controller</h1>
-    <p>In the Finalize the Registration Form activity we told the form to send the data to the accounts controller. Now we need to add the code to make the controller do its job.</p>
+    <p>In the Alter the Registration Form activity we told the form to send the data to the accounts controller. Now we need to add the code to make the controller do its job.</p>
 
     <h2>Get the Accounts Model</h2>
     <p>As with the previous require_once statements, the purpose is to include the resources of these other documents into the scope of the controller so they can be used. We need to do the same with the accounts-model.php page.</p>
@@ -65,7 +65,7 @@
        </li>
       </ul>
      </li>
-     <li>Case statements are <i>case-sensitive</i>. That's why we checked to make sure that the value in the registration form and the value in the case statement are both lower-case, so they will match!</li>
+     <li><mark>Case statements are <i>case-sensitive</i>. That's why we checked to make sure that the value in the registration form and the value in the case statement are both lower-case, so they will match!</mark></li>
     </ol>
 
     <h3>Time to Test</h3>
@@ -157,9 +157,9 @@
     <ol>
      <li>Make sure that you have moved outside of the "if" code block and created a new empty line.</li>
      <li>Create a variable to capture what will be sent back from the function in the model (e.g. $regOutcome). Remember that when you built the function you found out how many rows in the table were changed? That number will be sent back, "returned", by the function.</li>
-     <li>Then, we type the assignment operator (e.g. =) followed by our call to the function <code>function regVisitor($firstname, $lastname, $email, $password)</code> and add a semi-colon to the end. The resulting line should look like this:
+     <li>Then, we type the assignment operator (e.g. =) followed by our call to the function <code>function regClient($firstname, $lastname, $email, $password)</code> and add a semi-colon to the end. The resulting line should look like this:
       <code class="callout no-left">// Send the data to the model<br>
-              $regOutcome = regVisitor($firstname, $lastname, $email, $password);</code>
+              $regOutcome = regClient($firstname, $lastname, $email, $password);</code>
      </li>
      <li>Remember that we are trying to insert a single record into the database table. If one row in the table is changed, then the database server will report back "1" and that same number will be sent to the controller and stored in our <code>$regOutcome</code> variable.</li>
      <li>If we get a <b>1</b> back, it means that the registration was a success!</li>

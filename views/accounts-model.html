@@ -29,7 +29,7 @@
      <li>Open the <b>accounts-model.php</b> page.</li>
      <li>Edit the default comment to indicate that this is the accounts model for site visitors.</li>
      <li>Add several blank lines then add another comment to indicate that the new function will handle site registrations</li>
-     <li>Create a new function whose name is <b>regVisitor()</b>.</li>
+     <li>Create a new function whose name is <b>regClient()</b>.</li>
      <li>You will recall that in our registration view we ask for four pieces of information:
       <ul>
        <li>First name</li>
@@ -41,7 +41,7 @@
      <li>Each of these pieces of information will be stored into a variable and these variables will have to be supplied to this function as <i><a href="//php.net/manual/en/functions.arguments.php" title="Read about function arguments on PHP.net" target="_blank">arguments</a></i> (sometimes called parameters).</li>
      <li>Create four variables (representing the data just discussed) and place them inside the parentheses, separated by commas and spaces.</li>
      <li>When done, your code should resemble the illustration below:
-      <pre class="callout no-left"><code>function regVisitor($firstname, $lastname, $email, $password){
+      <pre class="callout no-left"><code>function regClient($firstname, $lastname, $email, $password){
 
   }</code></pre>
      </li>
@@ -50,7 +50,7 @@
     <p>When you built the previous function to select the categories data you used a prepared statement. We will do so again. In this case, the prepared statement will be doubly important because of its added security feature to protect our database from SQL Injection attacks. This, because we are accepting data sent from site visitors and we don't know if they are honest folks or hackers!</p>
     <p>The simple rule of web security is, "<strong>Never Trust Incoming Data</strong>!</p>
     <p>The function code is below:</p>
-    <pre class="callout no-left"><code>function regVisitor($firstname, $lastname, $email, $password){
+    <pre class="callout no-left"><code>function regClient($firstname, $lastname, $email, $password){
 // Create a connection object using the acme connection function
    $db = acmeConnect();
 // The SQL statement
