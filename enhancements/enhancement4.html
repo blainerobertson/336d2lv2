@@ -47,11 +47,14 @@
        <li>Use the database connections file.</li>
        <li>Use the acme model.</li>
        <li>Use the products model (you will create this).</li>
-       <li>Create the $navList variable to build the dynamic menu from an array of categories obtained by calling the function in the acme model.</li>
+       <li>Create the $navList variable to build the dynamic menu from an array of categories obtained by calling the function in the acme model, as in previous controllers.</li>
        <li>
         <p>Create a $catList variable to build a dynamic <a href="//www.w3schools.com/html/html_form_elements.asp" title="See an example of a select element" target="_blank">drop-down select list</a>. The category Name must appear to the human eye, but the category ID must be the value of each option.</p>
-        <p> This list element will be used in the "add product" view to provide a list of categories that already exist in the database.</p>
-        <p><i>(Hint #1: think of how you built the dynamic navigation earlier and did it in such a way that it would be available to any view.) (Hint #2: you could alter the existing getCategories() function to also select the catId from the database and use it in building the drop-down select list)</i></p>
+        <p> This list element will be used in the "add product" view to provide a list of categories that already exist in the database. Consider the hints below:</p>
+        <ol>
+         <li><mark>Think of how you built the dynamic navigation earlier and did it in such a way that it would be available to any view.</mark></li>
+         <li><mark>Instead of building a new function you could alter the existing getCategories() function to also select the catId from the database and use it in building the drop-down select list.</mark></li>
+        </ol>
        </li>
        <li>Watch for and capture name-value pairs for decision making.</li>
        <li>Contain control structures to deliver views (discussed below).</li>
@@ -66,7 +69,7 @@
        <li>Contain a function for inserting a new product to the inventory table.</li>
       </ul>
      </li>
-     <li>Create a "product management" view using the acme template that is delivered by default when the product controller is accessed without a name - value pair.
+     <li>Create a "product management" view using the acme template that is delivered by default (<mark>Hint: remember that default statement in a switch control structure?)</mark>) when the product controller is accessed without a name - value pair.
       <ul>
        <li>This view must contain two links:
         <ol>
@@ -76,12 +79,25 @@
        </li>
       </ul>
      </li>
-     <li>Create an "add category" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
+    </ol>
+
+    <h3>Keeping Things Straight</h3>
+    <p>One of the most difficult tasks for new programmers is keeping data coming from forms, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
+    <p>For example, When adding a new product to the inventory table, the field in the table to store its name is "<b>invName</b>". So, in the form give the input that name:<br>
+    <code class="callout no-left">&lt;input name="invName" id="invName" type="text"&gt;</code><br>
+     <br>
+     Then, in the controller when collecting the value, store it into a variable of the same name:<br>
+     <br>
+     <code class="callout no-left">$invName = filter_input(INPUT_POST, 'invName');</code><br>
+     <br>
+     While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
+    <ol>
+     <li value="6">Create an "add category" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
       <ul>
        <li>Contain a form for adding a new category (you will only need to add the name, the id in the table is auto-incrementing).</li>
        <li>The form must send all data to the products controller for checking and insertion to the database.</li>
        <li>The view must have the means of displaying messages returned to it from the controller.</li>
-       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu.</li>
+       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu. <mark>Note: There will NOT be a success message. The category item appearing in the navigation bar will be the indication of success.</mark></li>
       </ul>
      </li>
      <li>Create an "add product" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
