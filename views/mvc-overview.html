@@ -48,7 +48,7 @@
       <code class="callout">
        switch ($action){<br>
        <br>
-       &nbsp;case :<br>
+       &nbsp;case 'something':<br>
        <br>
        &nbsp;break;<br>
        <br>
@@ -67,7 +67,7 @@
      <li>We use the <i>filter_input()</i> function to sift the content to eliminate code that could do the web site harm (read more on php.net about the <a href="//php.net/manual/en/function.filter-input.php" title="Go to php.net to read more" target="_blank">filter_input funtion</a>).</li>
      <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a "name - value pair (aka key - value pair) where the key is the word "action". If such a combination is found, the value is stored in the $action variable.</li>
      <li>The <a href="//php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net" target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
-     <li>Each <b>case</b> statement represents a different process to execute. In this instance the case statement doesn't have a value to check and is ignored.</li>
+     <li>Each <b>case</b> statement represents a different process to execute. In this instance the case statement has a meaningless value (e.g. 'something') to check and when it does not match the value of $action it is ignored.</li>
      <li>However, since the case statement does not execute, the default statement executes and delivers the home.php view.</li>
      <li>If $action had a value and our one case statement had a matching value, then it would run and the default would be ignored because the "break" statement would end the switch and the control structure would be exited.</li>
 
