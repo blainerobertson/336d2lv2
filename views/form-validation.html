@@ -37,7 +37,7 @@
     <p>The simplest change you can make to a form is to mark an input field as 'required':</p>
 
     <code class="callout">
-&lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;
+&lt;input type=&quot;text&quot; name=&quot;clientFirstname&quot; required&gt;
 </code>
 
     <p>This informs the web browser that the field is mandatory. Most browsers will mark the input box in some way if the client fails to complete the input correctly. You can actually create your own valid/invalid formatting using CSS to override the browser default. You should be aware that the CSS pseudo-classes for doing this are currently considered experimental and will result in CSS validation errors.</p>
@@ -52,7 +52,7 @@
     <p>By changing the input type to email while also using the required attribute, the browser can be used to validate (in a limited fashion) email addresses:</p>
 
     <code class="callout">
-&lt;input type=&quot;email&quot; name=&quot;email&quot; required placeholder=&quot;Enter a valid email address&quot;&gt;
+&lt;input type=&quot;email&quot; name=&quot;clientEmail&quot; required placeholder=&quot;Enter a valid email address&quot;&gt;
 </code>
 
     <p>Note that for this example we've made use of another HTML5 attribute <b>placeholder</b> which lets us display a prompt or instructions inside the field - something that previously had to be done using JavaScript. <b>Using the placeholder should NOT replace the &lt;label&gt; element to place a text label adjacent to the input</b>.</p>
@@ -151,10 +151,10 @@ input:required:invalid, input:focus:invalid {<br>
     <h3>The Registration View</h3>
     <ol>
      <li>Open the registration view in NetBeans to alter its code.</li>
-     <li>Since all fields are "required" make sure you add the "required" attribute to all data inputs (e.g. firstname, lastname, email and password).</li>
+     <li>Since all fields are "required" make sure you add the "required" attribute to all four data input fields (e.g. first name, last name, email and password).</li>
      <li>Make sure each of the fields has the right type value.
       <ul>
-       <li>Firstname and Lastname are both "text".</li>
+       <li>First name and Last name are both "text".</li>
        <li>Email is type "email".</li>
        <li>Password is type "password".</li>
       </ul>
@@ -171,9 +171,9 @@ input:required:invalid, input:focus:invalid {<br>
      </li>
      <li>When done, the password input could look something like this:
       <code class="callout">
-            &lt;label for="password"&gt;Password:&lt;/label&gt;<br>
+            &lt;label for="clientPassword"&gt;Password:&lt;/label&gt;<br>
             &lt;span&gt;Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character&lt;/span&gt;<br>
-            &lt;input type="password" name="password" id="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"&gt;
+       &lt;input type="password" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"&gt;
             </code>
      </li>
     </ol>
