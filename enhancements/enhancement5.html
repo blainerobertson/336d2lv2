@@ -26,20 +26,20 @@
     <p>In this enhancement you will:</p>
     <ol>
      <li>add client-side validation to the <b>new products</b> and <b>new category</b> view forms,</li>
-     <li>add server-side validation to the <b>new products</b> and <b>new category</b> processes in the products controller, and</li>
-     <li>make the creation of the $navList variable for building the site navigation easier, by creating a custom function for it in the "<b>functions.php</b>" page and then calling the function in all three controllers (acme, accounts, products) to store the navigation html data into a variable.</li>
+     <li>add server-side validation to the <b>new products</b> and <b>new category</b> processes in the products controller including making the forms "sticky" so previous entered values are maintained in the forms, and</li>
+     <li>make the creation of the $navList variable for building the site navigation easier, by creating a custom function for it in the "<b>functions.php</b>" page and then calling the function in all three controllers (acme, accounts, products) to store the navigation html data into a variable for use in all views.</li>
     </ol>
 
     <h2>Tasks</h2>
-    <p>As described above you are being asked to add client-side and server-side validation to forms and controllers (just like you did in this week's activities. Also, to create a custom function out of code that you already have, then just call the function to get the html navigation list code.</p>
-    <p><i style="font-size: larger;"><strong>Note:</strong> Remember that you access the the <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i></p>
+    <p>As described above you are being asked to add client-side and server-side validation to forms and controllers (just like you did in this week's activities), while making form inputs "sticky". Also, to create a custom function out of code that you already have, then just call the function to get the html navigation list code.</p>
+    <p><i style="font-size: larger;"><strong>Note:</strong> Remember that you access the <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i></p>
 
 
     <h3>Client-side Validation</h3>
     <ol>
      <li>Add HTML5 attributes as needed to the various input elements in the "<b>new category</b>" and "<b>new product</b>" forms. Make sure that each input's data type is also appropriate to the data being requested.</li>
      <li>Add a PHP code block to each input in the "<b>new product</b>" form so that the form inputs become "sticky" if and when errors in submissions are returned.</li>
-     <li><strong>Note:</strong> To display the value of a variable in a <code>textarea</code> element, it must be echoed between the opening and closing tags.</li>
+     <li><strong>Note:</strong> To display the value of a variable in a <code>textarea</code> element, it must be echoed between the opening and closing tags with no extra spaces or line breaks between the html opening and closing tags and the PHP code block between them.</li>
     </ol>
     <h3>Server-side Validation</h3>
 
@@ -58,7 +58,7 @@
     <h3>Create New Function</h3>
     <p>All three controllers (acme, accounts and products) have code to build the navigation bar and store it to a variable for use in views. This is not very efficient. Please fix it by:</p>
     <ol>
-     <li>Creating a new function in the "<b>functions.php</b>" page. The new function should 1) call the "<b>getCategories</b>" function and 2) build the navigation list HTML. When done, it should return a variable holding the HTML navigation list to wherever called the function. Be sure to add a comment to the function indicating what it does.</li>
+     <li>Creating a new function in the "<b>functions.php</b>" page. The new function should 1) receive the $categories array as a parameter and 2) build the navigation list HTML around the values found in the $categories array. When done, it should return a string variable holding the HTML navigation list to wherever called the function. Be sure to add a comment to the function indicating what it does.</li>
      <li>When done, remove the original code block from all controllers and replace them with a call to your new function.</li>
      <li>Thoroughly test to make sure that the function works so the navigation bar works in all views.</li>
     </ol>
