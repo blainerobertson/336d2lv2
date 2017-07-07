@@ -21,6 +21,14 @@
     <p>This short video demonstrates what your links and the flow of this enhancement could look like.</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/K8aspq0gPhI" allowfullscreen></iframe>
 
+    <h3>Keeping Things Straight</h3>
+    <p>One of the most difficult tasks for new programmers is keeping data coming from the browser, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
+    <p>For example, When registering a new client to the clients table, the field in the table to store the first name is "<b>clientFirstname</b>". So, in the form give the input that name:<br>
+     <code class="callout no-left">&lt;input name="clientFirstname" id="clientFirstname" type="text"&gt;</code>
+     Then, in the controller when collecting the value, store it into a variable of the same name:<br>
+     <code class="callout no-left">$clientFirstname = filter_input(INPUT_POST, 'clientFirstname');</code>
+     While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
+
     <h2>Tasks</h2>
     <ol>
      <li>Work with your learning team to accomplish the tasks and post to and read the weekly discussion board to help one another.</li>

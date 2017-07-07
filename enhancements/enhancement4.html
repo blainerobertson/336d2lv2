@@ -37,12 +37,13 @@
     <p>Treat this enhancement as a <i>kinda</i> test. It gives us an opportunity to review, reinforce and provide a proof of learning.</p>
 
     <h3>Keeping Things Straight</h3>
-    <p>One of the most difficult tasks for new programmers is keeping data coming from forms, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
+    <p>One of the most difficult tasks for new programmers is keeping data coming from the browser, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
     <p>For example, When adding a new product to the inventory table, the field in the table to store its name is "<b>invName</b>". So, in the form give the input that name:<br>
      <code class="callout no-left">&lt;input name="invName" id="invName" type="text"&gt;</code>
      Then, in the controller when collecting the value, store it into a variable of the same name:<br>
      <code class="callout no-left">$invName = filter_input(INPUT_POST, 'invName');</code>
      While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
+
     <h2>Tasks</h2>
     <p>As described above you are being asked to build a process for adding new categories to the categories table and new products (inventory items) to the inventory table, all using the MVC architecure, PHP, HTML and CSS. You will build the following items, test them for operation and validate the HTML and CSS code in all views.</p>
     <p><i style="font-size: larger;"><strong>Note:</strong> For now you will not create a link to the <b>products</b> folder or its controller in any view. You will access the the <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i></p>
