@@ -76,7 +76,7 @@
      <li>Scroll back down and find the first blank line beneath where the four inputs were filtered and stored. Click in the blank line.</li>
      <li>Recreate the $clientEmail variable and assign to it what is returned from calling the <code>checkEmail($clientEmail)</code> function. It should look like this:
       <code class="callout no-left">
-       $$clientEmail = checkEmail($clientEmail);
+       $clientEmail = checkEmail($clientEmail);
             </code>
      </li>
      <li>Because the code is executed from right to left, the original $clientEmail variable's value is passed to the function and the returned value is sent back and stored in the $clientEmail variable on the left.</li>
