@@ -40,7 +40,7 @@
 &lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;
 </code>
 
-    <p>This informs the web browser that the field is mandatory. Most browsers will mark the input box in some way if the client fails to complete the input correctly. You can actually create your own valid/invalid formatting using CSS to override the browser default.</p>
+    <p>This informs the web browser that the field is mandatory. Most browsers will mark the input box in some way if the client fails to complete the input correctly. You can actually create your own valid/invalid formatting using CSS to override the browser default. You should be aware that the CSS pseudo-classes for doing this are currently considered experimental and will result in CSS validation errors.</p>
 
     <h2>Different input types</h2>
     <p>Along with the text input type, there are a host of other options, including email, url, number, tel, date and others.</p>
@@ -92,19 +92,19 @@
     <p>The <b><a href="//www.w3schools.com/tags/att_input_pattern.asp" title="Opens in a new tab" target="_blank">Pattern</a></b> attribute adds additonal criteria when an input must meet specific requirements. Patterns are not always needed, just when a specific need exists. HTML5 patterns are actually <a href="//www.w3schools.com/js/js_regexp.asp" title="Opens in a new tab" target="_blank">JavaScript Regular Expressions</a>.</p>
     <h3>Pattern Examples</h3>
     <dl>
-     <dt>IPv4 Address input pattern:</dt>
+     <dt>IPv4 Address input pattern (four groups of up to 3 numbers separated by a period):</dt>
      <dd class="callout">
       <code>
 &lt;input type=&quot;text&quot; pattern=&quot;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&quot;&gt;
 </code>
      </dd>
 
-     <dt>Date input pattern:</dt>
+     <dt>Date input pattern (one or two digits in the first two groups, four digits in the last, all separated by slashes):</dt>
      <dd class="callout">
       <code>&lt;input type=&quot;text&quot; pattern=&quot;\d{1,2}/\d{1,2}/\d{4}&quot;&gt;</code>
      </dd>
 
-     <dt>Price input pattern:</dt>
+     <dt>Price input pattern (digits followed by a period, forllowed by two digits):</dt>
      <dd class="callout">
       <code>
 &lt;input type=&quot;text&quot; pattern=&quot;\d+(\.\d{2})?&quot;&gt;
@@ -113,7 +113,7 @@
     </dl>
 
     <h2>Styling valid/invalid inputs using CSS</h2>
-    <p>This first set of styles can be used to mark an input box as 'invalid', by adding an icon, coloring the text or borders or similar. It will apply to inputs that are required but empty, or to inputs that have a required format/pattern which hasn't yet been met.</p>
+    <p>This first set of styles can be used to mark an input box as 'invalid', by adding an icon, coloring the text or borders or similar. It will apply to inputs that are required but empty, or to inputs that have a required format/pattern which hasn't yet been met. As mentioned earlier, these pseudo-classes are currently considered experimental and will result in CSS validation errors.</p>
 
     <code class="callout">
 input:required:invalid, input:focus:invalid {<br>
