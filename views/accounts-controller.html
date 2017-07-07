@@ -57,10 +57,10 @@
        <li>As long as you're here, check each of the inputs for the four data items. Ensure that each has a "name" attribute and that the value matches the data being requested. For example:
         <br>
         <code class="callout no-left">
-                &lt;input type="text" name="firstname" id="firstname"&gt;<br>
-                &lt;input type="text" name="lastname" id="lastname"&gt;<br>
-                &lt;input type="email" name="email" id="email"&gt;<br>
-                &lt;input type="password" name="password" id="password"&gt;<br>
+         &lt;input type="text" name="clientFirstname" id="clientFirstname"&gt;<br>
+         &lt;input type="text" name="clientLastname" id="clientLastname"&gt;<br>
+         &lt;input type="email" name="clientEmail" id="clientEmail"&gt;<br>
+         &lt;input type="password" name="clientPassword" id="clientPassword"&gt;<br>
                 </code>
        </li>
       </ul>
@@ -110,17 +110,17 @@
     <p>We will collect our four expected inputs, while filtering them, and store each into its own variable. Write the following, beginning in the blank line where the echo statement was:
      <code class="callout no-left">
             // Filter and store the data<br>
-            $firstname = filter_input(INPUT_POST, 'firstname');<br>
-            $lastname = filter_input(INPUT_POST, 'lastname');<br>
-            $email = filter_input(INPUT_POST, 'email');<br>
-            $password = filter_input(INPUT_POST, 'password');<br>
-            </code> You've seen the filter_input before. It "filters" or attempts to remove code that could do us harm. We will add to this code in the future. <i>To be clear, the filter_input does the filtering, by looking into the POST object (remember that we told our form to use "post" to send the data), and it is looking for a name - value pair where the name is "name" and it has a value of "firstname" or "lastname" etc.... When found, it stores the value (what the site visitor typed into the input field) into the variable.</i>
+      $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');<br>
+      $clientLastname = filter_input(INPUT_POST, 'clientLastname');<br>
+            $clientEmail = filter_input(INPUT_POST, 'clientEmail');<br>
+            $clientPassword = filter_input(INPUT_POST, 'clientPassword');<br>
+            </code> You've seen the filter_input before. It "filters" or attempts to remove code that could do us harm. We will add to this code in the future. <i>To be clear, the filter_input does the filtering, by looking into the POST object (remember that we told our form to use "post" to send the data), and it is looking for a name - value pair where the name is "name" and it has a value of "clientFirstname" or "clinetLastname" etc.... When found, it stores the value (what the site visitor typed into the input field) into the variable.</i>
     </p>
 
     <h2>Naming Variables</h2>
     <p>In an earlier document, it was mentioned that variables should have meaninful names. But, what determines meaning? There are at least two ways of determining "meaning" when it comes to variables in dynamic web sites:</p>
     <ol>
-     <li>The variable matches the "name" of the name - value pair (e.g. in a form input the name is "firstname" and so we create a variable of $firstname to hold the value from the name - value pair).</li>
+     <li>The variable matches the "name" of the name - value pair (e.g. in a form input the name is "clientFirstname" and so we create a variable of $clientFirstname to hold the value from the name - value pair).</li>
      <li>The variable matches or reflects the database field name where the data is stored (e.g. the <b>clients</b> table stores first names in a field named "clientFirstname", therefore we could create a variable named $clientFirstname or $clientFirst or $firstname - again, it can be a match or a reflection).</li>
     </ol>
     <p>In any case, variable names should be <b>consistent across all uses</b> and should definately <b>reflect the actual values stored in them</b>.</p>
@@ -129,7 +129,7 @@
     <p>We will use some simple PHP "empty" functions to see if any of our variables are missing data. Write the following code after creating two empty lines:
      <code class="callout no-left">
             // Check for missing data<br>
-            if(empty($firstname) || empty($lastname) || empty($email) || empty($password)){<br>
+            if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){<br>
             $message = '&lt;p&gt;Please provide information for all empty form fields.&lt;/p&gt;';<br>
             include '../view/registration.php';<br>
             exit;
@@ -157,9 +157,9 @@
     <ol>
      <li>Make sure that you have moved outside of the "if" code block and created a new empty line.</li>
      <li>Create a variable to capture what will be sent back from the function in the model (e.g. $regOutcome). Remember that when you built the function you found out how many rows in the table were changed? That number will be sent back, "returned", by the function.</li>
-     <li>Then, we type the assignment operator (e.g. =) followed by our call to the function <code>function regClient($firstname, $lastname, $email, $password)</code> and add a semi-colon to the end. The resulting line should look like this:
+     <li>Then, we type the assignment operator (e.g. =) followed by our call to the function <code>function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword)</code> and add a semi-colon to the end. The resulting line should look like this:
       <code class="callout no-left">// Send the data to the model<br>
-              $regOutcome = regClient($firstname, $lastname, $email, $password);</code>
+       $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);</code>
      </li>
      <li>Remember that we are trying to insert a single record into the database table. If one row in the table is changed, then the database server will report back "1" and that same number will be sent to the controller and stored in our <code>$regOutcome</code> variable.</li>
      <li>If we get a <b>1</b> back, it means that the registration was a success!</li>
@@ -175,11 +175,11 @@
       <code class="callout no-left">
               // Check and report the result<br>
               if($regOutcome === 1){<br>
-              &nbsp;$message = "&lt;p&gt;Thanks for registering $firstname. Please use your email and password to login.&lt;/p&gt;";<br>
+              &nbsp;$message = "&lt;p&gt;Thanks for registering $clientFirstname. Please use your email and password to login.&lt;/p&gt;";<br>
               &nbsp;include '../view/login.php';<br>
               &nbsp;exit;<br>
               } else {<br>
-              &nbsp;$message = "&lt;p&gt;Sorry $firstname, but the registration failed. Please try again.&lt;/p&gt;";<br>
+              &nbsp;$message = "&lt;p&gt;Sorry $clientFirstname, but the registration failed. Please try again.&lt;/p&gt;";<br>
               &nbsp;include '../view/registration.php';<br>
               &nbsp;exit;<br>
               }
@@ -227,7 +227,7 @@
      <li>If things worked, "Well Done" and listen to the crowd roar its approval.</li>
      <li>If things failed, check your code against the finished code shown below and ask for help until it is working.</li>
     </ol>
-    <h2>The accounts Controller</h2>
+    <h2>The Accounts Controller</h2>
     <p>Please keep in mind that the file and folder names shown in this code may not match your names. <b>In addition, note that the code here is only for this activity, it does not include code written previously to deliver the login or registration views.</b></p>
     <code class="callout no-left">
 &lt;?php<br>
@@ -266,28 +266,28 @@
           <br>
           case 'register':<br>
           // Filter and store the data<br>
-          &nbsp;&nbsp;$firstname = filter_input(INPUT_POST, 'firstname');<br>
-          &nbsp;&nbsp;$lastname = filter_input(INPUT_POST, 'lastname');<br>
-          &nbsp;&nbsp;$email = filter_input(INPUT_POST, 'email');<br>
-          &nbsp;&nbsp;$password = filter_input(INPUT_POST, 'password');<br>
+     &nbsp;&nbsp;$clientFirstname = filter_input(INPUT_POST, 'clientFirstname');<br>
+     &nbsp;&nbsp;$clientLastname = filter_input(INPUT_POST, 'clientLastname');<br>
+     &nbsp;&nbsp;$clientEmail = filter_input(INPUT_POST, 'clientEmail');<br>
+     &nbsp;&nbsp;$clientPassword = filter_input(INPUT_POST, 'clientPassword');<br>
           <br>
           // Check for missing data<br>
-          if(empty($firstname) || empty($lastname) || empty($email) || empty($password)){<br>
+     if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){<br>
           &nbsp;&nbsp;$message = '&lt;p&gt;Please provide information for all empty form fields.&lt;/p&gt;';<br>
           &nbsp;&nbsp;include '../view/registration.php';<br>
           &nbsp;&nbsp;exit;<br>
           }<br>
           <br>
           // Send the data to the model<br>
-          $regOutcome = regClient($firstname, $lastname, $email, $password);<br>
+          $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);<br>
           <br>
           // Check and report the result<br>
           if($regOutcome === 1){<br>
-          &nbsp;&nbsp;$message = "&lt;p&gt;Thanks for registering $firstname. Please use your email and password to login.&lt;/p&gt;";<br>
+          &nbsp;&nbsp;$message = "&lt;p&gt;Thanks for registering $clientFirstname. Please use your email and password to login.&lt;/p&gt;";<br>
           &nbsp;&nbsp;include '../view/login.php';<br>
           &nbsp;&nbsp;exit;<br>
           } else {<br>
-          &nbsp;&nbsp;$message = "&lt;p&gt;Sorry $firstname, but the registration failed. Please try again.&lt;/p&gt;";<br>
+          &nbsp;&nbsp;$message = "&lt;p&gt;Sorry $clientFirstname, but the registration failed. Please try again.&lt;/p&gt;";<br>
           &nbsp;&nbsp;include '../view/registration.php';<br>
           &nbsp;&nbsp;exit;<br>
           }<br>
