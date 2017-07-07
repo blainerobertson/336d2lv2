@@ -27,36 +27,36 @@
      <li>Find and open the accounts controller.</li>
      <li>Locate the four <code>filter_input</code> functions used with the incoming data for the registration process. We will add the data type check to each to indicate the type of data we will allow for each.
       <ul>
-       <li>Click after the closing quote for firstname.</li>
+       <li>Click after the closing quote for clientFirstname.</li>
        <li>Add a comma and a space</li>
        <li>Add <code>FILTER_SANITIZE_STRING</code>
         <br> This "flag" removes any html elements and leaves only text.
        </li>
-       <li>Repeat the same process for the lastname input.</li>
-       <li>Repeat the same process for the password input. When done the three inputs should look similar to this:
+       <li>Repeat the same process for the clientLastname input.</li>
+       <li>Repeat the same process for the clientPassword input. When done the three inputs should look similar to this:
         <code class="callout no-left">
-                $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);</code></li>
+                $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);</code></li>
        <li>Because the email input represents a special type of string you will add a different flag to it. Use the <b>FILTER_SANITIZE_EMAIL</b> flag for it. When done, the email input should look like this:<br>
         <code class="callout no-left">
-         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);</code>.</li>
-        <li>Then, just to be sure, we will add an additional check to the email.</li>
+         $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);</code>.</li>
+       <li>Then, just to be sure, we will add an additional check to the email.</li>
       </ul>
      </li>
     </ol>
 
     <h2>Create a Custom Function</h2>
-    <p>We will create a function just for the email addresses. It will check the value of the $email variable, after having been sanitized, to see if it "looks" like a valid email address.</p>
+    <p>We will create a function just for the email addresses. It will check the value of the $clientEmail variable, after having been sanitized, to see if it "looks" like a valid email address.</p>
 
     <ol>
      <li>Create a new PHP file in the <b>library</b> folder, named "<b>functions.php</b>".</li>
      <li>This file will become a library of custom functions that we will use in our code to perform a variety of tasks.</li>
-     <li>In the "<b>functions.php</b>" file create a new function named "<b>checkEmail($email)</b>"</li>
+     <li>In the "<b>functions.php</b>" file create a new function named "<b>checkEmail($clientEmail)</b>"</li>
      <li>Inside the function we will add the code to do the check that was mentioned.</li>
      <li>The end result will be returned. It will be one of two values: 1) The actual email address will be returned if it is judged to be "valid", or 2) NULL - indicating the email does not appear to be a valid address.</li>
      <li>The finished function should look something like this:
       <code class="callout no-left">
-            function checkEmail($email){<br>
-            &nbsp;&nbsp;$valEmail = filter_var($email, FILTER_VALIDATE_EMAIL);<br>
+       function checkEmail($clientEmail){<br>
+       &nbsp;&nbsp;$valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);<br>
             &nbsp;&nbsp;return $valEmail;<br>
             }
             </code>
@@ -74,19 +74,19 @@
      </li>
      <li>Save the controller file.</li>
      <li>Scroll back down and find the first blank line beneath where the four inputs were filtered and stored. Click in the blank line.</li>
-     <li>Recreate the $email variable and assign to it what is returned from calling the <code>checkEmail($email)</code> function. It should look like this:
+     <li>Recreate the $clientEmail variable and assign to it what is returned from calling the <code>checkEmail($clientEmail)</code> function. It should look like this:
       <code class="callout no-left">
-              $email = checkEmail($email);
+       $$clientEmail = checkEmail($clientEmail);
             </code>
      </li>
-     <li>Because the code is executed from right to left, the original $email variable's value is passed to the function and the returned value is sent back and stored in the $email variable on the left.</li>
+     <li>Because the code is executed from right to left, the original $clientEmail variable's value is passed to the function and the returned value is sent back and stored in the $clientEmail variable on the left.</li>
     </ol>
 
     <h2>A Password Function</h2>
     <p>Just as we did with the email, we will create a custom functon to check that the password meets the format requirement that we added to our HTML form: at least 8 characters, at least 1 capital letter, at least 1 number and at least 1 special character.</p>
     <ol>
      <li>Return to the <b>functions.php</b> page.</li>
-     <li>Create another custom function named "<b>checkPassword($password)</b>.</li>
+     <li>Create another custom function named "<b>checkPassword($clientPassword)</b>.</li>
      <li>In it we will use a PHP function that compares the value of a variable against a PHP regular expression.</li>
      <li>The function returns "<code>1</code>" if the two match or "<code>0</code>" if they don't.</li>
      <li>The function should look like this when done:
@@ -94,9 +94,9 @@
               // Check the password for a minimum of 8 characters,<br>
               // at least one 1 capital letter, at least 1 number and<br>
               // at least 1 special character<br>
-              function checkPassword($password){<br>
+       function checkPassword($clientPassword){<br>
               &nbsp;&nbsp;$pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]])[[:print:]]{8,}$/';<br>
-              &nbsp;&nbsp;return preg_match($pattern, $password);<br>
+       &nbsp;&nbsp;return preg_match($pattern, $clientPassword);<br>
               }
             </code>
      </li>
@@ -106,22 +106,22 @@
     <ol>
      <li>Return to the <b>accounts</b> controller.</li>
      <li>Scroll back down and find the first blank line beneath your use of the checkEmail() function. Click in the blank line.</li>
-     <li>Create a new $checkPassword variable and assign to it what is returned from calling the <code>checkPassword($password)</code> function. It should look like this:
+     <li>Create a new $checkPassword variable and assign to it what is returned from calling the <code>checkPassword($clientPassword)</code> function. It should look like this:
       <code class="callout no-left">
-              $checkPassword = checkPassword($password);
+       $checkPassword = checkPassword($clientPassword);
             </code>
      </li>
-     <li>As previously explained, the code is executed from right to left. The original $password variable's value is passed to the function and the returned value is sent back and stored in the $checkPassword variable on the left.</li>
+     <li>As previously explained, the code is executed from right to left. The original $clientPassword variable's value is passed to the function and the returned value is sent back and stored in the $checkPassword variable on the left.</li>
      <li>What is returned from the function is "1" if the password matches the format and a "0" (zero) if it doesn't.</li>
      <li>Save your work.</li>
-     <li>To add the $checkPassword variable to our data validation process, go to the list of "empty()" functions and replace the "<code>$password</code>" variable with the "<code>$checkPassword</code>" variable. So, this code:
+     <li>To add the $checkPassword variable to our data validation process, go to the list of "empty()" functions and replace the "<code>$clientPassword</code>" variable with the "<code>$checkPassword</code>" variable. So, this code:
       <code class="callout no-left">
               // Check for missing data<br>
-              if (empty($firstname) || empty($lastname) || empty($email) || empty($password)) {
+              if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
             </code> should be changed to this code:
       <code class="callout no-left">
               // Check for missing data<br>
-              if (empty($firstname) || empty($lastname) || empty($email) || empty($checkPassword)) {
+       if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
             </code>
      </li>
      <li>Why? By sending the original password variable to our custom function for comparison against our regular expression we are already checking that something is there. If it is empty or doesn't match a zero is returned. However, if it does match then a 1 is returned. By sending the <code>$checkPassword</code> variable into our list of "empty()" checks it will be empty if the password doesn't match our requirements for any reason, but it will NOT be empty if it does.</li>
@@ -134,7 +134,7 @@
      <li>We then created a new PHP file in the "<b>library</b>" folder specifically to store custom functions - "<b>functions.php</b>".</li>
      <li>In the <b>functions.php</b> file we have created two custom functions: 1) to validate an email address - <code>checkEmail()</code> - and, 2) to check a password that it meets specific requirements - <code>checkPassword()</code>.</li>
      <li>In the <b>accounts</b> controller we added a <code>require_once</code> to bring the <b>functions.php</b> page into the controller's scope.</li>
-     <li>In the <b>accounts</b> controller we used the two new functions on our <code>$email</code> and <code>$password</code> variables.</li>
+     <li>In the <b>accounts</b> controller we used the two new functions on our <code>$clientEmail</code> and <code>$clientPassword</code> variables.</li>
      <li>With this done the values in the variables should be either "acceptable" or not. Our existing "<code>empty()</code>" functions should still work. Why? Because the "<code>empty()</code>" function works with a value of zero (what the checkPassword() will return) and NULL (what the checkEmail() will return) if they fail! Cool huh?!</li>
     </ul>
 
@@ -142,19 +142,19 @@
     <p>Up to this point, if the form was not filled in correctly, we created an error message and displayed it in the form, but the site visitor had to start over from scratch as they filled in the registration form. To be more "friendly" we will make the form "sticky" meaning that the value that they typed originally will appear back in the form input field.</p>
 
     <ol>
-     <li>In the accounts controller, take a look at the variables that you have stored the incoming data into. In my code they are named <code>$firstname</code>, <code>$lastname</code>, <code>$email</code> and <code>$password</code>.</li>
+     <li>In the accounts controller, take a look at the variables that you have stored the incoming data into. In my code they are named <code>$clientFirstname</code>, <code>$clientLastname</code>, <code>$clientEmail</code> and <code>$clientPassword</code>.</li>
      <li>Find and open the <b>registration.php</b> view.</li>
      <li>Scroll down until the form inputs are visible.</li>
      <li>In the firstname input field add the following code:
       <code class="callout no-left">
-              &lt;?php if(isset($firstname)){echo "value='$firstname'";}  ?&gt;
+              &lt;?php if(isset($clientFirstname)){echo "value='$clientFirstname'";}  ?&gt;
             </code> Make sure that it is separated from any of the other attributes by a space.</li>
-     <li>When done the entire firstname input should look similar to this:
+     <li>When done the entire first name input should look similar to this:
       <code class="callout no-left">
-              &lt;input name="firstname" id="firstname" &lt;?php if(isset($firstname)){echo "value='$firstname'";} ?&gt; required&gt;
+       &lt;input name="clientFirstname" id="clientFirstname" &lt;?php if(isset($clientFirstname)){echo "value='$clientFirstname'";} ?&gt; required&gt;
             </code>
      </li>
-     <li>When you are sure your code is correct and no errors are being reported in your syntax, repeat this process for the lastname and email inputs.</li>
+     <li>When you are sure your code is correct and no errors are being reported in your syntax, repeat this process for the last name and email inputs.</li>
      <li><strong>Do not do this for the password field!</strong> We always make the visitor re-type the password - <b>Always</b>!</li>
     </ol>
 
@@ -165,14 +165,14 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/qqt4KVn5rIg" allowfullscreen></iframe>
 
     <h2>The Login Form</h2>
-    <p>The login form is much simpler, as it only contains two inputs: email and password. However, we want to extend the same client-side and server-side checks to it as we did to the registration form.</p>
+    <p>The login form is much simpler, as it only contains two inputs for the email and password. However, we want to extend the same client-side and server-side checks to it as we did to the registration form.</p>
 
     <ol>
      <li>Open the <b>login.php</b> view.</li>
      <li>Add the HTML5 "required" attributes to both input fields.</li>
      <li>Add the same reminder to the password field in the login form (reminding the visitor of the password requirements) as you did in the registration form.</li>
      <li>Add the same pattern attribute to the password input as exists in the registration form.</li>
-     <li>Add the same PHP code block in the email input to display the email address if the <code>$email</code> variable exists as you added to the email input in the registration form.</li>
+     <li>Add the same PHP code block in the email input to display the email address if the <code>$clientEmail</code> variable exists as you added to the email input in the registration form.</li>
      <li><strong>DO NOT</strong> add the PHP code block to the password input! Make the user re-enter the password.</li>
      <li>If your login form does not have a "hidden" input that will pass a key - value pair to the controller, add it. <strong>Note: the key will be "action", but the "value" should not be the same that you used to deliver the login view.</strong> For example, if you used the value "login" to deliver the view, then use "Login" to submit the login data. For example:
       <code class="callout no-left">
