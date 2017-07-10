@@ -79,13 +79,13 @@
      <li>Add a new comment indicating that you are selecting a single product based on its id</li>
      <li>Below the comment add this function (your connection function may be named differently):
       <code class="callout no-left">
-              function getProductInfo($prodId){<br>
+              function getProductInfo($invId){<br>
               &nbsp;$db = acmeConnect();<br>
-              &nbsp;$sql = 'SELECT * FROM inventory WHERE invId = :prodId';<br>
+              &nbsp;$sql = 'SELECT * FROM inventory WHERE invId = :invId';<br>
               &nbsp;$stmt = $db->prepare($sql);<br>
-              &nbsp;$stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);<br>
+              &nbsp;$stmt->bindValue(':invId', $invId, PDO::PARAM_INT);<br>
               &nbsp;$stmt->execute();<br>
-              &nbsp;$prodInfo = $stmt->fetch(PDO::FETCH_NAMED);<br>
+              &nbsp;$prodInfo = $stmt->fetch(PDO::FETCH_ASSOC);<br>
               &nbsp;$stmt->closeCursor();<br>
               &nbsp;return $prodInfo;<br>
               }<br>
