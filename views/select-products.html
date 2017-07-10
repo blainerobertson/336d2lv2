@@ -104,7 +104,7 @@
             &nbsp;$sql = 'SELECT invName, invId FROM inventory ORDER BY invName ASC';<br>
             &nbsp;$stmt = $db->prepare($sql);<br>
             &nbsp;$stmt->execute();<br>
-            &nbsp;$products = $stmt->fetchAll(PDO::FETCH_NAMED);<br>
+            &nbsp;$products = $stmt->fetchAll(PDO::FETCH_ASSOC);<br>
             &nbsp;$stmt->closeCursor();<br>
             &nbsp;return $products;<br>
             }<br>
@@ -113,7 +113,7 @@
       <ul>
        <li>All of this should already be familiar but I will point out one or two things.</li>
        <li>The query only gets the name and id for each inventory item. That is all we use to build the table.</li>
-       <li>We are using the <code>fetchAll(PDO::FETCH_NAMED)</code> method to get an associative array for each item. Meaning the field name from the database table is used to identify each product value.</li>
+       <li>We are using the <code>fetchAll(PDO::FETCH_ASSOC)</code> method to get an associative array for each item. Meaning the field name from the database table is used to identify each product value.</li>
       </ul>
      </li>
     </ol>
