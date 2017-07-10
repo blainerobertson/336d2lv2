@@ -24,10 +24,10 @@
 
     <ol>
      <li>Locate and open the "<b>products</b>" controller.</li>
-     <li>Within the controller find the <i>case</i> or <i>if</i> test that is responsible for delivering the "<b>product management</b>" view.</li>
-     <li>Create some space between the <i>case</i> or <i>if</i> test line and the line that actually "includes" the view. In my code the created space looks like this (your names will be different):
+     <li>Within the controller find the "default" case statement that is responsible for delivering the "<b>product management</b>" view.</li>
+     <li>Create some space between the <i>default case</i> line and the line that actually "includes" the view. In my code the created space looks like this (your names will be different):
       <code class="callout no-left">
-            case 'prodmgmt':<br>
+            default:<br>
             <br>
             <br>
             <br>
@@ -43,7 +43,7 @@
      </li>
      <li>Even though the function does not yet exist, let's write the function call and the variable to store the returned data into. Add the following code to the empty space you created earlier:
       <code class="callout no-left">
-              case 'prodmgmt':<br>
+              default:<br>
               &nbsp;&nbsp;$products = getProductBasics();<br>
               <br>
               <br>
@@ -53,7 +53,7 @@
      </li>
      <li>On the next lines we will test to see if products were returned. If so, we will build an HTML table, but if not, we will set an error message. The following code should do the trick:
       <code class="callout no-left">
-              case 'prodmgmt':<br>
+       default:<br>
               &nbsp;$products = getProductBasics();<br>
               &nbsp;if(count($products) > 0){<br>
               &nbsp;&nbsp;$prodList = '&lt;table&gt;';<br>
