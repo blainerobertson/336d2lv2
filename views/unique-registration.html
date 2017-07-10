@@ -46,11 +46,11 @@
      <li>Do your best to write the function on your own, then compare what you wrote with the code below:
       <code class="callout no-left">
             // Check for an existing email address<br>
-            function checkExistingEmail($email) {<br>
+            function checkExistingEmail($clientEmail) {<br>
             &nbsp;&nbsp;$db = acmeConnect();<br>
             &nbsp;&nbsp;$sql = 'SELECT clientEmail FROM clients WHERE clientEmail = :email';<br>
             &nbsp;&nbsp;$stmt = $db->prepare($sql);<br>
-            &nbsp;&nbsp;$stmt->bindValue(':email', $email, PDO::PARAM_STR);<br>
+            &nbsp;&nbsp;$stmt->bindValue(':email', $clientEmail, PDO::PARAM_STR);<br>
             &nbsp;&nbsp;$stmt->execute();<br>
             &nbsp;&nbsp;$matchEmail = $stmt->fetch(PDO::FETCH_NUM);<br>
             &nbsp;&nbsp;$stmt->closeCursor();<br>
@@ -78,7 +78,7 @@
      <li>If it is true, set a $message telling the visitor that the email address already exists and that they may want to login instead. Then include the "login" view and follow the include with an exit.</li>
      <li>When done your code could look something like this:
       <code class="callout no-left">
-            $existingEmail = checkExistingEmail($email);<br>
+            $existingEmail = checkExistingEmail($clientEmail);<br>
               <br>
               // Check for existing email address in the table<br>
               if($existingEmail){<br>
