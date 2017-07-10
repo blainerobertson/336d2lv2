@@ -24,7 +24,7 @@
     <p>As with previous interaction processes in the controller we will start by adding an additional "case" to the control structure based on the first of our name - value pairs.</p>
     <ol>
      <li>Open the <b>products</b> controller.</li>
-     <li>Scroll down and add an additional case statement to the control structure based on the value being passed through the "Modify" link in the <b>Product Management</b> view:
+     <li>Scroll down and add an additional case statement (prior to the default case) to the control structure based on the value being passed through the "Modify" link in the <b>Product Management</b> view:
       <code class="callout no-left">
             case 'mod':<br>
             <br>
@@ -34,23 +34,23 @@
      <li>Within this case block we need to capture the value of the second name - value pair (remember that this is coming from a link, therefore it is a <b>GET</b> request:
       <code class="callout no-left">
               case 'mod':<br>
-              &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
+              &nbsp;$invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
               break;<br>
             </code>
      </li>
      <li>Next we will send the <code>$prodId</code> variable into a function (that we will write in a minute) that will get the information for that single product:
       <code class="callout no-left">
               case 'mod':<br>
-              &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
-              $prodInfo = getProductInfo($prodId);<br>
+              &nbsp;$invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
+              $prodInfo = getProductInfo($invId);<br>
               break;<br>
             </code>
      </li>
      <li>Next we will check to see if <code>$prodInfo</code> has any data. If not, we will set an error message:
       <code class="callout no-left">
               case 'mod':<br>
-              &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
-              &nbsp;$prodInfo = getProductInfo($prodId);<br>
+              &nbsp;$invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
+              &nbsp;$prodInfo = getProductInfo($invId);<br>
               &nbsp;if(count($prodInfo)<1){<br>
               &nbsp;&nbsp;$message = 'Sorry, no product information could be found.';<br>
               &nbsp;}<br>
@@ -60,8 +60,8 @@
      <li>Finally we will call a view where the data can be displayed so that the changes can be made to the data:
       <code class="callout no-left">
               case 'mod':<br>
-              &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
-              &nbsp;$prodInfo = getProductInfo($prodId);<br>
+              &nbsp;$invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
+              &nbsp;$prodInfo = getProductInfo($invId);<br>
               &nbsp;if(count($prodInfo)<1){<br>
               &nbsp;&nbsp;$message = 'Sorry, no product information could be found.';<br>
               &nbsp;}<br>
