@@ -49,7 +49,7 @@
      <li>To create the cookie I use the <b><code>setcookie()</code></b> function and provide it with the data I desire. In our example we will provide four parameters to the setcookie function:
       <ul>
        <li>The first and only <b>required</b> parameter is a name. In this instance I will name my cookie "firstname".</li>
-       <li>The second parameter is a value. In this case the value will be the variable that holds the registrant's first name (e.g. $firstname).</li>
+       <li>The second parameter is a value. In this case the value will be the variable that holds the registrant's first name (e.g. $clientFirstname).</li>
        <li>The third parameter is the "expiry", or the life of the cookie. We will set it for one year. (<b>NOTE:</b> normally you would use a calculation of multiplying seconds to equal a year, but using the <b><code>strtotime()</code></b> function and passing a value of <code>+ 1 year</code> is much less writing and easier to understand).</li>
        <li>Finally, the fourth and last parameter is the path of the cookie. This parameter tells the server what folders within the web site have access and can "see" the cookie. We will set the path to "/" which means the cookie will be visible to the entire web site.</li>
       </ul>
@@ -58,8 +58,8 @@
       <code class="callout no-left">
             // Check and report the result<br>
             if ($regOutcome === 1) {<br>
-            &nbsp;&nbsp;setcookie('firstname', $firstname, strtotime('+1 year'), '/');<br>
-            &nbsp;&nbsp;$message = "&lt;p&gt;Thanks for registering $firstname. Please use your email and password to login.&lt;/p&gt;";<br>
+            &nbsp;&nbsp;setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');<br>
+            &nbsp;&nbsp;$message = "&lt;p&gt;Thanks for registering $clientFirstname. Please use your email and password to login.&lt;/p&gt;";<br>
             &nbsp;&nbsp;include '../view/login.php';<br>
             &nbsp;&nbsp;exit;<br>
             } .....<br>
