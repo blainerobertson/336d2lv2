@@ -35,7 +35,7 @@
      </li>
      <li>We will now add a second hidden input to store the primary key value for the product being updated. Below the existing hidden input containing the name - value pair, add another one to look like this:
       <code class="callout no-left">
-       &lt;input type="hidden" name="prodId" value="&lt;?php if(isset($prodInfo['invId'])){ echo $prodInfo['invId'];} elseif(isset($prodId)){ echo $prodId; } ?&gt;"&gt;
+       &lt;input type="hidden" name="invId" value="&lt;?php if(isset($prodInfo['invId'])){ echo $prodInfo['invId'];} elseif(isset($invId)){ echo $invId; } ?&gt;"&gt;
             </code> This allows us to submit the primary key for the product without it being obvious to the client looking at the form. In addition, if the page is included for error correction the value of the primary key (from the error check process) is returned and re-inserted into the hidden field.
      </li>
      <li>Save the view.</li>
@@ -58,27 +58,27 @@
       <code class="callout no-left">
               case 'updateProd':<br>
               &nbsp;$catType = filter_input(INPUT_POST, 'catType', FILTER_SANITIZE_NUMBER_INT);<br>
-              &nbsp;$prodName = filter_input(INPUT_POST, 'prodName', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodDesc = filter_input(INPUT_POST, 'prodDesc', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodImg = filter_input(INPUT_POST, 'prodImg', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodThumb = filter_input(INPUT_POST, 'prodThumb', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);<br>
-              &nbsp;$prodStock = filter_input(INPUT_POST, 'prodStock', FILTER_SANITIZE_NUMBER_INT);<br>
-              &nbsp;$prodSize = filter_input(INPUT_POST, 'prodSize', FILTER_SANITIZE_NUMBER_INT);<br>
-              &nbsp;$prodWeight = filter_input(INPUT_POST, 'prodWeight', FILTER_SANITIZE_NUMBER_INT);<br>
-              &nbsp;$prodLocation = filter_input(INPUT_POST, 'prodLocation', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodVendor = filter_input(INPUT_POST, 'prodVendor', FILTER_SANITIZE_STRING);<br>
-              &nbsp;$prodStyle = filter_input(INPUT_POST, 'prodStyle', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invImg = filter_input(INPUT_POST, 'invImg', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invThumb = filter_input(INPUT_POST, 'invThumb', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);<br>
+       &nbsp;$invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);<br>
+       &nbsp;$invSize = filter_input(INPUT_POST, 'invSize', FILTER_SANITIZE_NUMBER_INT);<br>
+       &nbsp;$invWeight = filter_input(INPUT_POST, 'invWeight', FILTER_SANITIZE_NUMBER_INT);<br>
+       &nbsp;$invLocation = filter_input(INPUT_POST, 'invLocation', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invVendor = filter_input(INPUT_POST, 'invVendor', FILTER_SANITIZE_STRING);<br>
+       &nbsp;$invStyle = filter_input(INPUT_POST, 'invStyle', FILTER_SANITIZE_STRING);<br>
 
 
-              &nbsp;if (empty($catType) || empty($prodName) || empty($prodDesc) || empty($prodImg) || empty($prodThumb) || empty($prodPrice) || empty($prodStock) || empty($prodSize) || empty($prodWeight) || empty($prodLocation) || empty($prodVendor) || empty($prodStyle)) {<br>
+              &nbsp;if (empty($catType) || empty($invName) || empty($invDescription) || empty($invImg) || empty($invThumb) || empty($invPrice) || empty($invStock) || empty($invSize) || empty($invWeight) || empty($invLocation) || empty($invVendor) || empty($invStyle)) {<br>
               &nbsp;&nbsp;$message = '&lt;p&gt;Please complete all information for the new item! Double check the category of the item.&lt;/p&gt;';<br>
               &nbsp;include '../view/new-prod.php';<br>
               &nbsp;exit;<br>
               }
-              &nbsp;$insertResult = addProduct($catType, $prodName, $prodDesc, $prodImg, $prodThumb, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle);<br>
+              &nbsp;$insertResult = addProduct($catType, $invName, $invDescription, $invImg, $invThumb, $invPrice, $invStock, $invSize, $invWeight, $invLocation, $invVendor, $invStyle);<br>
               &nbsp;if ($insertResult) {<br>
-              &nbsp;&nbsp;$message = "&lt;p&gt;Congratulations, $prodName was successfully added.&lt;/p&gt;";<br>
+              &nbsp;&nbsp;$message = "&lt;p&gt;Congratulations, $invName was successfully added.&lt;/p&gt;";<br>
               &nbsp;&nbsp;include '../view/new-prod.php';<br>
               &nbsp;&nbsp;exit;<br>
               &nbsp;} else {<br>
@@ -93,13 +93,13 @@
       <ol>
        <li>Add a new variable to filter and store the primary key value being passed from the form. It could look like this:
         <code class="callout no-left">
-              $prodId = filter_input(INPUT_POST, 'prodId', FILTER_SANITIZE_NUMBER_INT);<br>
+              $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);<br>
   </code> We will not add this to our checks since there is no easy way to have the user correct it. If it is wrong or missing the update will simply fail.
        </li>
        <li>Scroll down and find the first error message, after the data checks. If it says anything about a "new" item, change it to reflect an "updated" item.</li>
        <li>Beneath that change the view to include to be the <b>prod-update.php</b> view, since that is where the data was sent from.</li>
        <li>Change the name of the function that will be called from the model to "<b>updateProduct( ... variables are here ...)</b>".</li>
-       <li>Add the <code>$prodId</code> variable as an additional parameter to the <code>updateProduct</code> function.</li>
+       <li>Add the <code>$invId</code> variable as an additional parameter to the <code>updateProduct</code> function.</li>
        <li>Change the name of the variable that the <code>updateProduct</code> function's return value will be stored into to <b>$updateResult</b>.</li>
        <li>Change the <code>if</code> test to check for the results of <b>$updateResult</b>.</li>
        <li>Change the success message to reflect that the update was successful, not an insertion.</li>
@@ -110,7 +110,7 @@
          <li>If the update succeeds, we want to be redirected back to the product management view, display the message and also get the full list of products to appear again. To do this, we will use the session to store the message, use a header function to return to the controller, and then have the controller deliver the view and display the message. To do this alter that success to resemble this:
           <code class="callout no-left">
          if ($updateResult) {
-         &nbsp;$message = "&lt;p class='notify'&gt;Congratulations, $prodName was successfully updated.&lt;/p&gt;";
+         &nbsp;$message = "&lt;p class='notify'&gt;Congratulations, $invName was successfully updated.&lt;/p&gt;";
          &nbsp;$_SESSION['message'] = $message;
          &nbsp;header('location: /acme/products/');
          &nbsp;exit;
@@ -166,32 +166,32 @@
     <code class="callout">
      case 'updateProd':<br>
      &nbsp;$catType = filter_input(INPUT_POST, 'catType', FILTER_SANITIZE_NUMBER_INT);<br>
-     &nbsp;$prodName = filter_input(INPUT_POST, 'prodName', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodDesc = filter_input(INPUT_POST, 'prodDesc', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodImg = filter_input(INPUT_POST, 'prodImg', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodThumb = filter_input(INPUT_POST, 'prodThumb', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);<br>
-     &nbsp;$prodStock = filter_input(INPUT_POST, 'prodStock', FILTER_SANITIZE_NUMBER_INT);<br>
-     &nbsp;$prodSize = filter_input(INPUT_POST, 'prodSize', FILTER_SANITIZE_NUMBER_INT);<br>
-     &nbsp;$prodWeight = filter_input(INPUT_POST, 'prodWeight', FILTER_SANITIZE_NUMBER_INT);<br>
-     &nbsp;$prodLocation = filter_input(INPUT_POST, 'prodLocation', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodVendor = filter_input(INPUT_POST, 'prodVendor', FILTER_SANITIZE_STRING);<br>
-     &nbsp;$prodStyle = filter_input(INPUT_POST, 'prodStyle', FILTER_SANITIZE_STRING);<br>
-     &nbsp;<mark>$prodId = filter_input(INPUT_POST, 'prodId', FILTER_SANITIZE_NUMBER_INT);</mark><br>
+     &nbsp;$invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);<br>
+     &nbsp;$invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING);<br>
+     &nbsp;$invImg = filter_input(INPUT_POST, 'invImg', FILTER_SANITIZE_STRING);<br>
+     &nbsp;$invThumb = filter_input(INPUT_POST, 'invThumb', FILTER_SANITIZE_STRING);<br>
+     &nbsp;$invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);<br>
+     &nbsp;$invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);<br>
+     &nbsp;$invSize = filter_input(INPUT_POST, 'invSize', FILTER_SANITIZE_NUMBER_INT);<br>
+     &nbsp;$invWeight = filter_input(INPUT_POST, 'invWeight', FILTER_SANITIZE_NUMBER_INT);<br>
+     &nbsp;$invLocation = filter_input(INPUT_POST, 'invLocation', FILTER_SANITIZE_STRING);<br>
+     &nbsp;$invVendor = filter_input(INPUT_POST, 'invVendor', FILTER_SANITIZE_STRING);<br>
+     &nbsp;$invStyle = filter_input(INPUT_POST, 'invStyle', FILTER_SANITIZE_STRING);<br>
+     &nbsp;<mark>$invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);</mark><br>
      <br>
-     &nbsp;if (empty($catType) || empty($prodName) || empty($prodDesc) || empty($prodImg) || empty($prodThumb) || empty($prodPrice) || empty($prodStock) || empty($prodSize) || empty($prodWeight) || empty($prodLocation) || empty($prodVendor) || empty($prodStyle)) {<br>
+     &nbsp;if (empty($catType) || empty($invName) || empty($invDescription) || empty($invImg) || empty($invThumb) || empty($invPrice) || empty($invStock) || empty($invSize) || empty($invWeight) || empty($invLocation) || empty($invVendor) || empty($invStyle)) {<br>
      &nbsp;&nbsp;<mark>$message = '&lt;p&gt;Please complete all information for the item! Double check the category of the item.&lt;/p&gt;';</mark><br>
      &nbsp;&nbsp;<mark>include '../view/prod-update.php';</mark><br>
      &nbsp;&nbsp;exit;<br>
      &nbsp;}<br>
-     &nbsp;<mark>$updateResult = updateProduct($catType, $prodName, $prodDesc, $prodImg, $prodThumb, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle, $prodId);</mark><br>
+     &nbsp;<mark>$updateResult = updateProduct($catType, $invName, $invDescription, $invImg, $invThumb, $invPrice, $invStock, $invSize, $invWeight, $invLocation, $invVendor, $invStyle, $invId);</mark><br>
      &nbsp;if (<mark>$updateResult</mark>) {<br>
-     &nbsp;&nbsp;<mark>$message = "&lt;p class='notice'&gt;Congratulations, $prodName was successfully updated.&lt;/p&gt;";</mark><br>
+     &nbsp;&nbsp;<mark>$message = "&lt;p class='notice'&gt;Congratulations, $invName was successfully updated.&lt;/p&gt;";</mark><br>
      &nbsp;&nbsp;<mark>$_SESSION['message'] = $message;</mark><br>
      &nbsp;&nbsp;<mark>header('location: /acme/products/');</mark><br>
      &nbsp;&nbsp;exit;<br>
      &nbsp;} else {<br>
-     &nbsp;&nbsp;<mark>$message = "&lt;p class='notice'&gt;Error. $prodName was not updated.&lt;/p&gt;";</mark><br>
+     &nbsp;&nbsp;<mark>$message = "&lt;p class='notice'&gt;Error. $invName was not updated.&lt;/p&gt;";</mark><br>
      &nbsp;&nbsp;<mark>include '../view/prod-update.php';</mark><br>
      &nbsp;&nbsp;exit;<br>
      &nbsp;}<br>
@@ -207,44 +207,44 @@
      <li>Add a comment indicating that the function will update a product.</li>
      <li>Paste the <b>add product</b> function below your new comment.</li>
      <li>Change the name of the function to <b>updateProduct()</b>.</li>
-     <li>Leave all existing parameters as they exist, but add <code>$prodId</code> to the list of parameters and make sure a comma separates it from other parameters in the list. When done the function name and parameter list could look like this:
+     <li>Leave all existing parameters as they exist, but add <code>$invId</code> to the list of parameters and make sure a comma separates it from other parameters in the list. When done the function name and parameter list could look like this:
       <code class="callout no-left">
-      function updateProduct($catType, $prodName, $prodDesc, $prodImg, $prodThumb, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle, $prodId)
+      function updateProduct($catType, $invName, $invDescription, $invImg, $invThumb, $invPrice, $invStock, $invSize, $invWeight, $invLocation, $invVendor, $invStyle, $invId)
       </code>
      </li>
      <li>The biggest change to the function will be the SQL statement. We have to change it to an UPDATE from an INSERT.</li>
      <li>Alter the SQL to look like this (remember that your named parameters (placeholders) may be different than those shown):
       <code class="callout no-left">
-       $sql = 'UPDATE inventory SET invName = :prodName, invDescription = :prodDesc, invImage = :prodImg, invThumbnail = :prodThumb, invPrice = :prodPrice, invStock = :prodStock, invSize = :prodSize, invWeight = :prodWeight, invLocation = :prodLocation, categoryId = :catType, invVendor = :prodVendor, invStyle = :prodStyle WHERE invId = :prodId';
+       $sql = 'UPDATE inventory SET invName = :invName, invDescription = :invDescription, invImage = :invImg, invThumbnail = :invThumb, invPrice = :invPrice, invStock = :invStock, invSize = :invSize, invWeight = :invWeight, invLocation = :invLocation, categoryId = :catType, invVendor = :invVendor, invStyle = :invStyle WHERE invId = :invId';
       </code>
      </li>
-     <li>Add an additional <code>bindValue</code> method for the <code>$prodId</code>. It should look like this:
+     <li>Add an additional <code>bindValue</code> method for the <code>$invId</code>. It should look like this:
       <code class="callout no-left">
-      $stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);
+      $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
       </code>
      </li>
      <li>When done the function should look similar to this (items that were changed are highlighted):
       <code class="callout no-left">
        <mark>// Update a product</mark><br>
-       function <mark>updateProduct</mark>($catType, $prodName, $prodDesc, $prodImg, $prodThumb, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle<mark>, $prodId</mark>) {<br>
+       function <mark>updateProduct</mark>($catType, $invName, $invDescription, $invImg, $invThumb, $invPrice, $invStock, $invSize, $invWeight, $invLocation, $invVendor, $invStyle<mark>, $invId</mark>) {<br>
        // Create a connection<br>
        $db = acmeConnect();<br>
        // The SQL statement to be used with the database<br>
-       <mark>$sql = 'UPDATE inventory SET invName = :prodName, invDescription = :prodDesc, invImage = :prodImg, invThumbnail = :prodThumb, invPrice = :prodPrice, invStock = :prodStock, invSize = :prodSize, invWeight = :prodWeight, invLocation = :prodLocation, categoryId = :catType, invVendor = :prodVendor, invStyle = :prodStyle WHERE invId = :prodId';</mark><br>
+       <mark>$sql = 'UPDATE inventory SET invName = :invName, invDescription = :invDescription, invImage = :invImg, invThumbnail = :invThumb, invPrice = :invPrice, invStock = :invStock, invSize = :invSize, invWeight = :invWeight, invLocation = :invLocation, categoryId = :catType, invVendor = :invVendor, invStyle = :invStyle WHERE invId = :invId';</mark><br>
        $stmt = $db->prepare($sql);<br>
        $stmt->bindValue(':catType', $catType, PDO::PARAM_INT);<br>
-       $stmt->bindValue(':prodName', $prodName, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodDesc', $prodDesc, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodImg', $prodImg, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodThumb', $prodThumb, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodPrice', $prodPrice, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodStock', $prodStock, PDO::PARAM_INT);<br>
-       $stmt->bindValue(':prodSize', $prodSize, PDO::PARAM_INT);<br>
-       $stmt->bindValue(':prodWeight', $prodWeight, PDO::PARAM_INT);<br>
-       $stmt->bindValue(':prodLocation', $prodLocation, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodVendor', $prodVendor, PDO::PARAM_STR);<br>
-       $stmt->bindValue(':prodStyle', $prodStyle, PDO::PARAM_STR);<br>
-       <mark>$stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);</mark><br>
+       $stmt->bindValue(':invName', $invName, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invImg', $invImg, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invThumb', $invThumb, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invStock', $invStock, PDO::PARAM_INT);<br>
+       $stmt->bindValue(':invSize', $invSize, PDO::PARAM_INT);<br>
+       $stmt->bindValue(':invWeight', $invWeight, PDO::PARAM_INT);<br>
+       $stmt->bindValue(':invLocation', $invLocation, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invVendor', $invVendor, PDO::PARAM_STR);<br>
+       $stmt->bindValue(':invStyle', $invStyle, PDO::PARAM_STR);<br>
+       <mark>$stmt->bindValue(':invId', $invId, PDO::PARAM_INT);</mark><br>
        $stmt->execute();<br>
        $rowsChanged = $stmt->rowCount();<br>
        $stmt->closeCursor();<br>
