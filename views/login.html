@@ -89,11 +89,11 @@
      <li>Scroll to the bottom of the existing functions and add the following new function:
       <code class="callout no-left">
                     // Get client data based on an email address<br>
-              function getClient($email){<br>
+              function getClient($clientEmail){<br>
               &nbsp;&nbsp;$db = acmeConnect();<br>
               &nbsp;&nbsp;$sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail = :email';<br>
               &nbsp;&nbsp;$stmt = $db->prepare($sql);<br>
-              &nbsp;&nbsp;$stmt->bindValue(':email', $email, PDO::PARAM_STR);<br>
+              &nbsp;&nbsp;$stmt->bindValue(':email', $clientEmail, PDO::PARAM_STR);<br>
               &nbsp;&nbsp;$stmt->execute();<br>
               &nbsp;&nbsp;$clientData = $stmt->fetch(PDO::FETCH_ASSOC);<br>
               &nbsp;&nbsp;$stmt->closeCursor();<br>
@@ -126,7 +126,7 @@
                     case 'Login':<br>
                     <br>
                     break;<br>
-                  </code> If you don't, add it.
+                  </code> If you don't, add it. <mark>But, be sure you add it prior to the the "default:" which must ALWAYS be the last item in a switch control structure.</mark>
      </li>
      <li>Within this case statement we will add the login process code. To review, the typical process will follow these steps:
       <ul>
@@ -141,13 +141,13 @@
     <h3>Login Processing</h3>
     <p>Add all of the code below inside the case statement mentioned above:</p>
     <code class="callout">
-          $email = filter_input(INPUT_POST, 'email');<br>
-          $email = checkEmail($email);<br>
-          $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);<br>
-          $passwordCheck = checkPassword($password);<br>
+          $email = filter_input(INPUT_POST, 'clientEmail');<br>
+          $clientEmail = checkEmail($clientEmail);<br>
+          $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);<br>
+          $passwordCheck = checkPassword($clientPassword);<br>
           <br>
           // Run basic checks, return if errors<br>
-          if (empty($email) || empty($passwordCheck)) {<br>
+          if (empty($clientEmail) || empty($passwordCheck)) {<br>
           &nbsp;&nbsp;$message = '&lt;p class="notice"&gt;Please provide a valid email address and password.&lt;/p&gt;';<br>
           &nbsp;&nbsp;include '../view/login.php';<br>
           &nbsp;&nbsp;exit;<br>
@@ -155,10 +155,10 @@
           <br>
           // A valid password exists, proceed with the login process<br>
           // Query the client data based on the email address<br>
-          $clientData = getClient($email);<br>
+          $clientData = getClient($clientEmail);<br>
           // Compare the password just submitted against<br>
           // the hashed password for the matching client<br>
-          $hashCheck = password_verify($password, $clientData['clientPassword']);<br>
+          $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);<br>
           // If the hashes don't match create an error<br>
           // and return to the login view<br>
           if (!$hashCheck) {<br>
