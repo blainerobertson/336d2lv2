@@ -141,7 +141,7 @@
     <h3>Login Processing</h3>
     <p>Add all of the code below inside the case statement mentioned above:</p>
     <code class="callout">
-          $email = filter_input(INPUT_POST, 'clientEmail');<br>
+     $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);<br>
           $clientEmail = checkEmail($clientEmail);<br>
           $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);<br>
           $passwordCheck = checkPassword($clientPassword);<br>
