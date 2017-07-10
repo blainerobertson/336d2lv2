@@ -79,6 +79,7 @@
      <li>Add a new comment indicating that you are selecting a single product based on its id</li>
      <li>Below the comment add this function (your connection function may be named differently):
       <code class="callout no-left">
+              // Get product information by invId<br>
               function getProductInfo($invId){<br>
               &nbsp;$db = acmeConnect();<br>
               &nbsp;$sql = 'SELECT * FROM inventory WHERE invId = :invId';<br>
@@ -107,17 +108,17 @@
      <li>Do a "Save As..." and save the view into the <b>view</b> folder, but change the name to <b>prod-update.php</b>.</li>
      <li>Scroll down to the <code>Title</code> element and add the following code block between the opening and closing title tags:
       <code class="callout no-left">
-             &lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt;
+             &lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($invName)) { echo $invName; }?&gt;
             </code>
      </li>
      <li>When you're done the title could look like this:
       <code class="callout no-left">
-             &lt;title&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt; | Acme, Inc&lt;/title&gt;<br>
+             &lt;title&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($invName)) { echo $invName; }?&gt; | Acme, Inc&lt;/title&gt;<br>
             </code> When the page loads, the product name will appear in the title tab of the browser. Or, if the page is returned for error correction the product name will reappear from the product variable.
      </li>
      <li>Scroll down and find the main content heading. Add the same PHP code block to it. It could look something like this:
       <code class="callout no-left">
-             &lt;h1&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?&gt;&lt;/h1&gt;<br>
+             &lt;h1&gt;&lt;?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($invName)) { echo $invName; }?&gt;&lt;/h1&gt;<br>
             </code> By making these subtle changes we are personalizing the view's contents.
      </li>
      <li>Look for any instructions that may exist indicating that you are "adding" a new product. Delete all references to "adding" and replace them with "modifying".</li>
@@ -137,11 +138,11 @@
        <li>Alter the PHP code block to look like this (<strong>Keep in mind your code and variables may be slightly different than what you see here)</strong>:
         <h4>Original Code Block</h4>
         <code class="callout no-left">
-                &lt;input type="text" name="prodName" id="prodName" required &lt;?php if(isset($prodName)){ echo "value='$prodName'"; } ?&t;&gt;><br>
+                &lt;input type="text" name="invName" id="invName" required &lt;?php if(isset($invName)){ echo "value='$invName'"; } ?&t;&gt;><br>
               </code>
         <h4>Altered Code Block</h4>
         <code class="callout no-left">
-                &lt;input type="text" name="prodName" id="prodName" required &lt;?php if(isset($prodName)){ echo "value='$prodName'"; } elseif(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?&gt;&gt;
+                &lt;input type="text" name="invName" id="invName" required &lt;?php if(isset($invName)){ echo "value='$invName'"; } elseif(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?&gt;&gt;
               </code>
        </li>
        <li>By doing this we have code to display the data from the <code>$prodInfo</code> array as well as from a variable if we are sending data back for repair and want the form inputs to be "sticky".</li>
@@ -155,12 +156,12 @@
      </li>
      <li>If your form includes a <code>textarea</code> then the alteration occurs between the opening and closing tags and there is no "value" attribute. For example, if the original code looked like this:
       <code class="callout no-left">
-              &lt;textarea name="prodDesc" id="prodDesc" required&gt;<br>
-              &lt;?php if(isset($prodDesc)){ echo $prodDesc; } ?&gt;<br>&lt;/textarea&gt;
+       &lt;textarea name="invDescription" id="invDescription" required&gt;<br>
+       &lt;?php if(isset($invDescription)){ echo $invDescription; } ?&gt;<br>&lt;/textarea&gt;
             </code> After editing, it would look like this:
       <code class="callout no-left">
-              &lt;textarea name="prodDesc" id="prodDesc" required&gt;<br>
-              &lt;?php if(isset($prodDesc)){ echo $prodDesc; }<br>
+       &lt;textarea name="invDescription" id="invDescription" required&gt;<br>
+       &lt;?php if(isset($invDescription)){ echo $invDescription; }<br>
               elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?&gt;<br>
               &lt;/textarea&gt;<br>
             </code>
