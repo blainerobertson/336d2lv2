@@ -41,7 +41,7 @@
      <li>Each of these pieces of information will be stored into a variable and these variables will have to be supplied to this function as <i><a href="//php.net/manual/en/functions.arguments.php" title="Read about function arguments on PHP.net" target="_blank">arguments</a></i> (sometimes called parameters).</li>
      <li>Create four variables (representing the data just discussed) and place them inside the parentheses, separated by commas and spaces.</li>
      <li>When done, your code should resemble the illustration below:
-      <pre class="callout no-left"><code>function regClient($firstname, $lastname, $email, $password){
+      <pre class="callout no-left"><code>function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
 
   }</code></pre>
      </li>
@@ -50,22 +50,22 @@
     <p>When you built the previous function to select the categories data you used a prepared statement. We will do so again. In this case, the prepared statement will be doubly important because of its added security feature to protect our database from SQL Injection attacks. This, because we are accepting data sent from site visitors and we don't know if they are honest folks or hackers!</p>
     <p>The simple rule of web security is, "<strong>Never Trust Incoming Data</strong>!</p>
     <p>The function code is below:</p>
-    <pre class="callout no-left"><code>function regClient($firstname, $lastname, $email, $password){
+    <pre class="callout no-left"><code>function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
 // Create a connection object using the acme connection function
    $db = acmeConnect();
 // The SQL statement
    $sql = 'INSERT INTO clients (clientFirstname, clientLastname,
            clientEmail, clientPassword)
-           VALUES (:firstname, :lastname, :email, :password)';
+           VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';
 // Create the prepared statement using the acme connection
    $stmt = $db->prepare($sql);
 // The next four lines replace the placeholders in the SQL
 // statement with the actual values in the variables
 // and tells the database the type of data it is
-   $stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);
-   $stmt->bindValue(':lastname', $lastname, PDO::PARAM_STR);
-   $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-   $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+   $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+   $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+   $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+   $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
 // Insert the data
    $stmt->execute();
 // Ask how many rows changed as a result of our insert
@@ -78,9 +78,9 @@
     <h3>An Explanation</h3>
     <ul>
      <li><code>$db = acmeConnect();</code> - creates a new database connection object by calling the acme database connection function from the connections.php file.</li>
-     <li><code>$sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:firstname, :lastname, :email, :password)';</code> - this is the SQL INSERT statement, but using named parameters instead of actual values as part of the prepared statement.</li>
+     <li><code>$sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';</code> - this is the SQL INSERT statement, but using named parameters instead of actual values as part of the prepared statement.</li>
      <li><code>$stmt = $db->prepare($sql);</code> - sends the SQL statement to the database server where it is checked for correctness, and if it is, a PDO Prepared Statement object is created and stored into the <b>$stmt</b> variable.</li>
-     <li><code>$stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);</code> - each of these four <b>bindValue</b> functions replaces the name parameter (e.g. :firstname) with the actual value from the variable (e.g. $firstname). It also tells the database the type of data it is receiving (e.g. PDO::PARAM_STR), in this case a string.</li>
+     <li><code>$stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);</code> - each of these four <b>bindValue</b> functions replaces the name parameter (e.g. :clientFirstname) with the actual value from the variable (e.g. $clientFirstname). It also tells the database the type of data it is receiving (e.g. PDO::PARAM_STR), in this case a string.</li>
      <li><code>$stmt->execute();</code> - This sends the now complete SQL statement to the server and the data is inserted to the database.</li>
      <li><code>$rowsChanged = $stmt->rowCount();</code> - The prepared statement object asks the database server to indicate how many rows changed as a result of the last SQL query, the number that is returned is stored into the <b>$rowsChanged</b> variable. We anticipate that number being 1, meaning 1 new record was added to the database.</li>
      <li><code>$stmt->closeCursor();</code> - Closes the interaction between the function and the database server.</li>
