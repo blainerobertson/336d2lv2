@@ -26,7 +26,7 @@
 
     <h2>Build the Table</h2>
     <p>In the <b>acme</b> database build the new <b>images</b> table using the requirements shown in the provided data dictionary. You should note that the <b>imgId</b> field is auto incrementing and the <b>imgDate</b> is a timestamp with "CURRENT_TIMESTAMP" being entered by the database when a new record is written. This means that when writing data to this table only the "invId", "imgName" and "imgPath" fields need to have data supplied to them.</p>
-    <p>In addition, the <b>invId</b> must be designated as an "Index" in order to establish the relationship between it and its equivalent field in the <b>inventory</b> table, which you will do next.</p>
+    <p>In addition, the <b>invId</b> must be designated as an "Index" (but NOT as a <b>UNIQUE</b> index) in order to establish the relationship between it and its equivalent field in the <b>inventory</b> table, which you will do next.</p>
 
     <h2>Establish the Relationship</h2>
     <p>We want an actual relationship to exist between the <b>images</b> and <b>inventory</b> tables. To build the relationship do the following:</p>
