@@ -116,13 +116,13 @@
      &nbsp;// Get the file from the temp folder on the server<br>
      &nbsp;$source = $_FILES[$name]['tmp_name'];<br>
      &nbsp;// Sets the new path - images folder in this directory<br>
-     &nbsp;$target = $image_dir_path . DIRECTORY_SEPARATOR . $filename;<br>
+     &nbsp;$target = $image_dir_path . '/' . $filename;<br>
      &nbsp;// Moves the file to the target folder<br>
      &nbsp;move_uploaded_file($source, $target);<br>
      &nbsp;// Send file for further processing<br>
      &nbsp;processImage($image_dir_path, $filename);<br>
      &nbsp;// Sets the path for the image for Database storage<br>
-     &nbsp;$filepath = $image_dir . DIRECTORY_SEPARATOR . $filename;<br>
+     &nbsp;$filepath = $image_dir . '/' . $filename;<br>
      &nbsp;// Returns the path where the file is stored<br>
      &nbsp;return $filepath;<br>
      &nbsp;}<br>
@@ -149,10 +149,10 @@
      // creating smaller versions of the image<br>
      function processImage($dir, $filename) {<br>
      &nbsp;// Set up the variables<br>
-     &nbsp;$dir = $dir . DIRECTORY_SEPARATOR;<br>
+     &nbsp;$dir = $dir . '/';<br>
      <br>
      &nbsp;// Set up the image path<br>
-     &nbsp;$image_path = $dir . DIRECTORY_SEPARATOR . $filename;<br>
+     &nbsp;$image_path = $dir . $filename;<br>
      <br>
      &nbsp;// Set up the thumbnail image path<br>
      &nbsp;$image_path_tn = $dir.makeThumbnailName($filename);<br>
@@ -249,6 +249,11 @@
     <h2>Double Check</h2>
     <p><strong>Save the file.</strong></p>
     <p>With all the code added it will be easy to make a mistake. Carefully check for error markers (red icons or red underlines) in the <b>functions.php</b> page. If you find them, fix them.</p>
+
+    <h2>Potential Problems</h2>
+    <p>While this may sound insane, there seems to be an issue when a image file is created with the ".jpeg" extention. If you attempt to upload such a file, it will usually fail to actually save the physical image file.</p>
+    <p>So, my advice is to use an image editing application to open and then export the file as a ".jpg" file. You can't simply change the extension, you have to export or save the file as a JPG file with the three letter extension.</p>
+    <p>Once that is done, then run the image through the upload process. This seems to solve the issue.</p>
 
     <h2>Conclusion</h2>
     <p>Wow! Do you feel worn out? That is a lot of code, but it sure makes our life easy. We indicate a file to upload and these helper functions do most of the work to make sure our image is exactly what we want.</p>
