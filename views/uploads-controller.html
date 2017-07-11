@@ -74,10 +74,10 @@
      <li>Next, let's bring in the outside resources (database connection file, models and helper function library) that the controller will need:
       <code class="callout no-left">
        require_once '../library/connections.php';<br>
-       require_once '../library/functions.php';<br>
        require_once '../model/acme-model.php';<br>
        require_once '../model/products-model.php';<br>
        require_once '../model/uploads-model.php';<br>
+       require_once '../library/functions.php';<br>
       </code> The <b>uploads-model.php</b> file doesn't yet exist, but it will by the time you're done with this week's activities.
      </li>
      <li>Now, let's collect the "action" value from the "post" or "get" options of the "request" from the browser:
@@ -130,7 +130,7 @@
      <li>Within the <b>upload</b> case statement add the following code:
       <code class="callout no-left">
       &nbsp;// Store the incoming product id<br>
-      &nbsp;$prodId = filter_input(INPUT_POST, 'invItem', FILTER_VALIDATE_INT);<br>
+      &nbsp;$invId = filter_input(INPUT_POST, 'invId', FILTER_VALIDATE_INT);<br>
       &nbsp;&nbsp;// Store the name of the uploaded image<br>
       &nbsp;&nbsp;$imgName = $_FILES['file1']['name'];<br>
       <br>
@@ -146,7 +146,7 @@
       &nbsp;&nbsp;$imgPath = uploadFile('file1');<br>
       <br>
       &nbsp;&nbsp;// Insert the image information to the database, get the result<br>
-      &nbsp;&nbsp;$result = storeImages($imgPath, $prodId, $imgName);<br>
+      &nbsp;&nbsp;$result = storeImages($imgPath, $invId, $imgName);<br>
       <br>
       &nbsp;&nbsp;// Set a message based on the insert result<br>
       &nbsp;&nbsp;if ($result) {<br>
@@ -183,7 +183,7 @@
       <code class="callout no-left">
       // Get the image name and id<br>
       $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);<br>
-      $imgId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
+      $imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);<br>
       <br>
       // Build the full path to the image to be deleted<br>
       $target = $image_dir_path . DIRECTORY_SEPARATOR . $filename;<br>
