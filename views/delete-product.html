@@ -88,23 +88,23 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
      </li>
      <li>Change the value of the "submit" input to say "Delete Product".</li>
      <li>Change the value of the first hidden input (the "action" name - value pair) to "deleteProd" or something similar.</li>
-     <li>Find the second hidden input (the productID input) and remove its "elseif" section, just as done with the previous inputs.</li>
+     <li>Find the second hidden input (the invId input) and remove its "elseif" section, just as done with the previous inputs.</li>
      <li>When done, the <b>prod-delete.php</b> view's form could look similar to this:
       <code class="callout no-left">
                &lt;form method="post" action="/acme/products/"&gt;<br>
                &nbsp;&lt;fieldset&gt;<br>
                <br>
-               &nbsp;&nbsp;&lt;label for="prodName"&gt;Product Name&lt;/label&gt;<br>
-               &nbsp;&nbsp;&lt;input type="text" readonly name="prodName" id="prodName" &lt;?php if(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?&gt;&gt;<br>
+               &nbsp;&nbsp;&lt;label for="invName"&gt;Product Name&lt;/label&gt;<br>
+               &nbsp;&nbsp;&lt;input type="text" readonly name="invName" id="invName" &lt;?php if(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?&gt;&gt;<br>
                <br>
-               &nbsp;&nbsp;&lt;label for="prodDesc"&gt;Product Description&lt;/label&gt;<br>
-               &nbsp;&nbsp;&lt;textarea name="prodDesc" readonly id="prodDesc"&gt;&lt;?php if(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; } ?&gt;&lt;/textarea&gt;<br>
+               &nbsp;&nbsp;&lt;label for="invDescription"&gt;Product Description&lt;/label&gt;<br>
+       &nbsp;&nbsp;&lt;textarea name="invDescription" readonly id="invDescription"&gt;&lt;?php if(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; } ?&gt;&lt;/textarea&gt;<br>
                <br>
                &nbsp;&nbsp;&lt;label&gt;&amp;nbsp;&lt;/label&gt;     <br>
-               &nbsp;&nbsp;&lt;input type="submit" id="regbtn" name="submit" value="Delete Product"&gt;<br>
+               &nbsp;&nbsp;&lt;input type="submit" class="regbtn" name="submit" value="Delete Product"&gt;<br>
                <br>
                &nbsp;&nbsp;&lt;input type="hidden" name="action" value="deleteProd"&gt;<br>
-               &nbsp;&nbsp;&lt;input type="hidden" name="prodId" value="&lt;?php if(isset($prodInfo['invId'])){ echo $prodInfo['invId'];} ?&gt;"&gt;<br>
+               &nbsp;&nbsp;&lt;input type="hidden" name="invId" value="&lt;?php if(isset($prodInfo['invId'])){ echo $prodInfo['invId'];} ?&gt;"&gt;<br>
                <br>
                &nbsp;&lt;/fieldset&gt;<br>
                &lt;/form&gt;<br>
@@ -134,8 +134,8 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
      <li>When done the finished "mod" case should look similar to this:
       <code class="callout no-left">
                case 'del':<br>
-               &nbsp;$prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
-               &nbsp;$prodInfo = getProductInfo($prodId);<br>
+               &nbsp;$invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);<br>
+               &nbsp;$prodInfo = getProductInfo($invId);<br>
                &nbsp;if (count($prodInfo) < 1) {<br>
                &nbsp;&nbsp;$message = 'Sorry, no product information could be found.';<br>
                &nbsp;}<br>
@@ -173,17 +173,17 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
      <li>When complete the entire <b>deleteProd</b> case should look similar to this:
       <code class="callout no-left">
                case 'deleteProd':<br>
-               &nbsp;$prodName = filter_input(INPUT_POST, 'prodName', FILTER_SANITIZE_STRING);<br>
-               &nbsp;$prodId = filter_input(INPUT_POST, 'prodId', FILTER_SANITIZE_NUMBER_INT);<br>
+               &nbsp;$invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);<br>
+               &nbsp;$invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);<br>
                <br>
-               &nbsp;$deleteResult = deleteProduct($prodId);<br>
+               &nbsp;$deleteResult = deleteProduct($invId);<br>
                &nbsp;if ($deleteResult) {<br>
-               &nbsp;&nbsp;$message = "&lt;p class='notice'&gt;Congratulations, $prodName was successfully deleted.&lt;/p&gt;";<br>
+               &nbsp;&nbsp;$message = "&lt;p class='notice'&gt;Congratulations, $invName was successfully deleted.&lt;/p&gt;";<br>
                &nbsp;&nbsp;$_SESSION['message'] = $message;<br>
                &nbsp;&nbsp;header('location: /acme/products/');<br>
                &nbsp;&nbsp;exit;<br>
                &nbsp;} else {<br>
-               &nbsp;&nbsp;$message = "&lt;p class='notice'&gt;Error: $prodName was not deleted.&lt;/p&gt;";<br>
+               &nbsp;&nbsp;$message = "&lt;p class='notice'&gt;Error: $invName was not deleted.&lt;/p&gt;";<br>
                &nbsp;&nbsp;$_SESSION['message'] = $message;<br>
                &nbsp;&nbsp;header('location: /acme/products/');<br>
                &nbsp;&nbsp;exit;<br>
@@ -204,22 +204,22 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
      <li>To make sure we get this right, go back to the product controller and find the line in which you make the call to the delete function. Copy the function name and parameter list.</li>
      <li>Returning to the model, highlight the newly pasted function name and parameter list and paste. My code now looks like this:
       <code class="callout no-left">
-               function deleteProduct($prodId) {
+               function deleteProduct($invId) {
                </code>
      </li>
      <li>Alter the SQL code to perform a delete of the product based on its product ID, for example:
       <code class="callout no-left">
-                $sql = 'DELETE FROM inventory WHERE invId = :prodId';
+                $sql = 'DELETE FROM inventory WHERE invId = :invId';
                </code>
      </li>
      <li>Delete all of the bindValue lines except the one for the product ID named parameter.</li>
      <li>That's it. When you're done the function should look similar to this (remember your database connection function name may be different than what you see here):
       <code class="callout no-left">
-                function deleteProduct($prodId) {<br>
+                function deleteProduct($invId) {<br>
                 &nbsp;$db = acmeConnect();<br>
-                &nbsp;$sql = 'DELETE FROM inventory WHERE invId = :prodId';<br>
+                &nbsp;$sql = 'DELETE FROM inventory WHERE invId = :invId';<br>
                 &nbsp;$stmt = $db->prepare($sql);<br>
-                &nbsp;$stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);<br>
+                &nbsp;$stmt->bindValue(':invId', $invId, PDO::PARAM_INT);<br>
                 &nbsp;$stmt->execute();<br>
                 &nbsp;$rowsChanged = $stmt->rowCount();<br>
                 &nbsp;$stmt->closeCursor();<br>
@@ -253,7 +253,7 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
     <p>The most common cause of insert, update and delete failure is a name mismatch error.</p>
     <ol>
      <li>Check the form inputs where data is being input or stored. Note the "name" attribute. This is the name in the "name-value" pair. For example if my input was <code>name="prodId"</code>, then "prodId" is the name of my name-value pair.</li>
-     <li>In the controller, when I am filtering and storing incoming data then the filter_input name has to match that coming from the form. So, my filter_input code would have to look like this: <code>filter_input(INPUT_POST, 'prodId')</code>. By the way, it is case sensitive!</li>
+     <li>In the controller, when I am filtering and storing incoming data then the filter_input name has to match that coming from the form. So, my filter_input code would have to look like this: <code>filter_input(INPUT_POST, 'invId')</code>. By the way, it is case sensitive!</li>
      <li>While there are many other possible errors, this is the most common. Check it first!</li>
     </ol>
 
