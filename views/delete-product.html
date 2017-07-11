@@ -134,7 +134,7 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
      <li>When done the finished "mod" case should look similar to this:
       <code class="callout no-left">
                case 'del':<br>
-               &nbsp;$invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);<br>
+               &nbsp;$invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);<br>
                &nbsp;$prodInfo = getProductInfo($invId);<br>
                &nbsp;if (count($prodInfo) < 1) {<br>
                &nbsp;&nbsp;$message = 'Sorry, no product information could be found.';<br>
