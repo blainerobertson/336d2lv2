@@ -186,7 +186,7 @@
       $imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);<br>
       <br>
       // Build the full path to the image to be deleted<br>
-      $target = $image_dir_path . DIRECTORY_SEPARATOR . $filename;<br>
+      $target = $image_dir_path . '/' . $filename;<br>
       <br>
       // Check that the file exists in that location<br>
       if (file_exists($target)) {<br>
