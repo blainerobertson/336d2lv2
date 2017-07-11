@@ -49,7 +49,7 @@
     <ol>
      <li>Create a new view using your acme template. The view should be named <b>client-update.php</b> and be saved into the <b>view</b> folder.</li>
      <li>Add a PHP code block at the top of the view with code to only allow access to the view if the client is logged in.</li>
-     <li>The view will contain two forms: 1) "Account Update", consisting of the first and last names and email and 2) "Change Password" to change the password.</li>
+     <li>The view will contain <mark>two forms</mark>: 1) "Account Update", consisting of the first and last names and email and 2) "Change Password" to change the password.</li>
     </ol>
     <h4>Account Update Form</h4>
     <ol>
@@ -114,6 +114,13 @@
      </li>
     </ol>
 
+    <h3>Accounts Model</h3>
+    <p>The model will need two three new functions:</p>
+    <ol>
+     <li>The first function will need to handle the update of the account information as submitted to the controller from the account update form. It will only need to update the firstname, lastname and email values based on the clientId.</li>
+     <li>The second function will be similar to the function that was previously built to get client information based on the email address. However, this function will get the client information based on the clientId.</li>
+     <li>The third function will need to update the password (as a hash) as submitted to the controller from the change password form, based on the clientId. Be sure that after submitting the new password to check the clients table to make sure the password is a hash as part of your testing.</li>
+    </ol>
 
     <h2>Test, Test, Test</h2>
     <p>Be sure to complete all tasks and then test that they work.</p>
