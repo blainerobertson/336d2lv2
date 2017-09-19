@@ -18,6 +18,11 @@
     <h1>Update Product (Step 1)</h1>
     <h2>Updating is a Two Step Process</h2>
     <p>An update requires two steps: 1) Once it is determined an update is occurring, the information to be changed has to be requested from the database and made available to be edited; 2) When the edit is completed, the data must then be stored back into the database and the user informed of the success or failure of the change. This document covers step 1: getting the data from the database and displaying it for the change to occur.</p>
+
+    <h2>Video Demonstration</h2>
+    <p>This video demonstrates step 1 in the update process: getting and displaying the data to be updated.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/rLSz_T-Q3O0" allowfullscreen></iframe>
+
     <h2>Request Data to be Changed</h2>
     <p>In the "Selecting Products" activity the name and id of each product was queried from the database and used to build a table where the product name was displayed and links to begin the modify (update) and delete processes were provided. When the "Modify" link is clicked, the URL is directed to the <b>products</b> controller and sends the two name - value pairs as part of the <b>GET</b> request. The first name - value pair indicates that the update process has begun (refer to #1 in the previous paragraph). The second name - value pair indicates which product we wish to modify. Let's get started:</p>
     <h3>The Products Controller</h3>
@@ -225,9 +230,7 @@
      <li>If the data does not appear, or an error is displayed troubleshoot it, get help from members of your learning team, use the discussion board, contact a TA or the professor. But in any case, it needs to be operational in order to move on.</li>
      <li>Carefully review the provided video below.</li>
     </ol>
-    <h2>Video Demonstration</h2>
-    <p>This video demonstrates step 1 in the update process: getting and displaying the data to be updated.</p>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/oWYz1iTen_4" allowfullscreen></iframe>
+
    </article>
   </main>
   <footer>
