@@ -92,7 +92,7 @@
        <li>Contain a form for adding a new category (you will only need to add the name, the id in the table is auto-incrementing).</li>
        <li>The form must send all data to the products controller for checking and insertion to the database.</li>
        <li>The view must have the means of displaying messages returned to it from the controller.</li>
-       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu. <mark>Note: There will NOT be a success message. The category item appearing in the navigation bar will be the indication of success.</mark></li>
+       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu. <mark>Note: There will NOT be a success message. The category item appearing in the navigation bar will be the indication of success.</mark> However, if it fails, then a clear failure message should be displayed in the add new category view.</li>
       </ul>
      </li>
      <li>Create an "add product" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
