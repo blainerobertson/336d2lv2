@@ -58,23 +58,20 @@
 						run.</li>
 					<li>Build the function to look like the code below:
 						<pre class="line-numbers"><code class="language-php">function getCategories(){
-// Create a connection object from the acme connection function
-	$db = acmeConnect();
-	// The SQL statement to be used with the database
-	$sql = 'SELECT categoryName FROM categories ORDER BY categoryName ASC';
-	// The next line creates the prepared statement using the acme connection
-	$stmt = $db->prepare($sql);
-	// The next line runs the prepared statement
-	$stmt->execute();
-	// The next line gets the data from the database and
-	// stores it as an array in the $categories variable
-	$categories = $stmt->fetchAll();
-	// The next line closes the interaction with the database
-	$stmt->closeCursor();
-	// The next line sends the array of data back to where the function
-	// was called (this should be the controller)
-	return $categories;
-	}</code></pre>
+ // Create a connection object from the acme connection function
+ $db = acmeConnect(); // The SQL statement to be used with the database 
+ $sql = 'SELECT categoryName FROM categories ORDER BY categoryName ASC'; 
+ // The next line creates the prepared statement using the acme connection      $stmt = $db->prepare($sql);
+ // The next line runs the prepared statement 
+ $stmt->execute(); // The next line gets the data from the database and 
+ // stores it as an array in the $categories variable 
+ $categories = $stmt->fetchAll(); 
+ // The next line closes the interaction with the database 
+ $stmt->closeCursor(); 
+ // The next line sends the array of data back to where the function 
+ // was called (this should be the controller) 
+ return $categories;
+}</code></pre>
 					</li>
 					<li>
 						<strong>Note:</strong> We should always use Prepared Statements when interacting with databases as it provides an additionallayer of protection for the database against outside attacks!</li>
@@ -183,11 +180,10 @@
 					call, write the following code:</p>
 
 				<pre class="line-numbers"><code class="language-php">// Build a navigation bar using the $categories array
-	$navList = '&lt;ul&gt;';
-	$navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";
+ $navList = '&lt;ul&gt;';
+ $navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";
 	foreach ($categories as $category) {
-		$navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=".urlencode($category['categoryName'])."' title='View our
-					$category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";
+	 $navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";
 	}
 	$navList .= '&lt;/ul&gt;';</code></pre>
 
