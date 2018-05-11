@@ -106,10 +106,10 @@
 						</ul>
 					</li>
 					<li>Use the require_once function to bring both files into scope as shown below:
-						<pre class="line-numbers"><code class="callout no-left">// Get the database connection file
-	require_once 'library/connections.php';
-	// Get the acme model for use as needed
-	require_once 'model/acme-model.php';</code></pre>
+						<pre class="line-numbers"><code class="language-php">// Get the database connection file
+ require_once 'library/connections.php';
+ // Get the acme model for use as needed
+ require_once 'model/acme-model.php';</code></pre>
 					</li>
 					<li>The require_once function does three things:
 						<ul>
@@ -182,10 +182,10 @@
 				<pre class="line-numbers"><code class="language-php">// Build a navigation bar using the $categories array
  $navList = '&lt;ul&gt;';
  $navList .= "&lt;li&gt;&lt;a href='/acme/index.php' title='View the Acme home page'&gt;Home&lt;/a&gt;&lt;/li&gt;";
-	foreach ($categories as $category) {
-	 $navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";
-	}
-	$navList .= '&lt;/ul&gt;';</code></pre>
+ foreach ($categories as $category) {
+  $navList .= "&lt;li&gt;&lt;a href='/acme/index.php?action=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;&lt;/li&gt;";
+ }
+ $navList .= '&lt;/ul&gt;';</code></pre>
 
 				<h3>An Explanation</h3>
 				<ol>
@@ -223,8 +223,8 @@
 				<ol>
 					<li>Immediately below the last line, where the unordered list was closed and stored in the $navList variable.</li>
 					<li>Write the following two short lines of code:
-						<code class="callout no-left">echo $navList;
-							<br>exit;</code>
+						<pre class="line-numbers"><code class="language-php">echo $navList;
+exit;</code></pre>
 					</li>
 					<li>Save the index.php page.</li>
 					<li>Right-click the
