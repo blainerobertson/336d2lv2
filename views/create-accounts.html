@@ -8,11 +8,14 @@
  <meta name="description" content="This activity creates the account folder and controller for the acme project of CIT 336">
  <meta name="viewport" content="width=device-width">
  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css">
 </head>
 
 <body>
  <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <header id="header">
+   <img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image">
+  </header>
   <main>
    <article id="article">
     <h1>The Accounts Folder</h1>
@@ -20,7 +23,8 @@
 
     <h2>Create the Accounts folder</h2>
     <ol>
-     <li>Within the acme folder, create a new folder named "<b>accounts</b>". Do you remember the web naming rules?
+     <li>Within the acme folder, create a new folder named "
+      <b>accounts</b>". Do you remember the web naming rules?
       <ul>
        <li>No capital letters</li>
        <li>No spaces in folder or file names</li>
@@ -37,7 +41,8 @@
     <ol>
      <li>Copy the acme controller (index.php) at the root of the acme site.</li>
      <li>Click the <b>accounts</b> folder and paste.</li>
-     <li>An <b>index.php</b> file should now appear inside of accounts.</li>
+     <li>An
+      <b>index.php</b> file should now appear inside of accounts.</li>
     </ol>
 
     <h2>Edit the Controller</h2>
@@ -53,9 +58,8 @@
      <li>Since our file is inside the <b>accounts</b> folder, we have to tell the server to move up one level, then find them. To do this:
       <ul>
        <li>Add "<i>../</i>" in front of both paths so that they look like the examples below:
-        <br>
-        <code class="callout">require_once '../library/connections.php';</code>
-        <code class="callout">require_once '../model/acme-model.php';</code>
+       <pre><code class="language-php">require_once '../library/connections.php';</code></pre> 
+      <pre><code class="language-php">require_once '../model/acme-model.php';</code></pre>
        </li>
        <li>Keep in mind that your file names may be different than what is shown here.</li>
       </ul>
@@ -67,7 +71,7 @@
      <img src="../images/acme/nav-list-code.png" alt="Image of the navList code block">
      <br>Keep it as you will probably be needing it again.</p>
 
-<!--
+    <!--
     <h3>Alter the Action Collection Code</h3>
     <p>You should have a sequence of code to collect and store the value from the action name - value pair. It should look like the code example below:</p>
     <pre class="callout no-left"><code>$action = filter_input(INPUT_POST, 'action');
@@ -88,23 +92,23 @@ if ($action == NULL) {
     <h2>Alter the Control Structure</h2>
     <ol>
      <li>The existing control structure looks like this:
-      <pre class="callout no-left"><code>switch ($action) {
-  case 'something':
-   &nbsp;
-   break;
-   default:
-    include 'view/home.php';
-   break;
+      <pre class="line-numbers"><code class="language-php">switch ($action) {
+ case 'something':
+
+ break;
+ default:
+  include 'view/home.php';
+  break;
 }</code></pre>
      </li>
      <li>Delete the include statement from the default statement and "something" from the first case statement.</li>
      <li>When you're done it should look like this:
-      <pre class="callout no-left"><code>switch ($action) {
-  case '':
-   &nbsp;
-   break;
-   default:
-    &nbsp;
+      <pre class="line-numbers"><code class="language-php">switch ($action) {
+ case '':
+
+ break;
+ default:
+
 }</code></pre>
      </li>
      <li>Save the file.</li>
@@ -119,9 +123,13 @@ if ($action == NULL) {
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">
+    <img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png">
+   </a> All materials (except as noted) are by Blaine Robertson and licensed under a    <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US"
+    title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
 </body>
 
 </html>
