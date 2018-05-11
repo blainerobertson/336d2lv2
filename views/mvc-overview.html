@@ -8,11 +8,14 @@
  <meta name="description" content="An overview of the Model - View - Control (M-V-C) and constructuion of a basic controller operation for CIT 336">
  <meta name="viewport" content="width=device-width">
  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css">
 </head>
 
 <body>
  <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <header id="header">
+   <img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image">
+  </header>
   <main>
    <article id="article">
     <h1>Model - View - Control</h1>
@@ -28,47 +31,60 @@
        <li>model</li>
       </ol>
      </li>
-     <li>When done move your home page (mine is named home.php) into the existing view folder (<strong>Note: <i>if your home page is named anything other than home.php, change it to "home.php"</i></strong>).</li>
+     <li>When done move your home page (mine is named home.php) into the existing view folder (
+      <strong>Note:
+       <i>if your home page is named anything other than home.php, change it to "home.php"</i>
+      </strong>).</li>
     </ol>
 
     <h2>Create a Controller for the acme root</h2>
-    <p>The controller is the default file that we want the server to use for all incoming traffic to the acme site and for applications built within the site. Because the controller contains the logic, it makes the decisions as to what is needed to respond to incoming requests from the browser.</p>
+    <p>The controller is the default file that we want the server to use for all incoming traffic to the acme site and for applications
+     built within the site. Because the controller contains the logic, it makes the decisions as to what is needed to respond
+     to incoming requests from the browser.</p>
     <ol>
      <li>Create a PHP file at the acme root (NOT a web page).</li>
-     <li>Name the file <b>index.php</b>.</li>
-     <li>Add the following code. When done, your code should look like this example:<br>
-      <code class="callout no-left">
-          $action = filter_input(INPUT_POST, 'action');<br>
-       if ($action == NULL){<br>
-       &nbsp;$action = filter_input(INPUT_GET, 'action');<br>
-       }<br>
-          </code>
+     <li>Name the file
+      <b>index.php</b>.</li>
+     <li>Add the following code. When done, your code should look like this example:
+      <pre class="line-numbers"><code class="language-php">$action = filter_input(INPUT_POST, 'action');
+ if ($action == NULL){
+  $action = filter_input(INPUT_GET, 'action');
+ }</code></pre>
      </li>
-     <li>Now write a simple switch structure, that looks like this:<br>
-      <code class="callout">
-       switch ($action){<br>
-       <br>
-       &nbsp;case 'something':<br>
-       <br>
-       &nbsp;break;<br>
-       <br>
-       &nbsp;default:<br>
-       &nbsp;&nbsp;include 'view/home.php';<br>
-       }<br>
-          </code>
+     <li>Now write a simple switch structure, that looks like this:
+      <br>
+      <pre class="line-numbers"><code class="language-php">switch ($action){
+ case 'something':
+  
+  break;
+ 
+ default:
+  include 'view/home.php';
+}</pre></code>
      </li>
     </ol>
 
     <h3>An Explanation</h3>
     <ol>
-     <li>By creating and naming the controller <b>index.php</b> all web traffic that comes to the acme folder will automatically be directed to the controller.</li>
+     <li>By creating and naming the controller
+      <b>index.php</b> all web traffic that comes to the acme folder will automatically be directed to the controller.</li>
      <li>$action is a variable that we will use to store the type of content being requested.</li>
-     <li>We use the <i>filter_input()</i> function to sift the content to eliminate code that could do the web site harm (read more on php.net about the <a href="//php.net/manual/en/function.filter-input.php" title="Go to php.net to read more" target="_blank">filter_input funtion</a>).</li>
-     <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a "name - value pair (aka key - value pair) where the key is the word "action". If such a combination is found, the value is stored in the $action variable.</li>
-     <li>The <a href="//php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net" target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
-     <li>Each <b>case</b> statement represents a different process to execute. In this instance the case statement has a meaningless value (e.g. 'something') to check and when it does not match the value of $action it is ignored.</li>
+     <li>We use the
+      <i>filter_input()</i> function to sift the content to eliminate code that could do the web site harm (read more on php.net
+      about the
+      <a href="//php.net/manual/en/function.filter-input.php" title="Go to php.net to read more" target="_blank">filter_input funtion</a>).</li>
+     <li>We check the POST object (input from forms) and the GET object (input from links) to see if there is a "name - value
+      pair (aka key - value pair) where the key is the word "action". If such a combination is found, the value is stored
+      in the $action variable.</li>
+     <li>The
+      <a href="//php.net/manual/en/control-structures.switch.php" title="Read more about the switch control structure on php.net"
+       target="_blank">switch control structure</a> examines the $action variable, to see what it's value is.</li>
+     <li>Each
+      <b>case</b> statement represents a different process to execute. In this instance the case statement has a meaningless
+      value (e.g. 'something') to check and when it does not match the value of $action it is ignored.</li>
      <li>However, since the case statement does not execute, the default statement executes and delivers the home.php view.</li>
-     <li>If $action had a value and our one case statement had a matching value, then it would run and the default would be ignored because the "break" statement would end the switch and the control structure would be exited.</li>
+     <li>If $action had a value and our one case statement had a matching value, then it would run and the default would be ignored
+      because the "break" statement would end the switch and the control structure would be exited.</li>
 
     </ol>
     <p></p>
@@ -86,10 +102,16 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">
+    <img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png">
+   </a> All materials (except as noted) are by
+   Blaine Robertson and licensed under a
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US"
+    title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.
   </footer>
  </div>
  <script src="../js/course.min.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
 </body>
 
 </html>
