@@ -7,7 +7,9 @@
  <title>Enhancement 3 | Web Backend Development</title>
  <meta name="description" content="CIT 336 Enhancement 3 directions">
  <meta name="viewport" content="width=device-width">
- <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+<link rel="stylesheet" href="../css/prism-coy-dev.min.css">
+</head>
 
 <body>
  <div id="main">
@@ -24,9 +26,9 @@
     <h3>Keeping Things Straight</h3>
     <p>One of the most difficult tasks for new programmers is keeping data coming from the browser, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
     <p>For example, When registering a new client to the clients table, the field in the table to store the first name is "<b>clientFirstname</b>". So, in the form give the input that name:<br>
-     <code class="callout no-left">&lt;input name="clientFirstname" id="clientFirstname" type="text"&gt;</code>
-     Then, in the controller when collecting the value, store it into a variable of the same name:<br>
-     <code class="callout no-left">$clientFirstname = filter_input(INPUT_POST, 'clientFirstname');</code>
+     <pre><code class="language-markup">&lt;input name="clientFirstname" id="clientFirstname" type="text"&gt;</code></pre>
+     Then, in the controller when collecting the value, store it into a variable of the same name:
+     <pre><code class="language-php">$clientFirstname = filter_input(INPUT_POST, 'clientFirstname');</code></pre>
      While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
 
     <h2>Tasks</h2>
@@ -42,7 +44,7 @@
       <p>Use CSS to style the form for professional appearance and usability.</p>
       <p><strong>The form DOES NOT NEED TO ACTUALLY LOGIN AN INDIVIDUAL for this enhancement</strong>.</p>
      </li>
-     <li>You will use your acme template to build a registration view and store it into the "view" folder. The view must contain a form that collects the following information from a site visitor:
+     <li>Use your acme template to build a registration view and store it into the "view" folder. The view must contain a form that collects the following information from a site visitor:
       <br>
       <ul>
        <li>First name</li>
@@ -50,7 +52,7 @@
        <li>Email address</li>
        <li>A password</li>
       </ul>
-      <p>Ensure that the registrant understands that all fields are required.</p>
+      <p>Ensure that the registrant understands that all fields are required, but you do not need to enforce the require right now, this is just a notification.</p>
       <p>Make sure you use HTML5 and usability standards to build the view and form (e.g. use label elements with the input elements and use HTML5 input types for the input elements within the form).</p>
       <p>Use CSS to style the form for professional appearance and usability.</p>
       <p><strong>The form DOES NOT NEED TO ACTUALLY REGISTER AN INDIVIDUAL for this enhancement</strong>.</p>
@@ -131,6 +133,7 @@
   </main>
  </div>
  <script src="../js/course.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
 </body>
 
 </html>
