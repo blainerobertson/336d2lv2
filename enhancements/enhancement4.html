@@ -7,19 +7,25 @@
  <title>Enhancement 4 | Web Backend Development</title>
  <meta name="description" content="CIT 336 Enhancement 4 directions">
  <meta name="viewport" content="width=device-width">
- <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+ <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css" media="screen">
+</head>
 
 <body>
  <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <header id="header">
+   <img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image">
+  </header>
   <main>
    <article id="article">
     <h1>Enhancement 4</h1>
     <h2>Recap</h2>
-    <p>In enhancement 1 you applied your HTML and CSS skills to build a template and home page for the Acme site. In enhancement 2 the databases were created and we got some practice in writing SQL statements to INSERT, UPDATE, SELECT and DELETE data and created a PDO connection object for each database within custom functions. In enhancement 3, we got used to working with the Model - View - Control architecture. Using the MVC, requires getting used to paths (moving things around), scope (making things available) and adjusting to sending everything through a controller so it can make decisions about what needs to happen. Integral to doing all of this is an understanding of key - value pairs and control structures that react to values found in key - value pairs. Whew! That's a lot in three enhancements.</p>
+    <p>In enhancement 1 you applied your HTML and CSS skills to build a template and home page for the Acme site. In enhancement
+     2 the databases were created and we got some practice in writing SQL statements to INSERT, UPDATE, SELECT and DELETE data and created a PDO connection object for each database within custom functions. In enhancement 3, we got used to working with the Model - View - Control architecture. Using the MVC, requires getting used to paths (moving things around), scope (making things available) and adjusting to sending everything through a controller so it can make decisions about what needs to happen. Integral to doing all of this is an understanding of key - value pairs and control structures that react to values found in key - value pairs. Whew! That's a lot in three enhancements.</p>
 
     <h2>Overview</h2>
-    <p>In this enhancement we will take everything that we have done in all the weeks up to this point and apply them to new problems:</p>
+    <p>In this enhancement we will take everything that we have done in all the weeks up to this point and apply them to new problems:
+    </p>
     <ol>
      <li>getting a list of categories (including both category id's and names) from the database in order to produce a select drop down menu in an HTML form,</li>
      <li>building a new controller and model for acme products (inventory items),</li>
@@ -33,40 +39,72 @@
 
 
     <h2>Take a Breath</h2>
-    <p>At this point, you may be considering having a nervous breakdown - <b>Don't</b>! Why? <b>Because you get an additional full week to do this enhancement!</b></p>
-    <p>Treat this enhancement as a <i>kinda</i> test. It gives us an opportunity to review, reinforce and provide a proof of learning.</p>
+    <p>At this point, you may be considering having a nervous breakdown -
+     <b>Don't</b>! Why?
+     <b>Because you get an additional full week to do this enhancement!</b>
+    </p>
+    <p>Treat this enhancement as a
+     <i>kinda</i> test. It gives us an opportunity to review, reinforce and provide a proof of learning.</p>
 
     <h3>Keeping Things Straight</h3>
-    <p>One of the most difficult tasks for new programmers is keeping data coming from the browser, being stored into variables, then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help: use the database field name for the same piece of data in all of its locations.</p>
-    <p>For example, When adding a new product to the inventory table, the field in the table to store its name is "<b>invName</b>". So, in the form give the input that name:<br>
-     <code class="callout no-left">&lt;input name="invName" id="invName" type="text"&gt;</code>
-     Then, in the controller when collecting the value, store it into a variable of the same name:<br>
-     <code class="callout no-left">$invName = filter_input(INPUT_POST, 'invName');</code>
+    <p>One of the most difficult tasks for new programmers is keeping data coming from the browser, being stored into variables,
+     then inserted to database straight. While there is no perfect way to do this, there is a simple practice that may help:
+     use the database field name for the same piece of data in all of its locations.</p>
+    <p>For example, When adding a new product to the inventory table, the field in the table to store its name is "
+     <b>invName</b>". So, in the form give the input that name:
+     <br>
+     <code class="language-markup">&lt;input name="invName" id="invName" type="text"&gt;</code>
+     Then, in the controller when collecting the value, store it into a variable of the same name:
+     <br>
+     <code class="language-php">$invName = filter_input(INPUT_POST, 'invName');</code>
      While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
 
     <h2>Tasks</h2>
-    <p>As described above you are being asked to build a process for adding new categories to the categories table and new products (inventory items) to the inventory table, all using the MVC architecure, PHP, HTML and CSS. You will build the following items, test them for operation and validate the HTML and CSS code in all views.</p>
-    <p><i style="font-size: larger;"><strong>Note:</strong> For now you will not create a link to the <b>products</b> folder or its controller in any view. You will access the the <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i></p>
+    <p>As described above you are being asked to build a process for adding new categories to the categories table and new products
+     (inventory items) to the inventory table, all using the MVC architecure, PHP, HTML and CSS. You will build the following
+     items, test them for operation and validate the HTML and CSS code in all views.</p>
+    <p>
+     <i style="font-size: larger;">
+      <strong>Note:</strong> For now you will not create a link to the
+      <b>products</b> folder or its controller in any view. You will access the the
+      <b>products</b> folder by simply typing it into the URL (e.g. http://localhost/acme/products).</i>
+    </p>
     <ol>
-     <li>Download the following "<a href="../downloads/no-image.zip" title="Download the image" target="_blank">No Picture Available</a>" image, unzip it, store it to the acme images folder.</li>
-     <li>Create a "<b>products</b>" folder in the acme folder.</li>
-     <li>Create a controller for the products process in the "<b>products</b>" folder. It should:
+     <li>Download the following "
+      <a href="../downloads/no-image.zip" title="Download the image" target="_blank">No Picture Available</a>" image, unzip it, store it to the acme images folder.</li>
+     <li>Create a "
+      <b>products</b>" folder in the acme folder.</li>
+     <li>Create a controller for the products process in the "
+      <b>products</b>" folder. It should:
       <ul>
        <li>Use the database connections file.</li>
        <li>Use the acme model.</li>
        <li>Use the products model (you will create this).</li>
-       <li>Create the $navList variable to build the dynamic menu from an array of categories obtained by calling the function in the acme model, as in previous controllers.</li>
+       <li>Create the $navList variable to build the dynamic menu from an array of categories obtained by calling the function
+        in the acme model, as in previous controllers.</li>
        <li>
-        <p>Create a $catList variable to build a dynamic <a href="//www.w3schools.com/html/html_form_elements.asp" title="See an example of a select element" target="_blank">drop-down select list</a>. The category Name must appear to the human eye, but the category ID must be the value of each option.</p>
-        <p> This list element will be used in the "add product" view to provide a list of categories that already exist in the database. Consider the hints below:</p>
+        <p>Create a $catList variable to build a dynamic
+         <a href="//www.w3schools.com/html/html_form_elements.asp" title="See an example of a select element" target="_blank">drop-down select list</a>. The category Name must appear to the human eye, but the category ID must be the value
+         of each option.</p>
+        <p> This list element will be used in the "add product" view to provide a list of categories that already exist in the
+         database. Consider the hints below:</p>
         <ol>
-         <li><mark>Think of how you built the dynamic navigation earlier and did it in such a way that it would be available to any view.</mark></li>
-         <li><mark>Instead of building a new function you could alter the existing getCategories() function to also select the catId from the database and use it in building the drop-down select list.</mark></li>
+         <li>
+          <mark>Think of how you built the dynamic navigation earlier and did it in such a way that it would be available to any
+           view.
+          </mark>
+         </li>
+         <li>
+          <mark>Instead of building a new function you could alter the existing getCategories() function to also select the catId
+           from the database and use it in building the drop-down select list.</mark>
+         </li>
         </ol>
        </li>
        <li>Watch for and capture name-value pairs for decision making.</li>
        <li>Contain control structures to deliver views (discussed below).</li>
-       <li>Contain control structures to process requests to add new categories to the categories table and products to the inventory table.</li>
+       <li>Contain control structures to process requests to add new categories to the categories table and products to the inventory
+        table.
+       </li>
        <li>The controller should return data check error messages to the view from which the data was sent.</li>
        <li>The controller should return success or failure messages to the view from which the data was sent as described below.</li>
       </ul>
@@ -77,7 +115,9 @@
        <li>Contain a function for inserting a new product to the inventory table.</li>
       </ul>
      </li>
-     <li>Create a "product management" view using the acme template that is delivered by default (<mark>Hint: remember that default statement in a switch control structure?)</mark>) when the product controller is accessed without a name - value pair.
+     <li>Create a "product management" view using the acme template that is delivered by default (
+      <mark>Hint: remember that default statement in a switch control structure?)</mark>) when the product controller is accessed
+      without a name - value pair.
       <ul>
        <li>This view must contain two links:
         <ol>
@@ -87,19 +127,34 @@
        </li>
       </ul>
      </li>
-     <li>Create an "add category" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
+     <li>Create an "add category" view from your acme template. The view should be stored in the
+      <b>view</b> folder. The view must:
       <ul>
        <li>Contain a form for adding a new category (you will only need to add the name, the id in the table is auto-incrementing).</li>
        <li>The form must send all data to the products controller for checking and insertion to the database.</li>
        <li>The view must have the means of displaying messages returned to it from the controller.</li>
-       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call itself using a <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being displayed and the new category should appear as part of the navigation menu. <mark>Note: There will NOT be a success message. The category item appearing in the navigation bar will be the indication of success.</mark> However, if it fails, then a clear failure message should be displayed in the add new category view.</li>
+       <li>When the data is sent for insertion to the controller and if the insertion works, the products controller should call
+        itself using a
+        <code>header()</code> function and pass no name - value pair. This should result in the "product management" view being
+        displayed and the new category should appear as part of the navigation menu.
+        <mark>Note: There will NOT be a success message. The category item appearing in the navigation bar will be the indication
+         of success.</mark> However, if it fails, then a clear failure message should be displayed in the add new category
+        view.
+       </li>
       </ul>
      </li>
-     <li>Create an "add product" view from your acme template. The view should be stored in the <b>view</b> folder. The view must:
+     <li>Create an "add product" view from your acme template. The view should be stored in the
+      <b>view</b> folder. The view must:
       <ul>
-       <li>Contain a form for adding a new product to the inventory table. (<i>Hint: Check the inventory table in the acme database for the fields that will be needed in the form. <b>DO NOT</b> have a form field for the invId field as it is the primary key and is auto-incrementing in the database table</i>).</li>
-       <li>When indicating the category the product belongs to, the category must use the "select" element's drop-down list that should have been pre-built in the controller.</li>
-       <li>When adding images use the path to the "No Image Available" image that you downloaded and stored in this enhancement. (Hint: this could be hard coded into the form to happen automatically for now)</li>
+       <li>Contain a form for adding a new product to the inventory table. (
+        <i>Hint: Check the inventory table in the acme database for the fields that will be needed in the form.
+         <b>DO NOT</b> have a form field for the invId field as it is the primary key and is auto-incrementing in the database
+         table
+        </i>).</li>
+       <li>When indicating the category the product belongs to, the category must use the "select" element's drop-down list that
+        should have been pre-built in the controller.</li>
+       <li>When adding images use the path to the "No Image Available" image that you downloaded and stored in this enhancement.
+        (Hint: this could be hard coded into the form to happen automatically for now)</li>
        <li>The view must have the means of displaying messages returned to it from the controller.</li>
        <li>The form must send all data to the products controller for checking and insertion to the database.</li>
        <li>If the new product is added successfully, a message to that affect must be displayed in the "add new product" view.</li>
@@ -111,15 +166,24 @@
     <h2>Submission</h2>
 
     <ul>
-     <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another. <b>DO NOT WAIT UNTIL THE SECOND WEEK TO DO THIS! GET STARTED EARLY!</b></li>
-     <li>Build, run and test the application to insert the new categories and products using the products controller, with its associated models and views thoroughly.</li>
+     <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.
+      <b>DO NOT WAIT UNTIL THE SECOND WEEK TO DO THIS! GET STARTED EARLY!</b>
+     </li>
+     <li>Build, run and test the application to insert the new categories and products using the products controller, with its
+      associated models and views thoroughly.</li>
      <li>Check your work to ensure that it meets all of the expectations listed.</li>
      <li>When satisfied that the code is operational:
       <ol>
-       <li>Create a video showing that when the <b>products</b> folder is accessed by typing in the name of the folder as part of the acme URL that the default "products management" view is delivered and that the links to the new category and new product views work by sending a key - value pair to the products controller.</li>
-       <li>Include in the video showing the insertion of the new category (include when data is missing during the submission process) so that both data check error and category insertion success are shown.</li>
-       <li>Include in the video showing the insertion of the new inventory item (include when data is missing during the submission process) so that both data check error and product insertion success are shown.</li>
-       <li>Include in the video the validation of the HTML and CSS for the three new views - product management, new category and new product.</li>
+       <li>Create a video showing that when the
+        <b>products</b> folder is accessed by typing in the name of the folder as part of the acme URL that the default "products
+        management" view is delivered and that the links to the new category and new product views work by sending a key
+        - value pair to the products controller.</li>
+       <li>Include in the video showing the insertion of the new category (include when data is missing during the submission
+        process) so that both data check error and category insertion success are shown.</li>
+       <li>Include in the video showing the insertion of the new inventory item (include when data is missing during the submission
+        process) so that both data check error and product insertion success are shown.</li>
+       <li>Include in the video the validation of the HTML and CSS for the three new views - product management, new category
+        and new product.</li>
        <li>Post your video to your YouTube channel and copy the link to the video when published.</li>
        <li>Zip the entire acme folder and name it enhancement 4 (save this zip file outside of your web site).</li>
        <li>Submit the zip file to the enhancement 4 assignment dropbox and add the video URL to the assignment dropbox comment.</li>
@@ -133,14 +197,20 @@
     <ul>
      <li>All three views are valid HTML: 5 points (minus 1 point for each error found)</li>
      <li>All three views are valid CSS: 5 points (minus 1 point for each error found)</li>
-     <li>Total value for Objective 1: <b>10 points</b></li>
+     <li>Total value for Objective 1:
+      <b>10 points</b>
+     </li>
     </ul>
 
     <h3>Objective 2</h3>
     <ul>
-     <li>The products controller contains control structures that correctly deliver views (based on name - value pairs being delivered to it): 3 points (1 point each for the three views in the products application)</li>
-     <li>The products controller contains control structures that correctly process the new category and new product insertion requests: 6 points (3 points each for the processes)</li>
-     <li>Total value for Objective 2: <b>9 points</b></li>
+     <li>The products controller contains control structures that correctly deliver views (based on name - value pairs being
+      delivered to it): 3 points (1 point each for the three views in the products application)</li>
+     <li>The products controller contains control structures that correctly process the new category and new product insertion
+      requests: 6 points (3 points each for the processes)</li>
+     <li>Total value for Objective 2:
+      <b>9 points</b>
+     </li>
     </ul>
 
     <h3>Objective 3</h3>
@@ -149,42 +219,63 @@
      <li>Each element of the MVC performs its proper function:
       <ul>
        <li>The controller contains all logic for the application: 2 points (all or nothing)</li>
-       <li>The model contains the database functionality and returns outcome information to the controller: 2 points (all or nothing)</li>
-       <li>The views display the needed information for the human visitor and only interact with the controller: 2 points (all or nothing)</li>
+       <li>The model contains the database functionality and returns outcome information to the controller: 2 points (all or
+        nothing)
+       </li>
+       <li>The views display the needed information for the human visitor and only interact with the controller: 2 points (all
+        or nothing)</li>
       </ul>
      </li>
-     <li>Total value for Objective 3: <b>11 points</b></li>
+     <li>Total value for Objective 3:
+      <b>11 points</b>
+     </li>
     </ul>
 
     <h3>Objective 4</h3>
     <ul>
-     <li>The functions in the model successfully insert data to the database using PDO prepared statements: 6 points (3 points for each function, all or nothing)</li>
-     <li>The functions in the model successfully report the outcome of the insertion back to the controller: 4 points (2 points for each function, all or nothing)</li>
-     <li>Total value for Objective 4: <b>10 points</b></li>
+     <li>The functions in the model successfully insert data to the database using PDO prepared statements: 6 points (3 points
+      for each function, all or nothing)</li>
+     <li>The functions in the model successfully report the outcome of the insertion back to the controller: 4 points (2 points
+      for each function, all or nothing)</li>
+     <li>Total value for Objective 4:
+      <b>10 points</b>
+     </li>
     </ul>
 
     <h3>Objective 5</h3>
     <ul>
      <li>Data sent from the "new category" view is filtered and stored in the controller: 2 points (all or nothing)</li>
-     <li>Missing data from the "new category" view is successfully detected and returned to the view for correction: 2 points (all or nothing)</li>
+     <li>Missing data from the "new category" view is successfully detected and returned to the view for correction: 2 points
+      (all or nothing)</li>
      <li>Data sent from the "new product" view is filtered and stored in the controller: 2 points (all or nothing)</li>
-     <li>Missing data from the "new product" view is successfully detected and returned to the view for correction: 2 points (all or nothing)</li>
-     <li>Total value for Objective 5: <b>8 points</b></li>
+     <li>Missing data from the "new product" view is successfully detected and returned to the view for correction: 2 points
+      (all or nothing)</li>
+     <li>Total value for Objective 5:
+      <b>8 points</b>
+     </li>
     </ul>
 
     <h3>Objective 6</h3>
     <p>The enhancement video shows:</p>
     <ul>
-     <li>That when the <b>products</b> folder is accessed by typing in the name of the folder as part of the acme URL that the default "products management" view is delivered and that the links to the new category and new product views work by sending a key - value pair to the products controller.</li>
-     <li>The insertion of a new category (include when data is missing during the submission process) so that both data check error and category insertion success (the new category appears as a navigation item) are shown.</li>
-     <li>The insertion of a new inventory item (include when data is missing during the submission process) so that both data check error and product insertion success are shown.</li>
+     <li>That when the
+      <b>products</b> folder is accessed by typing in the name of the folder as part of the acme URL that the default "products
+      management" view is delivered and that the links to the new category and new product views work by sending a key -
+      value pair to the products controller.</li>
+     <li>The insertion of a new category (include when data is missing during the submission process) so that both data check
+      error and category insertion success (the new category appears as a navigation item) are shown.</li>
+     <li>The insertion of a new inventory item (include when data is missing during the submission process) so that both data
+      check error and product insertion success are shown.</li>
      <li>The validation of the HTML and CSS for the three new views - product management, new category and new product.</li>
-     <li>Total value for Objective 6: <b>8 points</b></li>
+     <li>Total value for Objective 6:
+      <b>8 points</b>
+     </li>
     </ul>
 
    </article>
   </main>
  </div>
+ <script src="../js/prism-coy-dev.min.js"></script>
  <script src="../js/course.js"></script>
 </body>
 
