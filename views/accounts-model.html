@@ -81,14 +81,14 @@
 }</code></pre>
     <h3>An Explanation</h3>
     <ul>
-     <li><code>$db = acmeConnect();</code> - creates a new database connection object by calling the acme database connection function from the connections.php file.</li>
-     <li><code>$sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';</code> - this is the SQL INSERT statement, but using named parameters instead of actual values as part of the prepared statement.</li>
-     <li><code>$stmt = $db->prepare($sql);</code> - sends the SQL statement to the database server where it is checked for correctness, and if it is, a PDO Prepared Statement object is created and stored into the <b>$stmt</b> variable.</li>
-     <li><code>$stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);</code> - each of these four <b>bindValue</b> functions replaces the name parameter (e.g. :clientFirstname) with the actual value from the variable (e.g. $clientFirstname). It also tells the database the type of data it is receiving (e.g. PDO::PARAM_STR), in this case a string.</li>
-     <li><code>$stmt->execute();</code> - This sends the now complete SQL statement to the server and the data is inserted to the database.</li>
-     <li><code>$rowsChanged = $stmt->rowCount();</code> - The prepared statement object asks the database server to indicate how many rows changed as a result of the last SQL query, the number that is returned is stored into the <b>$rowsChanged</b> variable. We anticipate that number being 1, meaning 1 new record was added to the database.</li>
-     <li><code>$stmt->closeCursor();</code> - Closes the interaction between the function and the database server.</li>
-     <li><code>return $rowsChanged;</code> - Sends the value of the <b>$rowsChanged variable back to wherever the function was called (this should be in the controller).</b></li>
+     <li><b>Line 3</b> - creates a new database connection object by calling the acme database connection function from the connections.php file.</li>
+     <li><b>Lines 5 &amp; 6</b> - this is the SQL INSERT statement, but using named parameters instead of actual values as part of the prepared statement.</li>
+     <li><b>Line 8</b> - sends the SQL statement to the database server where it is checked for correctness, and if it is, a PDO Prepared Statement object is created and stored into the <b>$stmt</b> variable.</li>
+     <li><b>Lines 12 - 15</b> - each of these four <b>bindValue</b> functions replaces the name parameter (e.g. :clientFirstname) with the actual value from the variable (e.g. $clientFirstname). It also tells the database the type of data it is receiving (e.g. PDO::PARAM_STR), in this case a string.</li>
+     <li><b>Line 17</b> - This sends the now complete SQL statement to the server and the data is inserted to the database.</li>
+     <li><b>Line 19</b> - The prepared statement object asks the database server to indicate how many rows changed as a result of the last SQL query, the number that is returned is stored into the <b>$rowsChanged</b> variable. We anticipate that number being 1, meaning 1 new record was added to the database.</li>
+     <li><b>Line 21</b> - Closes the interaction between the function and the database server.</li>
+     <li><b>Line 23</b> - Sends the value of the <b>$rowsChanged variable back to wherever the function was called (this should be in the controller).</b></li>
     </ul>
 
     <h2>Save the File</h2>
