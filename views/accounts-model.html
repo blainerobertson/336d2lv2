@@ -45,39 +45,39 @@
      <li>Each of these pieces of information will be stored into a variable and these variables will have to be supplied to this function as <i><a href="//php.net/manual/en/functions.arguments.php" title="Read about function arguments on PHP.net" target="_blank">arguments</a></i> (sometimes called parameters).</li>
      <li>Create four variables (representing the data just discussed) and place them inside the parentheses, separated by commas and spaces.</li>
      <li>When done, your code should resemble the illustration below:
-      <code class="callout no-left">function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){<br>
-  }</code>
+      <pre class="line-numbers"><code class="language-php">function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
+       
+  }</code></pre>
      </li>
     </ol>
     <h2>Build the Prepared Statement</h2>
     <p>When you built the previous function to select the categories data you used a prepared statement. We will do so again. In this case, the prepared statement will be doubly important because of its added security feature to protect our database from SQL Injection attacks. This, because we are accepting data sent from site visitors and we don't know if they are honest folks or hackers!</p>
     <p>The simple rule of web security is, "<strong>Never Trust Incoming Data</strong>!</p>
     <p>The function code is below:</p>
-    <code class="callout no-left">function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){<br>
-     // Create a connection object using the acme connection function<br>
-     $db = acmeConnect();<br>
-     // The SQL statement<br>
-   $sql = 'INSERT INTO clients (clientFirstname, clientLastname,
-           clientEmail, clientPassword)
-     VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';<br>
-     // Create the prepared statement using the acme connection<br>
-     $stmt = $db->prepare($sql);<br>
-     // The next four lines replace the placeholders in the SQL<br>
-     // statement with the actual values in the variables<br>
-     // and tells the database the type of data it is<br>
-     $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);<br>
-     $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);<br>
-     $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);<br>
-     $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);<br>
-     // Insert the data<br>
-     $stmt->execute();<br>
-     // Ask how many rows changed as a result of our insert<br>
-     $rowsChanged = $stmt->rowCount();<br>
-     // Close the database interaction<br>
-     $stmt->closeCursor();<br>
-     // Return the indication of success (rows changed)<br>
-     return $rowsChanged;<br>
-}</code>
+    <pre class="line-numbers"><code class="language-php">function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
+ // Create a connection object using the acme connection function<br>
+ $db = acmeConnect();
+ // The SQL statement
+ $sql = 'INSERT INTO clients (clientFirstname, clientLastname,clientEmail, clientPassword)
+     VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';
+ // Create the prepared statement using the acme connection
+ $stmt = $db->prepare($sql);
+ // The next four lines replace the placeholders in the SQL
+ // statement with the actual values in the variables
+ // and tells the database the type of data it is
+ $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+ $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+ $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+ $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
+ // Insert the data
+ $stmt->execute();
+ // Ask how many rows changed as a result of our insert
+ $rowsChanged = $stmt->rowCount();
+ // Close the database interaction
+ $stmt->closeCursor();
+ // Return the indication of success (rows changed)
+ return $rowsChanged;
+}</code></pre>
     <h3>An Explanation</h3>
     <ul>
      <li><code>$db = acmeConnect();</code> - creates a new database connection object by calling the acme database connection function from the connections.php file.</li>
