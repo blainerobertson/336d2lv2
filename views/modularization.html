@@ -54,7 +54,9 @@
     <h2>Implementing the Snippets</h2>
     <p>Having planned out and constructed the individual code snippets its now time to put them into effect. In our example we will be using a server-side scripting language called "<abbr title="Pre-Hypertext Processing">PHP</abbr>". Remember that the snippet is "plugged-in" to a larger collection of code. In our case that larger collection of code would be the &lt;header&gt; of a web page. To keep things simple only the header is shown, but it would be preceded by the opening code of the web page and followed by the content and other portions of the page. See the example code segment under <strong><a href="#result" title="See the result">The Result</a></strong> below.</p>
     <figure class="callout no-left">
-     <pre class="line-numbers"><code class="language-php">&lt;header id="page_header"&gt;<br> &nbsp; &lt;?php include $_SERVER['DOCUMENT_ROOT'] . '/common/header.php'; ?&gt;<br> &lt;/header&gt;</code></pre>
+     <pre class="line-numbers"><code class="language-php">&lt;header id="page_header"&gt;
+ &lt;?php include $_SERVER['DOCUMENT_ROOT'] . '/common/header.php'; ?&gt; 
+&lt;/header&gt;</code></pre>
      <figcaption>Figure 3: A server-side include to implement the code snippet to a web page.</figcaption>
     </figure>
     <p>An explanation of the code:</p>
