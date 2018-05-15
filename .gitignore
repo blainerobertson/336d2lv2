@@ -3,3 +3,4 @@ project/protected/*
 working_template.html
 sql
 sql/*
+.DS_Store
