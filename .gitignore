@@ -4,3 +4,4 @@ working_template.html
 sql
 sql/*
 .DS_Store
+settings.json
