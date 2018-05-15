@@ -189,10 +189,8 @@ if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || e
      <li>Create a variable to capture what will be sent back from the function in the model (e.g. $regOutcome). Remember that
       when you built the function you found out how many rows in the table were changed? That number will be sent back, "returned",
       by the function.</li>
-     <li>Then, we type the assignment operator (e.g. =) followed by our call to the function
-      <code>function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword)</code> and add a semi-colon to
-      the end. The resulting line should look like this:
-      <pre class="line-numbers"><code class="callout no-left">// Send the data to the model
+     <li>Then, we type the assignment operator (e.g. =) followed by our call to the function <code>function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword)</code> and add a semi-colon to the end. The resulting line should look like this:
+      <pre class="line-numbers"><code class="language-php">// Send the data to the model
 $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);</code></pre>
      </li>
      <li>Remember that we are trying to insert a single record into the database table. If one row in the table is changed, then the database server will report back "1" and that same number will be sent to the controller and stored in our
@@ -230,13 +228,11 @@ if($regOutcome === 1){
        <li>Create an empty line above the opening form element.</li>
        <li>Paste the PHP code block into the empty line.</li>
        <li>When you are done, it should look similar to this:
-         <pre class="line-numbers"><code class="language-markup">&lt;h1&gt;Acme Login&lt;/h1&gt;</code>
-<code class="language-php">
+         <pre class="line-numbers"><code class="language-markup">&lt;h1&gt;Acme Login&lt;/h1&gt;</code><code class="language-php">
 if (isset($message)) {
 &nbsp;echo $message;
 }
-?&gt;</code>
-<code class="language-markup">action="/acme/accounts/index.php" method="post"&gt;        </code></pre>
+?&gt;</code><code class="language-markup">&lt;form action="/acme/accounts/index.php" method="post"&gt;</code></pre>
        </li>
        <li>Make sure there are no error icons or underlines after doing the paste.</li>
        <li>Save and close the
