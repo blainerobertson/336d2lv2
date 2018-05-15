@@ -21,13 +21,20 @@
     <h1>Enhancement 4</h1>
     <h2>Recap</h2>
     <p>In enhancement 1 you applied your HTML and CSS skills to build a template and home page for the Acme site. In enhancement
-     2 the databases were created and we got some practice in writing SQL statements to INSERT, UPDATE, SELECT and DELETE data and created a PDO connection object for each database within custom functions. In enhancement 3, we got used to working with the Model - View - Control architecture. Using the MVC, requires getting used to paths (moving things around), scope (making things available) and adjusting to sending everything through a controller so it can make decisions about what needs to happen. Integral to doing all of this is an understanding of key - value pairs and control structures that react to values found in key - value pairs. Whew! That's a lot in three enhancements.</p>
+     2 the databases were created and we got some practice in writing SQL statements to INSERT, UPDATE, SELECT and DELETE
+     data and created a PDO connection object for each database within custom functions. In enhancement 3, we got used to
+     working with the Model - View - Control architecture. Using the MVC, requires getting used to paths (moving things around),
+     scope (making things available) and adjusting to sending everything through a controller so it can make decisions about
+     what needs to happen. Integral to doing all of this is an understanding of key - value pairs and control structures
+     that react to values found in key - value pairs. Whew! That's a lot in three enhancements.</p>
 
     <h2>Overview</h2>
-    <p>In this enhancement we will take everything that we have done in all the weeks up to this point and apply them to new problems:
+    <p>In this enhancement we will take everything that we have done in all the weeks up to this point and apply them to new
+     problems:
     </p>
     <ol>
-     <li>getting a list of categories (including both category id's and names) from the database in order to produce a select drop down menu in an HTML form,</li>
+     <li>getting a list of categories (including both category id's and names) from the database in order to produce a select
+      drop down menu in an HTML form,</li>
      <li>building a new controller and model for acme products (inventory items),</li>
      <li>building needed views for the products process, and</li>
      <li>adding new products to the inventory table and new categories to the categories table.</li>
@@ -57,7 +64,8 @@
      Then, in the controller when collecting the value, store it into a variable of the same name:
      <br>
      <code class="language-php">$invName = filter_input(INPUT_POST, 'invName');</code>
-     While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value and what database field the data should be stored into.</p>
+     While not foolproof, it does help to keep track of what form field is sending what data, what variable is storing that value
+     and what database field the data should be stored into.</p>
 
     <h2>Tasks</h2>
     <p>As described above you are being asked to build a process for adding new categories to the categories table and new products
