@@ -5,3 +5,4 @@ sql
 sql/*
 .DS_Store
 settings.json
+/nbproject/private/
