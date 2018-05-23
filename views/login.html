@@ -28,14 +28,12 @@
      <strong>Remember!</strong> The session cookie only contains the session id. It is NOT the session itself!</p>
 
     <h3>Stateless</h3>
-    <p>Without a session id being passed back and forth, the server is unaware that a particular browser request could be a follow-up to a previous request. To the server each request is "new" and the browser making the request is "unknown". This is referred to as the "Stateless" web because the "conversation" between the browser and server is not tracked. This is illustrated below:
-  
+    <p>Without a session id being passed back and forth, the server is unaware that a particular browser request could be a follow-up to a previous request. To the server each request is "new" and the browser making the request is "unknown". This is referred to as the "Stateless" web because the "conversation" between the browser and server is not tracked. This is illustrated below:<br>  
      <img src="../images/stateless.png" alt="The stateless web illustration">
     </p>
 
     <h3>Stateful</h3>
-    <p>When a session is created and a session id is stored into a session cookie and sent to the browser, then the ability of the server to "know" that the browser is interacting with the server is established. This is known as being "stateful" or "maintaining state", meaning that the browser requests are associated with a particular session id and the server can track the interactions. This is illustrated below:
-  
+    <p>When a session is created and a session id is stored into a session cookie and sent to the browser, then the ability of the server to "know" that the browser is interacting with the server is established. This is known as being "stateful" or "maintaining state", meaning that the browser requests are associated with a particular session id and the server can track the interactions. This is illustrated below:<br>
      <img src="../images/stateful.png" alt="The stateful web illustration"> </p>
     <h3>Why is this important?</h3>
     <p>When a visitor "logs in" to a web site, they expect to only do so once, until they end that particular interaction with the site. In order for the server to remember the user, a session must be created so the interactions between the visitor's browser and the server can be "maintained". If this didn't happen, then the visitor would have to login every time a new view needed to be viewed if that view required a login.</p>
@@ -58,7 +56,7 @@
      <li>Save the file and start the Apache and MySQL servers.</li>
      <li>Run the Acme controller.</li>
      <li>The acme home view should appear. If you have the "Web Developer" tool available in your browser (
-      <a href="//chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm?hl=en-US" title="Go to the web store and install the extension" target="_blank">Chrome</a> or <a href="//addons.mozilla.org/en-US/firefox/addon/web-developer/" title="Go to add-ons and install the extension" target="_blank">FireFox</a>), select "Web Developer > Cookies > View Cookie Information". You should see a list of cookies and in the list should be a "PHPSESSID" cookie with a value that is a mixture of letters and numbers that is about 20 characters in len 
+      <a href="//chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm?hl=en-US" title="Go to the web store and install the extension" target="_blank">Chrome</a> or <a href="//addons.mozilla.org/en-US/firefox/addon/web-developer/" title="Go to add-ons and install the extension" target="_blank">FireFox</a>), select "Web Developer > Cookies > View Cookie Information". You should see a list of cookies and in the list should be a "PHPSESSID" cookie with a value that is a mixture of letters and numbers that is about 20 characters in length:<br> 
       <img src="../images/session-cookie.png" alt="Session Cookie illustration">
      </li>
      <li>Add the same session creation code to all of the controllers within the acme site.</li>
@@ -75,8 +73,7 @@
      <li>The form tag must have a <code>method</code> and <code>action</code> attribute.</li>
      <li>The value of the <code>method</code> must be "post".</li>
      <li>The value of the <code>action</code> must point to the accounts folder (e.g. "/acme/accounts/"). For example:
-      <pre><code class="language-markup">
-       &lt;form method="post" action="/acme/accounts/"&gt;</code></pre> Remember that "index.php" is a default name on the server. If we don't specify a file name, the server will look for a default name and direct inputs to it.</li>
+    <pre><code class="language-markup">&lt;form method="post" action="/acme/accounts/"&gt;</code></pre> Remember that "index.php" is a default name on the server. If we don't specify a file name, the server will look for a default name and direct inputs to it.</li>
      <li>Scroll down and make sure that the form contains a hidden input with a name of "action" and a value of "Login" (or something similar). For example:
 
 <pre><code class="language-markup">&lt;input type="hidden" name="action" value="Login"&gt;</code></pre></li>
@@ -111,9 +108,7 @@ function getClient($clientEmail){
        <li>To return a simple array using the database field names as the "name" in the "name - value" pair of the client data we pass in the
         <code>PDO::FETCH_ASSOC</code> parameter.</li>
        <li>Assuming that you send an email address to the function and a database record with that email is found, the array sent back could look like this:
-         <pre><code class="language-php">
-         Array ( [clientId] => 14 [clientFirstname] => Bill [clientLastname] => Hickock [clientEmail] => wildbill@ok.com [clientLevel] => 1 [clientPassword] => $2y$10$BhuiPAAubX... )
-        </code></pre>
+<pre><code class="language-php">Array ( [clientId] => 14 [clientFirstname] => Bill [clientLastname] => Hickock [clientEmail] => wildbill@ok.com [clientLevel] => 1 [clientPassword] => $2y$10$BhuiPAAubX... )</code></pre>
         Because the password hash is so long, I have cut it off and placed ... at the end. Your returned password hash should be full size.</li>
       </ul>
      </li>
@@ -131,7 +126,7 @@ function getClient($clientEmail){
       For example:
 <pre><code class="language-markup">case 'Login':
  
-break;</code></pre> If you don't, add it. <mark>But, be sure you add it prior to the the "default:" which must ALWAYS be the last item in a switch control structure.</mark></li>
+break;</code></pre> If you don't, add it. <mark>But, be sure you add it prior to the the "default:" which must ALWAYS be the last item in a switch control structure.</mark> <b>AND</b> <mark>make sure this case statement is unique and is not the same as the case statement used to deliver the login view.</mark></li>
      <li>Within this case statement we will add the login process code. To review, the typical process will follow these steps:
       <ul>
        <li>Collect and filter the incoming data.</li>
@@ -145,41 +140,41 @@ break;</code></pre> If you don't, add it. <mark>But, be sure you add it prior to
     <h3>Login Processing</h3>
     <p>Add all of the code below inside the case statement mentioned above:</p>
 <pre class="line-numbers"><code class="language-php">$clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
- $clientEmail = checkEmail($clientEmail);
- $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
- $passwordCheck = checkPassword($clientPassword);
+$clientEmail = checkEmail($clientEmail);
+$clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
+$passwordCheck = checkPassword($clientPassword);
 
- // Run basic checks, return if errors
- if (empty($clientEmail) || empty($passwordCheck)) {
-  $message = '&lt;p class="notice"&gt;Please provide a valid email address and password.&lt;/p&gt;';
-  include '../view/login.php';
-  exit;
- }
+// Run basic checks, return if errors
+if (empty($clientEmail) || empty($passwordCheck)) {
+ $message = '&lt;p class="notice"&gt;Please provide a valid email address and password.&lt;/p&gt;';
+ include '../view/login.php';
+ exit;
+}
   
- // A valid password exists, proceed with the login process
- // Query the client data based on the email address
- $clientData = getClient($clientEmail);
- // Compare the password just submitted against
- // the hashed password for the matching client
- $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
- // If the hashes don't match create an error
- // and return to the login view
- if (!$hashCheck) {
+// A valid password exists, proceed with the login process
+// Query the client data based on the email address
+$clientData = getClient($clientEmail);
+// Compare the password just submitted against
+// the hashed password for the matching client
+$hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+// If the hashes don't match create an error
+// and return to the login view
+if(!$hashCheck) {
   $message = '&lt;p class="notice"&gt;Please check your password and try again.&lt;/p&gt;';
   include '../view/login.php';
   exit;
- }
- // A valid user exists, log them in
- $_SESSION['loggedin'] = TRUE;
- // Remove the password from the array
- // the array_pop function removes the last
- // element from an array
- array_pop($clientData);
- // Store the array into the session
- $_SESSION['clientData'] = $clientData;
- // Send them to the admin view
- include '../view/admin.php';
- exit;</code></pre>
+}
+// A valid user exists, log them in
+$_SESSION['loggedin'] = TRUE;
+// Remove the password from the array
+// the array_pop function removes the last
+// element from an array
+array_pop($clientData);
+// Store the array into the session
+$_SESSION['clientData'] = $clientData;
+// Send them to the admin view
+include '../view/admin.php';
+exit;</code></pre>
     <h4>An Explanation</h4>
     <ol>
      <li>The <code>checkEmail()</code> function sanitizes the email string and then validates that it is a valid email. If it is, the valid email is returned, but if not "NULL" is returned.</li>
