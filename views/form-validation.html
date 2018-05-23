@@ -46,9 +46,8 @@
     <h2>The 'required' attribute</h2>
     <p>The simplest change you can make to a form is to mark an input field as 'required':</p>
 
-    <code class="language-markup">
-     &lt;input type=&quot;text&quot; name=&quot;clientFirstname&quot; required&gt;
-    </code>
+    <pre><code class="language-markup">&lt;input type=&quot;text&quot; name=&quot;clientFirstname&quot; required&gt;
+    </code></pre>
 
     <p>This informs the web browser that the field is mandatory. Most browsers will mark the input box in some way if the client fails to complete the input correctly. You can actually create your own valid/invalid formatting using CSS to override the browser default. You should be aware that the CSS pseudo-classes for doing this are currently considered experimental and will result in CSS validation errors.</p>
 
@@ -64,9 +63,7 @@
     <p>By changing the input type to email while also using the required attribute, the browser can be used to validate (in
      a limited fashion) email addresses:</p>
 
-    <code class="language-markup">
-     &lt;input type=&quot;email&quot; name=&quot;clientEmail&quot; required placeholder=&quot;Enter a valid email address&quot;&gt;
-    </code>
+<pre><code class="language-markup">&lt;input type=&quot;email&quot; name=&quot;clientEmail&quot; required placeholder=&quot;Enter a valid email address&quot;&gt;</code></pre>
 
     <p>Note that for this example we've made use of another HTML5 attribute
      <b>placeholder</b> which lets us display a prompt or instructions inside the field - something that previously had to be done using JavaScript.
@@ -150,35 +147,29 @@
     <h2>Styling valid/invalid inputs using CSS</h2>
     <p>This first set of styles can be used to mark an input box as 'invalid', by adding an icon, coloring the text or borders or similar. It will apply to inputs that are required but empty, or to inputs that have a required format/pattern which hasn't yet been met. As mentioned earlier, these pseudo-classes are currently considered experimental and will result in CSS validation errors.</p>
 
-    <code class="language-css">
-     input:required:invalid, input:focus:invalid {
-     <br> /* insert your own styles for invalid form input */
-     <br> }
-    </code>
+    <pre><code class="language-css">input:required:invalid, input:focus:invalid {
+ /* insert your own styles for invalid form input */
+}</code></pre>
 
     <p>For inputs that are both required and 'valid' you can use the following:</p>
 
-    <code class="language-css">
-     input:required:valid {
-     <br> /* insert your own styles for valid form input */
-     <br> }
-    </code>
+    <pre><code class="language-css">input:required:valid {
+ /* insert your own styles for valid form input */
+}</code></pre>
 
     <h2>Sample styling using images and sprites</h2>
     <p>As shown above, once you've added HTML5 attributes to your form elements, they can be easily styled using CSS so that each input field is clearly marked as valid or invalid. This also works for textarea elements.</p>
 
-    <code class="language-css">
-     input:required:invalid, input:focus:invalid {
-     <br> background-image: url(/images/invalid.png);
-     <br> background-position: right top;
-     <br> background-repeat: no-repeat;
-     <br> }
-     <br> input:required:valid {
-     <br> background-image: url(/images/valid.png);
-     <br> background-position: right top;
-     <br> background-repeat: no-repeat;
-     <br> }
-    </code>
+    <pre class="line-numbers"><code class="language-css">input:required:invalid, input:focus:invalid {
+ background-image: url(/images/invalid.png);
+ background-position: right top;
+ background-repeat: no-repeat;
+}
+ input:required:valid {
+ background-image: url(/images/valid.png);
+ background-position: right top;
+ background-repeat: no-repeat;
+ }</code></pre>
     <hr>
     <h2>Apply Validation</h2>
     <p>With a basic introduction to HTML5 validation established let's apply it to the <b>registration</b> and <b>login</b> views.</p>
