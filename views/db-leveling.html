@@ -34,7 +34,8 @@
             <ul>
               <li>Lines 125 through 134</li>
               <li>Lines 141 and 142</li>
-              <li>Lines 147 and 148</li>
+              <li>Lines 144 and 145</li>
+              <li>Lines 149 and 150</li>
             </ul>
             <p>To remove a comment, delete the <b>--</b> on the left of the line.</p>
           </li>
@@ -53,6 +54,10 @@
           <li>That's it! Everyone who does this will have the exact same tables, table structures and data.</li>
           <li>Be sure to shut down your servers when you are done working with them.</li>
         </ol>
+
+        <h2>Unique Email</h2>
+        <p>You'll notice a slight change in your clients table with this new acme database file. clientEmail is now a unique key, meaning an email address <b>*must*</b> be unique and duplicates will cause an error and not be accepted. We'll go through the PHP side of ensuring a unique email address later in Enhancement 6.</p>
+        
         <h2>Video Demonstration</h2>
         <iframe width="560" height="315" src="//www.youtube.com/embed/hQ34cEWJR4Y" allowfullscreen></iframe>
 
