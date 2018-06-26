@@ -36,7 +36,7 @@
        <li>Passes a name-value pair for the "action" name that indicates we want to see items from a certain category (e.g. /acme/products/?action=category)</li>
        <li>Passes a second name-value pair that indicates the type of the category. When done the &lt;a&gt; finished code should look something like this:
         <code class="callout no-left">
-                &lt;a href='/acme/products/?action=category&amp;type=urlencode($category[categoryName])' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;
+          &lt;a href='/acme/products/?action=category&type=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;
                 </code>
        </li>
       </ol>
