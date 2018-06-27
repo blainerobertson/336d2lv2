@@ -8,84 +8,103 @@
  <meta name="description" content="Building the image management view for the uploads activity for the acme site for CIT 336">
  <meta name="viewport" content="width=device-width">
  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css" media="screen">
 </head>
 
 <body>
  <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <header id="header">
+   <img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image">
+  </header>
   <main>
    <article id="article">
     <h1>Image Management View</h1>
-    <p>Using the MVC means that a view is needed for human interaction between the browser and server. Already you have built the database table, the controller, the model, added helper functions to the the functions library and finally it is time to build the view.</p>
+    <p>Using the MVC means that a view is needed for human interaction between the browser and server. Already you have built
+     the database table, the controller, the model, added helper functions to the the functions library and finally it is
+     time to build the view.</p>
 
     <h2>Create the View</h2>
     <ol>
-     <li>Use your acme template to create a new view named "<b>image-admin.php</b> in the <b>view</b> folder.</li>
-     <li>Create a new PHP code block at the top of the view making sure there are no empty spaces or lines between the code block and the HTML doctype declaration.</li>
-     <li>In the code block add PHP code to check if there is a message set in the <code>$_SESSION</code> and if so, assign it to a local <code>$message</code> variable:
-      <code class="callout no-left">
-               if (isset($_SESSION['message'])) {<br>
-               &nbsp;$message = $_SESSION['message'];<br>
-               }<br>
-               </code>
+     <li>Use your acme template to create a new view named "
+      <b>image-admin.php</b> in the
+      <b>view</b> folder.</li>
+     <li>Create a new PHP code block at the top of the view making sure there are no empty spaces or lines between the code block
+      and the HTML doctype declaration.</li>
+     <li>In the code block add PHP code to check if there is a message set in the
+      <code>$_SESSION</code> and if so, assign it to a local
+      <code>$message</code> variable:
+      <pre class="line-numbers"><code class="language-php">if (isset($_SESSION['message'])) {
+ $message = $_SESSION['message'];
+}</code></pre>
      </li>
-     <li>Set the <code>&lt;title&gt;</code> and the main content heading <code>&lt;h1&gt;</code> values to be "Image Management".</li>
-     <li>Beneath the content heading add a paragraph welcoming the client to the image management page and instruct them to choose one of the options presented below.</li>
-     <li>The first option is the form where the client selects the product and an image to upload for the product. In addition, if the <code>$message</code> variable is set, it will be displayed here. The code should look like this:
-      <code class="callout no-left">
-                &lt;h2&gt;Add New Product Image&lt;/h2&gt;<br>
-                &lt;?php<br>
-if (isset($message)) {<br>
-echo $message;<br>
-}<br>
-                ?&gt;<br>
-                &lt;form action="/acme/uploads/" method="post" enctype="multipart/form-data"&gt;<br>
-                &nbsp;&lt;label for="invItem"&gt;Product&lt;/label&gt;&lt;br&gt;<br>
-                &nbsp;&lt;?php echo $prodSelect; ?>&lt;br&gt;&lt;br&gt;<br>
-                &nbsp;&lt;label&gt;Upload Image:&lt;/label&gt;&lt;br&gt;<br>
-                &nbsp;&lt;input type="file" name="file1"&gt;&lt;br&gt;<br>
-                &nbsp;&lt;input type="submit" class="regbtn" value="Upload"&gt;<br>
-                &nbsp;&lt;input type="hidden" name="action" value="upload"&gt;<br>
-                &lt;/form&gt;<br>
-               </code>
+     <li>Set the
+      <code>&lt;title&gt;</code> and the main content heading
+      <code>&lt;h1&gt;</code> values to be "Image Management".</li>
+     <li>Beneath the content heading add a paragraph welcoming the client to the image management page and instruct them to choose
+      one of the options presented below.</li>
+     <li>The first option is the form where the client selects the product and an image to upload for the product. In addition,
+      if the
+      <code>$message</code> variable is set, it will be displayed here. The code should look like this:
+      <pre class="line-numbers"><code class="language-markup">&lt;h2&gt;Add New Product Image&lt;/h2&gt;
+&lt;?php
+ if (isset($message)) {
+  echo $message;
+ } ?&gt;
+
+&lt;form action="/acme/uploads/" method="post" enctype="multipart/form-data"&gt;
+ &lt;label for="invItem"&gt;Product&lt;/label&gt;&lt;br&gt;
+ &lt;?php echo $prodSelect; ?>&lt;br&gt;&lt;br&gt;
+ &lt;label&gt;Upload Image:&lt;/label&gt;&lt;br&gt;
+ &lt;input type="file" name="file1"&gt;&lt;br&gt;
+ &lt;input type="submit" class="regbtn" value="Upload"&gt;
+ &lt;input type="hidden" name="action" value="upload"&gt;
+&lt;/form&gt;</code></pre>
       <h3>An Explanation</h3>
       <ul>
-       <li>The form opening tag has the standard "action" and "method" attributes. The "action" directs the form to send the data to the controller found in the <b>uploads</b> folder.</li>
-       <li>You will note a third attribute in the opening form tag - "enctype". This attribute and its value of "multipart/form-data" is required when uploading files. See <a href="//www.w3schools.com/TAgs/att_form_enctype.asp" title="Opens in a new tab" target="_blank">https://www.w3schools.com/TAgs/att_form_enctype.asp</a> for more information.</li>
-       <li>The PHP code block with the echo statement for <code>$prodSelect</code> indicates where the select list of the products in the database will be displayed.</li>
-       <li>In addition you will see a new "type" of input field - <code>type="file"</code>. This allows the browser to open a new dialog box so you can select a file for uploading.</li>
+       <li>The form opening tag has the standard "action" and "method" attributes. The "action" directs the form to send the
+        data to the controller found in the
+        <b>uploads</b> folder.</li>
+       <li>You will note a third attribute in the opening form tag - "enctype". This attribute and its value of "multipart/form-data"
+        is required when uploading files. See
+        <a href="//www.w3schools.com/TAgs/att_form_enctype.asp" title="Opens in a new tab" target="_blank">https://www.w3schools.com/TAgs/att_form_enctype.asp</a> for more information.</li>
+       <li>The PHP code block with the echo statement for
+        <code>$prodSelect</code> indicates where the select list of the products in the database will be displayed.</li>
+       <li>In addition you will see a new "type" of input field -
+        <code>type="file"</code>. This allows the browser to open a new dialog box so you can select a file for uploading.</li>
        <li>The other items in the code should already be familiar to you.</li>
       </ul>
      </li>
-     <li>After the form closing tag add a <code>&lt;hr&gt;</code> element to create a visual separator on the page.</li>
+     <li>After the form closing tag add a
+      <code>&lt;hr&gt;</code> element to create a visual separator on the page.</li>
      <li>Beneath the horizontal rule add the following code:
-      <code class="callout no-left">
-       &lt;h2&gt;Existing Images&lt;/h2&gt;<br>
-       &lt;p class="notice"&gt;If deleting an image, delete the thumbnail too and vice versa.&lt;/p&gt;<br>
-       &lt;?php<br>
-       if (isset($imageDisplay)) {<br>
-       &nbsp;echo $imageDisplay;<br>
-       }<br>
-       ?&gt;<br>
-               </code>
+<pre class="line-numbers"><code class="language-markup">&lt;h2&gt;Existing Images&lt;/h2&gt;
+&lt;p class="notice"&gt;If deleting an image, delete the thumbnail too and vice versa.&lt;/p&gt;
+&lt;?php
+ if (isset($imageDisplay)) {
+  echo $imageDisplay;
+ } ?&gt;</code></pre>
       <h3>An Explanation</h3>
-      <p>In the controller, prior to delivery of the view in the default process, the images that already exist in the database (if any) are queried out. The array is then sent to a helper function to be wrapped up in HTML for display purposes. The resulting HTML is stored into the <code>$imageDisplay</code> variable. In this block of code the images are displayed and their accompanying link to start the delete process.</p>
+      <p>In the controller, prior to delivery of the view in the default process, the images that already exist in the database
+       (if any) are queried out. The array is then sent to a helper function to be wrapped up in HTML for display purposes.
+       The resulting HTML is stored into the
+       <code>$imageDisplay</code> variable. In this block of code the images are displayed and their accompanying link to start the delete process.</p>
      </li>
      <li>Finally, scroll all the way to the bottom of the view.</li>
-     <li>Beneath the closing HTML tag - <code><b>&lt;/html&gt;</b></code> - add a new PHP code block and the code to unset the message from the session, since we are done using it:
-      <code class="callout no-left">
-      &lt;?php unset($_SESSION['message']); ?&gt;
-      </code>
+     <li>Beneath the closing HTML tag -
+      <code><b>&lt;/html&gt;</b></code> - add a new PHP code block and the code to unset the message from the session, since we are done using it:
+<pre class="line-numbers"><code class="language-php">&lt;?php unset($_SESSION['message']); ?&gt;</code></pre>
      </li>
      <li>Check for any error indicators in the code, if found fix them.</li>
      <li>Save the view.</li>
     </ol>
 
     <h2>Test It</h2>
-    <p>Normally we would have done testing along the way, but because of the process we followed for these activities we couldn't until now.</p>
+    <p>Normally we would have done testing along the way, but because of the process we followed for these activities we couldn't
+     until now.</p>
     <ol>
      <li>Start your Apache and Database servers.</li>
-     <li>"Run" the <b>uploads</b> controller.</li>
+     <li>"Run" the
+      <b>uploads</b> controller.</li>
      <li>If things worked, you should see the view and a message indicating that no images could be found.</li>
      <li>Now try to upload a file:
       <ul>
@@ -94,14 +113,20 @@ echo $message;<br>
        <li>Find an image on your computer (any image will do right now) and select it.</li>
        <li>The image name should appear next to the "Choose File" button when selected.</li>
        <li>Click the "Upload" submit button.</li>
-       <li>If things worked, you should be returned to this view and a success message should be displayed and two versions of the image should appear beneath the "Existing Images" heading - one "regular" and one "thumbnail" version.</li>
-       <li>Both images should show their file name beneath them in link form accompanied by the "Delete" text preceeding the file name.</li>
+       <li>If things worked, you should be returned to this view and a success message should be displayed and two versions of
+        the image should appear beneath the "Existing Images" heading - one "regular" and one "thumbnail" version.</li>
+       <li>Both images should show their file name beneath them in link form accompanied by the "Delete" text preceeding the
+        file name.</li>
        <li>Open the "images" folder in the "uploads" folder to confirm that the physical files are present.</li>
-       <li>Open the PHPMyAdmin tool and check the "<b>images</b>" table to insure that all of the data for two images (one regular and one thumbnail) is present.</li>
+       <li>Open the PHPMyAdmin tool and check the "
+        <b>images</b>" table to insure that all of the data for two images (one regular and one thumbnail) is present.</li>
        <li>Click one of the "delete" links.</li>
-       <li>The view should refresh and display the deletion success or failure message and if successful, the image should be gone.</li>
+       <li>The view should refresh and display the deletion success or failure message and if successful, the image should be
+        gone.
+       </li>
        <li>Open the "images" folder in the "uploads" folder to confirm that the physical file is gone.</li>
-       <li>Open the PHPMyAdmin tool and check the "<b>images</b>" table to insure that the data for the image that was deleted is gone.</li>
+       <li>Open the PHPMyAdmin tool and check the "
+        <b>images</b>" table to insure that the data for the image that was deleted is gone.</li>
       </ul>
      </li>
      <li>If everything worked - CELEBRATE, CELEBRATE, DANCE TO THE MUSIC...</li>
@@ -114,9 +139,13 @@ echo $message;<br>
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">
+    <img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png">
+   </a> All materials (except as noted) are by Blaine Robertson and licensed under a
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
 </body>
 
 </html>

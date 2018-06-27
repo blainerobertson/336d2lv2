@@ -8,11 +8,14 @@
  <meta name="description" content="Building the uploads folder and controller for the acme site for CIT 336">
  <meta name="viewport" content="width=device-width">
  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css" media="screen">
 </head>
 
 <body>
  <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <header id="header">
+   <img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image">
+  </header>
   <main>
    <article id="article">
     <h1>Uploads Controller</h1>
@@ -37,7 +40,8 @@
     </ol>
 
     <h2>Check Access Permissions</h2>
-    <p>Since we will be writing files to the "<b>images</b>" folder we must make sure the operating system will allow it. The process is slightly different for Mac and Windows users, so use the steps below depending on your operating system.</p>
+    <p>Since we will be writing files to the "
+     <b>images</b>" folder we must make sure the operating system will allow it. The process is slightly different for Mac and Windows users, so use the steps below depending on your operating system.</p>
     <h3>Mac Users</h3>
     <ol>
      <li>Locate the "<b>uploads</b>" folder in the operating system finder window.</li>
@@ -45,7 +49,8 @@
      <li>In the new window that opens scroll down and find the "Sharing &amp; Permissions:" area. Expand it if needed to see the options.</li>
      <li>Change the privileges for "everyone" to <b>Read &amp; Write</b>.</li>
      <li>Close the window.</li>
-     <li>Repeat these steps for the "<b>images</b>" folder inside of the "<b>uploads</b>" folder.</li>
+     <li>Repeat these steps for the "<b>images</b>" folder inside of the "
+      <b>uploads</b>" folder.</li>
      <li>Repeat these steps for the "<b>images</b>" folder at the root of the Acme site and for the "<b>products</b>" folder within the "<b>images</b>" folder.</li>
     </ol>
 
@@ -57,7 +62,8 @@
      <li>In the name list box, select "Everyone", then make sure the "Modify" option is set to "Allow".</li>
      <li>Click "OK".</li>
      <li>Close the window.</li>
-     <li>Repeat these steps for the "<b>images</b>" folder inside of the "<b>uploads</b>" folder.</li>
+     <li>Repeat these steps for the "<b>images</b>" folder inside of the "
+      <b>uploads</b>" folder.</li>
      <li>Repeat these steps for the "<b>images</b>" folder at the root of the Acme site and for the "<b>products</b>" folder within the "<b>images</b>" folder.</li>
     </ol>
 
@@ -67,110 +73,104 @@
      <li>Inside the "<b>uploads</b>" folder create a new PHP file (not a web page), named "<b>index.php</b>".</li>
      <li>Change the default comment to indicate that this is the "image uploads controller".</li>
      <li>Below the comment add the code to create or provide access to the session:
-      <code class="callout no-left">
-               session_start();<br>
-               </code>
+      <pre><code class="language-php">session_start();</code></pre>
      </li>
      <li>Next, let's bring in the outside resources (database connection file, models and helper function library) that the controller will need:
-      <code class="callout no-left">
-       require_once '../library/connections.php';<br>
-       require_once '../model/acme-model.php';<br>
-       require_once '../model/products-model.php';<br>
-       require_once '../model/uploads-model.php';<br>
-       require_once '../library/functions.php';<br>
-      </code> The <b>uploads-model.php</b> file doesn't yet exist, but it will by the time you're done with this week's activities.
+<pre><code class="language-php">require_once '../library/connections.php';
+require_once '../model/acme-model.php';
+require_once '../model/products-model.php';
+require_once '../model/uploads-model.php';
+require_once '../library/functions.php';</code></pre> 
+The <b>uploads-model.php</b> file doesn't yet exist, but it will by the time you're done with this week's activities.
      </li>
      <li>Now, let's collect the "action" value from the "post" or "get" options of the "request" from the browser:
-      <code class="callout no-left">
-       $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);<br>
-       if ($action == NULL) {<br>
-       $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);<br>
-       }<br>
-      </code>
+<pre class="line-numbers"><code class="language-php">$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+if ($action == NULL) {
+ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+}</code></pre>
      </li>
-     <li>Okay, let's call the <code>buildNav()</code> function to create the <code>$navList</code> variable for the main menu for our views:
-      <code class="callout no-left">
-       $navList = buildNav();<br>
-      </code>
+     <li>Okay, let's call the <code class="language-php">buildNav()</code> function to create the <code class="language-php">$navList</code> variable for the main menu for our views:
+      <pre><code class="language-php">$navList = buildNav;</code></pre>
      </li>
      <li>With the basics in place now it's time to start getting specific to this controller. We have two variables that will be needed in the various processes to come. One is where we declare the name of the folder where our uploaded images will be stored. The second is the path that will lead to the folder. By declaring these here, it makes it easy to update or change the name or location in one place and have it apply throughout the application.</li>
      <li>Create the following comments and code below the navigation list creation previously mentioned:
-      <code class="callout no-left">
-       /* * ****************************************************<br>
-       * Variables for use with the Image Upload Functionality<br>
-       * **************************************************** */<br>
-       // directory name where uploaded images are stored<br>
-       $image_dir = '/acme/uploads/images';<br>
-       // The path is the full path from the server root<br>
-       $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;<br>
-      </code>
+      <pre class="line-numbers"><code class="language-php">/* * ****************************************************
+* Variables for use with the Image Upload Functionality
+* **************************************************** */
+// directory name where uploaded images are stored
+$image_dir = '/acme/uploads/images';
+// The path is the full path from the server root
+$image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;</code></pre>
      </li>
      <li>Now let's build the control structure for the controller. Build the following:
-      <code class="callout no-left">
-       switch ($action) {<br>
-       case 'upload':<br>
-       <br>
-       break;<br>
-       case 'delete':<br>
-       <br>
-       break;<br>
-       default:<br>
-       <br>
-       break;<br>
-       }
-      </code> As you see, the controller is going to be limited, but it should take care of the basics we need. Now, let's get into the detail of each process.
+<pre class="line-numbers"><code class="language-php">switch ($action) {
+ case 'upload':
+ 
+ break;
+ case 'delete':
+ 
+ break;
+ default:
+ 
+ break;
+}</code></pre> 
+As you see, the controller is going to be limited, but it should take care of the basics we need. Now, let's get into the detail of each process.
      </li>
     </ol>
     <h2>Commented Code</h2>
-    <p>All of the provided code is heavily commented. Be sure to read through the comments to understand what it is doing. Check for function explanations using PHP.net if needed.</p>
+    <p>All of the provided code is heavily commented. Be sure to read through the comments to understand what it is doing. Check
+     for function explanations using PHP.net if needed.</p>
 
     <h2>The Upload Process</h2>
-    <p>As the name implies, this is where the basics of uploading an image will happen. Be aware, that we will rely heavily on helper functions as well as model-based functions to do most of the work.</p>
+    <p>As the name implies, this is where the basics of uploading an image will happen. Be aware, that we will rely heavily
+     on helper functions as well as model-based functions to do most of the work.</p>
     <ol>
      <li>Within the <b>upload</b> case statement add the following code:
-      <code class="callout no-left">
-      &nbsp;// Store the incoming product id<br>
-      &nbsp;$invId = filter_input(INPUT_POST, 'invId', FILTER_VALIDATE_INT);<br>
-      &nbsp;&nbsp;// Store the name of the uploaded image<br>
-      &nbsp;&nbsp;$imgName = $_FILES['file1']['name'];<br>
-      <br>
-      &nbsp;$imageCheck = checkExistingImage($imgName);<br>
-      <br>
-      &nbsp;if($imageCheck){<br>
-      &nbsp;&nbsp;$message = '&lt;p class="notice"&gt;An image by that name already exists.&lt;/p&gt;';<br>
-      &nbsp;} elseif (empty($invId) || empty($imgName)) {<br>
-      &nbsp;&nbsp;$message = '&lt;p class="notice"&gt;You must select a product and image file for the product.&lt;/p&gt;';<br>
-      &nbsp;} else {<br>
-     <br>
-      &nbsp;&nbsp;// Upload the image, store the returned path to the file<br>
-      &nbsp;&nbsp;$imgPath = uploadFile('file1');<br>
-      <br>
-      &nbsp;&nbsp;// Insert the image information to the database, get the result<br>
-      &nbsp;&nbsp;$result = storeImages($imgPath, $invId, $imgName);<br>
-      <br>
-      &nbsp;&nbsp;// Set a message based on the insert result<br>
-      &nbsp;&nbsp;if ($result) {<br>
-      &nbsp;&nbsp;&nbsp;$message = '&lt;p class="notice"&gt;The upload succeeded.&lt;/p&gt;';<br>
-      &nbsp;&nbsp;} else {<br>
-      &nbsp;&nbsp;&nbsp;$message = '&lt;p class="notice"&gt;Sorry, the upload failed.&lt;/p&gt;';<br>
-      &nbsp;&nbsp;}<br>
-      &nbsp;}<br>
-      <br>
-      &nbsp;// Store message to session<br>
-      &nbsp;$_SESSION['message'] = $message;<br>
-      <br>
-      &nbsp;// Redirect to this controller for default action<br>
-      &nbsp;header('location: .');<br>
-     </code>
+<pre class="line-numbers"><code class="language-php">// Store the incoming product id
+ $invId = filter_input(INPUT_POST, 'invId', FILTER_VALIDATE_INT);
+ // Store the name of the uploaded image
+ $imgName = $_FILES['file1']['name'];
+      
+ $imageCheck = checkExistingImage($imgName);
+      
+ if($imageCheck){
+  $message = '&lt;p class="notice"&gt;An image by that name already exists.&lt;/p&gt;';
+ } elseif (empty($invId) || empty($imgName)) {
+  $message = '&lt;p class="notice"&gt;You must select a product and image file for the product.&lt;/p&gt;';
+ } else {
+  // Upload the image, store the returned path to the file
+  $imgPath = uploadFile('file1');
+      
+  // Insert the image information to the database, get the result
+  $result = storeImages($imgPath, $invId, $imgName);
+      
+  // Set a message based on the insert result
+  if ($result) {
+   $message = '&lt;p class="notice"&gt;The upload succeeded.&lt;/p&gt;';
+  } else {
+   $message = '&lt;p class="notice"&gt;Sorry, the upload failed.&lt;/p&gt;';
+  }
+ }
+      
+ // Store message to session
+ $_SESSION['message'] = $message;
+      
+ // Redirect to this controller for default action
+ header('location: .');</code></pre>
      </li>
     </ol>
     <h3>An Explanation</h3>
     <ul>
-     <li>When an image is uploaded it must be associated with a product in the inventory table, the item's id is sent to the controller and stored.</li>
-     <li>A model-based function is called to check if an image by the name of the uploaded image already exists in the database table. </li>
+     <li>When an image is uploaded it must be associated with a product in the inventory table, the item's id is sent to the
+      controller and stored.</li>
+     <li>A model-based function is called to check if an image by the name of the uploaded image already exists in the database
+      table. </li>
      <li>If the name check returns TRUE then an error message is set.</li>
-     <li>Then, more checks are done for the image name and product id. If one is missing, the error message is set. Then, skipping down below the "else" the message is stored in the session and the header function is used to redirect to this same controller. The default action of the controller will deliver the view where the error will be displayed. The view's form will NOT be sticky.</li>
-     <li>If there are not errors in the inputs, then the file itself is uploaded to the server and the path to the file is returned.</li>
+     <li>Then, more checks are done for the image name and product id. If one is missing, the error message is set. Then, skipping
+      down below the "else" the message is stored in the session and the header function is used to redirect to this same
+      controller. The default action of the controller will deliver the view where the error will be displayed. The view's
+      form will NOT be sticky.</li>
+     <li>If there are no errors in the inputs, then the file itself is uploaded to the server and the path to the file is returned.</li>
      <li>The name of the file is read from the actual file and stored in a variable.</li>
      <li>The image information (product Id, file name, image path) is then written to the database and the result of the insert returned and stored in a variable.</li>
      <li>Based on the result of the Insert, a message is set. The "else" statement ends and the message is stored to the session and the "uploads" controller is called using the "header" function, which will deliver the view where the message will be displayed and the images will appear.</li>
@@ -180,73 +180,79 @@
     <p>There is no "update" process for images. We add, read or delete them. The "delete" case is next to handle that type of process.</p>
     <ol>
      <li>Add the following code within the "delete" case statement:
-      <code class="callout no-left">
-      // Get the image name and id<br>
-      $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);<br>
-      $imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);<br>
-      <br>
-      // Build the full path to the image to be deleted<br>
-      $target = $image_dir_path . '/' . $filename;<br>
-      <br>
-      // Check that the file exists in that location<br>
-      if (file_exists($target)) {<br>
-      &nbsp;// Deletes the file in the folder<br>
-      &nbsp;$result = unlink($target); <br>
-      }<br>
-      <br>
-      // Remove from database only if physical file deleted<br>
-      if ($result) {<br>
-      &nbsp;$remove = deleteImage($imgId);<br>
-      }<br>
-      <br>
-      // Set a message based on the delete result<br>
-      if ($remove) {<br>
-      &nbsp;$message = "&lt;p class='notice'&gt;$filename was successfully deleted.&lt;/p&gt;";<br>
-      } else {<br>
-      &nbsp;$message = "&lt;p class='notice'&gt;$filename was NOT deleted.&lt;/p&gt;";<br>
-      }<br>
-      <br>
-      // Store message to session<br>
-      $_SESSION['message'] = $message;<br>
-      <br>
-      // Redirect to this controller for default action<br>
-      header('location: .');<br>
-      </code>
+<pre class="line-numbers"><code class="language-php">// Get the image name and id
+$filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);
+$imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);
+      
+// Build the full path to the image to be deleted
+$target = $image_dir_path . '/' . $filename;
+      
+// Check that the file exists in that location
+if (file_exists($target)) {
+ // Deletes the file in the folder
+ $result = unlink($target); 
+}
+      
+// Remove from database only if physical file deleted
+if ($result) {
+ $remove = deleteImage($imgId);
+}
+      
+// Set a message based on the delete result
+if ($remove) {
+ $message = "&lt;p class='notice'&gt;$filename was successfully deleted.&lt;/p&gt;";
+} else {
+ $message = "&lt;p class='notice'&gt;$filename was NOT deleted.&lt;/p&gt;";
+}
+      
+// Store message to session
+$_SESSION['message'] = $message;
+      
+// Redirect to this controller for default action
+header('location: .');</code></pre>
      </li>
     </ol>
     <h3>An Explanation</h3>
     <ul>
-     <li>The name of the file and the id of the image are both sent as part of the delete process. These values are stored into variables.</li>
-     <li>Using the <code>$image_dir_path</code> variable that was created prior to the switch statement being written a path to the exact image is created and stored to the <code>$target</code> variable.</li>
+     <li>The name of the file and the id of the image are both sent as part of the delete process. These values are stored into
+      variables.</li>
+     <li>Using the
+      <code>$image_dir_path</code> variable that was created prior to the switch statement being written a path to the exact image is created and stored
+      to the
+      <code>$target</code> variable.</li>
      <li>A check is done to see if the image exists in the target location.</li>
-     <li>If the physical file exists, it is deleted and the result of the delete is stored in the <code>$result</code> variable.</li>
-     <li>If the physical file was removed, then the image record is also removed, or attempted to be removed, from the database table.</li>
+     <li>If the physical file exists, it is deleted and the result of the delete is stored in the
+      <code>$result</code> variable.</li>
+     <li>If the physical file was removed, then the image record is also removed, or attempted to be removed, from the database
+      table.</li>
      <li>Based on the result of the delete, a message is set.</li>
      <li>The message is stored to the session.</li>
-     <li>The <b>uploads</b> controller is called using the <code>header()</code> function which will deliver the view where the message will be displayed and the image should no longer be visible if the delete was successful.</li>
+     <li>The
+      <b>uploads</b> controller is called using the
+      <code>header()</code> function which will deliver the view where the message will be displayed and the image should no longer be visible
+      if the delete was successful.</li>
     </ul>
     <h2>The default process</h2>
     <p>The last "case" statement is simply <code>default:</code>. This is the equivalent of an "else" in an "if - else" structure. If none of the other case statements are true, then the default happens.</p>
     <ol>
      <li>Add the following code to the default statement:
-      <code class="callout no-left">
-      // Call function to return image info from database<br>
-      $imageArray = getImages();<br>
-      <br>
-      // Build the image information into HTML for display<br>
-      if (count($imageArray)) {<br>
-      &nbsp;$imageDisplay = buildImageDisplay($imageArray);<br>
-      } else {<br>
-      &nbsp;$imageDisplay = '&lt;p class="notice"&gt;Sorry, no images could be found.&lt;/p&gt;';<br>
-      }<br>
-      <br>
-      // Get inventory information from database<br>
-      $products = getProductBasics();<br>
-      // Build a select list of product information for the view<br>
-      $prodSelect = buildProductsSelect($products);<br>
-      <br>
-      include '../view/image-admin.php';<br>
-     </code>
+<pre class="line-numbers"><code class="language-php">// Call function to return image info from database
+$imageArray = getImages();
+      
+// Build the image information into HTML for display
+if (count($imageArray)) {
+ $imageDisplay = buildImageDisplay($imageArray);
+} else {
+ $imageDisplay = '&lt;p class="notice"&gt;Sorry, no images could be found.&lt;/p&gt;';
+}
+      
+// Get inventory information from database
+$products = getProductBasics();
+// Build a select list of product information for the view
+$prodSelect = buildProductsSelect($products);
+      
+include '../view/image-admin.php';
+exit;</code></pre>
      </li>
     </ol>
     <h3>An Explanation</h3>
@@ -263,9 +269,14 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank">
+    <img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png">
+   </a> All materials (except as noted) are by
+   Blaine Robertson and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US"
+    title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
 </body>
 
 </html>
