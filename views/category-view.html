@@ -8,15 +8,20 @@
  <meta name="description" content="Building and styling the category view of products for the Acme project for CIT 336">
  <meta name="viewport" content="width=device-width">
  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css" media="screen">
 </head>
 
 <body>
  <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+  <header id="header">
+   <img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image">
+  </header>
   <main>
    <article id="article">
     <h1>Category View</h1>
-    <p>In the previous activities we made sure the main navigation link sent the correct data to the "products controller" and that two custom functions were created to 1) query the products from the database based on the category they belong to and then 2) build an unordered list around the product data. That leaves the actual view needed to display the products.</p>
+    <p>In the previous activities we made sure the main navigation link sent the correct data to the "products controller" and
+     that two custom functions were created to 1) query the products from the database based on the category they belong
+     to and then 2) build an unordered list around the product data. That leaves the actual view needed to display the products.</p>
 
     <h2>Video Overview</h2>
     <p>This video overviews the functionality at the end of this activity.</p>
@@ -27,25 +32,23 @@
      <li>Using your acme template, create a new "category.php" view and save it in the <b>view</b> folder.</li>
      <li>This is our "category" view for showing a list of products by category, thus the name.</li>
      <li>In the view we want to make it obvious which category is being displayed.</li>
-     <li>Scroll down to the &lt;title&gt; element and add the following PHP code block to the beginning of it, prior to any other existing text. When done, it should look similar to this:
-      <code class="callout no-left">
-               &lt;title&gt;&lt;?php echo $type; ?&gt; Products | Acme, Inc.&lt;/title&gt;
-               </code>
+     <li>Scroll down to the &lt;title&gt; element and add the following PHP code block to the beginning of it, prior to any other
+      existing text. When done, it should look similar to this:
+      <pre><code class="language-php">&lt;title&gt;&lt;?php echo $categoryName; ?&gt; Products | Acme, Inc.&lt;/title&gt;</code></pre>
      </li>
-     <li>Scroll down to the main content heading (this should be inside the &lt;main&gt; element) and do the same thing. When done it should look similar to this:
-      <code class="callout no-left">
-                &lt;h1&gt;&lt;?php echo $type; ?&gt; Products&lt;/h1&gt;
-               </code>
+     <li>Scroll down to the main content heading (this should be inside the &lt;main&gt; element) and do the same thing. When
+      done it should look similar to this:
+      <pre><code class="language-php">&lt;h1&gt;&lt;?php echo $categoryName; ?&gt; Products&lt;/h1&gt;</code></pre>
      </li>
      <li>Beneath the main content heading add the PHP code block to check for a message and display it if found:
-      <code class="callout no-left">
-                &lt;?php if(isset($message)){ echo $message; } ?&gt;
-               </code>
+       <pre><code class="language-php">&lt;?php if(isset($message)){
+ echo $message; } 
+ ?&gt;</code></pre>
      </li>
      <li>Beneath the message check code block add another to display the product list if it exists:
-      <code class="callout no-left">
-                &lt;?php if(isset($prodDisplay)){ echo $prodDisplay; } ?&gt;
-               </code>
+       <pre><code class="language-php">&lt;?php if(isset($prodDisplay)){ 
+ echo $prodDisplay; 
+} ?&gt;</code></pre>
      </li>
      <li>That's it! Yep, you read that right, four lines of code and the view should be ready to go.</li>
      <li>However, it probably isn't going to look very pretty. That's why we will need to do some CSS work too.</li>
@@ -64,11 +67,17 @@
     </ol>
 
     <h2>Images</h2>
-    <p>Currently there are only three product images and they are in a folder named "products" inside the "images" folder in the "acme" root (at least they are if you downloaded the starter code early on).</p>
-    <p>To get a more complete experience, <a href="../downloads/products.zip" title="Download the file" target="_blank">download this new product images folder</a> and replace the existing one with the new one.</p>
+    <p>Currently there are only three product images and they are in a folder named "products" inside the "images" folder in
+     the "acme" root (at least they are if you downloaded the starter code early on).</p>
+    <p>To get a more complete experience,
+     <a href="../downloads/products.zip" title="Download the file" target="_blank">download this new product images folder</a> and replace the existing one with the new one.</p>
 
     <h2>Inventory Table</h2>
-    <p>The <b>inventory</b> table has two fields dealing with images: invImage and invThumbnail. Both will have to be updated for each product so that the path to the image is accurate. You can make the alterations in one of three ways: 1) use your product update process, 2) use PHPMyAdmin or 3) download and then import this <a href="../downloads/inventory.sql.zip" title="Download the zip file and import using the PHPMyAdmin tool" target="_blank">inventory table sql file</a> to replace the existing inventory table. But the changes need to be made so the product images display. The basic path should resemble this <code class="callout">/acme/images/products/</code> Use the following table to guide you in the updates as you add the image name to the end of the basic path:</p>
+    <p>The <b>inventory</b> table has two fields dealing with images: invImage and invThumbnail. Both will have to be updated for each product so that the path to the image is accurate. You can make the alterations in one of three ways: 1) use your
+     product update process, 2) use PHPMyAdmin or 3) download and then import this
+     <a href="../downloads/inventory.sql.zip"
+      title="Download the zip file and import using the PHPMyAdmin tool" target="_blank">inventory table sql file</a> to replace the existing inventory table. But the changes need to be made so the product images display. The basic path should resemble this
+     <code class="language-markup">/acme/images/products/</code> Use the following table to guide you in the updates as you add the image name to the end of the basic path:</p>
 
     <table>
      <thead>
@@ -166,78 +175,92 @@
       </tr>
      </tbody>
     </table>
-    <p>If you have other products in your database, assign the "no-image.png" to them.</p>
+    <p>If you have other products in your database, assign the "no-image.png" to them or find images and add those images and the appropriate path for the images.</p>
 
     <h2>The CSS File</h2>
-    <p>When the products are displayed we want a neat, professional presentation on small and large screens. To accomplish that we need to make some changes to the CSS file that dictates the appearance of the views. The provided code below is general in nature and you may need to revise and/or adapt it to fit your existing code.</p>
+    <p>When the products are displayed we want a neat, professional presentation on small and large screens. To accomplish that
+     we need to make some changes to the CSS file that dictates the appearance of the views. The provided code below is general
+     in nature and you may need to revise and/or adapt it to fit your existing code.</p>
 
     <h3>Mobile First</h3>
-    <p>My stylesheet is organized so that my media queries alter the style and layout as the screen size increases. The CSS rules <b>outside</b> of the media queries are for general appearance across all devices or are specific to small, mobile screen sizes. With that in mind, you may or may not have done the same and, as a result, may need to adapt this code. The code provided uses <a href="//css-tricks.com/snippets/css/a-guide-to-flexbox/" title="Open in a new tab" target="_blank">CSS Flexbox</a> for responsiveness.</p>
+    <p>My stylesheet is organized so that my media queries alter the style and layout as the screen size increases. The CSS
+     rules <b>outside</b> of the media queries are for general appearance across all devices or are specific to small, mobile screen sizes. With that in mind, you may or may not have done the same and, as a result, may need to adapt this code. The code
+     provided uses
+     <a href="//css-tricks.com/snippets/css/a-guide-to-flexbox/" title="Open in a new tab" target="_blank">CSS Flexbox</a> for responsiveness.</p>
     <ol>
      <li>At or near the top of my stylesheet I have changed the CSS box model to use the border-box, instead of the content box:
-      <code class="callout no-left">
-               html{<br>
-               &nbsp;box-sizing: border-box;<br>
-               }<br>
-               <br>
-               *, *:before, *:after{<br>
-               &nbsp;box-sizing: inherit;<br>
-               }<br>
-              </code> If this is unfamiliar, read <a href="//www.w3schools.com/csSref/css3_pr_box-sizing.asp" title="Opens in a new tab" target="_blank">CSS3 Box-Sizing Property</a>.
+      <pre class="line-numbers"><code class="language-css">html{
+ box-sizing: border-box;
+}
+
+*, *:before, *:after{
+ box-sizing: inherit;
+}</code></pre> 
+              If this is unfamiliar, read
+      <a href="//www.w3schools.com/csSref/css3_pr_box-sizing.asp" title="Opens in a new tab"
+       target="_blank">CSS3 Box-Sizing Property</a>.
      </li>
-     <li>Then, near the bottom of my mobile styles (before the media queries which should come after all of the mobile and general styles) I added three rules specific to displaying the list of products in our new product category view:
-      <code class="callout no-left">
-                #prod-display{<br>
-                &nbsp;margin: 0;<br>
-                &nbsp;padding: 0;<br>
-                &nbsp;display: flex;<br>
-                &nbsp;flex-direction: column;<br>
-                }<br>
-                #prod-display li{<br>
-                &nbsp;margin-bottom: .5em;<br>
-                &nbsp;border: 1px #ccc solid;<br>
-                &nbsp;list-style-type: none;<br>
-                &nbsp;flex: 1 1 auto;<br>
-                }<br>
-                #prod-display li img{<br>
-                &nbsp;width: 100%;<br>
-                &nbsp;height: 200px;<br>
-                }<br>
-               </code>
+     <li>Then, near the bottom of my mobile styles (before the media queries which should come after all of the mobile and general
+      styles) I added three rules specific to displaying the list of products in our new product category view:
+      <pre class="line-numbers"><code class="language-css">#prod-display{
+ margin: 0;
+ padding: 0;
+ display: flex;
+ flex-direction: column;
+}
+
+#prod-display li{
+ margin-bottom: .5em;
+ border: 1px #ccc solid;
+ list-style-type: none;
+ flex: 1 1 auto;
+}
+                
+#prod-display li img{
+ width: 100%;
+ height: 200px;
+}</code></pre>
       <h4>An Explanation</h4>
       <ul>
-       <li>The first rule removes all of the padding and margin from the unordered list, turns it into a flex container and tells it to orient all content vertically (as a column).</li>
+       <li>The first rule removes all of the padding and margin from the unordered list, turns it into a flex container and tells
+        it to orient all content vertically (as a column).</li>
        <li>The second rule sets a small bottom margin on each list item, establishes a light gray border, removes the bullet from the item and tells each list item to grow or shrink as needed.</li>
-       <li>The third rule makes the images responsive, meaning they will grow or shrink to fill the container they are in (the list item) or until they are full size. It also sets their height to 200 pixels, giving all of them a uniform size.</li>
+       <li>The third rule makes the images responsive, meaning they will grow or shrink to fill the container they are in (the
+        list item) or until they are full size. It also sets their height to 200 pixels, giving all of them a uniform size.</li>
        <li>Since these rules are for mobile devices it is intended that each item will stack one atop the next so they are easily seen on a mobile device.</li>
       </ul>
      </li>
     </ol>
     <h3>Media Queries - Larger Screens</h3>
     <ol>
-     <li>Next, I scrolled down into my media query for large screens (I only have one media query for screens larger than 768px wide). Near the bottom of my media query I added two new rules:
-      <code class="callout no-left">
-  #prod-display{<br>
-  &nbsp;flex-flow: row wrap;<br>
-  &nbsp;justify-content: flex-start;<br>
-  }<br>
-  #prod-display li{<br>
-  &nbsp;max-width: 200px;<br>
-  &nbsp;flex: 1 0 auto;<br>
-  &nbsp;text-align: center;<br>
-  &nbsp;max-height: 400px;
-  }<br>
- </code>
+     <li>Next, I scrolled down into my media query for large screens (I only have one media query for screens larger than 768px
+      wide). Near the bottom of my media query I added two new rules:
+      <pre class="line-numbers"><code class="language-css">#prod-display{
+ flex-flow: row wrap;
+ justify-content: flex-start;
+}
+
+#prod-display li{
+ max-width: 200px;
+ flex: 1 0 auto;
+ text-align: center;
+ max-height: 400px;
+}
+ </code></pre>
       <h4>An Explanation</h4>
       <ul>
-       <li>The first rule changes the "flow" of the content from vertical (column) to horizontal (row) and allows it to wrap if there is not enough space on a line.</li>
-       <li>The second rule sets the maximum width of each list item to 200 pixels, informs the list item to not shrink as the page size decreases, and center aligns the contents. Finally, it restricts the height of the list item to no larger than 400 pixels.</li>
+       <li>The first rule changes the "flow" of the content from vertical (column) to horizontal (row) and allows it to wrap
+        if there is not enough space on a line.</li>
+       <li>The second rule sets the maximum width of each list item to 200 pixels, informs the list item to not shrink as the
+        page size decreases, and center aligns the contents. Finally, it restricts the height of the list item to no larger
+        than 400 pixels.</li>
 
       </ul>
      </li>
     </ol>
     <h3>Adapt as Needed</h3>
-    <p>Every CSS file for the Acme site is unique. The code I shared may need to be adapted to work in your site. Feel free to adapt as needed, but in the end, the products being displayed should have a neat, professional appearance.</p>
+    <p>Every CSS file for the Acme site is unique. The code I shared may need to be adapted to work in your site. Feel free
+     to adapt as needed, but in the end, the products being displayed should have a neat, professional appearance.</p>
 
     <h2>Illustration</h2>
     <p>The image below should provide an idea of the finished page:
@@ -246,9 +269,13 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png">
+   </a> All materials (except as noted) are by Blaine Robertson and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US"
+    title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
+
 </body>
 
 </html>

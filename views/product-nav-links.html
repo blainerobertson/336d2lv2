@@ -8,6 +8,7 @@
  <meta name="description" content="The Product Navigation Links activity for the acme site of CIT 336">
  <meta name="viewport" content="width=device-width">
  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+ <link rel="stylesheet" href="../css/prism-coy-dev.min.css" media="screen">
 </head>
 
 <body>
@@ -35,9 +36,10 @@
        <li>Points to the "products" folder (e.g. /acme/products/</li>
        <li>Passes a name-value pair for the "action" name that indicates we want to see items from a certain category (e.g. /acme/products/?action=category)</li>
        <li>Passes a second name-value pair that indicates the type of the category. When done the &lt;a&gt; finished code should look something like this:
-        <code class="callout no-left">
-          &lt;a href='/acme/products/?action=category&type=".urlencode($category['categoryName'])."' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;
-                </code>
+        <pre class="line-numbers"><code class="language-markup">&lt;a href='/acme/products/?action=category&categoryName="
+ .urlencode($category['categoryName']).
+ "' title='View our $category[categoryName] product line'&gt;$category[categoryName]&lt;/a&gt;</code></pre>
+ <p>The code above has been separated into three lines to help with readability. In reality, the code would be a single line.</p>
        </li>
       </ol>
      </li>
@@ -47,59 +49,49 @@
 
     <h2>The ? and the &amp;</h2>
     <p>The <code><b>?</b></code> in the path represents an indicator to the server that a name-value pair is being sent as a parameter through the URL. In our case, the name is "action" and the value is "category". Which we want to use as a keyword in the control structure of the products controller to hold a process to deliver a list of products by category.</p>
-    <p>The <code><b>&amp;</b></code> in the path represents that another name-value pair is being sent (yes, these can be repeated for as many name-value pairs as you want to send). In our code, the second "name" is <b>type</b> and its value is "$category[categoryName]" meaning the actual name of that category (e.g. Trap, Cannon, etc...).</p>
+    <p>The <code><b>&amp;</b></code> in the path represents that another name-value pair is being sent (yes, these can be repeated for as many name-value pairs as you want to send). In our code, the second "name" is <b>categoryName</b> and its value is "$category[categoryName]" meaning the actual name of that category (e.g. Trap, Cannon, etc...).</p>
 
     <h2>The Products Controller</h2>
     <ol>
      <li>Find and open the "products" controller - <b>index.php</b> in the <b>products</b> folder.</li>
      <li>Scroll to the bottom of the list of existing case statements (but before the default case at the very bottom) and add a new one to be triggered by the new name-value pair being sent from the navigation links:
-      <code class="callout no-left">
-               case 'category':<br>
-<br>
-               break;
-               </code>
+      <pre class="line-numbers"><code class="language-php">case 'category':
+
+break;</code></pre>
      </li>
-     <li>Within the case statement, write code to filter, sanitize and store the second value being sent through the URL (remember URL's are "GET"):
-      <code class="callout no-left">
-                case 'category':<br>
-                &nbsp;$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);<br>
-                break;
-               </code>
+     <li>Within the case statement, write code to filter, sanitize and store the second value being sent through the URL (remember URL's are automatically sent using "GET"):
+<pre class="line-numbers"><code class="language-php">case 'category':
+  $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);
+break;</code></pre>
      </li>
      <li>Now, create a variable to store the array of products we hope will be returned from the products model:
-      <code class="callout no-left">
-                case 'category':<br>
-                &nbsp;$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);<br>
-                &nbsp;$products = getProductsByCategory($type);<br>
-                break;
-               </code>
+<pre class="line-numbers"><code class="language-php">case 'category':<br>
+ $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);<br>
+ $products = getProductsByCategory($categoryName);<br>
+break;</code></pre>
      </li>
      <li>Next, an <code>if - else</code> control structure will be built to see if products were actually returned or not. If "No" then an error message will be built. If "Yes" then the array of products will be sent to custom function to build the HTML around the products and return it to us for display:
-      <code class="callout no-left">
-                case 'category':<br>
-                &nbsp;$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);<br>
-                &nbsp;$products = getProductsByCategory($type);<br>
-                &nbsp;if(!count($products)){<br>
-                &nbsp;&nbsp;$message = "&lt;p class='notice'&gt;Sorry, no $type products could be found.&lt;/p&gt;";<br>
-                &nbsp;} else {<br>
-                &nbsp;&nbsp;$prodDisplay = buildProductsDisplay($products);<br>
-                &nbsp;}<br>
-                break;
-               </code>
+<pre class="line-numbers"><code class="language-php">case 'category':<br>
+  $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);<br>
+  $products = getProductsByCategory($categoryName);<br>
+  if(!count($products)){<br>
+    $message = "&lt;p class='notice'&gt;Sorry, no $categoryName products could be found.&lt;/p&gt;";<br>
+  } else {<br>
+    $prodDisplay = buildProductsDisplay($products);<br>
+  }<br>
+  break;</code></pre>
      </li>
      <li>Finally, a view will be called to display either the message or the products belonging to the category clicked on in the navigation bar:
-      <code class="callout no-left">
-                case 'category':<br>
-                &nbsp;$type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);<br>
-                &nbsp;$products = getProductsByCategory($type);<br>
-                &nbsp;if(!count($products)){<br>
-                &nbsp;&nbsp;$message = "&lt;p class='notice'&gt;Sorry, no $type products could be found.&lt;/p&gt;";<br>
-                &nbsp;} else {<br>
-                &nbsp;&nbsp;$prodDisplay = buildProductsDisplay($products);<br>
-                &nbsp;}<br>
-                &nbsp;include '../view/category.php';<br>
-                break;
-               </code>
+        <pre class="line-numbers"><code class="language-php">case 'category':
+ $categoryName = filter_input(INPUT_GET, 'categoryName', FILTER_SANITIZE_STRING);<br>
+ $products = getProductsByCategory($categoryName);<br>
+ if(!count($products)){<br>
+  $message = "&lt;p class='notice'&gt;Sorry, no $categoryName products could be found.&lt;/p&gt;";<br>
+ } else {<br>
+  $prodDisplay = buildProductsDisplay($products);<br>
+ }<br>
+ include '../view/category.php';<br>
+ break;</code></pre>
      </li>
     </ol>
 
@@ -108,9 +100,10 @@
    </article>
   </main>
   <footer>
-   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by <a href="//blainerobertson.net" title="Visit the site" target="_blank">Blaine Robertson</a> and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
+   <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-sa/3.0/88x31.png"></a> All materials (except as noted) are by Blaine Robertson and licensed under a <a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/deed.en_US" title="Read the license" target="_blank">Creative Commons Attribution-ShareAlike 3.0 License</a>.</footer>
  </div>
  <script src="../js/course.min.js"></script>
+ <script src="../js/prism-coy-dev.min.js"></script>
 </body>
 
 </html>
