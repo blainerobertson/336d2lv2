@@ -88,11 +88,7 @@ if($_SESSION['clientData']['clientLevel'] < 2){<br>
      </li>
      <li>Change the value of the "submit" input to say "Delete Product".</li>
      <li>Change the value of the first hidden input (the "action" name - value pair) to "deleteProd" or something similar.</li>
-     <li>Find the second hidden input (the invId input) and remove itsmodel the "else" and "elseif" sections, just as done with the previous inputs. When done it should look something like this:
-        <code class="callout no-left">
-&lt;label for="invName"&gt;Product Name&lt;/label&gt;<br>
-&lt;input type="text" readonly name="invName" id="invName"<br> 
-&lt;?php if(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?&gt;&gt;</code>
+     <li>Find the second hidden input (the invId input) and remodel the "else" and "elseif" sections, just as done with the previous inputs. When done it should look something like the code shown in the code illustration below.
         </li>
      <li>When done, the <b>prod-delete.php</b> view's form could look similar to this:
       <code class="callout no-left">
