@@ -48,7 +48,7 @@
 
         <h3>Installation</h3>
         <ol>
-          <li>Locate and launch the downloaded installation file on your computer.</li>
+          <li>Locate and launch the downloaded installation file on your computer by right-clicking the file and selecting "Run as Administrator".</li>
           <li>If presented with the security warning(s) asking if it is OK for the software to change your
             PC?, proceed by clicking "Yes".</li>
           <li>You will also be warned about your User Account Control not allowing for installation to the
@@ -128,7 +128,7 @@
         <h3>Video Demonstration</h3>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/dgQTeJqXipc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-        <h3>phpInfor</h3>
+        <h3>phpInfo</h3>
         <p>The phpInfo link shows the configuration and components of PHP as well as the version of PHP that is running.</p>
 
         <h3>FAQ</h3>
@@ -140,6 +140,23 @@
         <ol>
           <li>Remember how to get to the tool: Start page > Tools menu > phpMyAdmin.</li>
           <li>Never, Ever change any of the four existing databases shown on the left of the screen. These are critical to the basic operation of the database server and should be left alone!</li>
+        </ol>
+
+        <h2>Displaying Errors</h2>
+        <p>By default MAMP hides all errors that it encounters. While this is good in a production environment it is not good for our deGvelopment environment. Therefore, we need to enable errors to help us as we develop our application.</p>
+        <ol>
+          <li>Open phpInfo as done earlier.</li>
+          <li>Scroll down until you find the item "Loaded Configurtion File". Copy the path shown to the right of the title.</li>
+          <li>Open your file explorer and paste the path into the address bar at the top of the window. Press Enter.</li>
+          <li>Open the file in any text editor.</li>
+          <li>Do Contol + S to open the search tool.</li>
+          <li>Search for "display_errors".</li>
+          <li>Click the "Find Next" button to move down through the page until you find the line that says, <b>display_errors = off (the line will not have a semi-colon at the far left and should be about 25% down from the top of the document).</b></li>
+          <li>Change the word "off" to "on".</li>
+          <li>Save and close the file.</li>
+          <li>Return to the MAMP control panel and stop, then restart the servers.</li>
+          <li>From now on, if PHP encounters an error, it will report the error to you at run-time.</li>
+          <li>You should only have to do this once.</li>
         </ol>
 
 
