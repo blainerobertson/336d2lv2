@@ -165,12 +165,13 @@
         <p>By default MAMP hides all errors that it encounters. While this is good in a production environment it is not good for our development environment. Therefore, we need to enable the displaying of errors to help us as we develop our application.</p>
         <ol>
           <li>Open phpInfo as done earlier.</li>
-          <li>Scroll down until you find the item "Loaded Configuration File". Note the path shown to the right of the title as you will want to find and open the file.</li>
-          <li>Open the finder and navigate to the configuration file following the path shown in the step above.</li>
-          <li>Open the file in any text editor.</li>
+          <li>Scroll down until you find the item "Loaded Configuration File". Copy the path shown to the right of the title.</li>
+          <li>Open the finder, click the "Go" menu and click "Go to Folder...".</li>
+          <li>Paste the path into the dialog box that opens. Hit your Enter key.</li>
+          <li>Open the <b>php.ini</b>file in any text editor.</li>
           <li>Do Command + S to open the search tool.</li>
           <li>Search for "display_errors".</li>
-          <li>Click the "Find Next" button to move down through the page until you find the line that says, <b>display_errors = off (the line will not have a semi-colon at the far left and should be about 25% down from the top of the document).</b></li>
+          <li>Click the "Find Next" button to move down through the page until you find the line that says, <b>display_errors = off</b> (the line will not have a semi-colon at the far left and should be about 25% down from the top of the document at or about line 472).</li>
           <li>Change the word "off" to "on".</li>
           <li>Save and close the file.</li>
           <li>Return to the MAMP control panel and stop, then restart the servers.</li>
