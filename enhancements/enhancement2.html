@@ -2,101 +2,136 @@
 <html lang="en">
 
 <head>
- <meta charset="utf-8">
- <meta http-equiv="x-ua-compatible" content="ie=edge">
- <title>Enhancement 2 | Web Backend Development</title>
- <meta name="description" content="CIT 336 Enhancement 2 directions">
- <meta name="viewport" content="width=device-width">
- <link rel="stylesheet" href="../css/336course.min.css" media="screen"> </head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Enhancement 2 | Web Backend Development</title>
+  <meta name="description" content="CIT 336 Enhancement 2 directions">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../css/336course.min.css" media="screen">
+</head>
 
 <body>
- <div id="main">
-  <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
-  <main>
-   <article id="article">
-    <h1>Enhancement 2</h1>
-    <h2>Purpose</h2>
-    <p>This enhancement allows you to work with SQL statements that are used in <abbr title="Create, Read, Update and Delete">CRUD</abbr> interactions. These same interactions correspond with the privileges you gave to the proxy user when you created the <b>acme</b> database.</p>
+  <div id="main">
+    <header id="header"><img src="../images/bs_small_banner.jpg" alt="CIT 336 Banner Image"></header>
+    <main>
+      <article id="article">
+        <h1>Enhancement 2</h1>
+        <h2>Purpose</h2>
+        <p>This enhancement allows you to work with SQL statements that are used in <abbr title="Create, Read, Update and Delete">CRUD</abbr>
+          interactions. These same interactions correspond with the privileges you gave to the proxy user when you
+          created the <b>acme</b> database.</p>
 
-    <h2>Video Demo</h2>
-    <p>This short video demonstrates what your video of the connections objects being tested could look like.</p>
-    <iframe width="560" height="315" src="//www.youtube.com/embed/ZanukT8mPeY?rel=0" allowfullscreen></iframe>
+        <h2>Video Demo</h2>
+        <p>This short video demonstrates what your video of the connections objects being tested could look like.</p>
+        <iframe width="560" height="315" src="//www.youtube.com/embed/ZanukT8mPeY?rel=0" allowfullscreen></iframe>
 
-    <h2>Assumptions</h2>
-    <p>This enhancement assumes:</p>
-    <ol>
-     <li>that you successfully created the <b>acme</b> database in your local XAMPP environment.</li>
-     <li>the proxy user was also created in the PHPMyAdmin "User Accounts" tab.</li>
-     <li>you know the proxy user's password and this user has all Data privileges.</li>
-    </ol>
+        <h2>Assumptions</h2>
+        <p>This enhancement assumes:</p>
+        <ol>
+          <li>that you successfully created the <b>acme</b> database in your local development environment.</li>
+          <li>the proxy user was also created in the PHPMyAdmin "User Accounts" tab.</li>
+          <li>you know the proxy user's password and this user has all Data privileges.</li>
+        </ol>
 
-    <h2>Tasks</h2>
-    <p>This enhancement has two distinct parts to it, 1) Writing SQL statements to use with the Acme database and 2) Creating a PDO connection function to work with the <b>acme</b> database.</p>
+        <h2>Tasks</h2>
+        <p>This enhancement has two distinct parts to it, 1) Writing SQL statements to use with the Acme database and
+          2) Creating a PDO connection function to work with the <b>acme</b> database.</p>
 
-    <h3>Storing the SQL Statements</h3>
-    <p>The Introduction to SQL reading activity contains sample SQL statements for Selecting, Inserting, Updating and Deleting data from database table(s), you should have carefully reviewed these as part of this week's activities.</p>
-    <ol>
-     <li>You will create a new "sql" folder inside the acme folder.</li>
-     <li>You will create a new "enhancement2.txt" file inside the sql folder where you will store the finished SQL statements.</li>
-     <li>Build and test your SQL statements <mark>in the PHPMyAdmin tool's SQL tab</mark> after clicking on the acme database.</li>
-     <li>When your statements are working correctly, copy and paste them into the <b>enhancement2.txt file.</b></li>
-     <li>This enhancement2.txt file will be submitted as part of the finished enhancement.</li>
-    </ol>
-    <h3>Writing SQL Statements</h3>
-    <p>Write SQL statements to accomplish the following tasks:</p>
-    <ol>
-     <li>Insert the following new client to the clients table (<b>Note:</b> The clientId and clientLevel fields should handle their own values and do not need to be part of this query.):
-      <br> Tony, Stark, tony@starkent.com, Iam1ronM@n, "I am the real Ironman" </li>
-     <li>Modify the Tony Stark record to change the clientLevel to 3.</li>
-     <li>Modify the "Nylon Rope" record to read "Climbing Rope" using a single query. The change must change all instances of "nylon rope" to "climbing rope" in the record. Also, be sure that the invName field maintains its capital letter. (This is a "tricky" one because you have to work with this two word combination [e.g. nylon rope]), while ignoring the word "nylon" if it is not followed by the word "rope". Explore the <a href="http://www.sqlteam.com/article/using-replace-in-an-update-statement" title="Opens in a new tab" target="_blank">SQL Replace function</a>. It needs to be part of an Update query as shown in the code examples of the <a href="https://www.sitepoint.com/premium/books/simply-sql/" title="Opens in a new tab" target="_blank">SQL Reading</a> - Read Ch. 1, section 3.</li>
-     <li>Use an inner join to select the invName field from the inventory table and the categoryName field from the categories table for inventory items that belong to the "Misc" category. (These resources may help you: <a href="https://www.w3schools.com/sql/sql_join.asp" title="Link opens in a new tab" target="_blank">https://www.w3schools.com/sql/sql_join.asp</a> and <a href="https://www.youtube.com/watch?v=0FEjw2HnfDs" title="Link opens in a new tab" target="_blank">https://www.youtube.com/watch?v=0FEjw2HnfDs</a>) Seven records should be returned as a result of the query.</li>
-     <li>Delete the Koenigsegg CCX car from the database. [<b>Note:</b> You can restore the Inventory table by importing the SQL file that was used to create it again].</li>
-     <li>Create a video of you running all of these SQL statements and showing the result of running each SQL statement.</li>
-    </ol>
-    <h3>Build a Database Connection File</h3>
-    <p>Create a basic php file as a connection file that contains a connection function (refer to the <b><a href="../views/db-connection.html" title="Go to the connection file" target="_blank">Create a PDO Connection</a></b> activity). The file should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
-    <ol>
-     <li>Create a PDO connection function for the acme database named <b>acmeConnect()</b>.</li>
-     <li>If and when the database connection fails, a generic failure page, built using your template file, should be delivered (using the <a href="//php.net/manual/en/function.header.php" title="View the header function at php.net" target="_blank">PHP header function</a>) that states the database could not be reached. See the image below as an example of what the page could look like:<br>
-      <img src="../images/acme/acme-error.png" alt="Sample error page for illustration purposes">
-      <p>The error view should be named <b>500.php</b> and be stored in a folder named <b>view</b> at the root of the acme folder.</p>
-     </li>
-     <li>Create a video that demonstrates that the connection works.</li>
-     <li>In the same video demonstrate that errors are successfully caught when the connection fail and the error page is delivered.</li>
-    </ol>
-    <h2>Submission</h2>
-    <ul>
-     <li>Build, test and run your SQL code in the XAMPP development environment's PHPMyAdmin tool.</li>
-     <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to help one another.</li>
-     <li>Check your work to ensure that it meets all of the expectations listed.</li>
-     <li>When satisfied that the code is operational:
-      <ol>
-       <li>Create the video(s) as explained showing the SQL statements in action and the connection object working and failing.</li>
-       <li>Post your video(s) to your YouTube channel and copy the link(s) to the video(s) when published.</li>
-       <li>Zip the acme folder and name it enhancement 2 (save this zip file outside of your web site)</li>
-       <li>Submit the zip file to the enhancement 2 assignment dropbox and add the video URL(s) to the dropbox comment.</li>
-      </ol>
-     </li>
-    </ul>
+        <h3>Storing the SQL Statements</h3>
+        <p>The Introduction to SQL reading activity contains sample SQL statements for Selecting, Inserting, Updating
+          and Deleting data from database table(s), you should have carefully reviewed these as part of this week's
+          activities.</p>
+        <ol>
+          <li>You will create a new "sql" folder inside the acme folder.</li>
+          <li>You will create a new "enhancement2.txt" file inside the sql folder where you will store the finished SQL
+            statements.</li>
+          <li>Build and test your SQL statements <mark>in the PHPMyAdmin tool's SQL tab</mark> after clicking on the
+            acme database.</li>
+          <li>When your statements are working correctly, copy and paste them into the <b>enhancement2.txt file.</b></li>
+          <li>This enhancement2.txt file will be submitted as part of the finished enhancement.</li>
+        </ol>
+        <h3>Writing SQL Statements</h3>
+        <p>Write SQL statements to accomplish the following tasks:</p>
+        <ol>
+          <li>Insert the following new client to the clients table (<b>Note:</b> The clientId and clientLevel fields
+            should handle their own values and do not need to be part of this query.):
+            <br> Tony, Stark, tony@starkent.com, Iam1ronM@n, "I am the real Ironman" </li>
+          <li>Modify the Tony Stark record to change the clientLevel to 3.</li>
+          <li>Modify the "Nylon Rope" record to read "Climbing Rope" using a single query. The change must change all
+            instances of "nylon rope" to "climbing rope" in the record. Also, be sure that the invName field maintains
+            its capital letter. (This is a "tricky" one because you have to work with this two word combination [e.g.
+            nylon rope]), while ignoring the word "nylon" if it is not followed by the word "rope". Explore the <a href="http://www.sqlteam.com/article/using-replace-in-an-update-statement"
+              title="Opens in a new tab" target="_blank">SQL Replace function</a>. It needs to be part of an Update
+            query as shown in the code examples of the <a href="https://www.sitepoint.com/premium/books/simply-sql/"
+              title="Opens in a new tab" target="_blank">SQL Reading</a> - Read Ch. 1, section 3.</li>
+          <li>Use an inner join to select the invName field from the inventory table and the categoryName field from
+            the categories table for inventory items that belong to the "Misc" category. (These resources may help you:
+            <a href="https://www.w3schools.com/sql/sql_join.asp" title="Link opens in a new tab" target="_blank">https://www.w3schools.com/sql/sql_join.asp</a>
+            and <a href="https://www.youtube.com/watch?v=0FEjw2HnfDs" title="Link opens in a new tab" target="_blank">https://www.youtube.com/watch?v=0FEjw2HnfDs</a>)
+            Seven records should be returned as a result of the query.</li>
+          <li>Delete the Koenigsegg CCX car from the database. [<b>Note:</b> You can restore the Inventory table by
+            importing the SQL file that was used to create it again].</li>
+          <li>Create a video of you running all of these SQL statements and showing the result of running each SQL
+            statement.</li>
+        </ol>
+        <h3>Build a Database Connection File</h3>
+        <p>Create a basic php file as a connection file that contains a connection function (refer to the <b><a href="../views/db-connection.html"
+              title="Go to the connection file" target="_blank">Create a PDO Connection</a></b> activity). The file
+          should be in a folder named "<b>library</b>" and be named "<b>connections.php</b>".</p>
+        <ol>
+          <li>Create a PDO connection function for the acme database named <b>acmeConnect()</b>.</li>
+          <li>If and when the database connection fails, a generic failure page, built using your template file, should
+            be delivered (using the <a href="//php.net/manual/en/function.header.php" title="View the header function at php.net"
+              target="_blank">PHP header function</a>) that states the database could not be reached. See the image
+            below as an example of what the page could look like:<br>
+            <img src="../images/acme/acme-error.png" alt="Sample error page for illustration purposes">
+            <p>The error view should be named <b>500.php</b> and be stored in a folder named <b>view</b> at the root of
+              the acme folder.</p>
+          </li>
+          <li>Create a video that demonstrates that the connection works.</li>
+          <li>In the same video demonstrate that errors are successfully caught when the connection fail and the error
+            page is delivered.</li>
+        </ol>
+        <h2>Submission</h2>
+        <ul>
+          <li>Build, test and run your SQL code in the local development environment's PHPMyAdmin tool.</li>
+          <li>Work with your learning team to accomplish the task and post to and read the weekly discussion board to
+            help one another.</li>
+          <li>Check your work to ensure that it meets all of the expectations listed.</li>
+          <li>When satisfied that the code is operational:
+            <ol>
+              <li>Create the video(s) as explained showing the SQL statements in action and the connection object
+                working and failing.</li>
+              <li>Post your video(s) to your YouTube channel and copy the link(s) to the video(s) when published.</li>
+              <li>Zip the acme folder and name it enhancement 2 (save this zip file outside of your web site)</li>
+              <li>Submit the zip file to the enhancement 2 assignment dropbox and add the video URL(s) to the dropbox
+                comment.</li>
+            </ol>
+          </li>
+        </ul>
 
-    <h2>Grading Matrix</h2>
-    <ul>
-     <li>All SQL statements are in a single file, named "enhancement2.txt" within a folder named "sql": <b>2 points</b></li>
-     <li>The Tony Stark insert SQL statement works: <b>2 points</b></li>
-     <li>The Tony Stark update SQL statement works: <b>2 points</b></li>
-     <li>The nylon rope update SQL statement works: <b>4 points</b></li>
-     <li>The select misc items SQL statement works: <b>2 points</b></li>
-     <li>The delete Koenigsegg CCX SQL statement works: <b>2 points</b></li>
-     <li>The database connection function is in a single file named "connections.php" within a folder named "library": <b>2 points</b></li>
-     <li>The acme PDO connection function works: <b>6 points</b></li>
-     <li>The acme PDO connection function fails and redirects to a generic error page named "500.php" which is stored in a "view" folder: <b>3 points</b></li>
-     <li>The video(s) of the SQL statements and connection function in action are present and demonstrate the actions called for: <b>2 points</b></li>
-     <li>Total value: <b>27 points</b> - all in objective 4</li>
-    </ul>
-   </article>
-  </main>
- </div>
- <script src="../js/course.js"></script>
+        <h2>Grading Matrix</h2>
+        <ul>
+          <li>All SQL statements are in a single file, named "enhancement2.txt" within a folder named "sql": <b>2
+              points</b></li>
+          <li>The Tony Stark insert SQL statement works: <b>2 points</b></li>
+          <li>The Tony Stark update SQL statement works: <b>2 points</b></li>
+          <li>The nylon rope update SQL statement works: <b>4 points</b></li>
+          <li>The select misc items SQL statement works: <b>2 points</b></li>
+          <li>The delete Koenigsegg CCX SQL statement works: <b>2 points</b></li>
+          <li>The database connection function is in a single file named "connections.php" within a folder named
+            "library": <b>2 points</b></li>
+          <li>The acme PDO connection function works: <b>6 points</b></li>
+          <li>The acme PDO connection function fails and redirects to a generic error page named "500.php" which is
+            stored in a "view" folder: <b>3 points</b></li>
+          <li>The video(s) of the SQL statements and connection function in action are present and demonstrate the
+            actions called for: <b>2 points</b></li>
+          <li>Total value: <b>27 points</b> - all in objective 4</li>
+        </ul>
+      </article>
+    </main>
+  </div>
+  <script src="../js/course.js"></script>
 </body>
 
 </html>
