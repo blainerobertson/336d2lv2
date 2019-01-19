@@ -55,7 +55,7 @@
     <p>Having planned out and constructed the individual code snippets its now time to put them into effect. In our example we will be using a server-side scripting language called "<abbr title="Pre-Hypertext Processing">PHP</abbr>". Remember that the snippet is "plugged-in" to a larger collection of code. In our case that larger collection of code would be the &lt;header&gt; of a web page. To keep things simple only the header is shown, but it would be preceded by the opening code of the web page and followed by the content and other portions of the page. See the example code segment under <strong><a href="#result" title="See the result">The Result</a></strong> below.</p>
     <figure class="callout no-left">
      <pre class="line-numbers"><code class="language-php">&lt;header id="page_header"&gt;
- &lt;?php include $_SERVER['DOCUMENT_ROOT'] . '/common/header.php'; ?&gt; 
+ &lt;?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'; ?&gt; 
 &lt;/header&gt;</code></pre>
      <figcaption>Figure 3: A server-side include to implement the code snippet to a web page.</figcaption>
     </figure>
@@ -65,7 +65,7 @@
      <li><b>include</b>&nbsp;- this is a PHP function that follows the path to a code snippet (the module) in order to draw it in and make it a part of the larger code collection at the point where the include function is written.</li>
      <li><b>$_SERVER['DOCUMENT_ROOT']</b>&nbsp;- this is a PHP "Super Global" object and its method that instructs the server to provide a path from the root of the server's hard drive all the way to the root of the current website. Some web hosts do not require that you use this in order to make modules work, but it doesn't hurt to have it.</li>
      <li><b>.(period)</b>&nbsp;- a php concatenation symbol. In short, it takes the group of characters on the left (provided by $_SERVER['DOCUMENT_ROOT']) and joins them to the group of characters on the right ('/common/header.php').</li>
-     <li><b>'/common/header.php'</b>&nbsp;- this is the path from the root of the website to the code snippet (module) to be included. Please notice the single quote marks on either side. The single quotes mark this collection of characters as a "string". This is programming terminology for a collection of alpha-numeric characters. <b>Note! If the common folder were not at the site root, but in a folder, the folder name would have to preceed it in the path (e.g. '/folder-name/common/header.php'</b>.</li>
+     <li><b>'/acme/common/header.php'</b>&nbsp;- this is the path from the root of the website to the code snippet (module) to be included. Please notice the single quote marks on either side. The single quotes mark this collection of characters as a "string". This is programming terminology for a collection of alpha-numeric characters. <b>Note! If the common folder were not at the site root, but in a folder, the folder name would have to preceed it in the path (e.g. '/folder-name/common/header.php'</b>.</li>
      <li>When placed together, everything to the right of the word "include" is a path (an absolute path if you want to be technical) that tells the server exactly where to find the file that is to be included at this location.</li>
     </ul>
 
