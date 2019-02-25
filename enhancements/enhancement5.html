@@ -46,7 +46,7 @@
     <p>In the "<b>products</b>" controller add server-side validation to both the "add new category" and "add new product" processes. Specifically:</p>
     <ol>
      <li>Use a require_once to get the functionality of the "<b>functions.php</b>" page and make it available to this controller.</li>
-     <li>Make sure the filter_input functions are using appropriate flags for the data being collected (all incoming data must be filtered using an appropriate flag). <b>Note:</b> If using sanitize flags for float values, you must add a second flag - FILTER_FLAG_ALLOW_FRACTION - to allow the decimal place to be retained.</li>
+     <li>Make sure the filter_input functions are using appropriate flags for the data being collected (all incoming data must be filtered using an appropriate flag). <b>Note:</b> If using sanitize flags for float values, you must add a second flag - FILTER_FLAG_ALLOW_FRACTION - to allow the decimal place to be retained. <mark><b>Note:</b> The float sanitize filter removes all characters except numbers and the + or - sign. This means if a person enters 50.5 and it is sanitized, it leaves 505.</mark></li>
      <li>If any specific patterns were used in the Native HTML5 validation, make sure that those patterns are duplicated using PHP.</li>
      <li>If you create custom functions for any part of the server-side validation, make sure they are created in the "<b>functions.php</b>" page and labeled.</li>
      <li>To dynamically select the correct category in the "add new product" view when returning errors from server-side validation you will want to watch and follow along with this video:<br>
